@@ -1,5 +1,7 @@
 import BackIcon from "@/assets/icons/back.svg?react";
 import CallIcon from "@/assets/icons/call.svg?react";
+import ChatBox from "@/components/ChatRoom/ChatBox";
+import MessageDate from "@/components/ChatRoom/MessageDate";
 import Header from "@/components/Common/Header";
 import useScrolled from "@/hooks/useScrolled";
 

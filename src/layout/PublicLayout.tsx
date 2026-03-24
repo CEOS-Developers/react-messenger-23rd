@@ -8,7 +8,7 @@ const PublicLayout = () => {
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <main className="relative flex h-203 w-93.75 flex-col overflow-hidden bg-white shadow-md">
         <StatusBar />
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-y-auto">
           <Outlet />
         </div>
         <div className="absolute inset-x-0 bottom-0">

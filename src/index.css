@@ -71,6 +71,8 @@
   --letter-spacing-3: -0.03em;
 
   /* Radius */
+  --radius-2: 2px;
+  --radius-12: 12px;
   --radius-100: 100px;
 
   /* Shadow */
@@ -178,6 +180,12 @@
 }
 
 @layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
   * {
     scrollbar-width: none;
     -ms-overflow-style: none;
