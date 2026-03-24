@@ -28,11 +28,11 @@ export default function Bubble({ message, isSent }: BubbleProps) {
 
   return (
     <div
-      className={`flex w-full px-4 py-1 ${isSent ? "justify-end" : "justify-start"}`}
+      className={`flex w-full px-4 ${isSent ? "justify-end" : "justify-start"}`}
     >
       <div
         ref={bubbleRef}
-        className={` bubble typo-body-02 ${isSent ? "bubble-sent" : "bubble-received"} ${isMultiLine ? "bubble-multiline" : ""}`}
+        className={` bubble typo-body-03 ${isSent ? "bubble-sent" : "bubble-received"} ${isMultiLine ? "bubble-multiline" : ""}`}
       >
         {message}
         {isSent ? (

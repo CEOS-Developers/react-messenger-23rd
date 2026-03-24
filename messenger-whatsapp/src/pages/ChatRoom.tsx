@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Bubble from "../components/Bubble";
 import InputBox from "../components/common/Input";
+import ChipDate from "../components/chip/ChatDate";
+import TopBar from "../assets/topbar.svg";
 
 const initialMessages = [
   { id: 1, text: "동해물과 백두산이", isSent: true },
@@ -15,15 +17,16 @@ export default function ChatRoom() {
   const [messages, setMessages] = useState(initialMessages);
 
   const handleSend = (text: string) => {
-    setMessages((prev) => [
-      ...prev,
-      { id: Date.now(), text, isSent: true },
-    ]);
+    setMessages((prev) => [...prev, { id: Date.now(), text, isSent: true }]);
   };
 
   return (
     <div className="flex flex-col h-screen bg-main-bg">
-      <div className="flex-1 flex flex-col justify-end py-2 overflow-y-auto">
+      <img src={TopBar} />
+      <div className="flex items-center justify-center mt-1">
+        <ChipDate />
+      </div>
+      <div className="flex-1 flex flex-col gap-1.5 overflow-y-auto">
         {messages.map((msg) => (
           <Bubble key={msg.id} message={msg.text} isSent={msg.isSent} />
         ))}
