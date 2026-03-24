@@ -3,15 +3,15 @@
 
 @theme {
   /* Colors */
-  --color-main-green: #00AD59;
-  --color-main-bg: #F3F0EB;
-  --color-gray-01: #F9FAFB;
-  --color-gray-02: #E5E8EB;
-  --color-gray-03: #D1D6DB;
-  --color-gray-04: #B0B8C1;
-  --color-gray-05: #4E5968;
-  --color-gray-06: #191F28;
-  --color-gray-07: #333D4B;
+  --color-main-green: #00ad59;
+  --color-main-bg: #f3f0eb;
+  --color-gray-01: #f9fafb;
+  --color-gray-02: #e5e8eb;
+  --color-gray-03: #d1d6db;
+  --color-gray-04: #b0b8c1;
+  --color-gray-05: #4e5968;
+  --color-gray-06: #191f28;
+  --color-gray-07: #333d4b;
 
   /* Font family */
   --font-pretendard: "Pretendard", sans-serif;
@@ -29,6 +29,7 @@
 }
 
 @import "./styles/typography.css";
+@import "./styles/bubble.css";
 
 /* Apply Pretendard as default font */
 body {

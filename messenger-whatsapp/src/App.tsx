@@ -1,8 +1,10 @@
+import ChatRoom from "./pages/ChatRoom";
+
 function App() {
   return (
-    <>
-      <div>App</div>
-    </>
+    <div className="w-[375px] m-auto">
+      <ChatRoom />
+    </div>
   );
 }
 
