@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard", ui-sans-serif, system-ui, sans-serif;
+
+  --text-title: 28px;
+  --text-title--line-height: 1.3;
+  --text-title--letter-spacing: -0.02em;
+  --text-title--font-weight: 600;
+
+  --text-heading: 20px;
+  --text-heading--line-height: 1.4;
+  --text-heading--letter-spacing: -0.02em;
+  --text-heading--font-weight: 600;
+
+  --text-body-01: 16px;
+  --text-body-01--line-height: 1.5;
+  --text-body-01--letter-spacing: -0.02em;
+  --text-body-01--font-weight: 600;
+
+  --text-body-02: 16px;
+  --text-body-02--line-height: 1.5;
+  --text-body-02--letter-spacing: -0.02em;
+  --text-body-02--font-weight: 500;
+
+  --text-body-03: 16px;
+  --text-body-03--line-height: 1.5;
+  --text-body-03--letter-spacing: -0.02em;
+  --text-body-03--font-weight: 400;
+
+  --text-body-04: 14px;
+  --text-body-04--line-height: 1.4;
+  --text-body-04--letter-spacing: -0.02em;
+  --text-body-04--font-weight: 500;
+
+  --text-body-sub: 14px;
+  --text-body-sub--line-height: 1.5;
+  --text-body-sub--letter-spacing: -0.02em;
+  --text-body-sub--font-weight: 400;
+
+  --text-label: 14px;
+  --text-label--line-height: 1.5;
+  --text-label--letter-spacing: -0.02em;
+  --text-label--font-weight: 500;
+
+  --text-caption-01: 12px;
+  --text-caption-01--line-height: 1.5;
+  --text-caption-01--letter-spacing: -0.02em;
+  --text-caption-01--font-weight: 400;
+
+  --text-caption-02: 10px;
+  --text-caption-02--line-height: 1.5;
+  --text-caption-02--letter-spacing: -0.02em;
+  --text-caption-02--font-weight: 400;
+
+  --color-green400: #1B8755;
+  --color-green300: #1DAA61;
+  --color-green200: #25D366;
+  --color-green100: #D9FDD3;
+
+  --color-Ivory: #F4F0EB;
+  --color-Purple: #705CE2;
+
+  --color-Gray700: #3B3B3B;
+  --color-Gray600: #6A6C6C;
+  --color-Gray500: #959393;
+  --color-Gray400: #CCCCCC;
+  --color-Gray300: #E9E9E9;
+  --color-Gray200: #F4F4F4;
+  --color-Gray100: #FAF9F9;
+
+  /*
+  Black, White는 정의되었으나 그냥 바로 사용하기로 했음!
+  */
+}
