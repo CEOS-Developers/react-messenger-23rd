@@ -37,6 +37,12 @@
   --background-image-profile-4: linear-gradient(20deg, #db0d4f 16.64%, #ff4d85 91.15%);
   --background-image-profile-5: linear-gradient(20deg, #f66 16.64%, #ff9393 91.15%);
   --background-image-profile-6: linear-gradient(20deg, #643ecd 16.64%, #a78bf4 91.15%);
+  --background-image-indicator: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 12.68%,
+    rgba(255, 255, 255, 0.55) 43.58%,
+    #fff 81.64%
+  );
 
   /* Font Family */
   --font-suit: "SUIT Variable", sans-serif;

@@ -11,8 +11,12 @@ const PublicLayout = () => {
         <div className="flex-1 overflow-hidden">
           <Outlet />
         </div>
-        <div className="absolute inset-x-5 bottom-0">
-          <NavibarWithIndicator />
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="bg-indicator w-full">
+            <div className="px-5">
+              <NavibarWithIndicator />
+            </div>
+          </div>
         </div>
       </main>
     </div>
