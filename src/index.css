@@ -1,1 +1,164 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "SUIT Variable";
+  src: url("./assets/fonts/SUIT-Variable.woff2") format("woff2");
+  font-weight: 500 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* Main Color */
+  --color-primary-100: #e5f6ff;
+  --color-primary-200: #a3d9ff;
+  --color-primary-300: #1c9ffa;
+  --color-primary-400: #0062d3;
+  --background-image-gradation: linear-gradient(97deg, #1c9ffa 4.75%, #1c6dfa 98.02%);
+
+  /* Grayscale */
+  --color-white: #ffffff;
+  --color-gray-100: #eff2f5;
+  --color-gray-200: #d3dbe2;
+  --color-gray-300: #b5bfc9;
+  --color-gray-400: #909ba6;
+  --color-gray-500: #5a636d;
+  --color-gray-600: #31353a;
+  --color-black: #1a1a1a;
+
+  /* Sub Color */
+  --color-sub: #41ce67;
+
+  /* Profile Color */
+  --background-image-profile-1: linear-gradient(20deg, #ff31b1 16.64%, #ff67cf 91.15%);
+  --background-image-profile-2: linear-gradient(20deg, #ffa953 16.64%, #ffc850 91.15%);
+  --background-image-profile-3: linear-gradient(20deg, #28da28 16.64%, #8bf499 91.15%);
+  --background-image-profile-4: linear-gradient(20deg, #db0d4f 16.64%, #ff4d85 91.15%);
+  --background-image-profile-5: linear-gradient(20deg, #f66 16.64%, #ff9393 91.15%);
+  --background-image-profile-6: linear-gradient(20deg, #643ecd 16.64%, #a78bf4 91.15%);
+
+  /* Font Family */
+  --font-suit: "SUIT Variable", sans-serif;
+
+  /* Font Size */
+  --font-size-22: 22px;
+  --font-size-20: 20px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+  --font-size-11: 11px;
+
+  /* Font Weight */
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+
+  /* Line Height */
+  --line-height-150: 150%;
+  --line-height-140: 140%;
+  --line-height-normal: normal;
+
+  /* Letter Spacing */
+  --letter-spacing: 0em;
+  --letter-spacing-2: -0.02em;
+  --letter-spacing-3: -0.03em;
+}
+
+/* Heading1_Bold */
+.font-heading-1 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-22);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-140);
+  letter-spacing: var(--letter-spacing-3);
+}
+
+/* Heading2_Bold */
+.font-heading-2 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-140);
+  letter-spacing: var(--letter-spacing-3);
+}
+
+/* Body1_Bold */
+.font-body-1 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+/* Body2_Semibold */
+.font-body-2 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+/* Body3_Medium */
+.font-body-3 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+/* Body4_Bold */
+.font-body-4 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+/* Body5_Semibold */
+.font-body-5 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+/* Body6_Medium */
+.font-body-6 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+/* Caption1_Semibold */
+.font-caption-1 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+/* Caption2_Medium */
+.font-caption-2 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
+
+/* Caption3_Semibold */
+.font-caption-3 {
+  font-family: var(--font-suit);
+  font-size: var(--font-size-11);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-150);
+  letter-spacing: var(--letter-spacing-2);
+}
