@@ -169,3 +169,14 @@
   line-height: var(--line-height-150);
   letter-spacing: var(--letter-spacing-2);
 }
+
+@layer base {
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
