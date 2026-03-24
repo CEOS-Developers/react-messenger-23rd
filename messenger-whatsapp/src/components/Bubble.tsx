@@ -60,7 +60,7 @@ export default function Bubble({ message, isSent }: BubbleProps) {
               transform: "scaleX(-1)",
             }}
           >
-            <path d={TAIL_PATH} fill="#FFFFFF" />
+            <path d={TAIL_PATH} fill="#E5E8EB" />
           </svg>
         )}
       </div>
