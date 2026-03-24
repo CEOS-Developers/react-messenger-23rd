@@ -1,10 +1,13 @@
 import Header from "@/components/Common/Header";
+import useScrolled from "@/hooks/useScrolled";
 
 const ChatListPage = () => {
+  const { scrolled, handleScroll } = useScrolled();
+
   return (
     <div className="flex h-full flex-col">
-      <Header text="대화" />
-      <div className="flex-1 overflow-y-auto">
+      <Header text="대화" scrolled={scrolled} />
+      <div className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         길어지면 이렇게 보임길어지면 이렇게 보임길어지면 이렇게 보임 길어지면 이렇게 보임 길어지면
         이렇게 보임 길어지면 이렇게 보임 길어지면 이렇게 보임 길어지면 이렇게 보임 길어지면 이렇게
         보임 길어지면 이렇게 보임 길어지면 이렇게 보임 길어지면 이렇게 보임 길어지면 이렇게 보임

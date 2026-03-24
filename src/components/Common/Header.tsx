@@ -9,6 +9,7 @@ interface HeaderProps {
   onLeftIconClick?: () => void;
   onRightIconClick?: () => void;
   onMoreClick?: () => void;
+  scrolled?: boolean;
   className?: string;
 }
 
@@ -19,10 +20,15 @@ const Header = ({
   onLeftIconClick,
   onRightIconClick,
   onMoreClick,
+  scrolled = false,
   className = "",
 }: HeaderProps) => {
   return (
-    <header className={`flex w-full justify-between bg-white px-4 py-3 ${className}`}>
+    <header
+      className={`flex w-full justify-between bg-white px-4 py-3 transition-shadow ${
+        scrolled ? "shadow-header border-b border-gray-100" : ""
+      } ${className}`}
+    >
       <div className="flex shrink-0 flex-row items-center gap-3">
         {leftIcon && (
           <button onClick={onLeftIconClick} className="size-6 cursor-pointer">
