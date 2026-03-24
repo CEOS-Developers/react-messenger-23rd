@@ -1,6 +1,10 @@
 import { type RouteObject, Navigate } from "react-router-dom";
 
 import PublicLayout from "@/layout/PublicLayout";
+import ChatListPage from "@/pages/ChatListPage";
+import ChatRoomPage from "@/pages/ChatRoomPage";
+import ContactPage from "@/pages/ContactPage";
+import ProfilePage from "@/pages/ProfilePage";
 
 const publicRoutes: RouteObject[] = [
   {
@@ -13,19 +17,19 @@ const publicRoutes: RouteObject[] = [
       },
       {
         path: "profile",
-        element: <div>내 프로필</div>,
+        element: <ProfilePage />,
       },
       {
         path: "contact",
-        element: <div>연락처</div>,
+        element: <ContactPage />,
       },
       {
         path: "chat",
-        element: <div>대화</div>,
+        element: <ChatListPage />,
       },
       {
         path: "chat/:id",
-        element: <div>채팅방 상세</div>,
+        element: <ChatRoomPage />,
       },
       {
         path: "setting",
