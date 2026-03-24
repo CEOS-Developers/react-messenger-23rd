@@ -5,7 +5,7 @@ import plusIcon from '@/shared/assets/icons/chat-room/plus.svg';
 
 const MessageInputBar = () => {
   return (
-    <div className="bg-white px-8 py-6">
+    <div className="bg-white px-4 pt-2 pb-8">
       <div className="flex items-center gap-2">
         <button
           type="button"
