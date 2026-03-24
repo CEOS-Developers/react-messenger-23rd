@@ -91,7 +91,9 @@ ceos.week3.react-messenger-23rd
 │  ├─ package.json
 │  ├─ public
 │  │  ├─ favicon.svg
-│  │  └─ icons.svg
+│  │  ├─ icons.svg
+│  │  └─ images
+│  │     └─ Frame 73.svg
 │  ├─ README.md
 │  ├─ src
 │  │  ├─ app
@@ -99,9 +101,14 @@ ceos.week3.react-messenger-23rd
 │  │  │  ├─ main.tsx
 │  │  │  └─ styles
 │  │  │     └─ index.css
-│  │  ├─ entitles
-│  │  │  └─ message
+│  │  ├─ entities
+│  │  │  ├─ message
+│  │  │  │  ├─ model
+│  │  │  │  │  └─ messages.json
+│  │  │  │  └─ ui
+│  │  │  └─ user
 │  │  │     ├─ model
+│  │  │     │  └─ users.json
 │  │  │     └─ ui
 │  │  ├─ features
 │  │  │  ├─ createChat
@@ -112,6 +119,7 @@ ceos.week3.react-messenger-23rd
 │  │  │  └─ uploadImage
 │  │  ├─ pages
 │  │  │  └─ chattingRoom
+│  │  │     ├─ model
 │  │  │     └─ ui
 │  │  ├─ shared
 │  │  │  ├─ assets
@@ -132,6 +140,7 @@ ceos.week3.react-messenger-23rd
 │  │  │  │           │  └─ Signal.svg
 │  │  │  │           └─ Mic & Cam.svg
 │  │  │  ├─ lib
+│  │  │  ├─ Test.tsx
 │  │  │  └─ ui
 │  │  └─ widgets
 │  │     └─ chattingRoom
