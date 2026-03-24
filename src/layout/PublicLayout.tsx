@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import StatusBar from "@/assets/images/StatusBar.svg?react";
+import Navibar from "@/components/Common/Navibar";
 
 const PublicLayout = () => {
   return (
@@ -8,6 +9,9 @@ const PublicLayout = () => {
       <main className="relative h-203 w-93.75 overflow-hidden bg-white shadow-md">
         <StatusBar />
         <Outlet />
+        <div className="absolute right-5 bottom-4 left-5">
+          <Navibar />
+        </div>
       </main>
     </div>
   );
