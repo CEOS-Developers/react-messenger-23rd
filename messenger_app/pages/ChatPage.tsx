@@ -1,9 +1,10 @@
-import arrow_left from '../public/icon/arrow_left.svg';
-import video from '../public/icon/video.svg';
-import call from '../public/icon/call.svg';
-import add from '../public//icon/add.svg';
-import shapes from '../public/icon/shapes.svg';
-import profile from '../public/profile.jpg';
+import arrow_left from '../src/assets/icon/arrow_left.svg';
+import video from '../src/assets/icon/video.svg';
+import call from '../src/assets/icon/call.svg';
+import add from '../src/assets/icon/add.svg';
+import shapes from '../src/assets/icon/shapes.svg';
+import profile from '../src/assets/profile.jpg';
+import { useChatStore } from '../src/store/useChatStore';
 
 const CHAT_COUNTS = 29;
 const NAME = '김예린';
