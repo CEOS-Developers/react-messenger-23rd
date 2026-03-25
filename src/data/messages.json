@@ -44,14 +44,14 @@
     "message": "감사합니다! 그러면 수업 끝난 뒤 학교 근처에서 편하게 만나는 방향으로 하면 좋을 것 같습니다. 괜찮으시다면 교내 카페나 조용하게 이야기 나누기 좋은 공간으로 정해서 다시 말씀드리겠습니다.",
     "date": "2026-03-21",
     "time": "오후 10:57",
-    "isRead": false,
-    "showReadStatus": false
+    "isRead": true,
+    "showReadStatus": true
   },
   {
     "type": "friend",
     "message": "확인 감사합니다! 저도 초반 기획 단계가 제일 중요하다고 생각했는데, 이렇게 먼저 제안해 주셔서 감사해요.",
     "date": "2026-03-21",
-    "time": "오후 10:56",
+    "time": "오후 10:59",
     "isRead": true,
     "showReadStatus": true
   },
@@ -59,7 +59,7 @@
     "type": "friend",
     "message": "장소는 말씀하신 대로 교내 카페도 좋고, 만약 노트북으로 자료를 같이 봐야 한다면 근처에 콘센트 쓰기 편한 곳도 괜찮을 것 같아요! 장소 정해지면 알려주세요, 저는 어디든 다 좋습니다.",
     "date": "2026-03-21",
-    "time": "오후 10:56",
+    "time": "오후 10:59",
     "isRead": true,
     "showReadStatus": true
   }
