@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import BackIcon from "@/assets/icons/back.svg?react";
 import CallIcon from "@/assets/icons/call.svg?react";
@@ -26,12 +27,19 @@ const groupMessages = (messages: readonly MessageItem[]) => {
 };
 
 const ChatRoomPage = () => {
+  const navigate = useNavigate();
   const { scrolled, handleScroll } = useScrolled();
   const groups = groupMessages(MESSAGES);
 
   return (
     <div className="flex h-full flex-col">
-      <Header leftIcon={<BackIcon />} text="김예지" rightIcon={<CallIcon />} scrolled={scrolled} />
+      <Header
+        leftIcon={<BackIcon />}
+        text="김예지"
+        rightIcon={<CallIcon />}
+        scrolled={scrolled}
+        onLeftIconClick={() => navigate("/chat")}
+      />
       <div className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         <div className="flex flex-col gap-5 pt-2">
           {groups.map((group, groupIndex) => {
