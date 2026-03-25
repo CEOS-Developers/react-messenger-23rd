@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ChatIcon from "@/assets/icons/chats.svg?react";
 import ProfileCircleIcon from "@/assets/icons/profile_circle.svg?react";
 import SettingIcon from "@/assets/icons/setting.svg?react";
+import Profile from "@/components/Common/Profile";
 import { NAV_ITEMS } from "@/constants/navItems";
 
 const ICON_MAP = {
@@ -31,11 +32,7 @@ const Navibar = () => {
           >
             {path === "/profile" ? (
               <div className="flex flex-col items-center gap-0.5 p-0.5">
-                <div className="bg-profile-6 flex size-5 items-center justify-center rounded-full">
-                  <span className="text-center text-[7px] leading-[140%] font-bold tracking-[-0.21px] text-white">
-                    지민
-                  </span>
-                </div>
+                <Profile name="지민" type="navibar" />
               </div>
             ) : (
               <Icon className="size-6" />
