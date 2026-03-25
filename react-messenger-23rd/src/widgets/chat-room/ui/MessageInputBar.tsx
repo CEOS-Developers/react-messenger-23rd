@@ -21,7 +21,7 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
       <div className="flex items-center gap-2">
         <button
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-gray-30)]"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-gray-30)] transition-colors hover:bg-[var(--color-gray-40)]"
         >
           <img src={plusIcon} alt="추가" className="h-6 w-6" />
         </button>
@@ -36,11 +36,18 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
             onKeyDown={handleKeyDown}
           />
 
-          <button type="button" className="flex items-center justify-center">
+          <button
+            type="button"
+            className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
+          >
             <img src={microPhoneIcon} alt="음성메세지" className="h-6 w-6" />
           </button>
 
-          <button type="button" onClick={onSend} className="flex itmes-center justify-center">
+          <button
+            type="button"
+            onClick={onSend}
+            className="flex itmes-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
+          >
             <img src={smileIcon} alt="이모티콘" className="h-6 w-6" />
           </button>
         </div>

@@ -8,7 +8,10 @@ const ChatRoomHeader = () => {
   return (
     <header className="flex items-center border-b border-[var(--color-gray-20)] bg-[var(--color-bg)] px-4 py-3">
       <div className="flex items-center justify-center">
-        <button type="button">
+        <button
+          type="button"
+          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[var(--color-gray-30)]"
+        >
           <img src={backIcon} alt="뒤로가기" className="h-8 w-8" />
         </button>
         <span className="text-base text-[var(--color-gray-80)]">999+</span>
@@ -19,10 +22,16 @@ const ChatRoomHeader = () => {
       </div>
 
       <div className="flex w-16 justify-end gap-3">
-        <button type="button">
+        <button
+          type="button"
+          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[var(--color-gray-30)]"
+        >
           <img src={searchIcon} alt="검색" className="h-5 w-5" />
         </button>
-        <button type="button">
+        <button
+          type="button"
+          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-[var(--color-gray-30)]"
+        >
           <img src={hamburgerIcon} alt="햄버거" className="h-6 w-6" />
         </button>
       </div>
