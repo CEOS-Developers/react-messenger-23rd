@@ -7,30 +7,14 @@ import Message from "@/components/ChatRoom/Message";
 import MessageDate from "@/components/ChatRoom/MessageDate";
 import TextField from "@/components/ChatRoom/TextField";
 import Header from "@/components/Common/Header";
+import { CHAT_STORAGE_KEY } from "@/constants/chatRoom";
 import messagesJson from "@/data/messages.json";
 import userJson from "@/data/user.json";
 import useScrolled from "@/hooks/useScrolled";
 import type { MessageItem } from "@/types/message";
-
-const groupMessages = (messages: readonly MessageItem[]) => {
-  const groups: MessageItem[][] = [];
-  messages.forEach(msg => {
-    const last = groups[groups.length - 1];
-    if (last && last[0].type === msg.type) {
-      last.push(msg);
-    } else {
-      groups.push([msg]);
-    }
-  });
-  return groups;
-};
-
-const STORAGE_KEY = "chatMessages";
-
-const formatTime = (date: Date) =>
-  date.toLocaleTimeString("ko-KR", { hour: "numeric", minute: "2-digit", hour12: true });
-
-const formatDate = (date: Date) => date.toISOString().split("T")[0];
+import { formatISODate } from "@/utils/formatDate";
+import { formatDisplayTime } from "@/utils/formatTime";
+import { getPointedCornerSet, getShowReadStatusSet, groupMessages } from "@/utils/messageGroup";
 
 const ChatRoomPage = () => {
   const navigate = useNavigate();
@@ -38,33 +22,13 @@ const ChatRoomPage = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const [messages, setMessages] = useState<MessageItem[]>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem(CHAT_STORAGE_KEY);
     return stored ? (JSON.parse(stored) as MessageItem[]) : (messagesJson as MessageItem[]);
   });
 
   const groups = groupMessages(messages);
-
-  // 날짜+시간이 바뀌는 첫 번째 메시지 (뾰족한 모서리 적용 대상)
-  const pointedCornerSet = new Set<number>(
-    messages.reduce<number[]>((acc, msg, idx) => {
-      const prev = messages[idx - 1];
-      const isFirstInGroup =
-        !prev || prev.type !== msg.type || prev.time !== msg.time || prev.date !== msg.date;
-      if (isFirstInGroup) acc.push(idx);
-      return acc;
-    }, []),
-  );
-
-  // 같은 날짜+시간의 연속 메시지 묶음에서 마지막 메시지인지 여부 (my, friend 모두)
-  const showReadStatusSet = new Set<number>(
-    messages.reduce<number[]>((acc, msg, idx) => {
-      const next = messages[idx + 1];
-      const isLastInGroup =
-        !next || next.type !== msg.type || next.time !== msg.time || next.date !== msg.date;
-      if (isLastInGroup) acc.push(idx);
-      return acc;
-    }, []),
-  );
+  const pointedCornerSet = getPointedCornerSet(messages);
+  const showReadStatusSet = getShowReadStatusSet(messages);
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
@@ -77,14 +41,14 @@ const ChatRoomPage = () => {
     const newMsg: MessageItem = {
       type: "my",
       message: text,
-      date: formatDate(now),
-      time: formatTime(now),
+      date: formatISODate(now),
+      time: formatDisplayTime(now),
       isRead: false,
       showReadStatus: false,
     };
     const updated = [...messages, newMsg];
     setMessages(updated);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(updated));
     setTimeout(scrollToBottom, 0);
   };
 
@@ -97,7 +61,7 @@ const ChatRoomPage = () => {
         scrolled={scrolled}
         onLeftIconClick={() => navigate("/chat")}
       />
-      <div ref={scrollRef} className="flex-1 overflow-y-auto" onScroll={handleScroll}>
+      <main ref={scrollRef} className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         <div className="flex flex-col gap-5 pt-2 pb-5.5">
           {(() => {
             let absoluteIndex = 0;
@@ -134,7 +98,7 @@ const ChatRoomPage = () => {
             });
           })()}
         </div>
-      </div>
+      </main>
       <div className="mb-10.5">
         <TextField onTyping={scrollToBottom} onSend={handleSend} />
       </div>

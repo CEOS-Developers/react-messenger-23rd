@@ -1,4 +1,4 @@
-export const formatDate = (d: string | Date, format: "short" | "long" = "short"): string => {
+export const formatDisplayDate = (d: string | Date, format: "short" | "long" = "short"): string => {
   const dateObj = typeof d === "string" ? new Date(d) : d;
 
   if (format === "long") {
@@ -7,3 +7,5 @@ export const formatDate = (d: string | Date, format: "short" | "long" = "short")
 
   return `${dateObj.getMonth() + 1}월 ${dateObj.getDate()}일`;
 };
+
+export const formatISODate = (date: Date) => date.toISOString().split("T")[0];

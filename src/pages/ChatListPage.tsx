@@ -10,14 +10,14 @@ const ChatListPage = () => {
   return (
     <div className="flex h-full flex-col">
       <Header text="대화" scrolled={scrolled} />
-      <div className="flex-1 overflow-y-auto" onScroll={handleScroll}>
+      <main className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         <button
           onClick={() => navigate("/chat/1")}
           className="cursor-pointer p-4 text-blue-500 underline"
         >
           채팅방으로 이동(채팅목록 구현 전 임시 버튼)
         </button>
-      </div>
+      </main>
     </div>
   );
 };

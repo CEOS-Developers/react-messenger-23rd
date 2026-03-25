@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { useMatch } from "react-router-dom";
 
 import MoreIcon from "@/assets/icons/more.svg?react";
 
@@ -23,10 +24,12 @@ const Header = ({
   scrolled = false,
   className = "",
 }: HeaderProps) => {
+  const isChatRoom = useMatch("chat/:id");
+
   return (
     <header
-      className={`flex w-full justify-between bg-white px-4 py-3 transition-shadow ${
-        scrolled ? "shadow-header border-b border-gray-100" : ""
+      className={`flex h-13 w-full justify-between bg-white px-4 py-3 transition-shadow ${
+        !isChatRoom && scrolled ? "shadow-header" : ""
       } ${className}`}
     >
       <div className="flex shrink-0 flex-row items-center gap-3">
