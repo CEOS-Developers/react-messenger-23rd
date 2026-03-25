@@ -1,0 +1,21 @@
+{
+  "users": [
+    { "id": 1, "name": "이윤서", "profileImage": "/profiles/me.png" },
+    { "id": 2, "name": "세오스", "profileImage": "/profiles/default.png" }
+  ],
+  "currentUserId": 1,
+  "messages": [
+    {
+      "id": 1,
+      "text": "동해물과 백두산이",
+      "senderId": 1,
+      "timestamp": 1742247000000
+    },
+    {
+      "id": 2,
+      "text": "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세",
+      "senderId": 2,
+      "timestamp": 1742247060000
+    }
+  ]
+}

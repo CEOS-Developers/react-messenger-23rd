@@ -23,23 +23,30 @@ const isSameDay = (a: number, b: number) => {
 };
 
 export default function ChatRoom() {
-  const { messages, chatName, sendMessage } = useChatStore();
+  const { messages, users, currentUserId, sendMessage } = useChatStore();
+  const chatPartner = users.find((u) => u.id !== currentUserId);
 
   return (
     <div className="flex flex-col h-screen bg-main-bg">
       <TopBar />
-      <ChatHeader chatName={chatName} />
+      <ChatHeader
+        chatName={chatPartner?.name ?? ""}
+        profileImage={chatPartner?.profileImage}
+      />
       <div className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2">
         {messages.map((msg, index) => {
+          const isSent = msg.senderId === currentUserId;
           const prev = messages[index - 1];
           const nextMsg = messages[index + 1];
           const showDate =
             index === 0 || !isSameDay(prev.timestamp, msg.timestamp);
-          const senderChanged = prev && prev.isSent !== msg.isSent;
+          const senderChanged =
+            prev && (prev.senderId === currentUserId) !== isSent;
           const showTime =
             !nextMsg ||
-            nextMsg.isSent !== msg.isSent ||
+            (nextMsg.senderId === currentUserId) !== isSent ||
             formatMinute(nextMsg.timestamp) !== formatMinute(msg.timestamp);
+
           return (
             <Fragment key={msg.id}>
               <div className="gap-5">
@@ -49,7 +56,7 @@ export default function ChatRoom() {
                   </div>
                 )}
                 <div className={senderChanged ? "mt-2" : ""}>
-                  {msg.isSent ? (
+                  {isSent ? (
                     <SentBubble
                       message={msg.text}
                       timestamp={msg.timestamp}
