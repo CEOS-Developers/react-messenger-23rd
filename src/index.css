@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+:root {
+  --screen-width: 375px;
+  --screen-height: 812px;
+}
+
+.chatPage {
+  width: var(--screen-width);
+  height: var(--screen-height);
+  background-color: #feffff;
+}
