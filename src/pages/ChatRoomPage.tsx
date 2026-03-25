@@ -5,6 +5,7 @@ import BackIcon from "@/assets/icons/back.svg?react";
 import CallIcon from "@/assets/icons/call.svg?react";
 import Message from "@/components/ChatRoom/Message";
 import MessageDate from "@/components/ChatRoom/MessageDate";
+import TextField from "@/components/ChatRoom/TextField";
 import Header from "@/components/Common/Header";
 import messagesJson from "@/data/messages.json";
 import userJson from "@/data/user.json";
@@ -40,6 +41,7 @@ const ChatRoomPage = () => {
         scrolled={scrolled}
         onLeftIconClick={() => navigate("/chat")}
       />
+      <TextField />
       <div className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         <div className="flex flex-col gap-5 pt-2">
           {groups.map((group, groupIndex) => {
