@@ -55,13 +55,12 @@ const ChatRoomPage = () => {
     }, []),
   );
 
-  // 같은 날짜+시간의 연속 "my" 메시지 묶음에서 마지막 메시지인지 여부
+  // 같은 날짜+시간의 연속 메시지 묶음에서 마지막 메시지인지 여부 (my, friend 모두)
   const showReadStatusSet = new Set<number>(
     messages.reduce<number[]>((acc, msg, idx) => {
-      if (msg.type !== "my") return acc;
       const next = messages[idx + 1];
       const isLastInGroup =
-        !next || next.type !== "my" || next.time !== msg.time || next.date !== msg.date;
+        !next || next.type !== msg.type || next.time !== msg.time || next.date !== msg.date;
       if (isLastInGroup) acc.push(idx);
       return acc;
     }, []),
