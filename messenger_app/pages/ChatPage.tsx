@@ -3,19 +3,21 @@ import video from '../src/assets/icon/video.svg';
 import call from '../src/assets/icon/call.svg';
 import add from '../src/assets/icon/add.svg';
 import shapes from '../src/assets/icon/shapes.svg';
+import send from '../src/assets/icon/send.svg';
 import check_purple from '../src/assets/icon/check_purple.svg';
 import check_gray from '../src/assets/icon/check_gray.svg';
 
 import profile from '../src/assets/profile.jpg';
 
 import { useChatStore } from '../src/store/useChatStore';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const CHAT_COUNTS = 29;
 const NAME = '김예린';
 
 export const ChatPage = () => {
-  const { currentUser, messages, readMessage } = useChatStore();
+  const [inputText, setInputText] = useState('');
+  const { currentUser, messages, sendMessage, readMessage } = useChatStore();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // messages.length가 변경될 때에만 메시지 읽음함수 처리. messages 자체를 불러오면 useEffect가 messages를 변경하고 무한루프 발생 가능
@@ -44,8 +46,17 @@ export const ChatPage = () => {
     }).format(new Date(dateString));
   };
 
+  const handleSubmit = (e: React.SubmitEvent) => {
+    e.preventDefault();
+
+    if (inputText.trim()) {
+      sendMessage(inputText);
+      setInputText('');
+    }
+  };
+
   return (
-    <div className="w-full min-h-screen">
+    <div className="relative w-full min-h-screen">
       {/* 상단바(헤더) */}
       <header className="w-full px-4 h-12 flex flex-row items-center justify-between bg-Ivory">
         <div className="flex w-12 h-7 items-center justify-between">
@@ -65,7 +76,7 @@ export const ChatPage = () => {
       </header>
 
       {/* 메인 채팅창 */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-4 pb-24">
+      <div className="w-full h-full overflow-auto px-4 py-4 flex flex-col gap-4 pb-20">
         {messages.map((msg, index) => {
           const prevMsg = messages[index - 1];
           const showDateDivider = isDifferentDay(
@@ -160,18 +171,34 @@ export const ChatPage = () => {
       </div>
 
       {/* 하단 메뉴 및 채팅 입력창 */}
-      <div className="absolute w-full h-20 px-4 py-3 bottom-0 bg-Ivory">
+      <div className="absolute bottom-0 w-full h-20 px-4 py-3 shrink-0 bg-Ivory z-10">
         <div className="w-full h-full flex items-start mb-5">
           <img src={add} alt="" className="w-9 h-9 mr-2" />
           <div className="w-full h-11">
-            <div className="flex justify-between bg-white w-full h-full rounded-[13.5px] px-4 py-2.5">
+            <form
+              onSubmit={handleSubmit}
+              className="flex justify-between bg-white w-full h-full rounded-[13.5px] px-4 py-2.5"
+            >
               <input
                 type="text"
                 placeholder="메시지 입력"
-                className="outline-none"
+                className="outline-none w-full bg-transparent"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
               />
-              <img src={shapes} alt="" className="w-7 h-7" />
-            </div>
+              <button
+                type="submit"
+                className="shrink-0 ml-2"
+                onMouseDown={(e) => e.preventDefault()}
+                onTouchStart={(e) => e.preventDefault()}
+              >
+                {inputText ? (
+                  <img src={send} alt="" className="w-7 h-7" />
+                ) : (
+                  <img src={shapes} className="w-7 h-7" />
+                )}
+              </button>
+            </form>
           </div>
         </div>
       </div>
