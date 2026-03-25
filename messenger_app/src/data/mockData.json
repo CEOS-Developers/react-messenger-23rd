@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": "user_1",
+      "name": "김예린",
+      "profileImage": "/src/assets/profile.jpg"
+    },
+    {
+      "id": "user_2",
+      "name": "나",
+      "profileImage": ""
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg_001",
+      "senderId": "user_1",
+      "text": "안녕하세요! 과제 진행은 잘 돼가시나요?",
+      "isRead": true,
+      "timestamp": "2023-10-27T10:00:00.000Z"
+    },
+    {
+      "id": "msg_002",
+      "senderId": "user_2",
+      "text": "아...일단 텍스트부터 길게 써보고 어떻게 보이는지를 봐야 할 것 같아요. 텍스트텍스트텍스트텍스트텍스트. 줄바꿈 잘 보이시나요?",
+      "isRead": true,
+      "timestamp": "2023-10-27T10:00:00.000Z"
+    }
+  ]
+}

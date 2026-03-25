@@ -1,21 +1,7 @@
 import { create } from 'zustand';
 import type { Message, User } from '../types/chat';
 import { persist } from 'zustand/middleware';
-
-const initialUsers: User[] = [
-  { id: 'user_1', name: '김예린', profileImage: '/profile.jpg' },
-  { id: 'user_2', name: '나', profileImage: '/my_profile.jpg' },
-];
-
-const initialMessages: Message[] = [
-  {
-    id: 'msg_001',
-    senderId: 'user_1',
-    text: '안녕하세요!',
-    isRead: false,
-    timestamp: new Date().toISOString(),
-  },
-];
+import mockData from '../data/mockData.json';
 
 interface ChatStore {
   users: User[];
@@ -30,9 +16,9 @@ interface ChatStore {
 export const useChatStore = create<ChatStore>()(
   persist(
     (set) => ({
-      users: initialUsers,
-      currentUser: initialUsers[1],
-      messages: initialMessages,
+      users: mockData.users,
+      currentUser: mockData.users[1],
+      messages: mockData.messages,
 
       sendMessage: (text: string) =>
         set((state) => {
@@ -71,9 +57,9 @@ export const useChatStore = create<ChatStore>()(
 
       loadData: () =>
         set({
-          users: initialUsers,
-          currentUser: initialUsers[1],
-          messages: initialMessages,
+          users: mockData.users,
+          currentUser: mockData.users[1],
+          messages: mockData.messages,
         }),
     }),
     {
