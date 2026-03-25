@@ -9,6 +9,7 @@ interface MessageProps {
   isRead: boolean;
   name?: string;
   isFirst?: boolean;
+  isFirstInTimeGroup?: boolean;
   showReadStatus?: boolean;
 }
 
@@ -19,6 +20,7 @@ const Message = ({
   isRead,
   name = "",
   isFirst = false,
+  isFirstInTimeGroup = false,
   showReadStatus = false,
 }: MessageProps) => {
   const isMy = type === "my";
@@ -28,7 +30,7 @@ const Message = ({
       <div className="flex w-full items-end justify-end px-4">
         <div className="flex items-end gap-2">
           {showReadStatus && <ChatRead type="my" isRead={isRead} time={time} />}
-          <ChatBox type="my" message={message} isFirst={isFirst} />
+          <ChatBox type="my" message={message} isFirst={isFirstInTimeGroup} />
         </div>
       </div>
     );
@@ -44,7 +46,7 @@ const Message = ({
         ) : (
           <div className="size-7.5 shrink-0" />
         )}
-        <ChatBox type="friend" message={message} isFirst={isFirst} />
+        <ChatBox type="friend" message={message} isFirst={isFirstInTimeGroup} />
         {showReadStatus && <ChatRead type="friend" isRead={isRead} time={time} />}
       </div>
     </div>

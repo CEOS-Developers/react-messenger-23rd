@@ -44,6 +44,29 @@ const ChatRoomPage = () => {
 
   const groups = groupMessages(messages);
 
+  // 날짜+시간이 바뀌는 첫 번째 메시지 (뾰족한 모서리 적용 대상)
+  const pointedCornerSet = new Set<number>(
+    messages.reduce<number[]>((acc, msg, idx) => {
+      const prev = messages[idx - 1];
+      const isFirstInGroup =
+        !prev || prev.type !== msg.type || prev.time !== msg.time || prev.date !== msg.date;
+      if (isFirstInGroup) acc.push(idx);
+      return acc;
+    }, []),
+  );
+
+  // 같은 날짜+시간의 연속 "my" 메시지 묶음에서 마지막 메시지인지 여부
+  const showReadStatusSet = new Set<number>(
+    messages.reduce<number[]>((acc, msg, idx) => {
+      if (msg.type !== "my") return acc;
+      const next = messages[idx + 1];
+      const isLastInGroup =
+        !next || next.type !== "my" || next.time !== msg.time || next.date !== msg.date;
+      if (isLastInGroup) acc.push(idx);
+      return acc;
+    }, []),
+  );
+
   const scrollToBottom = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -77,33 +100,40 @@ const ChatRoomPage = () => {
       />
       <div ref={scrollRef} className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         <div className="flex flex-col gap-5 pt-2 pb-5.5">
-          {groups.map((group, groupIndex) => {
-            const prevGroup = groups[groupIndex - 1];
-            const showDate = !prevGroup || prevGroup[0].date !== group[0].date;
-            return (
-              <React.Fragment key={groupIndex}>
-                {showDate && (
-                  <div className="flex justify-center">
-                    <MessageDate date={group[0].date} />
+          {(() => {
+            let absoluteIndex = 0;
+            return groups.map((group, groupIndex) => {
+              const prevGroup = groups[groupIndex - 1];
+              const showDate = !prevGroup || prevGroup[0].date !== group[0].date;
+              return (
+                <React.Fragment key={groupIndex}>
+                  {showDate && (
+                    <div className="flex justify-center">
+                      <MessageDate date={group[0].date} />
+                    </div>
+                  )}
+                  <div className="flex flex-col gap-1">
+                    {group.map((msg, msgIndex) => {
+                      const currentIndex = absoluteIndex++;
+                      return (
+                        <Message
+                          key={msgIndex}
+                          type={msg.type}
+                          name={msg.type === "friend" ? userJson.name : ""}
+                          message={msg.message}
+                          time={msg.time}
+                          isRead={msg.isRead}
+                          isFirst={msgIndex === 0}
+                          isFirstInTimeGroup={pointedCornerSet.has(currentIndex)}
+                          showReadStatus={showReadStatusSet.has(currentIndex)}
+                        />
+                      );
+                    })}
                   </div>
-                )}
-                <div className="flex flex-col gap-1">
-                  {group.map((msg, msgIndex) => (
-                    <Message
-                      key={msgIndex}
-                      type={msg.type}
-                      name={msg.type === "friend" ? userJson.name : ""}
-                      message={msg.message}
-                      time={msg.time}
-                      isRead={msg.isRead}
-                      isFirst={msgIndex === 0}
-                      showReadStatus={msg.showReadStatus}
-                    />
-                  ))}
-                </div>
-              </React.Fragment>
-            );
-          })}
+                </React.Fragment>
+              );
+            });
+          })()}
         </div>
       </div>
       <div className="mb-10.5">
