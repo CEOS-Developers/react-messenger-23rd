@@ -56,9 +56,9 @@ export const ChatPage = () => {
   };
 
   return (
-    <div className="relative w-full h-dvh">
+    <div className="w-full h-svh flex flex-col">
       {/* 상단바(헤더) */}
-      <header className="w-full px-4 h-12 flex flex-row items-center justify-between bg-Ivory">
+      <header className="w-full px-4 h-12 flex flex-row shrink-0 items-center justify-between bg-Ivory">
         <div className="flex w-12 h-7 items-center justify-between">
           <img src={arrow_left} alt="" />
           <div className="text-body-02">{CHAT_COUNTS}</div>
@@ -76,7 +76,7 @@ export const ChatPage = () => {
       </header>
 
       {/* 메인 채팅창 */}
-      <div className="w-full overflow-auto px-4 py-4 flex flex-col gap-4 pb-20">
+      <div className="flex flex-1 w-full overflow-y-auto px-4 py-4 flex-col gap-4">
         {messages.map((msg, index) => {
           const prevMsg = messages[index - 1];
           const showDateDivider = isDifferentDay(
@@ -171,7 +171,7 @@ export const ChatPage = () => {
       </div>
 
       {/* 하단 메뉴 및 채팅 입력창 */}
-      <div className="fixed bottom-0 w-full h-20 px-4 py-3 shrink-0 bg-Ivory z-10">
+      <div className="w-full h-20 px-4 py-3 shrink-0 bg-Ivory z-10">
         <div className="w-full h-full flex items-start mb-5">
           <img src={add} alt="" className="w-9 h-9 mr-2" />
           <div className="w-full h-11">
