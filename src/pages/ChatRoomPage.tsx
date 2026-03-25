@@ -79,7 +79,7 @@ const ChatRoomPage = () => {
           })}
         </div>
       </div>
-      <div className="mb-8.5">
+      <div className="mb-10.5">
         <TextField onTyping={scrollToBottom} />
       </div>
     </div>
