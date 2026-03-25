@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import BackIcon from "@/assets/icons/back.svg?react";
@@ -11,8 +11,6 @@ import messagesJson from "@/data/messages.json";
 import userJson from "@/data/user.json";
 import useScrolled from "@/hooks/useScrolled";
 import type { MessageItem } from "@/types/message";
-
-const MESSAGES: MessageItem[] = messagesJson as MessageItem[];
 
 const groupMessages = (messages: readonly MessageItem[]) => {
   const groups: MessageItem[][] = [];
@@ -27,16 +25,45 @@ const groupMessages = (messages: readonly MessageItem[]) => {
   return groups;
 };
 
+const STORAGE_KEY = "chatMessages";
+
+const formatTime = (date: Date) =>
+  date.toLocaleTimeString("ko-KR", { hour: "numeric", minute: "2-digit", hour12: true });
+
+const formatDate = (date: Date) => date.toISOString().split("T")[0];
+
 const ChatRoomPage = () => {
   const navigate = useNavigate();
   const { scrolled, handleScroll } = useScrolled();
-  const groups = groupMessages(MESSAGES);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const [messages, setMessages] = useState<MessageItem[]>(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? (JSON.parse(stored) as MessageItem[]) : (messagesJson as MessageItem[]);
+  });
+
+  const groups = groupMessages(messages);
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
+  };
+
+  const handleSend = (text: string) => {
+    const now = new Date();
+    const newMsg: MessageItem = {
+      type: "my",
+      message: text,
+      date: formatDate(now),
+      time: formatTime(now),
+      isRead: false,
+      showReadStatus: false,
+    };
+    const updated = [...messages, newMsg];
+    setMessages(updated);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    setTimeout(scrollToBottom, 0);
   };
 
   return (
@@ -80,7 +107,7 @@ const ChatRoomPage = () => {
         </div>
       </div>
       <div className="mb-10.5">
-        <TextField onTyping={scrollToBottom} />
+        <TextField onTyping={scrollToBottom} onSend={handleSend} />
       </div>
     </div>
   );
