@@ -145,7 +145,7 @@ export const ChatPage = () => {
 
                     {/* 메시지 텍스트 버블 */}
                     <div
-                      className={`px-3 py-2 text-body-04 shadow-sm break-words ${
+                      className={`px-3 py-2 text-body-04 break-words ${
                         isMe
                           ? 'bg-green100 rounded-lg rounded-tr-none'
                           : 'bg-Gray200 rounded-lg rounded-tl-none'
