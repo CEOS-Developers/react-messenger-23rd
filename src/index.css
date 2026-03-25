@@ -80,6 +80,10 @@
   --shadow-header: 0 2px 2px 0 rgba(0, 0, 0, 0.02);
 }
 
+body {
+  font-family: var(--font-suit);
+}
+
 /* Heading1_Bold */
 .font-heading-1 {
   font-family: var(--font-suit);

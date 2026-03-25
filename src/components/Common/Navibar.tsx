@@ -32,17 +32,7 @@ const Navibar = () => {
             {path === "/profile" ? (
               <div className="flex flex-col items-center gap-0.5 p-0.5">
                 <div className="bg-profile-6 flex size-5 items-center justify-center rounded-full">
-                  <span
-                    style={{
-                      fontSize: "7px",
-                      fontWeight: 700,
-                      fontFamily: '"SUIT Variable"',
-                      lineHeight: "140%",
-                      letterSpacing: "-0.21px",
-                      color: "#FFF",
-                      textAlign: "center",
-                    }}
-                  >
+                  <span className="text-center text-[7px] leading-[140%] font-bold tracking-[-0.21px] text-white">
                     지민
                   </span>
                 </div>
