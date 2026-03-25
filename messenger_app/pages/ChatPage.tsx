@@ -90,7 +90,7 @@ export const ChatPage = () => {
               {/* 날짜 구분선 */}
               {showDateDivider && (
                 <div className="flex justify-center">
-                  <div className="bg-Gray200 text-body-04 px-4 mb-5 rounded-[8px]">
+                  <div className="bg-Gray200 text-caption-01 px-4 mb-5 rounded-[8px]">
                     {new Intl.DateTimeFormat('ko-KR', {
                       year: 'numeric',
                       month: 'long',
