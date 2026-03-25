@@ -41,7 +41,6 @@ const ChatRoomPage = () => {
         scrolled={scrolled}
         onLeftIconClick={() => navigate("/chat")}
       />
-      <TextField />
       <div className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         <div className="flex flex-col gap-5 pt-2">
           {groups.map((group, groupIndex) => {
@@ -72,6 +71,7 @@ const ChatRoomPage = () => {
             );
           })}
         </div>
+        <TextField />
       </div>
     </div>
   );
