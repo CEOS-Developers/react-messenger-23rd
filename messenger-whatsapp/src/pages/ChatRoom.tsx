@@ -1,32 +1,11 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import SentBubble from "../components/chat/SentBubble";
 import ReceivedBubble from "../components/chat/ReceivedBubble";
 import InputBox from "../components/common/Input";
 import ChipDate from "../components/chip/ChatDate";
 import TopBar from "../assets/topbar.svg?react";
 import ChatHeader from "../components/chat/ChatHeader";
-
-type Message = {
-  id: number;
-  text: string;
-  isSent: boolean;
-  timestamp: number;
-};
-
-const initialMessages: Message[] = [
-  {
-    id: 1,
-    text: "동해물과 백두산이",
-    isSent: true,
-    timestamp: new Date("2026-03-18T09:30:00").getTime(),
-  },
-  {
-    id: 2,
-    text: "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세",
-    isSent: false,
-    timestamp: new Date("2026-03-18T09:31:00").getTime(),
-  },
-];
+import { useChatStore } from "../store/useChatStore";
 
 const formatMinute = (ts: number) => {
   const d = new Date(ts);
@@ -44,20 +23,12 @@ const isSameDay = (a: number, b: number) => {
 };
 
 export default function ChatRoom() {
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
-
-  const handleSend = (text: string) => {
-    const now = Date.now();
-    setMessages((prev) => [
-      ...prev,
-      { id: now, text, isSent: true, timestamp: now },
-    ]);
-  };
+  const { messages, chatName, sendMessage } = useChatStore();
 
   return (
     <div className="flex flex-col h-screen bg-main-bg">
       <TopBar />
-      <ChatHeader chatName="세오스" />
+      <ChatHeader chatName={chatName} />
       <div className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2">
         {messages.map((msg, index) => {
           const prev = messages[index - 1];
@@ -97,7 +68,7 @@ export default function ChatRoom() {
           );
         })}
       </div>
-      <InputBox onSend={handleSend} />
+      <InputBox onSend={sendMessage} />
     </div>
   );
 }
