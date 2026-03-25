@@ -23,12 +23,11 @@ const Navibar = () => {
         const Icon = ICON_MAP[path];
         const isActive = pathname.startsWith(path);
         const activeClass = isActive ? "bg-primary-100 text-primary-400" : "text-gray-500";
-
         return (
           <button
             key={path}
             onClick={() => navigate(path)}
-            className={`rounded-100 flex flex-1 cursor-pointer flex-col items-center justify-center gap-0.5 px-4 py-1 transition-colors ${activeClass}`}
+            className={`rounded-100 flex flex-1 cursor-pointer flex-col items-center justify-center gap-0.5 px-4 py-1 transition-colors duration-400 ease-in-out ${activeClass}`}
           >
             {path === "/profile" ? (
               <div className="flex flex-col items-center gap-0.5 p-0.5">
