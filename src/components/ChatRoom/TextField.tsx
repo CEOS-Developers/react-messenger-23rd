@@ -7,9 +7,10 @@ import VoiceMessageIcon from "@/assets/icons/voice_message.svg?react";
 
 interface TextFieldProps {
   onSend?: (message: string) => void;
+  onTyping?: () => void;
 }
 
-const TextField = ({ onSend }: TextFieldProps) => {
+const TextField = ({ onSend, onTyping }: TextFieldProps) => {
   const [value, setValue] = useState("");
   const [isMultiline, setIsMultiline] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -41,7 +42,10 @@ const TextField = ({ onSend }: TextFieldProps) => {
         <textarea
           ref={textareaRef}
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={e => {
+            setValue(e.target.value);
+            onTyping?.();
+          }}
           onKeyDown={handleKeyDown}
           onInput={e => {
             const el = e.currentTarget;

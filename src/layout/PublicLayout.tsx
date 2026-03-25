@@ -14,14 +14,16 @@ const PublicLayout = () => {
         <div className="flex-1 overflow-y-auto">
           <Outlet />
         </div>
-        {!isChatRoom && (
-          <div className="bg-indicator absolute inset-x-0 bottom-0 flex flex-col gap-2 px-5">
-            <Navibar />
-            <div className="pt-5.25 pb-2">
-              <HomeIndicator />
+        <div
+          className={`absolute inset-x-0 bottom-0 flex flex-col gap-2 ${!isChatRoom && "bg-indicator"}`}
+        >
+          {!isChatRoom && (
+            <div className="px-4">
+              <Navibar />
             </div>
-          </div>
-        )}
+          )}
+          <HomeIndicator className="pt-5.25 pb-2" />
+        </div>
       </main>
     </div>
   );

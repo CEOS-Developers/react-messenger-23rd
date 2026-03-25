@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import BackIcon from "@/assets/icons/back.svg?react";
@@ -31,6 +31,13 @@ const ChatRoomPage = () => {
   const navigate = useNavigate();
   const { scrolled, handleScroll } = useScrolled();
   const groups = groupMessages(MESSAGES);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  };
 
   return (
     <div className="flex h-full flex-col">
@@ -41,8 +48,8 @@ const ChatRoomPage = () => {
         scrolled={scrolled}
         onLeftIconClick={() => navigate("/chat")}
       />
-      <div className="flex-1 overflow-y-auto" onScroll={handleScroll}>
-        <div className="flex flex-col gap-5 pt-2">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto" onScroll={handleScroll}>
+        <div className="flex flex-col gap-5 pt-2 pb-5.5">
           {groups.map((group, groupIndex) => {
             const prevGroup = groups[groupIndex - 1];
             const showDate = !prevGroup || prevGroup[0].date !== group[0].date;
@@ -71,7 +78,9 @@ const ChatRoomPage = () => {
             );
           })}
         </div>
-        <TextField />
+      </div>
+      <div className="mb-8.5">
+        <TextField onTyping={scrollToBottom} />
       </div>
     </div>
   );
