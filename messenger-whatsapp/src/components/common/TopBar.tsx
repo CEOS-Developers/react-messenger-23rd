@@ -12,7 +12,7 @@ const currentTime = formatTime(Date.now());
 
 const TopBar = () => {
   return (
-    <div className="h-[50px] flex flex-row justify-between items-center px-5 py-3 typo-caption-1">
+    <div className="h-[50px] flex flex-row justify-between items-center pl-[33.45px] pr-[14.67px] py-4 typo-body-3 font-semibold">
       {currentTime}
       <RightSide />
     </div>
