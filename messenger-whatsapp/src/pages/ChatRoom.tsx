@@ -3,9 +3,9 @@ import SentBubble from "../components/chat/SentBubble";
 import ReceivedBubble from "../components/chat/ReceivedBubble";
 import InputBox from "../components/common/Input";
 import ChipDate from "../components/chip/ChatDate";
-import TopBar from "../assets/topbar.svg?react";
 import ChatHeader from "../components/chat/ChatHeader";
 import { useChatStore } from "../store/useChatStore";
+import TopBar from "../components/common/TopBar";
 
 const formatMinute = (ts: number) => {
   const d = new Date(ts);
@@ -51,7 +51,7 @@ export default function ChatRoom() {
             <Fragment key={msg.id}>
               <div className="gap-5">
                 {showDate && (
-                  <div className="flex items-center justify-center mt-5">
+                  <div className="flex items-center justify-center my-5">
                     <ChipDate date={new Date(msg.timestamp)} />
                   </div>
                 )}

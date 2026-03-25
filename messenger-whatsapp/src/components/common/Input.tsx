@@ -117,7 +117,7 @@ export default function InputBox({ onSend }: InputBoxProps) {
       {hasText && (
         <button
           onClick={handleSend}
-          className="w-8 h-8 rounded-full bg-main-green flex items-center justify-center shrink-0"
+          className="w-8 h-8 rounded-full bg-main-green flex items-center justify-center shrink-0 cursor-pointer"
         >
           <SendIcon />
         </button>
