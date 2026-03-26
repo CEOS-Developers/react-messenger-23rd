@@ -76,21 +76,33 @@ export const ChatPage = () => {
       </header>
 
       {/* 메인 채팅창 */}
-      <div className="flex flex-1 w-full overflow-y-auto px-4 py-4 flex-col gap-4">
+      <div className="flex flex-1 w-full overflow-y-auto px-4 flex-col">
         {messages.map((msg, index) => {
           const prevMsg = messages[index - 1];
+          const nextMsg = messages[index + 1];
+
           const showDateDivider = isDifferentDay(
             prevMsg?.timestamp,
             msg.timestamp
           );
+
+          const isDifferentSender =
+            !prevMsg || prevMsg.senderId !== msg.senderId;
+          const marginTopClass = isDifferentSender ? 'mt-3' : 'mt-1';
+
+          const showTime =
+            !nextMsg ||
+            nextMsg.senderId !== msg.senderId ||
+            formatTime(nextMsg.timestamp) !== formatTime(msg.timestamp);
+
           const isMe = msg.senderId === currentUser.id;
 
           return (
             <React.Fragment key={msg.id}>
               {/* 날짜 구분선 */}
               {showDateDivider && (
-                <div className="flex justify-center">
-                  <div className="bg-Gray200 text-caption-01 px-4 mb-5 rounded-[8px]">
+                <div className="flex justify-center mt-4 mb-3">
+                  <div className="bg-Gray200 text-caption-01 px-5 rounded-lg">
                     {new Intl.DateTimeFormat('ko-KR', {
                       year: 'numeric',
                       month: 'long',
@@ -102,9 +114,7 @@ export const ChatPage = () => {
               )}
 
               {/* 개별 메시지 버블 영역, 프로필사진은 일단 없앰 */}
-              <div
-                className={`flex w-full ${isMe ? 'justify-end' : 'justify-start'}`}
-              >
+              <div className={`flex w-full ${isMe ? 'justify-end' : 'justify-start'} ${marginTopClass}`}>
                 {/* {!isMe && (
                   <img
                     src={senderInfo?.profileImage}
@@ -139,7 +149,7 @@ export const ChatPage = () => {
                             className="w-3 h-3"
                           />
                         )}
-                        <span>{formatTime(msg.timestamp)}</span>
+                        {showTime && <span>{formatTime(msg.timestamp)}</span>}
                       </div>
                     )}
 
