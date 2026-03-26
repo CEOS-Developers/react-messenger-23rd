@@ -9,7 +9,7 @@ const ChatListPage = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <Header text="대화" scrolled={scrolled} />
+      <Header text="대화" showShadow={scrolled} />
       <main className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         <button
           onClick={() => navigate("/chat/1")}

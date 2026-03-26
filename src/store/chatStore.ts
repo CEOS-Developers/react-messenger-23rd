@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+import { CHAT_ROOM_STORAGE_PREFIX, CHAT_STORE_KEY, CHAT_STORE_VERSION } from "@/constants/chatRoom";
 import messagesJson from "@/data/messages.json";
 import type { ChatRoom, ChatRoomsMap, MessageItem, MessageType } from "@/types/message";
 
@@ -17,36 +18,42 @@ const chatStorage: PersistStorage<PersistedState> = {
     const chatRooms: ChatRoomsMap = {};
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key?.startsWith("chat-room-")) {
-        const id = Number(key.replace("chat-room-", ""));
+      if (key?.startsWith(CHAT_ROOM_STORAGE_PREFIX)) {
+        const id = Number(key.slice(CHAT_ROOM_STORAGE_PREFIX.length));
         const raw = localStorage.getItem(key);
         if (raw) chatRooms[id] = JSON.parse(raw) as ChatRoom;
       }
     }
-    if (Object.keys(chatRooms).length === 0) return null;
-    return { state: { chatRooms } };
+    return Object.keys(chatRooms).length > 0 ? { state: { chatRooms } } : null;
   },
   setItem: (_name, value: StorageValue<PersistedState>) => {
     Object.entries(value.state.chatRooms).forEach(([id, room]) => {
-      localStorage.setItem(`chat-room-${id}`, JSON.stringify(room));
+      localStorage.setItem(`${CHAT_ROOM_STORAGE_PREFIX}${id}`, JSON.stringify(room));
     });
   },
   removeItem: () => {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key?.startsWith("chat-room-")) keysToRemove.push(key);
+      if (key?.startsWith(CHAT_ROOM_STORAGE_PREFIX)) keysToRemove.push(key);
     }
     keysToRemove.forEach(key => localStorage.removeItem(key));
   },
 };
+
+const updateRoom = (
+  chatRooms: ChatRoomsMap,
+  chatRoomId: number,
+  updates: Partial<ChatRoom>,
+): { chatRooms: ChatRoomsMap } => ({
+  chatRooms: { ...chatRooms, [chatRoomId]: { ...chatRooms[chatRoomId], ...updates } },
+});
 
 interface ChatState {
   chatRooms: ChatRoomsMap;
   togglePerspective: (chatRoomId: number) => void;
   markMessagesRead: (chatRoomId: number, type: MessageType) => void;
   sendMessage: (chatRoomId: number, text: string, date: string, time: string) => void;
-  getChatRoom: (chatRoomId: number) => ChatRoom | undefined;
 }
 
 export const useChatStore = create<ChatState>()(
@@ -58,15 +65,9 @@ export const useChatStore = create<ChatState>()(
         set(state => {
           const room = state.chatRooms[chatRoomId];
           if (!room) return state;
-          return {
-            chatRooms: {
-              ...state.chatRooms,
-              [chatRoomId]: {
-                ...room,
-                perspective: room.perspective === "my" ? "friend" : "my",
-              },
-            },
-          };
+          return updateRoom(state.chatRooms, chatRoomId, {
+            perspective: room.perspective === "my" ? "friend" : "my",
+          });
         });
       },
 
@@ -74,17 +75,11 @@ export const useChatStore = create<ChatState>()(
         set(state => {
           const room = state.chatRooms[chatRoomId];
           if (!room) return state;
-          return {
-            chatRooms: {
-              ...state.chatRooms,
-              [chatRoomId]: {
-                ...room,
-                messages: room.messages.map(msg =>
-                  msg.type === type ? { ...msg, isRead: true } : msg,
-                ),
-              },
-            },
-          };
+          return updateRoom(state.chatRooms, chatRoomId, {
+            messages: room.messages.map(msg =>
+              msg.type === type ? { ...msg, isRead: true } : msg,
+            ),
+          });
         });
       },
 
@@ -97,25 +92,17 @@ export const useChatStore = create<ChatState>()(
           date,
           time,
           isRead: false,
-          showReadStatus: false,
         };
-        set(state => ({
-          chatRooms: {
-            ...state.chatRooms,
-            [chatRoomId]: { ...room, messages: [...room.messages, newMsg] },
-          },
-        }));
-      },
-
-      getChatRoom: chatRoomId => {
-        return get().chatRooms[chatRoomId];
+        set(state =>
+          updateRoom(state.chatRooms, chatRoomId, { messages: [...room.messages, newMsg] }),
+        );
       },
     }),
     {
-      name: "chat-store",
+      name: CHAT_STORE_KEY,
       storage: chatStorage,
       partialize: state => ({ chatRooms: state.chatRooms }),
-      version: 1,
+      version: CHAT_STORE_VERSION,
     },
   ),
 );

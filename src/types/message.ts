@@ -12,7 +12,6 @@ export interface MessageItem {
   date: string;
   time: string;
   isRead: boolean;
-  showReadStatus: boolean;
 }
 
 export interface ChatRoom {

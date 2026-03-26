@@ -7,7 +7,7 @@ const ContactPage = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <Header text="연락처" rightIcon={<PlusIcon />} scrolled={scrolled} />
+      <Header text="연락처" rightIcon={<PlusIcon />} showShadow={scrolled} />
       <main className="flex-1 overflow-y-auto" onScroll={handleScroll}>
         {/* 페이지 내용 */}
       </main>
