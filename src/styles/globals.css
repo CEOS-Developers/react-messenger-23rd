@@ -1,0 +1,52 @@
+:root {
+  /* layout */
+  --screen-width: 375px;
+  --screen-height: 812px;
+  --radius-xl: 16px;
+  --grid-margin: 8px;
+  --grid-gutter: 16px;
+
+  /* colors */
+  --color-yellow-100: #FEEEB8;
+  --color-yellow-200: #FFE000;
+  --color-brown: #421D1D;
+
+  --color-blue-100: #A7C8E8;
+  --color-blue-200: #9CB7EE;
+
+  --color-accent-100: #FF5E25;
+  --color-accent-200: #FF4300;
+
+  --color-gray-700: #272729;
+  --color-gray-600: #363638;
+  --color-gray-500: #525254;
+  --color-gray-400: #79797B;
+  --color-gray-300: #A2A2A4;
+  --color-gray-200: #D6D6D8;
+  --color-gray-150: #EDEDEF;
+  --color-gray-100: #F2F2F4;
+
+  --color-black: #191919;
+  --color-white: #FFFFFF;
+
+  /* skeleton */
+  --color-skeleton-50: rgba(214, 214, 216, 0.5);
+  --color-skeleton-20: rgba(245, 245, 247, 0.75);
+
+  /* typography */
+  --font-big: "Kakao Big Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-small: "Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-gray-150);
+  color: var(--color-black);
+  font-family: var(--font-small);
+}
