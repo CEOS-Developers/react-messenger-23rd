@@ -2,12 +2,12 @@
   {
     "id": "me",
     "name": "나",
-    "profileImage": "/profile/ProfileImage.svg",
+    "profileImage": "ProfileImage.svg",
     "isMe": true
   },
   {
     "id": "kim",
     "name": "김철수",
-    "profileImage": "/profile/ProfileImage.svg"
+    "profileImage": "ProfileImage.svg"
   }
 ]

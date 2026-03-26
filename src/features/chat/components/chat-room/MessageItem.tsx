@@ -1,17 +1,25 @@
 import type { ReactNode } from "react";
 import type { User } from "../../types/chat";
+import ProfileImageAsset from "../../../../assets/icons/chat/ProfileImage.svg";
 
 type MessageItemProps = {
   sender: User;
   children: ReactNode;
 };
 
+const profileImageMap: Record<string, string> = {
+  "ProfileImage.svg": ProfileImageAsset,
+};
+
 export default function MessageItem({ sender, children }: MessageItemProps) {
+  const resolvedProfileImage =
+    profileImageMap[sender.profileImage] ?? ProfileImageAsset;
+
   return (
     <div className="flex w-full items-start gap-[8px] pl-[8px] pr-[8px]">
       <img
-        src={sender.profileImage}
-        alt={`${sender.name} 프로필`}
+        src={resolvedProfileImage}
+        alt=""
         className="h-[32px] w-[32px] shrink-0"
       />
 
