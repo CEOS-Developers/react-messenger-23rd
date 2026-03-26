@@ -11,9 +11,10 @@ interface TextFieldProps {
   onSend?: (message: string) => void;
   onTyping?: () => void;
   onFile?: (file: File) => void;
+  onHeightChange?: (delta: number) => void;
 }
 
-const TextField = ({ onSend, onTyping, onFile }: TextFieldProps) => {
+const TextField = ({ onSend, onTyping, onFile, onHeightChange }: TextFieldProps) => {
   const [value, setValue] = useState("");
   const [isMultiline, setIsMultiline] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -28,11 +29,14 @@ const TextField = ({ onSend, onTyping, onFile }: TextFieldProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const el = e.target;
+    const prevHeight = el.offsetHeight;
     el.style.height = "auto";
     el.style.height = `${el.scrollHeight}px`;
-    setIsMultiline(el.scrollHeight > 40 || el.value.includes("\n"));
+    const newHeight = el.offsetHeight;
+    setIsMultiline(newHeight > 40 || el.value.includes("\n"));
     setValue(el.value);
     onTyping?.();
+    if (newHeight !== prevHeight) onHeightChange?.(newHeight - prevHeight);
   };
 
   const handleSend = () => {

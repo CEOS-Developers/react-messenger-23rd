@@ -54,9 +54,15 @@ const ChatRoomPage = () => {
     }
   }, []);
 
+  const handleTextareaHeightChange = useCallback((delta: number) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop += delta;
+    }
+  }, []);
+
   useEffect(() => {
     scrollToBottom();
-  }, [chatRoomId, scrollToBottom]);
+  }, [chatRoomId, perspective, scrollToBottom]);
 
   const handleSend = useCallback(
     (text: string) => {
@@ -114,7 +120,7 @@ const ChatRoomPage = () => {
         </div>
       </main>
       <div className="mb-10.5">
-        <TextField onSend={handleSend} />
+        <TextField onSend={handleSend} onHeightChange={handleTextareaHeightChange} />
       </div>
     </div>
   );
