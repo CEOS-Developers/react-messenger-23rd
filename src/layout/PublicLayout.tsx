@@ -1,8 +1,8 @@
 import { Outlet, useMatch } from "react-router-dom";
 
-import StatusBar from "@/assets/images/StatusBar.svg?react";
 import HomeIndicator from "@/components/Common/HomeIndicator";
 import Navibar from "@/components/Common/Navibar";
+import StatusBar from "@/components/Common/StatusBar";
 
 const PublicLayout = () => {
   const isChatRoom = useMatch("/chat/:id");
