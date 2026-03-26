@@ -3,7 +3,8 @@ import type { MessageItem } from "@/types/message";
 export const groupMessages = (messages: readonly MessageItem[]): MessageItem[][] =>
   messages.reduce<MessageItem[][]>((groups, msg) => {
     const last = groups[groups.length - 1];
-    if (last?.[0].type === msg.type) {
+    const lastMsg = last?.[last.length - 1];
+    if (lastMsg?.type === msg.type && lastMsg?.date === msg.date) {
       last.push(msg);
     } else {
       groups.push([msg]);
