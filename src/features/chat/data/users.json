@@ -2,12 +2,12 @@
   {
     "id": "me",
     "name": "나",
-    "profileImage": "/src/assets/icons/chat/ProfileImage.svg",
+    "profileImage": "/profile/ProfileImage.svg",
     "isMe": true
   },
   {
     "id": "kim",
     "name": "김철수",
-    "profileImage": "/src/assets/icons/chat/ProfileImage.svg"
+    "profileImage": "/profile/ProfileImage.svg"
   }
 ]
