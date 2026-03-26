@@ -17,7 +17,7 @@ const MessageBubble = ({ message }: MessageBubbleProps) => {
   if (!user) return null;
 
   return (
-    <div className={`flex ${isMe ? 'justify-end' : 'justify-start'} mb-3`}>
+    <div className={`flex ${isMe ? 'justify-end' : 'justify-start'} mb-2`}>
       {!isMe && (
         <div className="flex itmes-start gap-2">
           <button type="button" className="shrink-0 self-start">
