@@ -5,6 +5,7 @@ import FileIcon from "@/assets/icons/file.svg?react";
 import SendMessageIcon from "@/assets/icons/send_message.svg?react";
 import VoiceMessageIcon from "@/assets/icons/voice_message.svg?react";
 import { MAX_TEXTAREA_HEIGHT } from "@/constants/chatRoom";
+import { cn } from "@/utils/cn";
 
 interface TextFieldProps {
   onSend?: (message: string) => void;
@@ -53,13 +54,11 @@ const TextField = ({ onSend, onTyping, onFile }: TextFieldProps) => {
     e.target.value = "";
   };
 
-  const alignClass = isMultiline ? "self-end" : "self-center";
-
   return (
     <div className="px-4 py-2.5">
       <input ref={fileInputRef} type="file" className="hidden" onChange={handleFileChange} />
       <div className="rounded-24 flex w-full items-center gap-2 bg-gray-100 p-2">
-        <button type="button" className={`shrink-0 ${alignClass}`}>
+        <button type="button" className={cn("shrink-0", isMultiline ? "self-end" : "self-center")}>
           <EmojiIcon className="size-6 cursor-pointer text-gray-400" />
         </button>
         <textarea
@@ -72,7 +71,12 @@ const TextField = ({ onSend, onTyping, onFile }: TextFieldProps) => {
           className="scrollbar-hide flex-1 resize-none overflow-y-auto bg-transparent py-0 text-gray-600 placeholder:text-gray-400 focus:outline-none"
           style={{ maxHeight: `${MAX_TEXTAREA_HEIGHT}px` }}
         />
-        <div className={`flex shrink-0 items-center gap-3 ${alignClass}`}>
+        <div
+          className={cn(
+            "flex shrink-0 items-center gap-3",
+            isMultiline ? "self-end" : "self-center",
+          )}
+        >
           {!hasText && (
             <button type="button" onClick={() => fileInputRef.current?.click()}>
               <FileIcon className="size-6 cursor-pointer text-gray-400" />

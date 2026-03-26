@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 
 import MoreIcon from "@/assets/icons/more.svg?react";
+import { cn } from "@/utils/cn";
 
 interface HeaderProps {
   leftIcon?: ReactNode;
@@ -23,12 +24,14 @@ const Header = ({
   onRightIconClick,
   onMoreClick,
   showShadow = false,
-  className = "",
+  className,
 }: HeaderProps) => (
   <header
-    className={`flex h-13 w-full justify-between bg-white px-4 py-3 transition-shadow ${
-      showShadow ? "shadow-header" : ""
-    } ${className}`}
+    className={cn(
+      "flex h-13 w-full justify-between bg-white px-4 py-3 transition-shadow",
+      showShadow && "shadow-header",
+      className,
+    )}
   >
     <div className="flex shrink-0 flex-row items-center gap-3">
       {leftIcon && (
@@ -38,7 +41,11 @@ const Header = ({
       )}
       {text && (
         <span
-          className={`${leftIcon ? "font-body-1" : "font-heading-2"} text-black ${onTextClick ? "cursor-pointer" : ""}`}
+          className={cn(
+            leftIcon ? "font-body-1" : "font-heading-2",
+            "text-black",
+            onTextClick && "cursor-pointer",
+          )}
           onClick={onTextClick}
         >
           {text}

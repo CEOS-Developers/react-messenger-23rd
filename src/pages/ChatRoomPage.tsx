@@ -68,18 +68,13 @@ const ChatRoomPage = () => {
     togglePerspective(chatRoomId);
   };
 
-  const handleBack = () => {
-    if (perspective === "friend") togglePerspective(chatRoomId);
-    navigate("/chat");
-  };
-
   return (
     <div className="flex h-full flex-col">
       <Header
         leftIcon={<BackIcon />}
         text={headerTitle}
         rightIcon={<CallIcon />}
-        onLeftIconClick={handleBack}
+        onLeftIconClick={() => navigate("/chat")}
         onTextClick={handlePerspectiveToggle}
       />
       <main ref={scrollRef} className="flex-1 overflow-y-auto">
