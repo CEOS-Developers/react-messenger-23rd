@@ -1,4 +1,7 @@
 // 하단 채팅 입력창 전체 레이아웃, button부분은 enter로 채팅이 보내지게 수정해야됨.
+import type { KeyboardEvent } from 'react';
+import { useState } from 'react';
+
 import smileIcon from '@/shared/assets/icons/chat-room/face-smile.svg';
 import microPhoneIcon from '@/shared/assets/icons/chat-room/microphone-01.svg';
 import plusIcon from '@/shared/assets/icons/chat-room/plus.svg';
@@ -10,8 +13,12 @@ interface MessageInputBarProps {
 }
 
 const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const [isComposing, setIsComposing] = useState(false);
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (isComposing || e.nativeEvent.isComposing || e.keyCode === 229) return;
     if (e.key === 'Enter') {
+      e.preventDefault();
       onSend();
     }
   };
@@ -30,10 +37,12 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
           <input
             type="text"
             placeholder=""
-            className="flex-1 rounded-1xl bg-transparent outline-none px-4 py-2 text-base focus:outline-none"
+            className="flex-1 bg-transparent outline-none px-4 py-2 text-base focus:outline-none"
             value={value}
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={handleKeyDown}
+            onCompositionStart={() => setIsComposing(true)}
+            onCompositionEnd={() => setIsComposing(false)}
           />
 
           <button
@@ -45,8 +54,7 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
 
           <button
             type="button"
-            onClick={onSend}
-            className="flex itmes-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
+            className="flex items-center justify-center rounded-full p-1 transition-colors hover:bg-[var(--color-gray-20)]"
           >
             <img src={smileIcon} alt="이모티콘" className="h-6 w-6" />
           </button>
