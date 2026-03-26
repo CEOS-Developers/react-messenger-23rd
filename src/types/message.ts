@@ -1,5 +1,11 @@
 export type MessageType = "my" | "friend";
 
+export interface User {
+  userId: number;
+  name: string;
+  profileColor: string;
+}
+
 export interface MessageItem {
   type: MessageType;
   message: string;
@@ -11,8 +17,8 @@ export interface MessageItem {
 
 export interface ChatRoom {
   chatRoomId: number;
-  myName: string;
-  friendName: string;
+  myUserId: number;
+  friendUserId: number;
   perspective: MessageType;
   messages: MessageItem[];
 }

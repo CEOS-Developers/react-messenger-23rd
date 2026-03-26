@@ -1,0 +1,6 @@
+{
+  "users": [
+    { "userId": 1, "name": "권지민", "profileColor": "bg-profile-6" },
+    { "userId": 2, "name": "김예지", "profileColor": "bg-profile-5" }
+  ]
+}

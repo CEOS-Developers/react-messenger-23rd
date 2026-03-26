@@ -5,6 +5,7 @@ import ProfileCircleIcon from "@/assets/icons/profile_circle.svg?react";
 import SettingIcon from "@/assets/icons/setting.svg?react";
 import Profile from "@/components/Common/Profile";
 import { NAV_ITEMS } from "@/constants/navItems";
+import { getUserById } from "@/utils/getUser";
 
 const ICON_MAP = {
   "/chat": ChatIcon,
@@ -16,6 +17,7 @@ const ICON_MAP = {
 const Navibar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const myUser = getUserById(1);
 
   return (
     <nav className="rounded-100 shadow-box flex w-full flex-row items-center bg-white p-1">
@@ -31,7 +33,11 @@ const Navibar = () => {
           >
             {path === "/profile" ? (
               <div className="flex flex-col items-center gap-0.5 p-0.5">
-                <Profile name="지민" type="navibar" />
+                <Profile
+                  name={myUser?.name ?? ""}
+                  profileColor={myUser?.profileColor ?? ""}
+                  type="navibar"
+                />
               </div>
             ) : (
               <Icon className="size-6" />

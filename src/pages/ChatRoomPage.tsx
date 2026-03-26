@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import BackIcon from "@/assets/icons/back.svg?react";
@@ -11,6 +11,7 @@ import useScrolled from "@/hooks/useScrolled";
 import { useChatStore } from "@/store/chatStore";
 import { formatISODate } from "@/utils/formatDate";
 import { formatDisplayTime } from "@/utils/formatTime";
+import { getUserById } from "@/utils/getUser";
 import { getPointedCornerSet, getShowReadStatusSet, groupMessages } from "@/utils/messageGroup";
 
 const ChatRoomPage = () => {
@@ -25,8 +26,10 @@ const ChatRoomPage = () => {
 
   const perspective = chatRoom?.perspective ?? "my";
   const messages = chatRoom?.messages ?? [];
-  const myName = chatRoom?.myName ?? "";
-  const friendName = chatRoom?.friendName ?? "";
+  const myUser = getUserById(chatRoom?.myUserId ?? 0);
+  const friendUser = getUserById(chatRoom?.friendUserId ?? 0);
+  const myName = myUser?.name ?? "";
+  const friendName = friendUser?.name ?? "";
   const headerTitle = perspective === "my" ? friendName : myName;
 
   const groups = groupMessages(messages);
@@ -38,6 +41,10 @@ const ChatRoomPage = () => {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatRoomId]);
 
   const getDisplayType = (type: "my" | "friend") => {
     if (perspective === "my") return type;
@@ -81,17 +88,16 @@ const ChatRoomPage = () => {
                     {group.map((msg, msgIndex) => {
                       const currentIndex = absoluteIndex++;
                       const displayType = getDisplayType(msg.type);
-                      const name =
-                        displayType === "friend"
-                          ? perspective === "my"
-                            ? friendName
-                            : myName
-                          : "";
+                      const friendDisplayUser = perspective === "my" ? friendUser : myUser;
+                      const name = displayType === "friend" ? (friendDisplayUser?.name ?? "") : "";
+                      const profileColor =
+                        displayType === "friend" ? (friendDisplayUser?.profileColor ?? "") : "";
                       return (
                         <Message
                           key={msgIndex}
                           type={displayType}
                           name={name}
+                          profileColor={profileColor}
                           message={msg.message}
                           time={msg.time}
                           isRead={msg.isRead}

@@ -2,8 +2,8 @@
   "chatRooms": [
     {
       "chatRoomId": 1,
-      "myName": "권지민",
-      "friendName": "김예지",
+      "myUserId": 1,
+      "friendUserId": 2,
       "perspective": "my",
       "messages": [
         {

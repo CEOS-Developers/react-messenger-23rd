@@ -8,6 +8,7 @@ interface MessageProps {
   time: string;
   isRead: boolean;
   name?: string;
+  profileColor?: string;
   isFirst?: boolean;
   isFirstInTimeGroup?: boolean;
   showReadStatus?: boolean;
@@ -19,6 +20,7 @@ const Message = ({
   time,
   isRead,
   name = "",
+  profileColor = "",
   isFirst = false,
   isFirstInTimeGroup = false,
   showReadStatus = false,
@@ -41,7 +43,7 @@ const Message = ({
       <div className="flex items-end gap-2">
         {isFirst ? (
           <div className="self-start">
-            <Profile name={name} type="chatroom" />
+            <Profile name={name} profileColor={profileColor} type="chatroom" />
           </div>
         ) : (
           <div className="size-7.5 shrink-0" />
