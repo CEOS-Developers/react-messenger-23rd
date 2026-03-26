@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { formatDisplayDate } from "@/utils/formatDate";
 
 interface MessageDateProps {
@@ -13,4 +15,4 @@ const MessageDate = ({ date, format = "short" }: MessageDateProps) => (
   </div>
 );
 
-export default MessageDate;
+export default memo(MessageDate);

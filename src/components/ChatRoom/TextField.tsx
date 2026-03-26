@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 
 import EmojiIcon from "@/assets/icons/emoji.svg?react";
 import FileIcon from "@/assets/icons/file.svg?react";
@@ -95,4 +95,4 @@ const TextField = ({ onSend, onTyping, onFile }: TextFieldProps) => {
   );
 };
 
-export default TextField;
+export default memo(TextField);

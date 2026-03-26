@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import BackIcon from "@/assets/icons/back.svg?react";
@@ -20,7 +20,8 @@ const ChatRoomPage = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const chatRoom = useChatStore(state => state.chatRooms[chatRoomId]);
-  const { togglePerspective, markMessagesRead, sendMessage } = useChatStore();
+  const switchPerspective = useChatStore(state => state.switchPerspective);
+  const sendMessage = useChatStore(state => state.sendMessage);
 
   const perspective = chatRoom?.perspective ?? "my";
   const myUser = getUserById(chatRoom?.myUserId ?? 0);
@@ -47,26 +48,28 @@ const ChatRoomPage = () => {
     return { renderable, pointedCornerSet, showReadStatusSet };
   }, [chatRoom]);
 
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  };
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
-  }, [chatRoomId]);
+  }, [chatRoomId, scrollToBottom]);
 
-  const handleSend = (text: string) => {
-    const now = new Date();
-    sendMessage(chatRoomId, text, formatISODate(now), formatDisplayTime(now));
-    setTimeout(scrollToBottom, 0);
-  };
+  const handleSend = useCallback(
+    (text: string) => {
+      const now = new Date();
+      sendMessage(chatRoomId, text, formatISODate(now), formatDisplayTime(now));
+      setTimeout(scrollToBottom, 0);
+    },
+    [sendMessage, chatRoomId, scrollToBottom],
+  );
 
-  const handlePerspectiveToggle = () => {
-    markMessagesRead(chatRoomId, perspective);
-    togglePerspective(chatRoomId);
-  };
+  const handlePerspectiveToggle = useCallback(() => {
+    switchPerspective(chatRoomId);
+  }, [switchPerspective, chatRoomId]);
 
   return (
     <div className="flex h-full flex-col">
@@ -111,7 +114,7 @@ const ChatRoomPage = () => {
         </div>
       </main>
       <div className="mb-10.5">
-        <TextField onTyping={scrollToBottom} onSend={handleSend} />
+        <TextField onSend={handleSend} />
       </div>
     </div>
   );

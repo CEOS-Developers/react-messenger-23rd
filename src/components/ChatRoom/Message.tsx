@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import ChatBox from "@/components/ChatRoom/ChatBox";
 import ChatRead from "@/components/ChatRoom/ChatRead";
 import Profile from "@/components/Common/Profile";
@@ -55,4 +57,4 @@ const Message = ({
   );
 };
 
-export default Message;
+export default memo(Message);

@@ -51,7 +51,7 @@ const updateRoom = (
 
 interface ChatState {
   chatRooms: ChatRoomsMap;
-  togglePerspective: (chatRoomId: number) => void;
+  switchPerspective: (chatRoomId: number) => void;
   markMessagesRead: (chatRoomId: number, type: MessageType) => void;
   sendMessage: (chatRoomId: number, text: string, date: string, time: string) => void;
 }
@@ -61,12 +61,16 @@ export const useChatStore = create<ChatState>()(
     (set, get) => ({
       chatRooms: initialChatRooms,
 
-      togglePerspective: chatRoomId => {
+      switchPerspective: chatRoomId => {
         set(state => {
           const room = state.chatRooms[chatRoomId];
           if (!room) return state;
+          const next = room.perspective === "my" ? "friend" : "my";
           return updateRoom(state.chatRooms, chatRoomId, {
-            perspective: room.perspective === "my" ? "friend" : "my",
+            perspective: next,
+            messages: room.messages.map(msg =>
+              msg.type === room.perspective ? { ...msg, isRead: true } : msg,
+            ),
           });
         });
       },
