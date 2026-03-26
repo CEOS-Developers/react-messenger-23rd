@@ -4,9 +4,21 @@ import mic from "../../img/chatpage/mic.svg";
 import sendChat from "../../img/chatpage/sendChat.svg";
 import { useState } from "react";
 
-function MessageNavBar() {
+type MessageNavBarProps = {
+  onSendMessage: (text: string) => void;
+};
+
+function MessageNavBar({ onSendMessage }: MessageNavBarProps) {
   const [message, setMessage] = useState("");
   const isTyping = message.trim().length > 0;
+
+  const handleSend = () => {
+    const trimmedMessage = message.trim();
+    if (!trimmedMessage) return;
+
+    onSendMessage(trimmedMessage);
+    setMessage("");
+  };
 
   return (
     <div className="w-[375px] inline-flex items-center gap-[8px] px-[12px] pt-[10px] pb-[40px]">
@@ -25,6 +37,12 @@ function MessageNavBar() {
           <input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.nativeEvent.isComposing) return;
+              if (e.key === "Enter") {
+                handleSend();
+              }
+            }}
             placeholder="메시지 보내기..."
           ></input>
         </section>
@@ -39,7 +57,10 @@ function MessageNavBar() {
           </button>
 
           {isTyping ? (
-            <button className="flex w-[34px] h-[34px] items-center justify-center gap-[10px] rounded-full bg-[#5F4CFF]">
+            <button
+              onClick={handleSend}
+              className="flex w-[34px] h-[34px] items-center justify-center gap-[10px] rounded-full bg-[#5F4CFF]"
+            >
               <img
                 src={sendChat}
                 alt="sendChat"
