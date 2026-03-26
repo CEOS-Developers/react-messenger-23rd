@@ -9,6 +9,12 @@ export interface MessageItem {
   showReadStatus: boolean;
 }
 
-export interface UserItem {
-  name: string;
+export interface ChatRoom {
+  chatRoomId: number;
+  myName: string;
+  friendName: string;
+  perspective: MessageType;
+  messages: MessageItem[];
 }
+
+export type ChatRoomsMap = Record<number, ChatRoom>;

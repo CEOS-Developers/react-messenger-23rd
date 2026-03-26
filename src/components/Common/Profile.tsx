@@ -1,3 +1,5 @@
+import { getFirstName } from "@/utils/getName";
+
 interface ProfileProps {
   name: string;
   type?: "chatroom" | "navibar";
@@ -20,7 +22,7 @@ const Profile = ({ name, type = "navibar" }: ProfileProps) => {
   const { container, text } = VARIANTS[type];
   return (
     <div className={container}>
-      <span className={text}>{name}</span>
+      <span className={text}>{getFirstName(name)}</span>
     </div>
   );
 };

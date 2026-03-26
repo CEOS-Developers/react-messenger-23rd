@@ -1,1 +1,1 @@
-export const CHAT_STORAGE_KEY = "chatMessages";
+export const CHAT_STORE_KEY = "chat-store";

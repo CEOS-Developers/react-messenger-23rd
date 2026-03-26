@@ -8,6 +8,7 @@ interface HeaderProps {
   text?: string;
   rightIcon?: ReactNode;
   onLeftIconClick?: () => void;
+  onTextClick?: () => void;
   onRightIconClick?: () => void;
   onMoreClick?: () => void;
   scrolled?: boolean;
@@ -19,6 +20,7 @@ const Header = ({
   text,
   rightIcon,
   onLeftIconClick,
+  onTextClick,
   onRightIconClick,
   onMoreClick,
   scrolled = false,
@@ -39,7 +41,10 @@ const Header = ({
           </button>
         )}
         {text && (
-          <span className={`${leftIcon ? "font-body-1" : "font-heading-2"} text-black`}>
+          <span
+            className={`${leftIcon ? "font-body-1" : "font-heading-2"} text-black ${onTextClick ? "cursor-pointer" : ""}`}
+            onClick={onTextClick}
+          >
             {text}
           </span>
         )}
