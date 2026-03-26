@@ -6,6 +6,7 @@ export type GroupedMessage = Message & {
 
 export type MessageGroup = {
   senderId: string;
+  createdDate: string;
   messages: GroupedMessage[];
 };
 
@@ -17,9 +18,15 @@ export function groupMessages(messages: Message[]): MessageGroup[] {
   for (const message of messages) {
     const lastGroup = groups[groups.length - 1];
 
-    if (!lastGroup || lastGroup.senderId !== message.senderId) {
+    const shouldStartNewGroup =
+      !lastGroup ||
+      lastGroup.senderId !== message.senderId ||
+      lastGroup.createdDate !== message.createdDate;
+
+    if (shouldStartNewGroup) {
       groups.push({
         senderId: message.senderId,
+        createdDate: message.createdDate,
         messages: [{ ...message, showTime: true }],
       });
       continue;

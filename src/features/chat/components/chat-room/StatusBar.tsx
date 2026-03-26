@@ -10,6 +10,7 @@ export default function StatusBar() {
         alignSelf: "stretch",
         background: "rgba(167, 200, 232, 0.80)",
         backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
       }}
     >
       <div

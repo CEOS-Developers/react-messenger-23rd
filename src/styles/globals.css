@@ -46,7 +46,14 @@ body,
 
 body {
   margin: 0;
-  background: var(--color-gray-150);
-  color: var(--color-black);
-  font-family: var(--font-small);
+}
+
+/* 스크롤은 가능하지만 스크롤바는 숨김 */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }

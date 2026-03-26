@@ -47,6 +47,14 @@ export default function ChatRoomPage() {
     return `${hours}:${minutes}`;
   };
 
+  const getCurrentDate = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const date = String(now.getDate()).padStart(2, "0");
+    return `${year}-${month}-${date}`;
+  };
+
   const handleSendText = (text: string) => {
     if (!me) return;
 
@@ -56,6 +64,7 @@ export default function ChatRoomPage() {
       type: "text",
       text,
       createdAt: getCurrentTime(),
+      createdDate: getCurrentDate(),
       unreadCount: 1,
     };
 
@@ -71,6 +80,7 @@ export default function ChatRoomPage() {
       type: "image",
       imageUrl,
       createdAt: getCurrentTime(),
+      createdDate: getCurrentDate(),
       unreadCount: 1,
     };
 
@@ -79,8 +89,8 @@ export default function ChatRoomPage() {
 
   return (
     <MobileLayout>
-      <div className="flex h-full w-full flex-col overflow-x-hidden bg-[#A7C8E8]">
-        <div className="sticky top-0 z-20">
+      <div className="relative flex h-full w-full flex-col overflow-hidden bg-[#A7C8E8]">
+        <div className="absolute left-0 right-0 top-0 z-20">
           <StatusBar />
           <ChatRoomHeader title="김철수" />
         </div>

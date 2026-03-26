@@ -4,27 +4,32 @@
     "senderId": "me",
     "type": "text",
     "text": "철수야 철수야",
-    "createdAt": "00:00"
+    "createdAt": "00:00",
+    "createdDate": "2026-03-19",
+    "unreadCount": 1
   },
   {
     "id": "m2",
     "senderId": "me",
     "type": "text",
     "text": "훈이 우는 사진 보내줘",
-    "createdAt": "00:01"
+    "createdAt": "00:01",
+    "createdDate": "2026-03-19"
   },
   {
     "id": "m3",
     "senderId": "kim",
     "type": "text",
     "text": "대화 내용 더미텍스트 대화 내용 더미텍스트 대화 내용 더미텍스트 대화",
-    "createdAt": "00:02"
+    "createdAt": "00:02",
+    "createdDate": "2026-03-19"
   },
   {
     "id": "m4",
     "senderId": "kim",
     "type": "text",
     "text": "여깃어.",
-    "createdAt": "00:03"
+    "createdAt": "00:03",
+    "createdDate": "2026-03-19"
   }
 ]

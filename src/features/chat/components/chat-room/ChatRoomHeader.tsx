@@ -1,11 +1,11 @@
+import ChevronLeftIcon from "../../../../assets/icons/chat/ic_Chevron_Left.svg";
+import SearchIcon from "../../../../assets/icons/chat/ic_Search.svg";
+import MenuIcon from "../../../../assets/icons/chat/ic_Menu.svg";
+
 type ChatRoomHeaderProps = {
   title: string;
   participantCount?: number;
 };
-
-import ChevronLeftIcon from "../../../../assets/icons/chat/ic_Chevron_Left.svg";
-import SearchIcon from "../../../../assets/icons/chat/ic_Search.svg";
-import MenuIcon from "../../../../assets/icons/chat/ic_Menu.svg";
 
 export default function ChatRoomHeader({
   title,
@@ -13,10 +13,11 @@ export default function ChatRoomHeader({
 }: ChatRoomHeaderProps) {
   return (
     <header
-      className="relative flex w-full items-center justify-between px-[8px] py-[4px]"
+      className="relative flex h-[40px] w-full items-center justify-between px-[8px] py-[4px]"
       style={{
         background: "rgba(167, 200, 232, 0.80)",
         backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
       }}
     >
       <button
