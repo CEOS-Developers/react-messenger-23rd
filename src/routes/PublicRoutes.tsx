@@ -5,6 +5,7 @@ import ChatListPage from "@/pages/ChatListPage";
 import ChatRoomPage from "@/pages/ChatRoomPage";
 import ContactPage from "@/pages/ContactPage";
 import ProfilePage from "@/pages/ProfilePage";
+import SettingPage from "@/pages/SettingPage";
 
 const publicRoutes: RouteObject[] = [
   {
@@ -33,7 +34,7 @@ const publicRoutes: RouteObject[] = [
       },
       {
         path: "setting",
-        element: <div>설정</div>,
+        element: <SettingPage />,
       },
     ],
   },
