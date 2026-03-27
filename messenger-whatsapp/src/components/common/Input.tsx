@@ -108,7 +108,7 @@ export default function InputBox({ onSend }: InputBoxProps) {
           rows={1}
           className="flex-1 bg-transparent resize-none outline-none items-end typo-body-02 text-gray-06 max-h-40 overflow-hidden"
         />
-        <button className="my-auto">
+        <button className="mb-1">
           <EmojiIcon />
         </button>
       </div>
