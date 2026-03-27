@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import profile from "../../img/chatpage/profile.svg";
+import profile from "../../assets/chat-page/profile.svg";
 
 export type ChatMessage = {
   id: number;

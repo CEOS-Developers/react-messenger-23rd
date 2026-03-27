@@ -1,8 +1,8 @@
-import backChatList from "../../img/chatpage/backChatList.svg";
-import btnCall from "../../img/chatpage/btnCall.svg";
-import btnVideoCall from "../../img/chatpage/btnVideoCall.svg";
-import profile from "../../img/chatpage/profile.svg";
-import changeProfile from "../../img/chatpage/changeProfile.svg";
+import backChatList from "../../assets/chat-page/back-chat-list.svg";
+import btnCall from "../../assets/chat-page/btn-call.svg";
+import btnVideoCall from "../../assets/chat-page/btn-video-call.svg";
+import profile from "../../assets/chat-page/profile.svg";
+import changeProfile from "../../assets/chat-page/change-profile.svg";
 
 function AppBar() {
   return (

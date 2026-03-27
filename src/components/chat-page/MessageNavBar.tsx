@@ -1,7 +1,7 @@
-import plusFile from "../../img/chatpage/plusFile.svg";
-import sendImg from "../../img/chatpage/sendImg.svg";
-import mic from "../../img/chatpage/mic.svg";
-import sendChat from "../../img/chatpage/sendChat.svg";
+import plusFile from "../../assets/chat-page/plus-file.svg";
+import sendImg from "../../assets/chat-page/send-img.svg";
+import mic from "../../assets/chat-page/mic.svg";
+import sendChat from "../../assets/chat-page/send-chat.svg";
 import { useState } from "react";
 
 type MessageNavBarProps = {

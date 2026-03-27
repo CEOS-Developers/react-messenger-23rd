@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import AppBar from "../components/chatpage/AppBar";
-import MessageNavBar from "../components/chatpage/messageNavBar";
+import AppBar from "../components/chat-page/AppBar";
+import MessageNavBar from "../components/chat-page/MessageNavBar";
 import MessageSend, {
   type ChatMessage,
-} from "../components/chatpage/messageSend";
-import profile from "../img/chatpage/profile.svg";
+} from "../components/chat-page/MessageSend";
+import profile from "../assets/chat-page/profile.svg";
 
 const STORAGE_KEY = "chat-messages";
 
