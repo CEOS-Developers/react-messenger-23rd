@@ -43,7 +43,7 @@ const Message = ({
   return (
     <div className="flex w-full items-end justify-start px-4">
       <div className="flex items-end gap-2">
-        {isFirst ? (
+        {isFirst || isFirstInTimeGroup ? (
           <div className="self-start">
             <Profile name={name} profileColor={profileColor} type="chatroom" />
           </div>
