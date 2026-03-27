@@ -7,7 +7,7 @@
   --color-gray-01: #f9fafb;
   --color-gray-02: #e5e8eb;
   --color-gray-03: #d1d6db;
-  --color-gray-04: #b0b8c1;
+  --color-gray-04: #6b7684;
   --color-gray-05: #4e5968;
   --color-gray-06: #191f28;
   --color-gray-07: #333d4b;
@@ -17,14 +17,40 @@
 
   /* Font sizes */
   --text-headline-1: 22px;
+  --text-headline-1--line-height: 1.5;
+  --text-headline-1--letter-spacing: -0.025em;
+
   --text-headline-2: 18px;
+  --text-headline-2--line-height: 1.5;
+  --text-headline-2--letter-spacing: -0.025em;
+
   --text-body-01: 16px;
+  --text-body-01--line-height: 1.5;
+  --text-body-01--letter-spacing: -0.025em;
+
   --text-body-02: 16px;
+  --text-body-02--line-height: 1.5;
+  --text-body-02--letter-spacing: -0.025em;
+
   --text-body-03: 14px;
+  --text-body-03--line-height: 1.5;
+  --text-body-03--letter-spacing: -0.025em;
+
   --text-body-04: 14px;
+  --text-body-04--line-height: 1.5;
+  --text-body-04--letter-spacing: -0.025em;
+
   --text-body-05: 12px;
+  --text-body-05--line-height: 1.6;
+  --text-body-05--letter-spacing: -0.025em;
+
   --text-caption-1: 12px;
+  --text-caption-1--line-height: 1.5;
+  --text-caption-1--letter-spacing: -0.025em;
+
   --text-caption-2: 10px;
+  --text-caption-2--line-height: 1.6;
+  --text-caption-2--letter-spacing: -0.025em;
 }
 
 @import "./styles/typography.css";
@@ -33,4 +59,17 @@
 /* Apply Pretendard as default font */
 body {
   font-family: var(--font-pretendard);
+}
+
+/* 스크롤바 숨기기 유틸리티 */
+@utility no-scrollbar {
+  /* IE, Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* Chrome, Safari, Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

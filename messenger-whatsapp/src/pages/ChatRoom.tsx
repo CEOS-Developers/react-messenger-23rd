@@ -27,13 +27,13 @@ export default function ChatRoom() {
   const chatPartner = users.find((u) => u.id !== currentUserId);
 
   return (
-    <div className="flex flex-col h-screen bg-main-bg">
+    <div className="flex flex-col h-screen bg-main-bg no-scrollbar">
       <TopBar />
       <ChatHeader
         chatName={chatPartner?.name ?? ""}
         profileImage={chatPartner?.profileImage}
       />
-      <div className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2">
+      <div className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar">
         {messages.map((msg, index) => {
           const isSent = msg.senderId === currentUserId;
           const prev = messages[index - 1];
