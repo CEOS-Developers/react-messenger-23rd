@@ -21,7 +21,7 @@ function MessageSend({ messages }: MessageSendProps) {
   }, [messages]);
 
   return (
-    <main className="flex-1 w-full overflow-y-auto px-[12px] py-[12px]">
+    <main className="flex-1 w-full overflow-y-auto px-[var(--space-12)] py-[var(--space-12)]">
       <div className="flex w-full flex-col">
         {messages.map((message, index) => {
           const isMe = message.sender === "me";
@@ -38,8 +38,8 @@ function MessageSend({ messages }: MessageSendProps) {
             index === 0
               ? ""
               : isSameSenderAsPrevious && isWithinOneMinute
-                ? "mt-[1px]"
-                : "mt-[12px]";
+                ? "mt-[var(--space-1)]"
+                : "mt-[var(--space-12)]";
 
           if (isMe) {
             return (
@@ -47,7 +47,7 @@ function MessageSend({ messages }: MessageSendProps) {
                 key={message.id}
                 className={`flex w-full justify-end ${topSpacing}`}
               >
-                <div className="max-w-[240px] rounded-[24px] bg-[#D91CF2] px-[16px] py-[12px] text-[14px] leading-[140%] text-white break-words">
+                <div className="max-w-[240px] rounded-[24px] bg-[#D91CE2] px-[16px] py-[12px] text-[14px] leading-[140%] text-white break-words">
                   {message.text}
                 </div>
               </div>
@@ -57,15 +57,15 @@ function MessageSend({ messages }: MessageSendProps) {
           return (
             <div
               key={message.id}
-              className={`flex w-full self-stretch items-end gap-[10px] pl-[12px] ${topSpacing}`}
+              className={`flex w-full self-stretch items-end gap-[var(--space-10)] pl-[var(--space-12)] ${topSpacing}`}
             >
               <img
                 src={message.profileImage || profile}
                 alt="profile"
-                className="w-[32px] h-[32px] shrink-0"
+                className="h-[var(--size-32)] w-[var(--size-32)] shrink-0"
               />
 
-              <div className="max-w-[240px] rounded-[24px] bg-[#F3F4F6] px-[16px] py-[12px] text-[14px] leading-[140%] text-[#0A1014] break-words">
+              <div className="max-w-[var(--width-message-max)] rounded-[var(--radius-bubble)] bg-[var(--color-bubble-other)] px-[var(--space-16)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-[var(--color-text-primary)] break-words">
                 {message.text}
               </div>
             </div>

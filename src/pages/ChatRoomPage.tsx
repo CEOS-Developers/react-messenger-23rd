@@ -56,7 +56,7 @@ function ChatRoomPage() {
   };
 
   return (
-    <div className="chatPage flex h-full flex-col">
+    <div className="flex h-full w-full flex-col">
       <AppBar />
       <MessageSend messages={messages} />
       <MessageNavBar onSendMessage={handleSendMessage} />

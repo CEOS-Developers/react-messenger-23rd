@@ -6,36 +6,40 @@ import changeProfile from "../../assets/chat-page/change-profile.svg";
 
 function AppBar() {
   return (
-    <div className="AppBar">
-      <section className="appBarSection">
-        <button className="btnAppBar">
+    <div className="box-border flex w-[var(--screen-width)] items-center justify-between border-b border-b-[var(--color-border-default)] bg-[var(--color-white)] pt-[var(--space-6)] pr-[var(--space-12)] pb-[var(--space-22)] pl-[var(--space-12)]">
+      <section className="flex items-center gap-[var(--space-12)]">
+        <button className="flex size-[var(--size-32)] items-center justify-center p-[var(--space-4)]">
           <img src={backChatList} alt="backChatList" />
         </button>
-        <button className="flex items-center gap-[7px] text-left">
-          <img src={profile} alt="profile" className="w-[32px] h-[32px]" />
+        <button className="flex items-center gap-[var(--space-7)] text-left">
+          <img
+            src={profile}
+            alt="profile"
+            className="h-[var(--size-32)] w-[var(--size-32)]"
+          />
 
-          <section className="flex w-[122px] h-[34px] flex-col items-start">
+          <section className="flex h-[var(--size-34)] w-[var(--width-text-meta)] flex-col items-start">
             <div className="flex items-center">
-              <p className="text-[#0A1014] text-[12px] font-semibold leading-[140%]">
+              <p className="text-[var(--color-text-primary)] text-[var(--text-xs)] font-[var(--font-weight-semibold)] leading-[var(--line-height-tight)]">
                 idSpace
               </p>
               <img
                 src={changeProfile}
                 alt="changeProfile"
-                className="w-[12px] h-[12px] aspect-square"
+                className="aspect-square h-[var(--size-12)] w-[var(--size-12)]"
               />
             </div>
-            <p className="flex-1 self-stretch text-[#68717B] text-[12px] font-normal leading-[140%]">
+            <p className="flex-1 self-stretch text-[var(--color-text-secondary)] text-[var(--text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-tight)]">
               nameSpace
             </p>
           </section>
         </button>
       </section>
-      <section className="appBarSection">
-        <button className="btnAppBar">
+      <section className="flex items-center gap-[var(--space-12)]">
+        <button className="flex size-[var(--size-32)] items-center justify-center p-[var(--space-4)]">
           <img src={btnCall} alt="btnCall" />
         </button>
-        <button className="btnAppBar">
+        <button className="flex size-[var(--size-32)] items-center justify-center p-[var(--space-4)]">
           <img src={btnVideoCall} alt="btnVideoCall" />
         </button>
       </section>

@@ -21,18 +21,18 @@ function MessageNavBar({ onSendMessage }: MessageNavBarProps) {
   };
 
   return (
-    <div className="w-[375px] inline-flex items-center gap-[8px] px-[12px] pt-[10px] pb-[40px]">
+    <div className="inline-flex w-[var(--screen-width)] items-center gap-[var(--space-8)] px-[var(--space-12)] pt-[var(--space-10)] pb-[var(--space-40)]">
       <section>
-        <button className="flex w-[34px] h-[34px] items-center justify-center gap-[10px] rounded-full bg-[#F3F4F6]">
+        <button className="flex h-[var(--size-34)] w-[var(--size-34)] items-center justify-center gap-[var(--space-10)] rounded-[var(--radius-full)] bg-[var(--color-bubble-other)]">
           <img
             src={plusFile}
             alt="plusFile"
-            className="w-[24px] h-[24px] shrink-0 aspect-square"
+            className="aspect-square h-[var(--size-24)] w-[var(--size-24)] shrink-0"
           />
         </button>
       </section>
 
-      <section className="flex w-[309px] h-[43px] items-center justify-between rounded-full pr-[4px] pl-[12px] backdrop-blur-[18px] bg-[rgba(238,238,238,0.35)]">
+      <section className="flex h-[var(--size-43)] w-[var(--width-input)] items-center justify-between rounded-[var(--radius-full)] pr-[var(--space-4)] pl-[var(--space-12)] backdrop-blur-[var(--blur-input)] bg-[var(--color-input-surface)]">
         <section>
           <input
             value={message}
@@ -47,32 +47,32 @@ function MessageNavBar({ onSendMessage }: MessageNavBarProps) {
           ></input>
         </section>
 
-        <section className="flex items-center justify-center gap-[4px]">
-          <button className="flex w-[34px] h-[34px] items-center justify-center gap-[10px]">
+        <section className="flex items-center justify-center gap-[var(--space-4)]">
+          <button className="flex h-[var(--size-34)] w-[var(--size-34)] items-center justify-center gap-[var(--space-10)]">
             <img
               src={sendImg}
               alt="sendImg"
-              className="w-[24px] h-[24px] shrink-0 aspect-square"
+              className="aspect-square h-[var(--size-24)] w-[var(--size-24)] shrink-0"
             />
           </button>
 
           {isTyping ? (
             <button
               onClick={handleSend}
-              className="flex w-[34px] h-[34px] items-center justify-center gap-[10px] rounded-full bg-[#5F4CFF]"
+              className="flex h-[var(--size-34)] w-[var(--size-34)] items-center justify-center gap-[var(--space-10)] rounded-[var(--radius-full)] bg-[var(--color-action-primary)]"
             >
               <img
                 src={sendChat}
                 alt="sendChat"
-                className="w-[20px] h-[20px] shrink-0 aspect-square"
+                className="aspect-square h-[var(--size-20)] w-[var(--size-20)] shrink-0"
               />
             </button>
           ) : (
-            <button className="flex w-[34px] h-[34px] items-center justify-center gap-[10px]">
+            <button className="flex h-[var(--size-34)] w-[var(--size-34)] items-center justify-center gap-[var(--space-10)]">
               <img
                 src={mic}
                 alt="mic"
-                className="w-[24px] h-[24px] shrink-0 aspect-square"
+                className="aspect-square h-[var(--size-24)] w-[var(--size-24)] shrink-0"
               />
             </button>
           )}

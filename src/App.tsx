@@ -2,8 +2,8 @@ import ChatRoomPage from "./pages/ChatRoomPage";
 
 function App() {
   return (
-    <div className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-[375px] h-[812px] flex flex-col relative">
+    <div className="flex min-h-screen w-full items-center justify-center">
+      <div className="relative flex h-[var(--screen-height)] w-[var(--screen-width)] flex-col">
         <ChatRoomPage />
       </div>
     </div>

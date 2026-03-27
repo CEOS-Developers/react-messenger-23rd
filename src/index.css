@@ -1,37 +1,59 @@
 @import "tailwindcss";
 
 :root {
+  /* screen */
   --screen-width: 375px;
   --screen-height: 812px;
-}
 
-.chatPage {
-  width: 100%;
-  height: 100%;
-}
+  /* color */
+  --color-white: #ffffff;
+  --color-border-default: #e8edef;
+  --color-text-primary: #0a1014;
+  --color-text-secondary: #68717b;
+  --color-bubble-other: #f3f4f6;
+  --color-bubble-me: #d91ce2;
+  --color-action-primary: #5f4cff;
+  --color-input-surface: rgba(238, 238, 238, 0.35);
 
-.AppBar {
-  display: flex;
-  width: 375px;
-  padding: 6px 12px 22px 12px;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  border-bottom: 1px solid var(--grey-grey300, #e8edef);
-  background: var(--grey-grey50, #feffff);
-}
+  /* typography */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --line-height-tight: 140%;
 
-.btnAppBar {
-  display: flex;
-  width: 32px;
-  height: 32px;
-  padding: 4px;
-  justify-content: center;
-  align-items: center;
-}
+  /* radius */
+  --radius-full: 9999px;
+  --radius-bubble: 24px;
 
-.appBarSection {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  /* spacing */
+  --space-1: 1px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-7: 7px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-22: 22px;
+  --space-24: 24px;
+  --space-40: 40px;
+
+  /* size */
+  --size-12: 12px;
+  --size-20: 20px;
+  --size-24: 24px;
+  --size-32: 32px;
+  --size-34: 34px;
+  --size-43: 43px;
+
+  /* component width */
+  --width-app: 375px;
+  --width-text-meta: 122px;
+  --width-input: 309px;
+  --width-message-max: 240px;
+
+  /* effect */
+  --blur-input: 18px;
 }
