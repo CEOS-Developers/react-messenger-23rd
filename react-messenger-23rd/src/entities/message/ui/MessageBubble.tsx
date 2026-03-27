@@ -44,7 +44,7 @@ const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
           {showTime && <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>}
 
           <div className="rounded-bl-xl rounded-br-xl rounded-tl-xl bg-[var(--color-textbox)] px-3 py-2">
-            <p className="max-w-[273px] break-words text-right font-regular text-[var(--text-base)] leading-[var(--leading-base)] text-white">
+            <p className="max-w-[232px] break-words text-right font-regular text-[var(--text-base)] leading-[var(--leading-base)] text-white">
               {message.messages}
             </p>
           </div>
