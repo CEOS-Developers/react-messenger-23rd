@@ -78,16 +78,18 @@ export default function MessageBubble({
             {senderName}
           </span>
         )}
-        <div className="flex items-end gap-1">
-          <div className="flex flex-col items-start gap-1">
+        <div className="flex flex-col items-start gap-1">
+          <div className="flex items-end gap-1">
             <div
               onDoubleClick={onDoubleClick}
               className="bg-white text-content-primary px-3 py-2 rounded-[0px_16px_16px_16px] max-w-[193px] break-words text-[13px] font-medium leading-[140%] cursor-pointer"
             >
               {content}
             </div>
-            {hasReaction && (
-              <ReactionBadge count={reactions.length} onClick={onReactionClick} />
+            {showTime && (
+              <span className="text-[11px] font-medium leading-[100%] text-content-secondary shrink-0">
+                {time}
+              </span>
             )}
           </div>
           {hasReaction && (
