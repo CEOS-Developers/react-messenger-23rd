@@ -11,6 +11,58 @@ type MessageBubbleProps = {
   imageUrls?: string[];
 };
 
+function extractEmojiUnits(text: string) {
+  const trimmed = text.trim();
+  if (!trimmed) return [];
+
+  const units = Array.from(trimmed);
+  if (units.length === 0) return [];
+
+  const isEmojiOnly = units.every((char) =>
+    /\p{Extended_Pictographic}/u.test(char)
+  );
+
+  return isEmojiOnly ? units : [];
+}
+
+function EmojiOnlyBubble({ emojis }: { emojis: string[] }) {
+  if (emojis.length === 1) {
+    return (
+      <div className="box-border flex h-[160px] w-[160px] shrink-0 items-center justify-center p-[4px]">
+        <span className="text-[88px] leading-none">{emojis[0]}</span>
+      </div>
+    );
+  }
+
+  if (emojis.length === 2) {
+    return (
+      <div className="box-border flex w-[200px] items-center justify-center gap-[8px] p-[10px]">
+        {emojis.map((emoji, index) => (
+          <div
+            key={`emoji-${index}`}
+            className="flex min-w-0 flex-1 items-center justify-center"
+          >
+            <span className="text-[68px] leading-none">{emoji}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="box-border flex w-[224px] items-center justify-center gap-[8px] p-[10px]">
+      {emojis.map((emoji, index) => (
+        <div
+          key={`emoji-${index}`}
+          className="flex min-w-0 flex-1 items-center justify-center"
+        >
+          <span className="text-[56px] leading-none">{emoji}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function MessageBubble({
   text,
   time,
@@ -30,8 +82,11 @@ export default function MessageBubble({
         ? [imageUrl]
         : [];
 
+  const emojiUnits = type === "text" && text ? extractEmojiUnits(text) : [];
+  const isEmojiOnlyMessage = emojiUnits.length >= 1 && emojiUnits.length <= 3;
+
   return (
-    <div className="flex items-end gap-[8px]">
+    <div className="flex w-fit items-end gap-[8px]">
       {isMine ? (
         <>
           {showMeta ? (
@@ -67,47 +122,63 @@ export default function MessageBubble({
           ) : null}
 
           {type === "text" ? (
-            <div className="max-w-[240px] rounded-[8px] bg-[#FFE000] px-[12px] py-[6px]">
-              <p
-                className="text-[14px] font-normal text-[#191919]"
-                style={{
-                  fontFamily:
-                    '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                  fontFeatureSettings: '"liga" off, "clig" off',
-                  lineHeight: "160%",
-                  letterSpacing: "-0.56px",
-                  wordBreak: "break-word",
-                  whiteSpace: "normal",
-                }}
-              >
-                {text}
-              </p>
-            </div>
+            isEmojiOnlyMessage ? (
+              <div className="w-fit">
+                <EmojiOnlyBubble emojis={emojiUnits} />
+              </div>
+            ) : (
+              <div className="max-w-[240px] rounded-[8px] bg-[#FFE000] px-[12px] py-[6px]">
+                <p
+                  className="text-[14px] font-normal text-[#191919]"
+                  style={{
+                    fontFamily:
+                      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
+                    fontFeatureSettings: '"liga" off, "clig" off',
+                    lineHeight: "160%",
+                    letterSpacing: "-0.56px",
+                    wordBreak: "break-word",
+                    whiteSpace: "normal",
+                  }}
+                >
+                  {text}
+                </p>
+              </div>
+            )
           ) : (
-            <ImageMessageGrid imageUrls={resolvedImageUrls} />
+            <div className="w-fit">
+              <ImageMessageGrid imageUrls={resolvedImageUrls} />
+            </div>
           )}
         </>
       ) : (
         <>
           {type === "text" ? (
-            <div className="max-w-[240px] rounded-[8px] bg-white px-[12px] py-[6px]">
-              <p
-                className="text-[14px] font-normal text-[#191919]"
-                style={{
-                  fontFamily:
-                    '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                  fontFeatureSettings: '"liga" off, "clig" off',
-                  lineHeight: "160%",
-                  letterSpacing: "-0.56px",
-                  wordBreak: "break-word",
-                  whiteSpace: "normal",
-                }}
-              >
-                {text}
-              </p>
-            </div>
+            isEmojiOnlyMessage ? (
+              <div className="w-fit">
+                <EmojiOnlyBubble emojis={emojiUnits} />
+              </div>
+            ) : (
+              <div className="max-w-[240px] rounded-[8px] bg-white px-[12px] py-[6px]">
+                <p
+                  className="text-[14px] font-normal text-[#191919]"
+                  style={{
+                    fontFamily:
+                      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
+                    fontFeatureSettings: '"liga" off, "clig" off',
+                    lineHeight: "160%",
+                    letterSpacing: "-0.56px",
+                    wordBreak: "break-word",
+                    whiteSpace: "normal",
+                  }}
+                >
+                  {text}
+                </p>
+              </div>
+            )
           ) : (
-            <ImageMessageGrid imageUrls={resolvedImageUrls} />
+            <div className="w-fit">
+              <ImageMessageGrid imageUrls={resolvedImageUrls} />
+            </div>
           )}
 
           {showMeta ? (
