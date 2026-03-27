@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import BackIcon from "@/assets/icons/back.svg?react";
@@ -30,22 +30,27 @@ const ChatRoomPage = () => {
   const friendDisplayUser = perspective === "my" ? friendUser : myUser;
 
   // 메시지 그룹 및 메타데이터를 단일 메모이제이션으로 계산
-  const { renderable, pointedCornerSet, showReadStatusSet } = useMemo(() => {
+  const { dateGrouped, pointedCornerSet, showReadStatusSet } = useMemo(() => {
     const messages = chatRoom ? chatRoom.messages : [];
     const groups = groupMessages(messages);
     const { pointedCornerSet, showReadStatusSet } = computeMessageMeta(messages);
 
     let flatIdx = 0;
-    const renderable = groups.map((group, groupIdx) => ({
-      showDate: groupIdx === 0 || groups[groupIdx - 1][0].date !== group[0].date,
-      date: group[0].date,
-      messages: group.map((msg, msgIdx) => {
-        const idx = flatIdx++;
-        return { msg, msgIdx, idx };
-      }),
-    }));
+    const dateGrouped: {
+      date: string;
+      groups: { msg: (typeof messages)[0]; msgIdx: number; idx: number }[][];
+    }[] = [];
+    groups.forEach((group, groupIdx) => {
+      const isNewDate = groupIdx === 0 || groups[groupIdx - 1][0].date !== group[0].date;
+      const msgItems = group.map((msg, msgIdx) => ({ msg, msgIdx, idx: flatIdx++ }));
+      if (isNewDate) {
+        dateGrouped.push({ date: group[0].date, groups: [msgItems] });
+      } else {
+        dateGrouped[dateGrouped.length - 1].groups.push(msgItems);
+      }
+    });
 
-    return { renderable, pointedCornerSet, showReadStatusSet };
+    return { dateGrouped, pointedCornerSet, showReadStatusSet };
   }, [chatRoom]);
 
   const scrollToBottom = useCallback(() => {
@@ -88,39 +93,48 @@ const ChatRoomPage = () => {
       />
       <main ref={scrollRef} className="flex-1 overflow-y-auto">
         <div className="flex flex-col gap-5 pt-2 pb-5.5">
-          {renderable.map(({ showDate, date, messages: msgItems }, groupIdx) => (
-            <React.Fragment key={groupIdx}>
-              {showDate && (
-                <div className="flex justify-center">
-                  <MessageDate date={date} />
-                </div>
-              )}
-              <div className="flex flex-col gap-1">
-                {msgItems.map(({ msg, msgIdx, idx }) => {
-                  const displayType = msg.type === perspective ? "my" : "friend";
-                  const isFriend = displayType === "friend";
-                  return (
-                    <Message
-                      key={msgIdx}
-                      type={displayType}
-                      name={isFriend ? (friendDisplayUser?.name ?? "") : ""}
-                      profileColor={isFriend ? (friendDisplayUser?.profileColor ?? "") : ""}
-                      message={msg.message}
-                      time={msg.time}
-                      isRead={msg.isRead}
-                      isFirst={msgIdx === 0}
-                      isFirstInTimeGroup={pointedCornerSet.has(idx)}
-                      showReadStatus={showReadStatusSet.has(idx)}
-                    />
-                  );
-                })}
+          {dateGrouped.map(({ date, groups }, dateIdx) => (
+            <div key={dateIdx} className="flex flex-col gap-5">
+              <div className="flex justify-center">
+                <MessageDate date={date} />
               </div>
-            </React.Fragment>
+              <div className="flex flex-col gap-8">
+                {groups.map((msgItems, groupIdx) => (
+                  <div key={groupIdx} className="flex flex-col">
+                    {msgItems.map(({ msg, msgIdx, idx }) => {
+                      const displayType = msg.type === perspective ? "my" : "friend";
+                      const isFriend = displayType === "friend";
+                      const isNewTimeGroup = pointedCornerSet.has(idx) && msgIdx !== 0;
+                      const mt = msgIdx === 0 ? "" : isFriend && isNewTimeGroup ? "mt-3" : "mt-1";
+                      return (
+                        <div key={msgIdx} className={mt}>
+                          <Message
+                            type={displayType}
+                            name={isFriend ? (friendDisplayUser?.name ?? "") : ""}
+                            profileColor={isFriend ? (friendDisplayUser?.profileColor ?? "") : ""}
+                            message={msg.message}
+                            time={msg.time}
+                            isRead={msg.isRead}
+                            isFirst={msgIdx === 0}
+                            isFirstInTimeGroup={pointedCornerSet.has(idx)}
+                            showReadStatus={showReadStatusSet.has(idx)}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </main>
       <div className="mb-10.5">
-        <TextField onSend={handleSend} onHeightChange={handleTextareaHeightChange} />
+        <TextField
+          key={perspective}
+          onSend={handleSend}
+          onHeightChange={handleTextareaHeightChange}
+        />
       </div>
     </div>
   );
