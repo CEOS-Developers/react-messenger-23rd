@@ -8,33 +8,42 @@ export type User = {
   profileImage: string;
 };
 
+export type ChatRoom = {
+  id: number;
+  participantIds: number[];
+};
+
 export type Message = {
   id: number;
+  chatRoomId: number;
   text: string;
   senderId: number;
   timestamp: number;
 };
 
 type ChatStore = {
+  chatRooms: ChatRoom[];
   users: User[];
   currentUserId: number;
   messages: Message[];
-  sendMessage: (text: string) => void;
+  sendMessage: (text: string, chatRoomId: number) => void;
   swapPerspective: () => void;
 };
 
 export const useChatStore = create<ChatStore>()(
   persist(
     (set, get) => ({
+      chatRooms: mockData.chatRooms,
       users: mockData.users,
       currentUserId: mockData.currentUserId,
       messages: mockData.messages,
-      sendMessage: (text) =>
+      sendMessage: (text, chatRoomId) =>
         set((state) => ({
           messages: [
             ...state.messages,
             {
               id: Date.now(),
+              chatRoomId,
               text,
               senderId: state.currentUserId,
               timestamp: Date.now(),
@@ -47,6 +56,6 @@ export const useChatStore = create<ChatStore>()(
         if (other) set({ currentUserId: other.id });
       },
     }),
-    { name: "chat-store" },
+    { name: "chat-store", version: 2 },
   ),
 );

@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { useParams } from "react-router-dom";
 import Bubble from "../components/chat/Bubble";
 import InputBox from "../components/common/Input";
 import ChipDate from "../components/chip/ChatDate";
@@ -22,7 +23,10 @@ const isSameDay = (a: number, b: number) => {
 };
 
 export default function ChatRoom() {
-  const { messages, users, currentUserId, sendMessage } = useChatStore();
+  const { roomId } = useParams();
+  const roomIdNum = Number(roomId);
+  const { messages: allMessages, users, currentUserId, sendMessage } = useChatStore();
+  const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
   const chatPartner = users.find((u) => u.id !== currentUserId);
 
   return (
@@ -67,7 +71,7 @@ export default function ChatRoom() {
           );
         })}
       </div>
-      <InputBox onSend={sendMessage} />
+      <InputBox onSend={(text) => sendMessage(text, roomIdNum)} />
     </div>
   );
 }
