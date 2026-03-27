@@ -29,7 +29,7 @@ const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
             <p className="mb-1 text-sm leading-6 font-medium text-[var(--color-gray-80)]">{user.name}</p>
 
             <div className="flex items-end">
-              <div className="max-w-[232px] font-regular rounded-bl-xl rounded-br-xl rounded-tr-xl px-3 py-2 text-[var(--text-base)] leading-[var(--leading-base)] bg-white text-[var(--color-gray-80)]">
+              <div className="max-w-[232px] font-regular rounded-bl-[8px] rounded-br-[8px] rounded-tr-[8px] px-3 py-2 text-[var(--text-base)] leading-[var(--leading-base)] bg-white text-[var(--color-gray-80)]">
                 {message.messages}
               </div>
 
@@ -43,7 +43,7 @@ const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
         <div className="flex items-end gap-1">
           {showTime && <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>}
 
-          <div className="rounded-bl-xl rounded-br-xl rounded-tl-xl bg-[var(--color-textbox)] px-3 py-2">
+          <div className="rounded-bl-[8px] rounded-br-[8px] rounded-tl-[8px] bg-[var(--color-textbox)] px-3 py-2">
             <p className="max-w-[232px] break-words text-right font-regular text-[var(--text-base)] leading-[var(--leading-base)] text-white">
               {message.messages}
             </p>
