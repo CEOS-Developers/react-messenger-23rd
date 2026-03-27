@@ -7,17 +7,16 @@ import ChatListPage from '@/pages/ChatListPage'
 type NavigationKey = 'home' | 'dm' | 'alarm' | 'more'
 
 function App() {
-  const [activeTab, setActiveTab] = useState<NavigationKey>('home')
+  const [activeTab, setActiveTab] = useState<NavigationKey | undefined>()
+
+  if (activeTab === 'dm') {
+    return <ChatListPage activeTab={activeTab} onTabChange={setActiveTab} />
+  }
 
   return (
     <PageFrame>
       <div className="flex h-full flex-col bg-white">
-        <div className="flex-1 overflow-y-auto">
-          {activeTab === 'home' && <div>홈</div>}
-          {activeTab === 'dm' && <ChatListPage />}
-          {activeTab === 'alarm' && <div>알림</div>}
-          {activeTab === 'more' && <div>더 보기</div>}
-        </div>
+        <div className="flex-1 bg-white" />
         <NavigationBar active={activeTab} onTabChange={setActiveTab} />
       </div>
     </PageFrame>
