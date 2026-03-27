@@ -3,14 +3,31 @@ import { useState } from 'react'
 import NavigationBar from '@/components/layout/NavigationBar'
 import PageFrame from '@/components/layout/PageFrame'
 import ChatListPage from '@/pages/ChatListPage'
+import ChatRoomPage from '@/pages/ChatRoomPage'
 
 type NavigationKey = 'home' | 'dm' | 'alarm' | 'more'
 
 function App() {
   const [activeTab, setActiveTab] = useState<NavigationKey | undefined>()
+  const [selectedChat, setSelectedChat] = useState<{ id: string; name: string } | null>(null)
+
+  if (selectedChat) {
+    return (
+      <ChatRoomPage
+        chatName={selectedChat.name}
+        onBack={() => setSelectedChat(null)}
+      />
+    )
+  }
 
   if (activeTab === 'dm') {
-    return <ChatListPage activeTab={activeTab} onTabChange={setActiveTab} />
+    return (
+      <ChatListPage
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        onChatSelect={(id, name) => setSelectedChat({ id, name })}
+      />
+    )
   }
 
   return (

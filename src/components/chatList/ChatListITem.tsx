@@ -14,6 +14,7 @@ type ChatListItemProps = {
   isGroup?: boolean
   memberCount?: number
   status?: ActiveStatus
+  onClick?: () => void
 }
 
 function ChatListItem({
@@ -25,10 +26,12 @@ function ChatListItem({
   isGroup = false,
   memberCount,
   status = 'sleeping',
+  onClick,
 }: ChatListItemProps) {
   return (
     <div
-      className="flex w-full items-center gap-[12px] self-stretch px-[20px] py-[12px]"
+      onClick={onClick}
+      className="flex w-full cursor-pointer items-center gap-[12px] self-stretch px-[20px] py-[12px]"
       style={{ borderBottom: `1px solid ${colors.grey200}` }}
     >
       <Avatar size="m" showStatus={!isGroup} status={status} isGroup={isGroup} />
