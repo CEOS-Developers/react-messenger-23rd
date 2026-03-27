@@ -42,7 +42,7 @@ const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
       {isMe && (
         <div className="flex items-end gap-1">
           {showTime && <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>}
-          <div className="flex-1 max-w-72 text-right rounded-bl-xl rounded-br-xl rounded-tl-xl bg-[var(--color-main)] px-3 py-2 text-base leading-6 text-white">
+          <div className="flex-1 max-w-72 text-right rounded-bl-xl rounded-br-xl rounded-tl-xl bg-[var(--color-textbox)] px-3 py-2 text-base leading-6 text-white">
             {message.messages}
           </div>
         </div>
