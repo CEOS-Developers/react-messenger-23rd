@@ -1,3 +1,5 @@
+import ImageMessageGrid from "./ImageMessageGrid";
+
 type MessageBubbleProps = {
   text?: string;
   time?: string;
@@ -6,6 +8,7 @@ type MessageBubbleProps = {
   isMine?: boolean;
   type: "text" | "image";
   imageUrl?: string;
+  imageUrls?: string[];
 };
 
 export default function MessageBubble({
@@ -16,8 +19,16 @@ export default function MessageBubble({
   isMine = false,
   type,
   imageUrl,
+  imageUrls,
 }: MessageBubbleProps) {
   const showMeta = unreadCount !== undefined || showTime;
+
+  const resolvedImageUrls =
+    imageUrls && imageUrls.length > 0
+      ? imageUrls
+      : imageUrl
+        ? [imageUrl]
+        : [];
 
   return (
     <div className="flex items-end gap-[8px]">
@@ -55,14 +66,8 @@ export default function MessageBubble({
             </div>
           ) : null}
 
-          <div
-            className={`rounded-[8px] bg-[#FFE000] ${
-              type === "text"
-                ? "max-w-[240px] px-[12px] py-[6px]"
-                : "max-w-[220px] p-[6px]"
-            }`}
-          >
-            {type === "text" ? (
+          {type === "text" ? (
+            <div className="max-w-[240px] rounded-[8px] bg-[#FFE000] px-[12px] py-[6px]">
               <p
                 className="text-[14px] font-normal text-[#191919]"
                 style={{
@@ -77,29 +82,15 @@ export default function MessageBubble({
               >
                 {text}
               </p>
-            ) : imageUrl ? (
-              <img
-                src={imageUrl}
-                alt="보낸 이미지"
-                className="h-[140px] w-[180px] rounded-[8px] object-cover"
-              />
-            ) : (
-              <div className="flex h-[140px] w-[180px] items-center justify-center rounded-[8px] bg-[rgba(255,255,255,0.5)] text-sm text-[#525254]">
-                이미지
-              </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <ImageMessageGrid imageUrls={resolvedImageUrls} />
+          )}
         </>
       ) : (
         <>
-          <div
-            className={`rounded-[8px] bg-white ${
-              type === "text"
-                ? "max-w-[240px] px-[12px] py-[6px]"
-                : "max-w-[220px] p-[6px]"
-            }`}
-          >
-            {type === "text" ? (
+          {type === "text" ? (
+            <div className="max-w-[240px] rounded-[8px] bg-white px-[12px] py-[6px]">
               <p
                 className="text-[14px] font-normal text-[#191919]"
                 style={{
@@ -114,18 +105,10 @@ export default function MessageBubble({
               >
                 {text}
               </p>
-            ) : imageUrl ? (
-              <img
-                src={imageUrl}
-                alt="받은 이미지"
-                className="h-[140px] w-[180px] rounded-[8px] object-cover"
-              />
-            ) : (
-              <div className="flex h-[140px] w-[180px] items-center justify-center rounded-[8px] bg-[rgba(255,255,255,0.5)] text-sm text-[#525254]">
-                이미지
-              </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <ImageMessageGrid imageUrls={resolvedImageUrls} />
+          )}
 
           {showMeta ? (
             <div className="flex items-center gap-[4px]">

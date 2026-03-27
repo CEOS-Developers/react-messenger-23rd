@@ -6,12 +6,27 @@ import SendIcon from "../../../../assets/icons/chat/ic_Send.svg";
 
 type ChatInputBarProps = {
   onSendText: (text: string) => void;
-  onSendImage: (imageUrl: string) => void;
+  onSendImages: (imageUrls: string[]) => void;
 };
+
+function readFilesAsDataUrls(files: File[]): Promise<string[]> {
+  return Promise.all(
+    files.map(
+      (file) =>
+        new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+
+          reader.onload = () => resolve(String(reader.result));
+          reader.onerror = () => reject(new Error("이미지를 읽는 데 실패했습니다."));
+          reader.readAsDataURL(file);
+        })
+    )
+  );
+}
 
 export default function ChatInputBar({
   onSendText,
-  onSendImage,
+  onSendImages,
 }: ChatInputBarProps) {
   const [input, setInput] = useState("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -26,12 +41,19 @@ export default function ChatInputBar({
     setInput("");
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const files = Array.from(event.target.files ?? []);
+    if (files.length === 0) return;
 
-    const imageUrl = URL.createObjectURL(file);
-    onSendImage(imageUrl);
+    try {
+      const imageUrls = await readFilesAsDataUrls(files);
+      onSendImages(imageUrls);
+    } catch (error) {
+      console.error(error);
+    }
+
     event.target.value = "";
   };
 
@@ -50,6 +72,7 @@ export default function ChatInputBar({
         ref={fileInputRef}
         type="file"
         accept="image/*"
+        multiple
         className="hidden"
         onChange={handleFileChange}
       />
@@ -90,15 +113,13 @@ export default function ChatInputBar({
         onClick={hasText ? handleSend : undefined}
         aria-label={hasText ? "전송" : "샵 버튼"}
         className={`flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[100px] transition-colors ${
-          hasText 
-            ? "bg-[#FFE000] pt-[2px] pr-[2px] pb-0 pl-0" 
-            : "bg-[#F5F5F7]"
+          hasText ? "bg-[#FFE000]" : "bg-[#F5F5F7]"
         }`}
       >
         <img
           src={hasText ? SendIcon : HashIcon}
           alt=""
-          className={hasText ? "h-[16px] w-[16px] shrink-0" : "h-[24px] w-[24px] shrink-0"}
+          className={`shrink-0 ${hasText ? "h-[16px] w-[16px]" : "h-[24px] w-[24px]"}`}
         />
       </button>
     </div>

@@ -13,7 +13,8 @@ export type Message = {
   type: MessageType;
   text?: string;
   imageUrl?: string;
-  createdAt: string;     // 예: "22:59"
-  createdDate: string;   // 예: "2026-03-27"
+  imageUrls?: string[];
+  createdAt: string;
+  createdDate: string;
   unreadCount?: number;
 };

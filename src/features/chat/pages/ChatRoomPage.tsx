@@ -71,14 +71,14 @@ export default function ChatRoomPage() {
     setMessages((prev) => [...prev, newMessage]);
   };
 
-  const handleSendImage = (imageUrl: string) => {
-    if (!me) return;
+  const handleSendImages = (imageUrls: string[]) => {
+    if (!me || imageUrls.length === 0) return;
 
     const newMessage: Message = {
       id: crypto.randomUUID(),
       senderId: me.id,
       type: "image",
-      imageUrl,
+      imageUrls,
       createdAt: getCurrentTime(),
       createdDate: getCurrentDate(),
       unreadCount: 1,
@@ -100,7 +100,7 @@ export default function ChatRoomPage() {
         <div className="shrink-0 bg-white">
           <ChatInputBar
             onSendText={handleSendText}
-            onSendImage={handleSendImage}
+            onSendImages={handleSendImages}
           />
           <IosHomeIndicator />
         </div>
