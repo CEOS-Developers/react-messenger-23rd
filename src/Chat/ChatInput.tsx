@@ -18,6 +18,14 @@ function ChatInput({ onSend }: Props) {
     setMessage('')
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) return
+
+    if (e.key === 'Enter') {
+      handleSend()
+    }
+  }
+
   const isActive = message.trim().length > 0
 
   return (
@@ -25,7 +33,7 @@ function ChatInput({ onSend }: Props) {
       <input
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+        onKeyDown={handleKeyDown}
         className="w-full px-1 
                   placeholder:text-[16px]
                   placeholder:font-normal
