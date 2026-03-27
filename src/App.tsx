@@ -9,12 +9,13 @@ type NavigationKey = 'home' | 'dm' | 'alarm' | 'more'
 
 function App() {
   const [activeTab, setActiveTab] = useState<NavigationKey | undefined>()
-  const [selectedChat, setSelectedChat] = useState<{ id: string; name: string } | null>(null)
+  const [selectedChat, setSelectedChat] = useState<{ id: string; name: string; memberCount?: number } | null>(null)
 
   if (selectedChat) {
     return (
       <ChatRoomPage
         chatName={selectedChat.name}
+        memberCount={selectedChat.memberCount}
         onBack={() => setSelectedChat(null)}
       />
     )
@@ -25,7 +26,7 @@ function App() {
       <ChatListPage
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        onChatSelect={(id, name) => setSelectedChat({ id, name })}
+        onChatSelect={(id, name, memberCount) => setSelectedChat({ id, name, memberCount })}
       />
     )
   }

@@ -9,7 +9,7 @@ type NavigationKey = 'home' | 'dm' | 'alarm' | 'more'
 type ChatListPageProps = {
   activeTab?: NavigationKey
   onTabChange: (tab: NavigationKey) => void
-  onChatSelect: (chatId: string, name: string) => void
+  onChatSelect: (chatId: string, name: string, memberCount?: number) => void
 }
 
 function ChatListPage({ activeTab, onTabChange, onChatSelect }: ChatListPageProps) {
@@ -46,7 +46,7 @@ function ChatListPage({ activeTab, onTabChange, onChatSelect }: ChatListPageProp
             isGroup
             memberCount={4}
             status="sleeping"
-            onClick={() => onChatSelect('3', '단체 그룹 DM')}
+            onClick={() => onChatSelect('3', '단체 그룹 DM', 4)}
           />
           <ChatListItem
             name="윤다희"
@@ -66,7 +66,7 @@ function ChatListPage({ activeTab, onTabChange, onChatSelect }: ChatListPageProp
             isGroup
             memberCount={8}
             status="sleeping"
-            onClick={() => onChatSelect('5', '단체 그룹 DM 2')}
+            onClick={() => onChatSelect('5', '단체 그룹 DM 2', 8)}
           />
           <ChatListItem
             name="김지안"
