@@ -9,19 +9,51 @@ type ChatInputBarProps = {
   onSendImages: (imageUrls: string[]) => void;
 };
 
-function readFilesAsDataUrls(files: File[]): Promise<string[]> {
-  return Promise.all(
-    files.map(
-      (file) =>
-        new Promise<string>((resolve, reject) => {
-          const reader = new FileReader();
+function fileToDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
 
-          reader.onload = () => resolve(String(reader.result));
-          reader.onerror = () => reject(new Error("이미지를 읽는 데 실패했습니다."));
-          reader.readAsDataURL(file);
-        })
-    )
-  );
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(new Error("이미지를 읽는 데 실패했습니다."));
+    reader.readAsDataURL(file);
+  });
+}
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error("이미지를 불러오는 데 실패했습니다."));
+    img.src = src;
+  });
+}
+
+async function compressImage(
+  file: File,
+  maxSize = 1200,
+  quality = 0.82
+): Promise<string> {
+  const dataUrl = await fileToDataUrl(file);
+  const image = await loadImage(dataUrl);
+
+  const ratio = Math.min(1, maxSize / Math.max(image.width, image.height));
+  const targetWidth = Math.max(1, Math.round(image.width * ratio));
+  const targetHeight = Math.max(1, Math.round(image.height * ratio));
+
+  const canvas = document.createElement("canvas");
+  canvas.width = targetWidth;
+  canvas.height = targetHeight;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return dataUrl;
+
+  ctx.drawImage(image, 0, 0, targetWidth, targetHeight);
+
+  return canvas.toDataURL("image/jpeg", quality);
+}
+
+async function compressFiles(files: File[]): Promise<string[]> {
+  return Promise.all(files.map((file) => compressImage(file)));
 }
 
 export default function ChatInputBar({
@@ -29,6 +61,7 @@ export default function ChatInputBar({
   onSendImages,
 }: ChatInputBarProps) {
   const [input, setInput] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const hasText = input.trim().length > 0;
@@ -48,13 +81,16 @@ export default function ChatInputBar({
     if (files.length === 0) return;
 
     try {
-      const imageUrls = await readFilesAsDataUrls(files);
+      setIsUploading(true);
+      const imageUrls = await compressFiles(files);
       onSendImages(imageUrls);
     } catch (error) {
       console.error(error);
+      alert("이미지를 처리하는 중 문제가 발생했습니다.");
+    } finally {
+      setIsUploading(false);
+      event.target.value = "";
     }
-
-    event.target.value = "";
   };
 
   return (
@@ -62,7 +98,8 @@ export default function ChatInputBar({
       <button
         type="button"
         onClick={() => fileInputRef.current?.click()}
-        className="flex shrink-0 items-center rounded-[100px] bg-[#F5F5F7] p-[4px] transition-colors hover:bg-[#EDEDEF]"
+        disabled={isUploading}
+        className="flex shrink-0 items-center rounded-[100px] bg-[#F5F5F7] p-[4px] transition-colors hover:bg-[#EDEDEF] disabled:opacity-50"
         aria-label="사진 추가"
       >
         <img src={PlusIcon} alt="" className="h-[24px] w-[24px] shrink-0" />
@@ -84,8 +121,9 @@ export default function ChatInputBar({
           onKeyDown={(e) => {
             if (e.key === "Enter") handleSend();
           }}
-          placeholder="메시지 입력"
-          className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-[#A2A2A4]"
+          placeholder={isUploading ? "이미지 준비 중..." : "메시지 입력"}
+          disabled={isUploading}
+          className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-[#A2A2A4] disabled:opacity-60"
           style={{
             fontFamily:
               '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
@@ -113,13 +151,17 @@ export default function ChatInputBar({
         onClick={hasText ? handleSend : undefined}
         aria-label={hasText ? "전송" : "샵 버튼"}
         className={`flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[100px] transition-colors ${
-          hasText ? "bg-[#FFE000]" : "bg-[#F5F5F7]"
+          hasText 
+          ? "bg-[#FFE000] pt-[2px] pr-[2px] pb-0 pl-0" 
+          : "bg-[#F5F5F7]"
         }`}
       >
         <img
           src={hasText ? SendIcon : HashIcon}
           alt=""
-          className={`shrink-0 ${hasText ? "h-[16px] w-[16px]" : "h-[24px] w-[24px]"}`}
+          className={`shrink-0 ${
+            hasText ? "h-[16px] w-[16px]" : "h-[24px] w-[24px]"
+          }`}
         />
       </button>
     </div>

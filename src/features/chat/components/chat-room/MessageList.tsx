@@ -62,6 +62,7 @@ export default function MessageList({
                       isMine
                       type={message.type}
                       imageUrl={message.imageUrl}
+                      imageUrls={message.imageUrls}
                     />
                   ))}
                 </section>
@@ -82,6 +83,7 @@ export default function MessageList({
                         isMine={false}
                         type={message.type}
                         imageUrl={message.imageUrl}
+                        imageUrls={message.imageUrls}
                       />
                     ))}
                   </MessageItem>

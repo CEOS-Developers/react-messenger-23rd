@@ -12,6 +12,16 @@ import type { Message, User } from "../types/chat";
 
 const LOCAL_STORAGE_KEY = "chat-room-messages";
 
+function mergeMessages(seedMessages: Message[], savedMessages: Message[]) {
+  const map = new Map<string, Message>();
+
+  [...seedMessages, ...savedMessages].forEach((message) => {
+    map.set(message.id, message);
+  });
+
+  return Array.from(map.values());
+}
+
 export default function ChatRoomPage() {
   const [users] = useState<User[]>(usersData as User[]);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -20,24 +30,28 @@ export default function ChatRoomPage() {
   const me = useMemo(() => users.find((user) => user.isMe), [users]);
 
   useEffect(() => {
+    const seedMessages = messagesData as Message[];
     const savedMessages = localStorage.getItem(LOCAL_STORAGE_KEY);
 
     if (savedMessages) {
       try {
         const parsed = JSON.parse(savedMessages) as Message[];
-        setMessages(parsed);
+        setMessages(mergeMessages(seedMessages, parsed));
         return;
       } catch (error) {
         console.error("저장된 메시지를 불러오지 못했습니다.", error);
       }
     }
 
-    setMessages(messagesData as Message[]);
+    setMessages(seedMessages);
   }, []);
 
   useEffect(() => {
-    if (messages.length === 0) return;
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(messages));
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(messages));
+    } catch (error) {
+      console.error("메시지를 저장하지 못했습니다.", error);
+    }
   }, [messages]);
 
   const getCurrentTime = () => {
