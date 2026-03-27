@@ -5,24 +5,22 @@ import MessageSend, {
   type ChatMessage,
 } from "../components/chat-page/MessageSend";
 import profile from "../assets/chat-page/profile.svg";
+import rawMessages from "../data/messages.json";
+import rawUsers from "../data/users.json";
 
 const STORAGE_KEY = "chat-messages";
 
-const initialMessages: ChatMessage[] = [
-  {
-    id: 1,
-    text: "나는 지금 홍문관이야",
-    sender: "other",
-    profileImage: profile,
-    sentAt: Date.now() - 1000 * 60 * 5,
-  },
-  {
-    id: 2,
-    text: "예스예스~~",
-    sender: "me",
-    sentAt: Date.now() - 1000 * 60 * 4,
-  },
-];
+const initialMessages: ChatMessage[] = rawMessages.map((message) => {
+  const matchedUser = rawUsers.find((user) => user.id === message.userId);
+
+  return {
+    id: message.id,
+    text: message.text,
+    sender: message.sender as "me" | "other",
+    profileImage: matchedUser?.profileImage === "profile" ? profile : "",
+    sentAt: message.sentAt,
+  };
+});
 
 function ChatRoomPage() {
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
