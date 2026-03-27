@@ -1,13 +1,40 @@
-// const currentUserId == "user-1"; 이런식으로 현재 유저가 누구인지 설정 필요
+import { useEffect, useState } from "react";
+import type { Message } from "../types/chat";
 
-// // 메시지 목록을 뿌려줄 때
-// {messages.map((msg) => {
-//   // 메시지를 보낸 사람(senderId)이 지금 나(currentUserId)와 같은지 확인!
-//   const isMe = msg.senderId === currentUserId;
+import ChatHeader from "../components/ChatRoom/ChatHeader";
+import MessageInput from "../components/ChatRoom/MessageInput";
+import NoticeBar from "../components/ChatRoom/NoticeBar";
+import ReceivedBubble from "../components/ChatRoom/ReceivedBubble";
+import SentBubble from "../components/ChatRoom/Sentbubble";
 
-//   return isMe ? (
-//     <SentBubble key={msg.id} message={msg} />
-//   ) : (
-//     <ReceivedBubble key={msg.id} message={msg} />
-//   );
-// })}
+export default function ChatRoomPage() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const currentUserId = "user-1"; //나=이우림=user-1 로 가정
+
+  useEffect(() => {
+    fetch("/data/messages.json")
+      .then((res) => res.json())
+      .then((data) => setMessages(data));
+  }, []);
+
+  return (
+    <main className="bg-black flex flex-col h-screen">
+      <ChatHeader />
+      <NoticeBar />
+      {/* 메세지 리스트 */}
+      <div className="flex flex-col flex-1 overflow-y-auto">
+        {messages.map((msg) => (
+          <div key={msg.id}>
+            {msg.senderId === currentUserId ? (
+              <SentBubble message={msg} />
+            ) : (
+              <ReceivedBubble message={msg} />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <MessageInput />
+    </main>
+  );
+}
