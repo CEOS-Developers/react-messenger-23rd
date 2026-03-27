@@ -23,9 +23,11 @@ export default function ChatRoomHeader({
       <button
         type="button"
         aria-label="뒤로가기"
-        className="flex h-8 w-8 shrink-0 items-center justify-center"
+        className="flex h-[40px] w-[40px] shrink-0 items-center justify-center"
       >
-        <img src={ChevronLeftIcon} alt="" className="h-8 w-8" />
+        <div className="flex h-[40px] w-[40px] items-center justify-center p-[4px]">
+          <img src={ChevronLeftIcon} alt="" className="h-[32px] w-[32px]" />
+        </div>
       </button>
 
       <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-[4px]">
@@ -58,21 +60,25 @@ export default function ChatRoomHeader({
         ) : null}
       </div>
 
-      <div className="flex shrink-0 items-center gap-[8px]">
+      <div className="flex shrink-0 items-center gap-[4px]">
         <button
           type="button"
           aria-label="검색"
-          className="flex h-6 w-6 items-center justify-center"
+          className="flex h-[40px] w-[40px] items-center justify-center"
         >
-          <img src={SearchIcon} alt="" className="h-6 w-6" />
+          <div className="flex h-[40px] w-[40px] items-center justify-center p-[8px]">
+            <img src={SearchIcon} alt="" className="h-[24px] w-[24px]" />
+          </div>
         </button>
 
         <button
           type="button"
           aria-label="메뉴"
-          className="flex h-6 w-6 items-center justify-center"
+          className="flex h-[40px] w-[40px] items-center justify-center"
         >
-          <img src={MenuIcon} alt="" className="h-6 w-6" />
+          <div className="flex h-[40px] w-[40px] items-center justify-center p-[8px]">
+            <img src={MenuIcon} alt="" className="h-[24px] w-[24px]" />
+          </div>
         </button>
       </div>
     </header>

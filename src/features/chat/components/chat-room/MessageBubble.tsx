@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import ImageMessageGrid from "./ImageMessageGrid";
 
 type MessageBubbleProps = {
@@ -59,6 +60,109 @@ function EmojiOnlyBubble({ emojis }: { emojis: string[] }) {
           <span className="text-[56px] leading-none">{emoji}</span>
         </div>
       ))}
+    </div>
+  );
+}
+
+function TextBubbleContent({
+  text,
+  isMine,
+}: {
+  text: string;
+  isMine: boolean;
+}) {
+  const measureRef = useRef<HTMLParagraphElement | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMaxVariant, setIsMaxVariant] = useState(false);
+
+  useEffect(() => {
+    const element = measureRef.current;
+    if (!element) return;
+
+    const checkOverflow = () => {
+      setIsMaxVariant(element.scrollHeight > 264);
+    };
+
+    checkOverflow();
+    window.addEventListener("resize", checkOverflow);
+
+    return () => {
+      window.removeEventListener("resize", checkOverflow);
+    };
+  }, [text]);
+
+  const bubbleBg = isMine ? "#FFE000" : "#FFFFFF";
+
+  const textStyle = {
+    fontFamily:
+      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
+    fontFeatureSettings: '"liga" off, "clig" off',
+    lineHeight: "160%",
+    letterSpacing: "-0.56px",
+    wordBreak: "break-word" as const,
+    whiteSpace: "normal" as const,
+  };
+
+  if (!isMaxVariant) {
+    return (
+      <div
+        className={`max-w-[240px] rounded-[8px] px-[12px] py-[6px] ${
+          isMine ? "bg-[#FFE000]" : "bg-white"
+        }`}
+      >
+        <p
+          ref={measureRef}
+          className="text-[14px] font-normal text-[#191919]"
+          style={textStyle}
+        >
+          {text}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="flex w-[240px] max-w-[240px] flex-col items-end gap-[6px] rounded-[8px] pt-[6px] pr-[12px] pb-[8px] pl-[12px]"
+      style={{ background: bubbleBg }}
+    >
+      <p
+        ref={measureRef}
+        className={`w-full overflow-hidden text-[14px] font-normal text-[#191919] ${
+          isExpanded ? "" : "line-clamp-[11]"
+        }`}
+        style={textStyle}
+      >
+        {text}
+      </p>
+
+      <div
+        className="w-full"
+        style={{
+          height: 0,
+          alignSelf: "stretch",
+          borderTop: "0.75px solid rgba(25, 25, 25, 0.10)",
+        }}
+      />
+
+      <button
+        type="button"
+        onClick={() => setIsExpanded((prev) => !prev)}
+        className="overflow-hidden text-right text-[10px] font-normal text-[#525254] transition-colors hover:font-medium hover:text-[#363638]"
+        style={{
+          fontFamily:
+            '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
+          fontFeatureSettings: '"liga" off, "clig" off',
+          lineHeight: "140%",
+          letterSpacing: "-0.4px",
+          display: "-webkit-box",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: 1,
+          textOverflow: "ellipsis",
+        }}
+      >
+        {isExpanded ? "접기" : "전체보기"}
+      </button>
     </div>
   );
 }
@@ -127,22 +231,7 @@ export default function MessageBubble({
                 <EmojiOnlyBubble emojis={emojiUnits} />
               </div>
             ) : (
-              <div className="max-w-[240px] rounded-[8px] bg-[#FFE000] px-[12px] py-[6px]">
-                <p
-                  className="text-[14px] font-normal text-[#191919]"
-                  style={{
-                    fontFamily:
-                      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                    fontFeatureSettings: '"liga" off, "clig" off',
-                    lineHeight: "160%",
-                    letterSpacing: "-0.56px",
-                    wordBreak: "break-word",
-                    whiteSpace: "normal",
-                  }}
-                >
-                  {text}
-                </p>
-              </div>
+              <TextBubbleContent text={text ?? ""} isMine={isMine} />
             )
           ) : (
             <div className="w-fit">
@@ -158,22 +247,7 @@ export default function MessageBubble({
                 <EmojiOnlyBubble emojis={emojiUnits} />
               </div>
             ) : (
-              <div className="max-w-[240px] rounded-[8px] bg-white px-[12px] py-[6px]">
-                <p
-                  className="text-[14px] font-normal text-[#191919]"
-                  style={{
-                    fontFamily:
-                      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                    fontFeatureSettings: '"liga" off, "clig" off',
-                    lineHeight: "160%",
-                    letterSpacing: "-0.56px",
-                    wordBreak: "break-word",
-                    whiteSpace: "normal",
-                  }}
-                >
-                  {text}
-                </p>
-              </div>
+              <TextBubbleContent text={text ?? ""} isMine={isMine} />
             )
           ) : (
             <div className="w-fit">

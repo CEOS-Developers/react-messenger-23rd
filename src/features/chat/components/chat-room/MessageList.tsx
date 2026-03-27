@@ -27,7 +27,7 @@ export default function MessageList({
 
   return (
     <main className="scrollbar-hidden min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
-      <div className="flex w-full flex-col items-start gap-[24px] pb-[24px] pt-[8px]">
+      <div className="flex w-full flex-col items-start justify-end gap-[24px] pt-[120px] pb-[34px]">
         {groups.map((group, groupIndex) => {
           const sender = users.find((user) => user.id === group.senderId);
           if (!sender) return null;
@@ -35,7 +35,7 @@ export default function MessageList({
           const isMine = !!sender.isMe;
           const prevGroup = groups[groupIndex - 1];
           const shouldShowDateDivider =
-            groupIndex === 0 || prevGroup.createdDate !== group.createdDate;
+            groupIndex !== 0 && prevGroup.createdDate !== group.createdDate;
 
           return (
             <div
@@ -47,11 +47,7 @@ export default function MessageList({
               ) : null}
 
               {isMine ? (
-                <section
-                  className={`flex w-full flex-col items-end gap-[4px] pr-[8px] ${
-                    groupIndex === 0 ? "pt-[32px]" : ""
-                  }`}
-                >
+                <section className="flex w-full flex-col items-end gap-[4px] pr-[8px]">
                   {group.messages.map((message) => (
                     <MessageBubble
                       key={message.id}
@@ -67,11 +63,7 @@ export default function MessageList({
                   ))}
                 </section>
               ) : (
-                <section
-                  className={`flex flex-col items-start gap-[4px] ${
-                    groupIndex === 0 ? "pt-[32px]" : ""
-                  }`}
-                >
+                <section className="flex flex-col items-start gap-[4px]">
                   <MessageItem sender={sender}>
                     {group.messages.map((message) => (
                       <MessageBubble
