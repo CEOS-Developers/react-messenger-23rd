@@ -58,7 +58,7 @@ export default function Bubble({
           )}
         </div>
         <span
-          className={`typo-caption-2 text-gray-04 shrink-0 mb-1 ${showTime ? "" : "invisible"}`}
+          className={`typo-caption-2 text-gray-04 shrink-0 ${showTime ? "" : "invisible"}`}
         >
           {formatTime(timestamp)}
         </span>

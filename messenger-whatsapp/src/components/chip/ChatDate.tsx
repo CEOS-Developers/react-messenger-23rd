@@ -11,7 +11,7 @@ const ChipDate = ({ date }: ChipDateProps) => {
   const day = DAYS[date.getDay()];
 
   return (
-    <div className="bg-gray-07/60 text-white rounded-2xl typo-caption-1 px-2 py-1.5 w-fit">
+    <div className="bg-gray-07/60 text-white rounded-2xl font-medium font-pretendard text-[12px] px-2 py-1.5 w-fit text-center">
       {yyyy}. {mm}. {dd}. {day}
     </div>
   );
