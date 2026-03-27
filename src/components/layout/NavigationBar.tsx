@@ -4,14 +4,17 @@ import dmSelectedIcon from '@/assets/icons/DM/Selected.svg'
 import homeDefaultIcon from '@/assets/icons/Home/Default.svg'
 import homeSelectedIcon from '@/assets/icons/Home/Selected.svg'
 import moreIcon from '@/assets/icons/Other.svg'
-import { colors, typography } from '@/styles/tokens'
 import HomeIndicator from '@/components/common/HomeIndicator'
+import { colors, typography } from '@/styles/tokens'
+
+type NavigationKey = 'home' | 'dm' | 'alarm' | 'more'
 
 type NavigationBarProps = {
-  active?: 'home' | 'dm' | 'alarm' | 'more'
+  active?: NavigationKey
+  onTabChange?: (tab: NavigationKey) => void
 }
 
-function NavigationBar({ active }: NavigationBarProps) {
+function NavigationBar({ active, onTabChange }: NavigationBarProps) {
   const items = [
     {
       key: 'home',
@@ -53,14 +56,16 @@ function NavigationBar({ active }: NavigationBarProps) {
             const isActive = active === item.key
 
             return (
-              <div
+              <button
                 key={item.key}
+                type="button"
+                onClick={() => onTabChange?.(item.key)}
                 className="flex h-[44px] w-[80px] flex-col items-center gap-[4px]"
               >
                 <img
                   src={isActive ? item.activeIcon : item.defaultIcon}
                   alt={item.label}
-                  className="h-[20px] w-[20px] shrink-0 object-contain"
+                  className="block h-[20px] w-[20px] shrink-0 object-contain"
                 />
 
                 <span
@@ -68,13 +73,13 @@ function NavigationBar({ active }: NavigationBarProps) {
                   style={{
                     color: isActive ? colors.primary700 : colors.grey800,
                     fontSize: typography.c2_11_sb.fontSize,
-                    fontWeight: 500,
+                    fontWeight: typography.c2_11_sb.fontWeight,
                     lineHeight: typography.c2_11_sb.lineHeight,
                   }}
                 >
                   {item.label}
                 </span>
-              </div>
+              </button>
             )
           })}
         </div>
