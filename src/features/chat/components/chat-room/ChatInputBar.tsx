@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import PlusIcon from "../../../../assets/icons/chat/ic_Plus.svg";
 import EmojiIcon from "../../../../assets/icons/chat/ic_Emoji.svg";
 import HashIcon from "../../../../assets/icons/chat/ic_Hash.svg";
+import SendIcon from "../../../../assets/icons/chat/ic_Send.svg";
 
 type ChatInputBarProps = {
   onSendText: (text: string) => void;
@@ -15,9 +16,12 @@ export default function ChatInputBar({
   const [input, setInput] = useState("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  const hasText = input.trim().length > 0;
+
   const handleSend = () => {
     const trimmed = input.trim();
     if (!trimmed) return;
+
     onSendText(trimmed);
     setInput("");
   };
@@ -36,10 +40,10 @@ export default function ChatInputBar({
       <button
         type="button"
         onClick={() => fileInputRef.current?.click()}
-        className="flex items-center rounded-[100px] bg-[#F5F5F7] p-[4px]"
+        className="flex shrink-0 items-center rounded-[100px] bg-[#F5F5F7] p-[4px] transition-colors hover:bg-[#EDEDEF]"
         aria-label="사진 추가"
       >
-        <img src={PlusIcon} alt="" className="h-[24px] w-[24px]" />
+        <img src={PlusIcon} alt="" className="h-[24px] w-[24px] shrink-0" />
       </button>
 
       <input
@@ -50,7 +54,7 @@ export default function ChatInputBar({
         onChange={handleFileChange}
       />
 
-      <div className="flex flex-[1_0_0] items-center justify-between rounded-[100px] bg-[#F5F5F7] pt-[4px] pr-[6px] pb-[4px] pl-[12px]">
+      <div className="flex min-w-0 flex-[1_1_auto] items-center justify-between rounded-[100px] bg-[#F5F5F7] pt-[4px] pr-[6px] pb-[4px] pl-[12px]">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -65,18 +69,17 @@ export default function ChatInputBar({
             fontFeatureSettings: '"liga" off, "clig" off',
             fontSize: "14px",
             fontStyle: "normal",
-            fontWeight: 700,
+            fontWeight: 400,
             lineHeight: "160%",
             letterSpacing: "-0.56px",
-            color: "Grayscale/gray300",
+            color: "#191919",
           }}
         />
 
         <button
           type="button"
-          onClick={handleSend}
-          aria-label="전송 또는 이모지"
-          className="ml-[8px] flex h-[24px] w-[24px] items-center justify-center"
+          aria-label="이모지"
+          className="ml-[8px] flex h-[24px] w-[24px] shrink-0 items-center justify-center"
         >
           <img src={EmojiIcon} alt="" className="h-[24px] w-[24px]" />
         </button>
@@ -84,10 +87,19 @@ export default function ChatInputBar({
 
       <button
         type="button"
-        aria-label="샵 버튼"
-        className="flex items-center gap-[10px] rounded-[100px] bg-[#F5F5F7] p-[4px]"
+        onClick={hasText ? handleSend : undefined}
+        aria-label={hasText ? "전송" : "샵 버튼"}
+        className={`flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[100px] transition-colors ${
+          hasText 
+            ? "bg-[#FFE000] pt-[2px] pr-[2px] pb-0 pl-0" 
+            : "bg-[#F5F5F7]"
+        }`}
       >
-        <img src={HashIcon} alt="" className="h-[24px] w-[24px]" />
+        <img
+          src={hasText ? SendIcon : HashIcon}
+          alt=""
+          className={hasText ? "h-[16px] w-[16px] shrink-0" : "h-[24px] w-[24px] shrink-0"}
+        />
       </button>
     </div>
   );
