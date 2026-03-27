@@ -1,0 +1,13 @@
+[
+  { "id": "me", "name": "나", "status": "active" },
+  { "id": "user1", "name": "최지우", "status": "active" },
+  { "id": "user2", "name": "신예은", "status": "sleeping" },
+  { "id": "user3", "name": "윤다희", "status": "active" },
+  { "id": "user4", "name": "김지안", "status": "active" },
+  { "id": "user5", "name": "신혜린", "status": "sleeping" },
+  { "id": "user6", "name": "오하은", "status": "active" },
+  { "id": "user7", "name": "오수아", "status": "sleeping" },
+  { "id": "user8", "name": "박은지", "status": "sleeping" },
+  { "id": "user9", "name": "한유진", "status": "active" },
+  { "id": "user10", "name": "김정호", "status": "active" }
+]
