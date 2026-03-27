@@ -1,12 +1,5 @@
 @import "tailwindcss";
-
-@font-face {
-  font-family: "SUIT Variable";
-  src: url("./assets/fonts/SUIT-Variable.woff2") format("woff2");
-  font-weight: 500 700;
-  font-style: normal;
-  font-display: swap;
-}
+@import "./typography.css";
 
 @theme {
   /* Main Color */
@@ -37,6 +30,8 @@
   --background-image-profile-4: linear-gradient(20deg, #db0d4f 16.64%, #ff4d85 91.15%);
   --background-image-profile-5: linear-gradient(20deg, #f66 16.64%, #ff9393 91.15%);
   --background-image-profile-6: linear-gradient(20deg, #643ecd 16.64%, #a78bf4 91.15%);
+
+  /* Background Color */
   --background-image-indicator: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 12.68%,
@@ -82,114 +77,15 @@
   --shadow-header: 0 2px 2px 0 rgba(0, 0, 0, 0.02);
 }
 
-body {
-  font-family: var(--font-suit);
-}
-
-/* Heading1_Bold */
-.font-heading-1 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-22);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-140);
-  letter-spacing: var(--letter-spacing-3);
-}
-
-/* Heading2_Bold */
-.font-heading-2 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-140);
-  letter-spacing: var(--letter-spacing-3);
-}
-
-/* Body1_Bold */
-.font-body-1 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
-/* Body2_Semibold */
-.font-body-2 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
-/* Body3_Medium */
-.font-body-3 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
-/* Body4_Bold */
-.font-body-4 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
-/* Body5_Semibold */
-.font-body-5 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
-/* Body6_Medium */
-.font-body-6 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
-/* Caption1_Semibold */
-.font-caption-1 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
-/* Caption2_Medium */
-.font-caption-2 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-12);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
-/* Caption3_Semibold */
-.font-caption-3 {
-  font-family: var(--font-suit);
-  font-size: var(--font-size-11);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-150);
-  letter-spacing: var(--letter-spacing-2);
-}
-
 @layer base {
   html,
   body,
   #root {
     height: 100%;
+  }
+
+  body {
+    font-family: var(--font-suit);
   }
 
   * {
