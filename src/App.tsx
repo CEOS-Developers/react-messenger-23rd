@@ -1,5 +1,7 @@
+import ChatListPage from './pages/ChatListPage'
+
 function App() {
-  return <div>App</div>
+  return <ChatListPage />
 }
 
 export default App

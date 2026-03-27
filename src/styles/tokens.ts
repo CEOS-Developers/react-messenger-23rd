@@ -30,3 +30,76 @@ export const device = {
   width: 375,
   height: 812,
 } as const
+
+export const typography = {
+  h1_24_b: {
+    fontSize: '24px',
+    fontWeight: 700,
+    lineHeight: '150%',
+  },
+  h1_24_sb: {
+    fontSize: '24px',
+    fontWeight: 600,
+    lineHeight: '150%',
+  },
+  h2_22_b: {
+    fontSize: '22px',
+    fontWeight: 700,
+    lineHeight: '150%',
+  },
+  h2_22_sb: {
+    fontSize: '22px',
+    fontWeight: 600,
+    lineHeight: '150%',
+  },
+  h3_18_b: {
+    fontSize: '18px',
+    fontWeight: 700,
+    lineHeight: '150%',
+  },
+  h3_18_sb: {
+    fontSize: '18px',
+    fontWeight: 600,
+    lineHeight: '150%',
+  },
+  b1_16_sb: {
+    fontSize: '16px',
+    fontWeight: 600,
+    lineHeight: '150%',
+  },
+  b1_16_m: {
+    fontSize: '16px',
+    fontWeight: 500,
+    lineHeight: '150%',
+  },
+  b2_14_b: {
+    fontSize: '14px',
+    fontWeight: 700,
+    lineHeight: '150%',
+  },
+  b2_14_sb: {
+    fontSize: '14px',
+    fontWeight: 600,
+    lineHeight: '150%',
+  },
+  b2_14_m: {
+    fontSize: '14px',
+    fontWeight: 500,
+    lineHeight: '150%',
+  },
+  c1_12_r: {
+    fontSize: '12px',
+    fontWeight: 400,
+    lineHeight: '150%',
+  },
+  c2_11_sb: {
+  fontSize: '10px',
+  fontWeight: 500,
+  lineHeight: '15px',
+},
+  c2_11_r: {
+    fontSize: '11px',
+    fontWeight: 400,
+    lineHeight: '150%',
+  },
+} as const
