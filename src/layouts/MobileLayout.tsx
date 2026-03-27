@@ -4,13 +4,12 @@ type MobileLayoutProps = {
 
 export default function MobileLayout({ children }: MobileLayoutProps) {
   return (
-    <div className="flex min-h-screen items-start justify-center bg-[#EDEDEF] p-6">
+    <div className="min-h-[100svh] bg-[#EDEDEF] md:flex md:items-start md:justify-center md:p-6">
       <div
-        className="overflow-hidden rounded-[35px] border border-[#DEDEDE] bg-white"
-        style={{
-          width: "375px",
-          height: "812px",
-        }}
+        className="
+          h-[100svh] w-full overflow-hidden bg-white
+          md:h-[812px] md:w-[375px] md:rounded-[35px] md:border md:border-[#DEDEDE]
+        "
       >
         {children}
       </div>
