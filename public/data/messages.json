@@ -1,0 +1,65 @@
+[
+  {
+    "id": "room1-msg1",
+    "roomId": "room1",
+    "senderId": "user-2",
+    "text": "저녁은 먹었어?",
+    "createdAt": "2026-03-27T13:40:00.000Z"
+  },
+  {
+    "id": "room1-msg2",
+    "roomId": "room1",
+    "senderId": "user-1",
+    "text": "아직이야 뭐 먹을지 고민 중이야",
+    "createdAt": "2026-03-27T13:50:00.000Z"
+  },
+  {
+    "id": "room1-msg3",
+    "roomId": "room1",
+    "senderId": "user-2",
+    "text": "따뜻한 거 먹으면 좋겠다 오늘 좀 쌀쌀하더라",
+    "createdAt": "2026-03-27T13:54:00.000Z"
+  },
+  {
+    "id": "room1-msg4",
+    "roomId": "room1",
+    "senderId": "user-2",
+    "text": "5시에 로비에서 볼까?",
+    "createdAt": "2026-03-27T13:55:00.000Z"
+  },
+  {
+    "id": "room1-msg5",
+    "roomId": "room1",
+    "senderId": "user-1",
+    "text": "좋아",
+    "createdAt": "2026-03-27T13:55:30.000Z"
+  },
+  {
+    "id": "room1-msg6",
+    "roomId": "room1",
+    "senderId": "user-2",
+    "text": "이따 끝나면 연락줘 엘베 잡아 놓을게 ㅎㅎ",
+    "createdAt": "2026-03-27T13:58:00.000Z"
+  },
+  {
+    "id": "room1-msg7",
+    "roomId": "room1",
+    "senderId": "user-1",
+    "text": "ㅇㅋㅇㅋ",
+    "createdAt": "2026-03-27T14:01:00.000Z"
+  },
+  {
+    "id": "room1-msg8",
+    "roomId": "room1",
+    "senderId": "user-1",
+    "text": "나 근데 교수님한테 여쭤볼 게 있어서 조금 더 늦게 끝날 수도 있어!! 끝나면 연락할게~",
+    "createdAt": "2026-03-27T14:01:40.000Z"
+  },
+  {
+    "id": "room1-msg9",
+    "roomId": "room1",
+    "senderId": "user-2",
+    "text": "넹",
+    "createdAt": "2026-03-27T14:03:00.000Z"
+  }
+]

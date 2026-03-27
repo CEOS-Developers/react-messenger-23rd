@@ -1,0 +1,14 @@
+[
+  {
+    "id": "user-1",
+    "name": "이우림",
+    "profileImage": "/images/profiles/leewoorim.png",
+    "statusMessage": "CEOS 23기 디자인"
+  },
+  {
+    "id": "user-2",
+    "name": "김지원",
+    "profileImage": "/images/profiles/kimjiwon.png",
+    "statusMessage": "고등학교 친구"
+  }
+]
