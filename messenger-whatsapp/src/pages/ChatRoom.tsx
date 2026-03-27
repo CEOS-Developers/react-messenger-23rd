@@ -1,6 +1,5 @@
 import { Fragment } from "react";
-import SentBubble from "../components/chat/SentBubble";
-import ReceivedBubble from "../components/chat/ReceivedBubble";
+import Bubble from "../components/chat/Bubble";
 import InputBox from "../components/common/Input";
 import ChipDate from "../components/chip/ChatDate";
 import ChatHeader from "../components/chat/ChatHeader";
@@ -56,19 +55,12 @@ export default function ChatRoom() {
                   </div>
                 )}
                 <div className={senderChanged ? "mt-2" : ""}>
-                  {isSent ? (
-                    <SentBubble
-                      message={msg.text}
-                      timestamp={msg.timestamp}
-                      showTime={showTime}
-                    />
-                  ) : (
-                    <ReceivedBubble
-                      message={msg.text}
-                      timestamp={msg.timestamp}
-                      showTime={showTime}
-                    />
-                  )}
+                  <Bubble
+                    message={msg.text}
+                    timestamp={msg.timestamp}
+                    showTime={showTime}
+                    isSent={isSent}
+                  />
                 </div>
               </div>
             </Fragment>
