@@ -8,20 +8,22 @@ interface Props {
 
 function ChatHeader({ title = '친구 이름' }: Props) {
   return (
-    <div className="flex items-center justify-between px-4 h-14 bg-white border-b">
-      <button className="w-[36px] h-[36px] p-[6px] flex items-center justify-center">
-        <img
-          src={backArrow}
-          alt="뒤로가기"
-          className="w-[24px] h-[24px]"
-        />
-      </button>
+    <div className="flex items-center justify-between py-2 px-3 h-14 bg-none border-b border-[0.75px] border-[var(--gray-30)]">
+      <div className="flex items-center gap-1">
+        <button className="w-[36px] h-[36px] p-[6px] flex items-center justify-center">
+          <img
+            src={backArrow}
+            alt="뒤로가기"
+          />
+        </button>
 
-      {/* 가운데: 채팅방 이름 */}
-      <div className="font-semibold text-base">{title}</div>
+        <div className="font-semibold overflow-hidden text-ellipsis whitespace-nowrap text-[17px] leading-[22px] tracking-[-0.17px] text-[var(--gray-95)]">
+          {title}
+        </div>
+      </div>
 
       {/* 오른쪽: 메뉴 */}
-      <div className="flex gap-3 text-lg">
+      <div className="flex gap-1 text-lg">
         <button>
           <img
             src={searchIcon}
