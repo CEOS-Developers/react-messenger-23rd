@@ -19,6 +19,7 @@ export type Message = {
   text: string;
   senderId: number;
   timestamp: number;
+  readBy: number[];
 };
 
 type ChatStore = {
@@ -47,15 +48,24 @@ export const useChatStore = create<ChatStore>()(
               text,
               senderId: state.currentUserId,
               timestamp: Date.now(),
+              readBy: [state.currentUserId],
             },
           ],
         })),
       swapPerspective: () => {
-        const { users, currentUserId } = get();
+        const { users, currentUserId, messages } = get();
         const other = users.find((u) => u.id !== currentUserId);
-        if (other) set({ currentUserId: other.id });
+        if (!other) return;
+        set({
+          currentUserId: other.id,
+          messages: messages.map((m) =>
+            m.readBy.includes(other.id)
+              ? m
+              : { ...m, readBy: [...m.readBy, other.id] },
+          ),
+        });
       },
     }),
-    { name: "chat-store", version: 2 },
+    { name: "chat-store", version: 3 },
   ),
 );

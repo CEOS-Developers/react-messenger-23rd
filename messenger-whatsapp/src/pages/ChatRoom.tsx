@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Bubble from "../components/chat/Bubble";
 import InputBox from "../components/common/Input";
@@ -25,9 +25,21 @@ const isSameDay = (a: number, b: number) => {
 export default function ChatRoom() {
   const { roomId } = useParams();
   const roomIdNum = Number(roomId);
-  const { messages: allMessages, users, currentUserId, sendMessage } = useChatStore();
+  const { messages: allMessages, chatRooms, users, currentUserId, sendMessage } = useChatStore();
   const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
-  const chatPartner = users.find((u) => u.id !== currentUserId);
+  const room = chatRooms.find((r) => r.id === roomIdNum);
+  const participantIds = room?.participantIds ?? [];
+  const chatPartner = users.find((u) => u.id !== currentUserId && participantIds.includes(u.id));
+
+  const getUnreadCount = (msg: typeof messages[number]) =>
+    participantIds.filter(
+      (id) => id !== msg.senderId && !msg.readBy.includes(id)
+    ).length;
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
+  }, [messages]);
 
   return (
     <div className="flex flex-col h-screen bg-main-bg no-scrollbar">
@@ -36,7 +48,7 @@ export default function ChatRoom() {
         chatName={chatPartner?.name ?? ""}
         profileImage={chatPartner?.profileImage}
       />
-      <div className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar">
+      <div ref={scrollRef} className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar">
         {messages.map((msg, index) => {
           const isSent = msg.senderId === currentUserId;
           const prev = messages[index - 1];
@@ -64,6 +76,7 @@ export default function ChatRoom() {
                     timestamp={msg.timestamp}
                     showTime={showTime}
                     isSent={isSent}
+                    unreadCount={getUnreadCount(msg)}
                   />
                 </div>
               </div>

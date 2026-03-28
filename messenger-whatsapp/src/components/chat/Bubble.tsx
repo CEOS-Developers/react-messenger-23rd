@@ -7,6 +7,7 @@ interface BubbleProps {
   timestamp: number;
   showTime: boolean;
   isSent: boolean;
+  unreadCount: number;
 }
 
 const SINGLE_LINE_HEIGHT = 37;
@@ -25,6 +26,7 @@ export default function Bubble({
   timestamp,
   showTime,
   isSent,
+  unreadCount,
 }: BubbleProps) {
   const bubbleRef = useRef<HTMLDivElement>(null);
   const [isMultiLine, setIsMultiLine] = useState(false);
@@ -57,11 +59,22 @@ export default function Bubble({
             <ReceivedTail className="absolute bottom-0 -left-[6px]" />
           )}
         </div>
-        <span
-          className={`typo-caption-2 text-gray-04 shrink-0 ${showTime ? "" : "invisible"}`}
+
+        {/* 읽음 수 + 시간 */}
+        <div
+          className={`flex flex-col shrink-0 gap-0 pb-0 ${isSent ? "items-end" : "items-start"}`}
         >
-          {formatTime(timestamp)}
-        </span>
+          {isSent && unreadCount > 0 && (
+            <span className="typo-caption-2  text-main-green">
+              {unreadCount}
+            </span>
+          )}
+          <span
+            className={`typo-caption-2  text-gray-04 ${showTime ? "" : "invisible"}`}
+          >
+            {formatTime(timestamp)}
+          </span>
+        </div>
       </div>
     </div>
   );
