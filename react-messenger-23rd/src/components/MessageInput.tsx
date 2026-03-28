@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import plusIcon from "@/assets/icons/plus.svg";
 import emojiIcon from "@/assets/icons/emoji.svg";
 import thumbsupIcon from "@/assets/icons/thumbs-up.svg";
@@ -10,11 +10,28 @@ interface MessageInputProps {
 
 export default function MessageInput({ onSend }: MessageInputProps) {
   const [text, setText] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const adjustHeight = useCallback(() => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    textarea.style.height = "auto";
+    textarea.style.height = `${Math.min(textarea.scrollHeight, 86)}px`;
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value.slice(0, 192));
+    adjustHeight();
+  };
 
   const handleSubmit = () => {
     if (!text.trim()) return;
     onSend(text.trim());
     setText("");
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto";
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -26,17 +43,18 @@ export default function MessageInput({ onSend }: MessageInputProps) {
 
   return (
     <div className="bg-white pb-[34px]">
-      <div className="flex items-center justify-between px-3 pt-3 pb-2.5 gap-[7px]">
+      <div className="flex items-center justify-between p-3 gap-[7px]">
         <img src={plusIcon} alt="추가" className="w-8 h-8 shrink-0" />
-        <div className="flex items-center justify-between flex-1 h-10 bg-surface-input border border-line-subtle rounded-3xl pl-4 pr-1 py-1">
-          <input
-            type="text"
+        <div className="flex items-center justify-between flex-1 bg-surface-input border border-line-subtle rounded-3xl pl-4 pr-2 py-1 gap-2.5">
+          <textarea
+            ref={textareaRef}
             value={text}
-            onChange={(e) => setText(e.target.value.slice(0, 192))}
+            onChange={handleChange}
             onKeyDown={handleKeyDown}
             placeholder="메시지를 입력해주세요"
             maxLength={192}
-            className="flex-1 bg-transparent text-[13px] font-normal leading-[140%] text-content-primary placeholder-line outline-none"
+            rows={1}
+            className="flex-1 bg-transparent text-[13px] font-normal leading-[140%] text-content-primary placeholder-line outline-none resize-none max-h-[72px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           />
           <img src={emojiIcon} alt="이모지" className="w-8 h-8 shrink-0" />
         </div>
