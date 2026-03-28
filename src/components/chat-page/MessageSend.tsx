@@ -38,8 +38,8 @@ function MessageSend({ messages }: MessageSendProps) {
             index === 0
               ? ""
               : isSameSenderAsPrevious && isWithinOneMinute
-                ? "mt-[var(--space-1)]"
-                : "mt-[var(--space-12)]";
+                ? "pt-[var(--space-1)]"
+                : "pt-[var(--space-12)] pb-[var(--space-1)]";
 
           if (isMe) {
             return (
@@ -47,7 +47,7 @@ function MessageSend({ messages }: MessageSendProps) {
                 key={message.id}
                 className={`flex w-full justify-end ${topSpacing}`}
               >
-                <div className="max-w-[var(--width-message-max)] rounded-[var(--radius-bubble)] bg-[var(--color-bubble-me)] px-[var(--space-16)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-white break-words">
+                <div className="max-w-[var(--width-message-max)] rounded-[var(--radius-bubble)] bg-[var(--color-bubble-me)] pl-[var(--space-10)] pr-[var(--space-12)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-white break-words">
                   {message.text}
                 </div>
               </div>
@@ -67,7 +67,7 @@ function MessageSend({ messages }: MessageSendProps) {
                 />
               </div>
 
-              <div className="max-w-[var(--width-message-max)] rounded-[var(--radius-bubble)] bg-[var(--color-bubble-other)] px-[var(--space-16)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-[var(--color-text-primary)] break-words">
+              <div className="max-w-[var(--width-message-max)] rounded-[var(--radius-bubble)] bg-[var(--color-bubble-other)] pl-[var(--space-10)] pr-[var(--space-12)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-[var(--color-text-primary)] break-words">
                 {message.text}
               </div>
             </div>
