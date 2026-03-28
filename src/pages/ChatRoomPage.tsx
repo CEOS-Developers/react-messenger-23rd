@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import DateDivider from '@/components/chatRoom/DateDivider'
 import MessageInput from '@/components/chatRoom/MessageInput'
@@ -9,6 +9,7 @@ import PageFrame from '@/components/layout/PageFrame'
 import { colors } from '@/styles/tokens'
 import messagesData from '@/data/messages.json'
 import usersData from '@/data/users.json'
+import type { Message } from '@/types/message'
 import {
   formatDateDivider,
   formatMessageTime,
@@ -25,14 +26,35 @@ type ChatRoomPageProps = {
 
 function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPageProps) {
   const [inputValue, setInputValue] = useState('')
-
-  const messages = messagesData.filter((m) => m.chatRoomId === chatRoomId)
+  const [messages, setMessages] = useState<Message[]>(() =>
+    messagesData.filter((m) => m.chatRoomId === chatRoomId)
+  )
+  const scrollRef = useRef<HTMLDivElement>(null)
   const userMap = Object.fromEntries(usersData.map((u) => [u.id, u]))
 
-  const handleSend = () => {
-    if (inputValue.trim()) {
-      setInputValue('')
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
+  const handleSend = () => {
+    if (!inputValue.trim()) return
+
+    const newMessage: Message = {
+      id: `m-${Date.now()}`,
+      chatRoomId,
+      senderId: 'me',
+      text: inputValue.trim(),
+      timestamp: new Date().toISOString(),
+    }
+
+    setMessages((prev) => [...prev, newMessage])
+    setInputValue('')
   }
 
   const renderMessages = () => {
@@ -42,7 +64,6 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
       const msg = messages[i]
       const prevMsg = i > 0 ? messages[i - 1] : null
 
-      // 날짜 구분선: 이전 메시지와 날짜가 다르거나 첫 메시지
       if (!prevMsg || !isSameDay(prevMsg.timestamp, msg.timestamp)) {
         elements.push(
           <DateDivider key={`date-${msg.id}`} date={formatDateDivider(msg.timestamp)} />
@@ -54,7 +75,6 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
         prevMsg.senderId !== msg.senderId ||
         !isSameDay(prevMsg.timestamp, msg.timestamp)
 
-      // 시간 표시: 다음 메시지와 같은 발신자+같은 분이면 숨김
       const nextMsg = i < messages.length - 1 ? messages[i + 1] : null
       const showTime = !nextMsg ||
         nextMsg.senderId !== msg.senderId ||
@@ -95,7 +115,11 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
       <div className="flex h-full flex-col bg-white">
         <div className="h-[48px] shrink-0" />
         <ChatRoomHeader title={chatName} memberCount={memberCount} onBack={onBack} />
-        <div className="flex-1 overflow-y-auto" style={{ background: colors.grey200 }}>
+        <div
+          ref={scrollRef}
+          className="flex-1 overflow-y-auto"
+          style={{ background: colors.grey200 }}
+        >
           <div className="flex flex-col gap-[6px] pb-[8px]">
             {renderMessages()}
           </div>
