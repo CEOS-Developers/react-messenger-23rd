@@ -23,7 +23,7 @@ export default function ChatHeader({
         <button
           onClick={onProfileClick}
           type="button"
-          className="text-[20px] font-semibold leading-[100%] text-content-primary cursor-pointer truncate max-w-47"
+          className="text-[20px] font-medium leading-[100%] text-content-primary cursor-pointer truncate max-w-47"
         >
           {name}
         </button>
