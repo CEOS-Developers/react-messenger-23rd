@@ -1,11 +1,23 @@
+import { Routes, Route } from "react-router-dom";
 import ChatRoomPage from "./pages/ChatRoom";
+import ChatListPage from "./pages/ChatList";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <ChatRoomPage />
-    </>
+    <Routes>
+      <Route path="/" element={<ChatListPage />} />
+
+      <Route path="/chatroom" element={<ChatRoomPage />} />
+      <Route path="/chatlist" element={<ChatListPage />} />
+
+      <Route
+        path="*"
+        element={
+          <div className="text-white">404 - 페이지를 찾을 수 없어요</div>
+        }
+      />
+    </Routes>
   );
 }
 
