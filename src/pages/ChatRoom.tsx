@@ -62,11 +62,7 @@ export default function ChatRoomPage() {
               {msg.senderId === currentUserId ? (
                 <SentBubble message={msg} />
               ) : (
-                <ReceivedBubble
-                  message={msg}
-                  name={opponent?.name || "알 수 없음"}
-                  profileImage={opponent?.profileImage || ""}
-                />
+                <ReceivedBubble message={msg} />
               )}
             </div>
           );
