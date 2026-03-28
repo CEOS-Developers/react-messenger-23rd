@@ -69,9 +69,9 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
             <button
               type="button"
               onClick={onSend}
-              className="flex shrink-0 items-center justify-center rounded-full p-1 bg-[var(--color-main)] hover:bg-[var(--color-pressed)]"
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full p-1 bg-[var(--color-main)] hover:bg-[var(--color-pressed)]"
             >
-              <img src={sendIcon} alt="전송" className="h-6 w-6" />
+              <img src={sendIcon} alt="전송" />
             </button>
           ) : (
             <>
