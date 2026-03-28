@@ -71,7 +71,6 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
     setInputValue('')
   }
 
-  const currentUserName = currentUserId === 'me' ? '나' : userMap[currentUserId]?.name ?? '알 수 없음'
 
   const renderMessages = () => {
     const elements: React.ReactNode[] = []

@@ -27,12 +27,10 @@ export function isSameDay(a: string, b: string): boolean {
 }
 
 export function isSameMinute(a: string, b: string): boolean {
+  if (!isSameDay(a, b)) return false
   const dateA = new Date(a)
   const dateB = new Date(b)
   return (
-    dateA.getFullYear() === dateB.getFullYear() &&
-    dateA.getMonth() === dateB.getMonth() &&
-    dateA.getDate() === dateB.getDate() &&
     dateA.getHours() === dateB.getHours() &&
     dateA.getMinutes() === dateB.getMinutes()
   )
