@@ -1,0 +1,35 @@
+[
+  {
+    "id": "seed-1",
+    "senderId": "me",
+    "type": "text",
+    "text": "철수야 철수야",
+    "createdAt": "00:00",
+    "createdDate": "2025-03-27",
+    "unreadCount": 1
+  },
+  {
+    "id": "seed-2",
+    "senderId": "me",
+    "type": "text",
+    "text": "훈이 우는 사진 보내줘",
+    "createdAt": "00:01",
+    "createdDate": "2025-03-27"
+  },
+  {
+    "id": "seed-3",
+    "senderId": "kim",
+    "type": "text",
+    "text": "대화 내용 더미텍스트 대화 내용 더미텍스트 대화 내용 더미텍스트 대화",
+    "createdAt": "00:02",
+    "createdDate": "2025-03-27"
+  },
+  {
+    "id": "seed-4",
+    "senderId": "kim",
+    "type": "text",
+    "text": "여깃어.",
+    "createdAt": "00:03",
+    "createdDate": "2025-03-27"
+  }
+]

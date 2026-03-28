@@ -1,0 +1,13 @@
+[
+  {
+    "id": "me",
+    "name": "나",
+    "profileImage": "ProfileImage.svg",
+    "isMe": true
+  },
+  {
+    "id": "kim",
+    "name": "김철수",
+    "profileImage": "ProfileImage.svg"
+  }
+]

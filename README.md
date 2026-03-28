@@ -1,84 +1,73 @@
-# **서론**
+# React + TypeScript + Vite
 
-안녕하세요 😻
-23기 프론트엔드 운영진 원채영입니다.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-이번 주에는 투두리스트를 넘어, 새로운 프로젝트인 **Messenger** 구현을 진행합니다.
+Currently, two official plugins are available:
 
-이번 과제는 디자이너와 협업하여 진행되는 프로젝트로,
-디자인 파트에서 리디자인한 메신저 화면을 직접 구현해보는 경험을 하게 됩니다.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-또한, 이번 주부터는 **TypeScript**와 **Tailwind CSS**를 필수로 적용하여 개발을 진행합니다.
+## React Compiler
 
-프로젝트 규모가 커질수록 컴포넌트의 props도 점점 복잡해지는데요,
-이때 TypeScript를 활용하면 props의 구조와 타입을 명확하게 관리할 수 있고,
-자동완성을 통해 개발 생산성을 높일 수 있습니다.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-아울러, 이번 과제에서는 **React Hooks**에 더욱 익숙해지는 것을 목표로 합니다.
-특히 useState, useEffect, useRef를 중심으로 활용해보며, React에서 자주 사용되는 핵심 개념을 확실히 익혀보시길 바랍니다.
+## Expanding the ESLint configuration
 
-그럼 이번 과제도 파이팅입니다!! 🎉
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-# **과제**
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-## **목표**
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-- TypeScript를 사용해봅시다.
-- useState로 컴포넌트의 상태를 관리합니다.
-- useEffect와 useRef의 사용법을 이해합니다.
-- Tailwind CSS의 사용법에 익숙해집니다.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## **기한**
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-- 2026년 3월 28일 토요일 23:59까지
-
-## **Review Questions**
-
-- 디자이너와 협업하며 전달받은 자료
-(피그마 링크, 캡처본, 커뮤니케이션 과정 등)
-
-- JSX / JS / TSX / TS의 개념과 각각의 차이점, 사용 이유
-
-- TypeScript를 사용하는 이유
-
-- SSR과 CSR의 개념 및 차이점
-
-
-## **필수 구현 기능**
-
-- 피그마 **Dev Mode**를 통해, 매칭된 디자인 파트원의 UI를 구현합니다.
-    - [🔗 예시 1](https://react-messenger-21th-kwondu.vercel.app/)
-    - [🔗 예시 2](https://react-messenger-21th-nine.vercel.app/)
-- 디자인 시스템을 구축합니다.
-- tailwind CSS를 사용합니다.
-- 메세지를 보내면 채팅방 하단으로 스크롤을 이동시킵니다.
-- 메세지에 유저 정보(프로필 사진, 이름)를 표시합니다.
-    - user와 message 데이터를 json 파일에 저장합니다.
-- UI는 **반응형을 제외**하고 피그마파일을 따라서 진행합니다.
-
-### **추가 구현 기능**
-
-- 채팅방 상단의 프로필을 클릭하면 사용자를 변경할 수 있습니다.
-- 더블 클릭 하면 감정표현을 추가합니다.
-- 그 외 추가하고 싶은 기능이 있다면 마음껏 추가해 주세요!
-
-<br/>
-
-이번 과제는 다음 과제까지 이어지는 만큼, **확장성**을 충분히 고려해 주세요.
-4주차 과제에서는 **유저 및 기능 추가**, **Routing 구현**이 진행될 예정입니다.
-
-이를 대비해, [**zustand**](https://zustand-demo.pmnd.rs/)를 활용한 상태 관리도 미리 적용해보시는 것을 추천드립니다!
-
-## **링크 및 참고자료**
-
-- [React docs - Hook](https://ko.reactjs.org/docs/hooks-intro.html)
-- [React의 Hooks 완벽 정복하기](https://velog.io/@velopert/react-hooks#1-usestate)
-- [useEffect 완벽 가이드](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
-- [코딩 컨벤션](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
-- [타입스크립트 핸드북](https://joshua1988.github.io/ts/intro.html)
-- [리액트 프로젝트에서 타입스크립트 사용하기 (시리즈)](https://velog.io/@velopert/series/react-with-typescript)
-- [디자인 시스템 구축기](https://yozm.wishket.com/magazine/detail/1830/)
-- [[영상] : 컴포넌트에 대한 이해](https://www.youtube.com/watch?v=21eiJc90ggo)
-- [Tailwind CSS 장단점, 사용법](https://wonny.space/writing/dev/hello-tailwind-css)
-- [ts 절대경로 설정하기](https://tesseractjh.tistory.com/232)
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
