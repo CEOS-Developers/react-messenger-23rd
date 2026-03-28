@@ -4,7 +4,12 @@ import hamburgerIcon from '@/shared/assets/icons/chat-room/hamburger(24_24).svg'
 import backIcon from '@/shared/assets/icons/chat-room/My_Text Box/Back (32_32).svg';
 import searchIcon from '@/shared/assets/icons/chat-room/search(24_24).svg';
 
-const ChatRoomHeader = () => {
+interface ChatRoomHeaderProps {
+  onFlip: () => void;
+  isFlipped: boolean;
+}
+
+const ChatRoomHeader = ({ onFlip, isFlipped }: ChatRoomHeaderProps) => {
   return (
     <header className="flex items-center border-b border-[var(--color-gray-20)] bg-[var(--color-bg)] px-4 py-3">
       <div className="flex items-center justify-center">
@@ -18,7 +23,11 @@ const ChatRoomHeader = () => {
       </div>
 
       <div className="flex flex-1 items-center justify-center">
-        <h1 className="text-[17px] font-semibold leading-6 text-[var(--color-gray-90)]">백하린</h1>
+        <button type="button" onClick={onFlip}>
+          <h1 className="text-[17px] font-semibold leading-6 text-[var(--color-gray-90)]">
+            {isFlipped ? '고다현' : '백하린'}
+          </h1>
+        </button>
       </div>
 
       <div className="flex w-16 justify-end gap-3">

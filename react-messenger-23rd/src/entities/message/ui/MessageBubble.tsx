@@ -7,18 +7,21 @@ import type { Message } from '../model/types';
 interface MessageBubbleProps {
   message: Message;
   showTime: boolean;
+  isFlipped: boolean;
+  marginClass: string;
 }
 
 const users = rawUsers as User[];
 
-const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
-  const isMe = message.userId === 'me';
+const MessageBubble = ({ message, showTime, isFlipped, marginClass }: MessageBubbleProps) => {
+  const isMe = isFlipped ? message.userId !== 'me' : message.userId === 'me';
+
   const user = users.find((item) => item.id === message.userId);
 
   if (!user) return null;
 
   return (
-    <div className={`flex ${isMe ? 'justify-end' : 'justify-start'} mb-3`}>
+    <div className={`flex ${isMe ? 'justify-end' : 'justify-start'} ${marginClass}`}>
       {!isMe && (
         <div className="flex items-start gap-2">
           <button type="button" className="shrink-0 self-start">
@@ -28,9 +31,11 @@ const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
           <div className="flex min-w-0 flex-col">
             <p className="mb-1 text-sm leading-6 font-medium text-[var(--color-gray-80)]">{user.name}</p>
 
-            <div className="flex items-end">
+            <div className="flex items-end gap-1">
               <div className="max-w-[232px] font-regular rounded-bl-[8px] rounded-br-[8px] rounded-tr-[8px] px-3 py-2 text-[var(--text-base)] leading-[var(--leading-base)] bg-white text-[var(--color-gray-80)]">
-                {message.messages}
+                <p className="break-words text-[15px] font-regular leading-[150%] tracking-[-0.5px]">
+                  {message.messages}
+                </p>
               </div>
 
               {showTime && <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>}
@@ -44,7 +49,7 @@ const MessageBubble = ({ message, showTime }: MessageBubbleProps) => {
           {showTime && <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>}
 
           <div className="rounded-bl-[8px] rounded-br-[8px] rounded-tl-[8px] bg-[var(--color-textbox)] px-3 py-2">
-            <p className="max-w-[232px] break-words text-right font-regular text-[var(--text-base)] leading-[var(--leading-base)] text-white">
+            <p className="max-w-[232px] break-words text-right text-[15px] font-regular leading-[150%] tracking-[-0.5px] text-white">
               {message.messages}
             </p>
           </div>

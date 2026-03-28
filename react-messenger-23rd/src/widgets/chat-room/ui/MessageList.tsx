@@ -9,9 +9,23 @@ import DateDivider from './DateDivider';
 interface MessageListProps {
   messages: Message[];
   bottomRef: RefObject<HTMLDivElement | null>;
+  isFlipped: boolean;
 }
 
-const MessageList = ({ messages, bottomRef }: MessageListProps) => {
+const getMarginClass = (currentUserId: string, nextUserId: string | undefined, isFlipped: boolean) => {
+  const toIsMe = (id: string) => (isFlipped ? id !== 'me' : id === 'me');
+
+  const currentIsMe = toIsMe(currentUserId);
+  const nextIsMe = nextUserId ? toIsMe(nextUserId) : null;
+
+  if (nextIsMe === null) return 'mb-2';
+  if (currentIsMe && nextIsMe) return 'mb-2';
+  if (currentIsMe && !nextIsMe) return 'mb-3';
+  if (!currentIsMe && nextIsMe) return 'mb-4';
+  return 'mb-2';
+};
+
+const MessageList = ({ messages, bottomRef, isFlipped }: MessageListProps) => {
   return (
     <section className="flex-1 overflow-y-auto bg-[var(--color-section-bg)] px-4 py-3">
       {messages.map((message, index) => {
@@ -26,10 +40,12 @@ const MessageList = ({ messages, bottomRef }: MessageListProps) => {
           nextMessage.time !== message.time ||
           nextMessage.date !== message.date;
 
+        const marginClass = getMarginClass(message.userId, nextMessage?.userId, isFlipped);
+
         return (
           <div key={message.id}>
             {showDate && <DateDivider date={message.date} />}
-            <MessageBubble message={message} showTime={showTime} />
+            <MessageBubble message={message} showTime={showTime} isFlipped={isFlipped} marginClass={marginClass} />
           </div>
         );
       })}

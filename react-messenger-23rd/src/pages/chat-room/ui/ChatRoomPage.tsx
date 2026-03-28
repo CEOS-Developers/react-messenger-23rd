@@ -45,6 +45,7 @@ const ChatRoomPage = () => {
   const [messages, setMessages] = useState<Message[]>(getInitialMessages);
   const [inputValue, setInputValue] = useState('');
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   // messsages가 바뀔 때 LocalStorage에 저장
   useEffect(() => {
@@ -62,7 +63,7 @@ const ChatRoomPage = () => {
 
     const newMessage: Message = {
       id: String(Date.now()),
-      userId: 'me',
+      userId: isFlipped ? 'other' : 'me',
       messages: trimmedValue,
       time: getCurrentTime(),
       date: getCurrentDate(),
@@ -74,8 +75,8 @@ const ChatRoomPage = () => {
 
   return (
     <main className="flex h-screen flex-col bg-[var(--color-gray-20)]">
-      <ChatRoomHeader />
-      <MessageList messages={messages} bottomRef={bottomRef} />
+      <ChatRoomHeader onFlip={() => setIsFlipped((prev) => !prev)} isFlipped={isFlipped} />
+      <MessageList messages={messages} bottomRef={bottomRef} isFlipped={isFlipped} />
       <MessageInputBar value={inputValue} onChange={setInputValue} onSend={handleSendMessage} />
     </main>
   );
