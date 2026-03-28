@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import type { User, Message } from "../types/chat";
+import { formatTime } from "../utils/formatTime";
 
 import ChatHeader from "../components/ChatRoom/ChatHeader";
 import MessageInput from "../components/ChatRoom/MessageInput";
 import NoticeBar from "../components/ChatRoom/NoticeBar";
 import ReceivedBubble from "../components/ChatRoom/ReceivedBubble";
 import SentBubble from "../components/ChatRoom/Sentbubble";
+import TimeDivider from "../components/ChatRoom/TimeDivider";
 
 export default function ChatRoomPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -32,15 +34,43 @@ export default function ChatRoomPage() {
       <NoticeBar />
       {/* 메세지 리스트 */}
       <div className="flex flex-col flex-1 overflow-y-auto px-3">
-        {messages.map((msg) => (
-          <div key={msg.id}>
-            {msg.senderId === currentUserId ? (
-              <SentBubble message={msg} />
-            ) : (
-              <ReceivedBubble message={msg} />
-            )}
-          </div>
-        ))}
+        {messages.map((msg, index) => {
+          const prevMsg = messages[index - 1];
+          let showTimeDivider = false;
+
+          //5분 계산
+          if (!prevMsg) {
+            showTimeDivider = true;
+          } else {
+            const currentTime = new Date(msg.createdAt).getTime();
+            const prevTime = new Date(prevMsg.createdAt).getTime();
+            const diffInMinutes = (currentTime - prevTime) / (1000 * 60);
+
+            if (diffInMinutes >= 5) {
+              showTimeDivider = true;
+            }
+          }
+
+          return (
+            <div key={msg.id} className="flex flex-col">
+              {/* 5분 이상 차이 날 때만 시간 텍스트 출력 */}
+              {showTimeDivider && (
+                <TimeDivider time={formatTime(msg.createdAt)} />
+              )}
+
+              {/* 말풍선 출력 */}
+              {msg.senderId === currentUserId ? (
+                <SentBubble message={msg} />
+              ) : (
+                <ReceivedBubble
+                  message={msg}
+                  name={opponent?.name || "알 수 없음"}
+                  profileImage={opponent?.profileImage || ""}
+                />
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <MessageInput />

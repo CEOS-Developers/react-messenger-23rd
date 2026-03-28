@@ -18,7 +18,7 @@
     "roomId": "room1",
     "senderId": "user-2",
     "text": "따뜻한 거 먹으면 좋겠다 오늘 좀 쌀쌀하더라",
-    "createdAt": "2026-03-27T13:50:00.000Z"
+    "createdAt": "2026-03-27T13:51:00.000Z"
   },
   {
     "id": "room1-msg4",
@@ -39,7 +39,7 @@
     "roomId": "room1",
     "senderId": "user-2",
     "text": "이따 끝나면 연락줘 엘베 잡아 놓을게 ㅎㅎ",
-    "createdAt": "2026-03-27T14:00:00.000Z"
+    "createdAt": "2026-03-27T13:59:00.000Z"
   },
   {
     "id": "room1-msg7",
