@@ -22,7 +22,7 @@ export default function ChatRoomPage() {
       <ChatHeader />
       <NoticeBar />
       {/* 메세지 리스트 */}
-      <div className="flex flex-col flex-1 overflow-y-auto">
+      <div className="flex flex-col flex-1 overflow-y-auto px-3">
         {messages.map((msg) => (
           <div key={msg.id}>
             {msg.senderId === currentUserId ? (
