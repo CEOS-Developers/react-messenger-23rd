@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 import SentTail from "../../assets/tail.svg?react";
 import ReceivedTail from "../../assets/tail2.svg?react";
+import { useMultiLineDetection } from "../../hooks/useMultiLineDetection";
+import { formatTime } from "../../utils/formatTime";
 
 interface BubbleProps {
   message: string;
@@ -10,16 +12,8 @@ interface BubbleProps {
   unreadCount: number;
 }
 
+// typo-body-03: font-size 14px, line-height 150% = 21px + padding 8px*2 = 37px
 const SINGLE_LINE_HEIGHT = 37;
-
-const formatTime = (timestamp: number) => {
-  const date = new Date(timestamp);
-  const hours = date.getHours();
-  const minutes = String(date.getMinutes()).padStart(2, "0");
-  const ampm = hours < 12 ? "오전" : "오후";
-  const h = hours % 12 || 12;
-  return `${ampm} ${h}:${minutes}`;
-};
 
 export default function Bubble({
   message,
@@ -28,29 +22,28 @@ export default function Bubble({
   isSent,
   unreadCount,
 }: BubbleProps) {
-  const bubbleRef = useRef<HTMLDivElement>(null);
-  const [isMultiLine, setIsMultiLine] = useState(false);
-
-  useEffect(() => {
-    const el = bubbleRef.current;
-    if (!el) return;
-    const observer = new ResizeObserver(() => {
-      setIsMultiLine(el.offsetHeight > SINGLE_LINE_HEIGHT);
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, isMultiLine } = useMultiLineDetection(SINGLE_LINE_HEIGHT);
 
   return (
     <div
-      className={`flex w-full px-4 ${isSent ? "justify-end" : "justify-start"}`}
+      className={clsx(
+        "flex w-full px-4",
+        isSent ? "justify-end" : "justify-start",
+      )}
     >
       <div
-        className={`flex items-end gap-x-2.5 max-w-[74%] ${isSent ? "flex-row-reverse" : "flex-row"}`}
+        className={clsx(
+          "flex items-end gap-x-2.5 max-w-[74%]",
+          isSent ? "flex-row-reverse" : "flex-row",
+        )}
       >
         <div
-          ref={bubbleRef}
-          className={`relative bubble typo-body-03 ${isSent ? "bubble-sent" : "bubble-received"} ${isMultiLine ? "bubble-multiline" : ""}`}
+          ref={ref}
+          className={clsx(
+            "relative bubble typo-body-03",
+            isSent ? "bubble-sent" : "bubble-received",
+            isMultiLine && "bubble-multiline",
+          )}
         >
           {message}
           {isSent ? (
@@ -62,15 +55,21 @@ export default function Bubble({
 
         {/* 읽음 수 + 시간 */}
         <div
-          className={`flex flex-col shrink-0 gap-0 pb-0 ${isSent ? "items-end" : "items-start"}`}
+          className={clsx(
+            "flex flex-col shrink-0",
+            isSent ? "items-end" : "items-start",
+          )}
         >
           {isSent && unreadCount > 0 && (
-            <span className="typo-caption-2  text-main-green">
+            <span className="typo-caption-2 text-main-green">
               {unreadCount}
             </span>
           )}
           <span
-            className={`typo-caption-2  text-gray-04 ${showTime ? "" : "invisible"}`}
+            className={clsx(
+              "typo-caption-2 text-gray-04",
+              !showTime && "invisible",
+            )}
           >
             {formatTime(timestamp)}
           </span>

@@ -4,23 +4,10 @@ import Bubble from "../components/chat/Bubble";
 import InputBox from "../components/common/Input";
 import ChipDate from "../components/chip/ChatDate";
 import ChatHeader from "../components/chat/ChatHeader";
-import { useChatStore } from "../store/useChatStore";
 import TopBar from "../components/common/TopBar";
-
-const formatMinute = (ts: number) => {
-  const d = new Date(ts);
-  return `${d.getHours()}:${d.getMinutes()}`;
-};
-
-const isSameDay = (a: number, b: number) => {
-  const da = new Date(a);
-  const db = new Date(b);
-  return (
-    da.getFullYear() === db.getFullYear() &&
-    da.getMonth() === db.getMonth() &&
-    da.getDate() === db.getDate()
-  );
-};
+import { useChatStore } from "../store/useChatStore";
+import { isSameDay, findPartner, getUnreadCount } from "../utils/chatUtils";
+import { formatMinute } from "../utils/formatTime";
 
 export default function ChatRoom() {
   const { roomId } = useParams();
@@ -29,12 +16,7 @@ export default function ChatRoom() {
   const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
   const room = chatRooms.find((r) => r.id === roomIdNum);
   const participantIds = room?.participantIds ?? [];
-  const chatPartner = users.find((u) => u.id !== currentUserId && participantIds.includes(u.id));
-
-  const getUnreadCount = (msg: typeof messages[number]) =>
-    participantIds.filter(
-      (id) => id !== msg.senderId && !msg.readBy.includes(id)
-    ).length;
+  const chatPartner = findPartner(users, participantIds, currentUserId);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,19 +26,14 @@ export default function ChatRoom() {
   return (
     <div className="flex flex-col h-screen bg-main-bg no-scrollbar">
       <TopBar />
-      <ChatHeader
-        chatName={chatPartner?.name ?? ""}
-        profileImage={chatPartner?.profileImage}
-      />
+      <ChatHeader chatName={chatPartner?.name ?? ""} profileImage={chatPartner?.profileImage} />
       <div ref={scrollRef} className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar">
         {messages.map((msg, index) => {
           const isSent = msg.senderId === currentUserId;
           const prev = messages[index - 1];
           const nextMsg = messages[index + 1];
-          const showDate =
-            index === 0 || !isSameDay(prev.timestamp, msg.timestamp);
-          const senderChanged =
-            prev && (prev.senderId === currentUserId) !== isSent;
+          const showDate = index === 0 || !isSameDay(prev.timestamp, msg.timestamp);
+          const senderChanged = prev && (prev.senderId === currentUserId) !== isSent;
           const showTime =
             !nextMsg ||
             (nextMsg.senderId === currentUserId) !== isSent ||
@@ -76,7 +53,7 @@ export default function ChatRoom() {
                     timestamp={msg.timestamp}
                     showTime={showTime}
                     isSent={isSent}
-                    unreadCount={getUnreadCount(msg)}
+                    unreadCount={getUnreadCount(msg, participantIds)}
                   />
                 </div>
               </div>
