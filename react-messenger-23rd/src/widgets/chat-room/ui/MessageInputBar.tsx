@@ -52,7 +52,7 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
           <img src={plusIcon} alt="추가" className="h-6 w-6" />
         </button>
 
-        <div className="flex flex-1 items-center gap-2 pr-3 rounded-xl border border-[var(--color-gray-30)]">
+        <div className="flex flex-1 items-center gap-2 pr-2 rounded-xl border border-[var(--color-gray-30)]">
           <textarea
             ref={textareaRef}
             rows={1}
