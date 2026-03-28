@@ -44,6 +44,7 @@ function MessageNavBar({ onSendMessage }: MessageNavBarProps) {
               }
             }}
             placeholder="메시지 보내기..."
+            className="text-[var(--text-sm)] font-medium leading-[var(--line-height-tight)] text-[var(--color-text-secondary)]"
           ></input>
         </section>
 
