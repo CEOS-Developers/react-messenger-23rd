@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<ChatListPage />} />
+      <Route path="/" element={<ChatRoomPage />} />
 
       <Route path="/chatroom" element={<ChatRoomPage />} />
       <Route path="/chatlist" element={<ChatListPage />} />
