@@ -27,9 +27,11 @@ type ChatRoomPageProps = {
 
 function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPageProps) {
   const [inputValue, setInputValue] = useState('')
-  const [messages, setMessages] = useState<Message[]>(() =>
-    messagesData.filter((m) => m.chatRoomId === chatRoomId)
-  )
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const stored = localStorage.getItem(`messages-${chatRoomId}`)
+    if (stored) return JSON.parse(stored)
+    return messagesData.filter((m) => m.chatRoomId === chatRoomId)
+  })
   const [currentUserId, setCurrentUserId] = useState('me')
   const scrollRef = useRef<HTMLDivElement>(null)
   const userMap = Object.fromEntries(usersData.map((u) => [u.id, u]))
@@ -44,7 +46,8 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
 
   useEffect(() => {
     scrollToBottom()
-  }, [messages])
+    localStorage.setItem(`messages-${chatRoomId}`, JSON.stringify(messages))
+  }, [messages, chatRoomId])
 
   const handleSwitchUser = () => {
     const allIds = ['me', ...otherMemberIds]
