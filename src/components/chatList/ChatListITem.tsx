@@ -95,7 +95,7 @@ function ChatListItem({
               lineHeight: typography.b2_14_m.lineHeight,
             }}
           >
-            {lastMessage}
+            {lastMessage || '\u00A0'}
           </span>
 
           {unreadCount > 0 && <CountBadge count={unreadCount} />}

@@ -16,6 +16,26 @@ export function formatDateDivider(timestamp: string): string {
   return `${year}년 ${month}월 ${day}일`
 }
 
+export function formatChatListTime(timestamp: string): string {
+  const date = new Date(timestamp)
+  const now = new Date()
+  const diffMs = now.getTime() - date.getTime()
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+  if (isSameDay(timestamp, now.toISOString())) {
+    return formatMessageTime(timestamp)
+  }
+
+  if (diffDays === 1) return '어제'
+  if (diffDays < 7) return `${diffDays}일 전`
+
+  if (date.getFullYear() === now.getFullYear()) {
+    return `${date.getMonth() + 1}월 ${date.getDate()}일`
+  }
+
+  return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`
+}
+
 export function isSameDay(a: string, b: string): boolean {
   const dateA = new Date(a)
   const dateB = new Date(b)
