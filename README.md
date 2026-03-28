@@ -19,7 +19,6 @@
 
 그럼 이번 과제도 파이팅입니다!! 🎉
 
-
 # **과제**
 
 ## **목표**
@@ -36,14 +35,13 @@
 ## **Review Questions**
 
 - 디자이너와 협업하며 전달받은 자료
-(피그마 링크, 캡처본, 커뮤니케이션 과정 등)
+  (피그마 링크, 캡처본, 커뮤니케이션 과정 등)
 
 - JSX / JS / TSX / TS의 개념과 각각의 차이점, 사용 이유
 
 - TypeScript를 사용하는 이유
 
 - SSR과 CSR의 개념 및 차이점
-
 
 ## **필수 구현 기능**
 
@@ -54,7 +52,7 @@
 - tailwind CSS를 사용합니다.
 - 메세지를 보내면 채팅방 하단으로 스크롤을 이동시킵니다.
 - 메세지에 유저 정보(프로필 사진, 이름)를 표시합니다.
-    - user와 message 데이터를 json 파일에 저장합니다.
+  - user와 message 데이터를 json 파일에 저장합니다.
 - UI는 **반응형을 제외**하고 피그마파일을 따라서 진행합니다.
 
 ### **추가 구현 기능**
@@ -82,3 +80,76 @@
 - [[영상] : 컴포넌트에 대한 이해](https://www.youtube.com/watch?v=21eiJc90ggo)
 - [Tailwind CSS 장단점, 사용법](https://wonny.space/writing/dev/hello-tailwind-css)
 - [ts 절대경로 설정하기](https://tesseractjh.tistory.com/232)
+
+## **Project Tree**
+
+```
+ceos.week3.react-messenger-23rd
+├─ react-messenger-23rd
+│  ├─ .prettierrc
+│  ├─ eslint.config.js
+│  ├─ index.html
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ public
+│  │  ├─ favicon.svg
+│  │  ├─ icons.svg
+│  │  └─ images
+│  │     └─ Frame 73.svg
+│  ├─ README.md
+│  ├─ src
+│  │  ├─ app
+│  │  │  ├─ App.tsx
+│  │  │  ├─ main.tsx
+│  │  │  └─ styles
+│  │  │     └─ index.css
+│  │  ├─ entities
+│  │  │  ├─ message
+│  │  │  │  ├─ model
+│  │  │  │  │  └─ messages.json
+│  │  │  │  └─ ui
+│  │  │  └─ user
+│  │  │     ├─ model
+│  │  │     │  └─ users.json
+│  │  │     └─ ui
+│  │  ├─ features
+│  │  │  ├─ createChat
+│  │  │  ├─ readMessage
+│  │  │  ├─ sendMessage
+│  │  │  │  ├─ model
+│  │  │  │  └─ ui
+│  │  │  └─ uploadImage
+│  │  ├─ pages
+│  │  │  └─ chattingRoom
+│  │  │     ├─ model
+│  │  │     └─ ui
+│  │  ├─ shared
+│  │  │  ├─ assets
+│  │  │  │  └─ icons
+│  │  │  │     └─ chattingRoom
+│  │  │  │        ├─ face-smile.svg
+│  │  │  │        ├─ Frame 73.svg
+│  │  │  │        ├─ hamburger(24_24).svg
+│  │  │  │        ├─ microphone-01.svg
+│  │  │  │        ├─ My_Text Box
+│  │  │  │        │  └─ Back (32_32).svg
+│  │  │  │        ├─ plus.svg
+│  │  │  │        ├─ search(24_24).svg
+│  │  │  │        └─ Status Bar
+│  │  │  │           ├─ Elements
+│  │  │  │           │  ├─ Battery.svg
+│  │  │  │           │  ├─ Connection.svg
+│  │  │  │           │  └─ Signal.svg
+│  │  │  │           └─ Mic & Cam.svg
+│  │  │  ├─ lib
+│  │  │  ├─ Test.tsx
+│  │  │  └─ ui
+│  │  └─ widgets
+│  │     └─ chattingRoom
+│  ├─ tsconfig.app.json
+│  ├─ tsconfig.json
+│  ├─ tsconfig.node.json
+│  └─ vite.config.ts
+└─ README.md
+
+```

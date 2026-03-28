@@ -1,0 +1,100 @@
+/*우선 채팅방 UI 스타일*/
+@import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css');
+@import 'tailwindcss';
+
+:root {
+  --text-Heading01R: 20px;
+  --text-Heading01R--line-height: 1.2;
+  --text-Heading01R--font-weight: 400;
+
+  --text-Heading01SB: 20px;
+  --text-Heading01SB--line-height: 1.2;
+  --text-Heading01SB--font-weight: 600;
+
+  --text-Heading02R: 17px;
+  --text-Heading02R--line-height: 1.4;
+  --text-Heading02R--font-weight: 400;
+
+  --text-Heading02SB: 17px;
+  --text-Heading02SB--line-height: 1.4;
+  --text-Heading02SB--font-weight: 600;
+
+  /*body01*/
+  --text-Body01R: 16px;
+  --text-Body01R--line-height: 1.7;
+  --text-Body01R--font-weight: 400;
+
+  --text-Body01M: 16px;
+  --text-Body01M--line-height: 1.5;
+  --text-Body01M--font-weight: 500;
+
+  --text-Body01SB: 16px;
+  --text-Body01SB--line-height: 1.5;
+  --text-Body01SB--font-weight: 600;
+
+  /*body02*/
+  --text-Body02R: 15px;
+  --text-Body02R--line-height: 1.5;
+  --text-Body02R--font-weight: 400;
+
+  --text-Body02M: 15px;
+  --text-Body02M--line-height: 1.5;
+  --text-Body02M--font-weight: 500;
+
+  /*body03*/
+  --text-Body03R: 14px;
+  --text-Body03R--line-height: 1.5;
+  --text-Body03R--font-weight: 400;
+
+  --text-Body03M: 14px;
+  --text-Body03M--line-height: 1.5;
+  --text-Body03M--font-weight: 500;
+
+  --text-Body03SB: 14px;
+  --text-Body03SB--line-height: 1.5;
+  --text-Body03SB--font-weight: 600;
+
+  /* color */
+  --color-bg: #f1f3f5;
+
+  --color-border: #edeff2;
+
+  --color-section-bg: #f1f3f5;
+  --color-gray-10: #f3f5f7;
+  --color-gray-20: #edeff2;
+  --color-gray-30: #e4e7eb;
+  --color-gray-50: #b4b9c2;
+  --color-gray-60: #959ca6;
+  --color-gray-70: #636973;
+  --color-gray-80: #464950;
+  --color-gray-90: #282c33;
+  --color-main: #16d96a;
+  --color-textbox: #3dcc61;
+  --color-pressed: #1f9853;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* font */
+  --font-suit: 'SUIT', sans-serif;
+
+  /* font size */
+  --text-ts: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-partner: 17px;
+
+  /* line-height */
+  --leading-xs: 15.6px;
+  --leading-sm: 18.2px;
+  --leading-base: 22.5px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'SUIT', sans-serif;
+}

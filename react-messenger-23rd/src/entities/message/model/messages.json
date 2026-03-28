@@ -1,0 +1,72 @@
+[
+  {
+    "id": "0",
+    "userId": "me",
+    "messages": "구럼 내일 보자!!!",
+    "time": "3:34pm",
+    "date": "2026년 3월 15일"
+  },
+  {
+    "id": "1",
+    "userId": "me",
+    "messages": "마곡 웰튼점으로 와!",
+    "time": "3:34pm",
+    "date": "2026년 3월 16일"
+  },
+  {
+    "id": "2",
+    "userId": "me",
+    "messages": "여기서 카공하는 중인데 여기 조금 더워서 다른데 가야될 수도",
+    "time": "3:34pm",
+    "date": "2026년 3월 16일"
+  },
+  {
+    "id": "3",
+    "userId": "other",
+    "messages": "나 안에 얇게 입었는데 그래도 좀 더울 것 같은가???",
+    "time": "3:34pm",
+    "date": "2026년 3월 16일"
+  },
+  {
+    "id": "4",
+    "userId": "other",
+    "messages": "고민댄다",
+    "time": "3:34pm",
+    "date": "2026년 3월 16일"
+  },
+  {
+    "id": "5",
+    "userId": "me",
+    "messages": "흐음.......",
+    "time": "3:34pm",
+    "date": "2026년 3월 16일"
+  },
+  {
+    "id": "6",
+    "userId": "other",
+    "messages": "일단 그냥 갈게!!!!",
+    "time": "3:34pm",
+    "date": "2026년 3월 16일"
+  },
+  {
+    "id": "7",
+    "userId": "other",
+    "messages": "이따바",
+    "time": "3:34pm",
+    "date": "2026년 3월 16일"
+  },
+  {
+    "id": "8",
+    "userId": "me",
+    "messages": "구래",
+    "time": "3:35pm",
+    "date": "2026년 3월 16일"
+  },
+  {
+    "id": "9",
+    "userId": "me",
+    "messages": "이따보자아!!",
+    "time": "3:35pm",
+    "date": "2026년 3월 16일"
+  }
+]
