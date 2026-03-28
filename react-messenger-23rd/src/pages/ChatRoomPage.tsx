@@ -84,7 +84,7 @@ export default function ChatRoomPage() {
                 key={msg.id}
                 className={`flex flex-col ${isConsecutive ? "-mt-2" : ""}`}
               >
-                {showDate && <DateSeparator date={msgDate} />}
+                {showDate && <div className="mb-3"><DateSeparator date={msgDate} /></div>}
                 <MessageBubble
                   content={msg.content}
                   timestamp={msg.timestamp}
