@@ -1,20 +1,118 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 100;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-Thin.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-ExtraLight.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-Light.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-Medium.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-SemiBold.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-Bold.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-ExtraBold.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  font-style: normal;
+  src: url('@/fonts/Pretendard-Black.woff2') format('woff2');
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    font-family: 'Pretendard', sans-serif;
+  }
+}
+
 @theme {
-  --color-primary: #0963F4;
-  --color-primary-dark: #0A53C8;
+  /* Primitive */
+  --color-main: #0963F4;
+  --color-main-dark: #0A53C8;
   --color-sub: #518FFF;
+
+  --color-gray-08: #1B1C1C;
+  --color-gray-07: #4E545E;
+  --color-gray-06: #7F8591;
+  --color-gray-05: #B0B8C5;
+  --color-gray-04: #C7CEDB;
+  --color-gray-03: #DCE3EE;
+  --color-gray-02: #EBEFF7;
+  --color-gray-01: #F4F6FB;
+  --color-gray-00: #FBFCFF;
   --color-white: #FFFFFF;
 
-  --color-content-primary: #1B1C1C;
-  --color-content-secondary: #7F8591;
-  --color-content-tertiary: #4E545E;
-  --color-content-placeholder: #B0B8C5;
+  /* Semantic */
+  --color-primary: var(--color-main);
+  --color-primary-dark: var(--color-main-dark);
 
-  --color-surface-chat: #DCE3EE;
-  --color-surface-search: #F4F6FB;
-  --color-surface-input: #FBFCFF;
+  --color-content-primary: var(--color-gray-08);
+  --color-content-secondary: var(--color-gray-06);
+  --color-content-tertiary: var(--color-gray-07);
+  --color-content-placeholder: var(--color-gray-05);
 
-  --color-line: #C7CEDB;
-  --color-line-subtle: #EBEFF7;
+  --color-surface-chat: var(--color-gray-03);
+  --color-surface-search: var(--color-gray-01);
+  --color-surface-input: var(--color-gray-00);
+
+  --color-line: var(--color-gray-04);
+  --color-line-subtle: var(--color-gray-02);
+
+  --color-surface-pressed: var(--color-gray-01);
+  --color-surface-reaction: #CBD3E0;
+
+  --color-content-inactive: #CBD3E0;
 }
