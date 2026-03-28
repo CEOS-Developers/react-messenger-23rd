@@ -18,15 +18,20 @@ export default function ChatListPage() {
 
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 h-12">
-        <h1 className="text-[20px] font-semibold leading-[100%] text-content-primary">
+        <h1 className="text-[20px] font-medium leading-[100%] text-content-primary">
           대화
         </h1>
         <button>
           <img src={addChatIcon} alt="새 대화" className="w-6 h-6" />
         </button>
       </div>
-      <div className="pt-4 pb-5">
+      <div className="flex flex-col py-4">
         <SearchBar />
+        {chatRooms.length === 0 && (
+          <span className="mt-25 self-center text-[14px] font-light leading-[140%] text-content-placeholder">
+            현재 참여 중인 대화방이 없습니다.
+          </span>
+        )}
       </div>
 
       {/* Chat List */}

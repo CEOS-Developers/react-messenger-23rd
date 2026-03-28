@@ -25,7 +25,7 @@ export default function MessageInput({ onSend }: MessageInputProps) {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white pb-[34px]">
       <div className="flex items-center justify-between px-3 pt-3 pb-2.5 gap-[7px]">
         <img src={plusIcon} alt="추가" className="w-8 h-8 shrink-0" />
         <div className="flex items-center justify-between flex-1 h-10 bg-surface-input border border-line-subtle rounded-3xl pl-4 pr-1 py-1">
@@ -36,7 +36,7 @@ export default function MessageInput({ onSend }: MessageInputProps) {
             onKeyDown={handleKeyDown}
             placeholder="메시지를 입력해주세요"
             maxLength={192}
-            className="flex-1 bg-transparent text-[13px] font-medium leading-[140%] text-content-primary placeholder-line outline-none"
+            className="flex-1 bg-transparent text-[13px] font-normal leading-[140%] text-content-primary placeholder-line outline-none"
           />
           <img src={emojiIcon} alt="이모지" className="w-8 h-8 shrink-0" />
         </div>

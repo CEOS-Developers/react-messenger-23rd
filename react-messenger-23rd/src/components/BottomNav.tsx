@@ -38,7 +38,7 @@ const tabs: {
 
 export default function BottomNav({ activeTab }: BottomNavProps) {
   return (
-    <nav className="border-t border-line-subtle bg-white px-4 pt-3">
+    <nav className="border-t border-line-subtle bg-white px-4 pt-3 pb-[34px]">
       <div className="flex items-center justify-center">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.key;
@@ -53,8 +53,8 @@ export default function BottomNav({ activeTab }: BottomNavProps) {
                 className="w-8 h-8"
               />
               <span
-                className={`text-[12px] font-medium leading-[140%] ${
-                  isActive ? "text-primary" : "text-line"
+                className={`text-[12px] font-normal leading-[140%] ${
+                  isActive ? "text-primary" : "text-content-inactive"
                 }`}
               >
                 {tab.label}
