@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import PlusIcon from '@assets/plusIcon'
+import PlusIcon from '@assets/PlusIcon'
 import ImageIcon from '@assets/ImageIcon'
 import AtIcon from '@assets/AtIcon'
 import EmojiIcon from '@assets/EmojiIcon'
