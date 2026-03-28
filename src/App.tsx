@@ -14,6 +14,7 @@ function App() {
   if (selectedChat) {
     return (
       <ChatRoomPage
+        chatRoomId={selectedChat.id}
         chatName={selectedChat.name}
         memberCount={selectedChat.memberCount}
         onBack={() => setSelectedChat(null)}
