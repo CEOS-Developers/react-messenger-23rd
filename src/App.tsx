@@ -4,8 +4,7 @@ import NavigationBar from '@/components/layout/NavigationBar'
 import PageFrame from '@/components/layout/PageFrame'
 import ChatListPage from '@/pages/ChatListPage'
 import ChatRoomPage from '@/pages/ChatRoomPage'
-
-type NavigationKey = 'home' | 'dm' | 'alarm' | 'more'
+import type { NavigationKey } from '@/types/navigation'
 
 function App() {
   const [activeTab, setActiveTab] = useState<NavigationKey | undefined>()

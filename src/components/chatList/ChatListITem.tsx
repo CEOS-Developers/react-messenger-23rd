@@ -2,8 +2,7 @@ import pinIcon from '@/assets/icons/Pin.svg'
 import Avatar from '@/components/common/Avatar'
 import CountBadge from '@/components/common/CountBadge'
 import { colors, typography } from '@/styles/tokens'
-
-type ActiveStatus = 'active' | 'away' | 'sleeping'
+import type { ActiveStatus } from '@/types/user'
 
 type ChatListItemProps = {
   name: string

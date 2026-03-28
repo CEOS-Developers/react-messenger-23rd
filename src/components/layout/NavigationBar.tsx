@@ -6,8 +6,7 @@ import homeSelectedIcon from '@/assets/icons/Home/Selected.svg'
 import moreIcon from '@/assets/icons/Other.svg'
 import HomeIndicator from '@/components/common/HomeIndicator'
 import { colors, typography } from '@/styles/tokens'
-
-type NavigationKey = 'home' | 'dm' | 'alarm' | 'more'
+import type { NavigationKey } from '@/types/navigation'
 
 type NavigationBarProps = {
   active?: NavigationKey

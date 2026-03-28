@@ -1,4 +1,4 @@
-import { colors } from '../../styles/tokens'
+import { colors } from '@/styles/tokens'
 
 function HomeIndicator() {
   return (

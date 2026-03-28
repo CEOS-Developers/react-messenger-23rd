@@ -3,8 +3,7 @@ import ChatListItem from '@/components/chatList/ChatListItem'
 import ChatListHeader from '@/components/layout/ChatListHeader'
 import NavigationBar from '@/components/layout/NavigationBar'
 import PageFrame from '@/components/layout/PageFrame'
-
-type NavigationKey = 'home' | 'dm' | 'alarm' | 'more'
+import type { NavigationKey } from '@/types/navigation'
 
 type ChatListPageProps = {
   activeTab?: NavigationKey
