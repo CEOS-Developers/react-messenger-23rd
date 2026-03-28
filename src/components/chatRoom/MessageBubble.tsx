@@ -11,13 +11,14 @@ function MessageBubble({ text, type }: MessageBubbleProps) {
   return (
     <div
       style={{
-        maxWidth: '292px',
+        display: 'inline-flex',
+        maxWidth: '264px',
         padding: '6px 12px',
-        borderRadius: '8px',
+        borderRadius: '12px',
         background: isMe ? colors.primaryAlpha10 : colors.white,
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: '4px',
       }}
     >
       <span

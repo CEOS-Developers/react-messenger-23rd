@@ -24,13 +24,12 @@ function MessageLine(props: MessageLineProps) {
     return (
       <div
         style={{
+          width: '100%',
           display: 'flex',
-          maxWidth: '264px',
           flexDirection: 'column',
           alignItems: 'flex-end',
           gap: '4px',
-          padding: '8px 18px 0 26px',
-          marginLeft: 'auto',
+          padding: '0 20px',
         }}
       >
         {props.messages.map((msg, i) => (
@@ -52,23 +51,31 @@ function MessageLine(props: MessageLineProps) {
     )
   }
 
-  // type === 'recipient'
-  if (props.isFirstLine) {
-    return (
+  // type === 'recipient' — firstLine과 non-firstLine 동일 구조
+  return (
+    <div
+      style={{
+        width: '100%',
+        display: 'flex',
+        padding: props.isFirstLine ? '8px 20px 0' : '0 20px',
+        alignItems: 'flex-start',
+        gap: '8px',
+        alignSelf: 'stretch',
+      }}
+    >
+      <div style={{ width: '32px', flexShrink: 0 }}>
+        {props.isFirstLine && <Avatar size="s" />}
+      </div>
       <div
-        className="flex gap-[8px]"
-        style={{ padding: '8px 20px 0 22px' }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: '8px',
+          minWidth: 0,
+        }}
       >
-        <Avatar size="s" />
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: '8px',
-            flex: 1,
-          }}
-        >
+        {props.isFirstLine && (
           <span
             style={{
               color: colors.grey700,
@@ -79,52 +86,23 @@ function MessageLine(props: MessageLineProps) {
           >
             {props.senderName}
           </span>
-          {props.messages.map((msg, i) => (
-            <MessageBubble key={i} text={msg} type="recipient" />
-          ))}
-          {props.showTime && props.time && (
-            <span
-              style={{
-                color: colors.grey500,
-                fontSize: typography.c2_11_r.fontSize,
-                fontWeight: typography.c2_11_r.fontWeight,
-                lineHeight: typography.c2_11_r.lineHeight,
-              }}
-            >
-              {props.time}
-            </span>
-          )}
-        </div>
+        )}
+        {props.messages.map((msg, i) => (
+          <MessageBubble key={i} text={msg} type="recipient" />
+        ))}
+        {props.showTime && props.time && (
+          <span
+            style={{
+              color: colors.grey500,
+              fontSize: typography.c2_11_r.fontSize,
+              fontWeight: typography.c2_11_r.fontWeight,
+              lineHeight: typography.c2_11_r.lineHeight,
+            }}
+          >
+            {props.time}
+          </span>
+        )}
       </div>
-    )
-  }
-
-  // recipient, not first line
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        gap: '8px',
-        padding: '8px 20px 0 62px',
-      }}
-    >
-      {props.messages.map((msg, i) => (
-        <MessageBubble key={i} text={msg} type="recipient" />
-      ))}
-      {props.showTime && props.time && (
-        <span
-          style={{
-            color: colors.grey500,
-            fontSize: typography.c2_11_r.fontSize,
-            fontWeight: typography.c2_11_r.fontWeight,
-            lineHeight: typography.c2_11_r.lineHeight,
-          }}
-        >
-          {props.time}
-        </span>
-      )}
     </div>
   )
 }
