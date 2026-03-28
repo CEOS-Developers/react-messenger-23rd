@@ -57,7 +57,7 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
             ref={textareaRef}
             rows={1}
             placeholder=""
-            className="flex-1 resize-none bg-transparent outline-none px-4 py-2 text-base focus:outline-none max-h-[120px] overflow-y-auto"
+            className="flex-1 resize-none bg-transparent outline-none px-3 py-2 text-base focus:outline-none max-h-[120px] overflow-y-auto"
             value={value}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
