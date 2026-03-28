@@ -20,7 +20,6 @@ function ChatHeader({ title = '친구 이름' }: Props) {
         </div>
       </div>
 
-      {/* 오른쪽: 메뉴 */}
       <div className="flex gap-1 text-lg">
         <button>
           <img
