@@ -1,5 +1,5 @@
 [
-  { "id": "me", "name": "나", "status": "active" },
+  { "id": "me", "name": "김미소", "status": "active" },
   { "id": "user1", "name": "최지우", "status": "active" },
   { "id": "user2", "name": "신예은", "status": "sleeping" },
   { "id": "user3", "name": "윤다희", "status": "active" },

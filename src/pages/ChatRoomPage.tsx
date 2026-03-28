@@ -7,6 +7,7 @@ import HomeIndicator from '@/components/common/HomeIndicator'
 import ChatRoomHeader from '@/components/layout/ChatRoomHeader'
 import PageFrame from '@/components/layout/PageFrame'
 import { colors } from '@/styles/tokens'
+import chatRoomsData from '@/data/chatRooms.json'
 import messagesData from '@/data/messages.json'
 import usersData from '@/data/users.json'
 import type { Message } from '@/types/message'
@@ -29,8 +30,11 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
   const [messages, setMessages] = useState<Message[]>(() =>
     messagesData.filter((m) => m.chatRoomId === chatRoomId)
   )
+  const [currentUserId, setCurrentUserId] = useState('me')
   const scrollRef = useRef<HTMLDivElement>(null)
   const userMap = Object.fromEntries(usersData.map((u) => [u.id, u]))
+  const chatRoom = chatRoomsData.find((r) => r.id === chatRoomId)
+  const otherMemberIds = chatRoom?.memberIds.filter((id) => id !== 'me') ?? []
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
@@ -42,13 +46,20 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
     scrollToBottom()
   }, [messages])
 
+  const handleSwitchUser = () => {
+    const allIds = ['me', ...otherMemberIds]
+    const currentIndex = allIds.indexOf(currentUserId)
+    const nextIndex = (currentIndex + 1) % allIds.length
+    setCurrentUserId(allIds[nextIndex])
+  }
+
   const handleSend = () => {
     if (!inputValue.trim()) return
 
     const newMessage: Message = {
       id: `m-${Date.now()}`,
       chatRoomId,
-      senderId: 'me',
+      senderId: currentUserId,
       text: inputValue.trim(),
       timestamp: new Date().toISOString(),
     }
@@ -56,6 +67,8 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
     setMessages((prev) => [...prev, newMessage])
     setInputValue('')
   }
+
+  const currentUserName = currentUserId === 'me' ? '나' : userMap[currentUserId]?.name ?? '알 수 없음'
 
   const renderMessages = () => {
     const elements: React.ReactNode[] = []
@@ -70,7 +83,7 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
         )
       }
 
-      const isMe = msg.senderId === 'me'
+      const isMe = msg.senderId === currentUserId
       const isFirstLine = !prevMsg ||
         prevMsg.senderId !== msg.senderId ||
         !isSameDay(prevMsg.timestamp, msg.timestamp)
@@ -114,7 +127,12 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
     <PageFrame>
       <div className="flex h-full flex-col bg-white">
         <div className="h-[48px] shrink-0" />
-        <ChatRoomHeader title={chatName} memberCount={memberCount} onBack={onBack} />
+        <ChatRoomHeader
+          title={chatName}
+          memberCount={memberCount}
+          onBack={onBack}
+          onSwitchUser={handleSwitchUser}
+        />
         <div
           ref={scrollRef}
           className="flex-1 overflow-y-auto"

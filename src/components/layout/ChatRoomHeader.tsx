@@ -7,9 +7,10 @@ type ChatRoomHeaderProps = {
   title: string
   memberCount?: number
   onBack: () => void
+  onSwitchUser?: () => void
 }
 
-function ChatRoomHeader({ title, memberCount, onBack }: ChatRoomHeaderProps) {
+function ChatRoomHeader({ title, memberCount, onBack, onSwitchUser }: ChatRoomHeaderProps) {
   return (
     <header className="flex w-full items-center px-[20px] py-[16px]">
       <div className="flex flex-1 items-center gap-[4px]">
@@ -21,7 +22,8 @@ function ChatRoomHeader({ title, memberCount, onBack }: ChatRoomHeaderProps) {
           />
         </button>
         <span
-          className="truncate"
+          className="cursor-pointer truncate"
+          onClick={onSwitchUser}
           style={{
             color: colors.grey700,
             fontSize: typography.h3_18_sb.fontSize,
