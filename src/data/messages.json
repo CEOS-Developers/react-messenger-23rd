@@ -1,0 +1,76 @@
+{
+  "chatRooms": [
+    {
+      "chatRoomId": 1,
+      "myUserId": 1,
+      "friendUserId": 2,
+      "perspective": "my",
+      "messages": [
+        {
+          "type": "my",
+          "message": "예지님 안녕하세요! 늦은 시간에 실례합니다. 이번 학기 커디 조별 과제 팀장을 맡게 된 권지민이라고 합니다.",
+          "date": "2026-03-20",
+          "time": "오후 10:53",
+          "isRead": true,
+          "showReadStatus": false
+        },
+        {
+          "type": "my",
+          "message": "다름이 아니라 이번 과제가 브랜드 아이덴티티를 설정하는 방향이라 초반 기획이 중요할 것 같아 먼저 연락드렸습니다. 제가 참고할 만한 레퍼런스를 몇 가지 찾아두긴 했는데, 단체 채팅방을 만들기 전에 예지님과 먼저 큰 방향을 한번 맞춰보면 좋을 것 같았습니다.",
+          "date": "2026-03-20",
+          "time": "오후 10:53",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "message": "지민님 안녕하세요! 먼저 연락 주셔서 감사합니다.",
+          "date": "2026-03-20",
+          "time": "오후 10:54",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "my",
+          "message": "혹시 이번 주 목요일 수업 종료 후 오후 시간 괜찮으실까요? 가능하시다면 다 같이 대면으로 만나 레퍼런스를 함께 검토하고, 무드보드 방향성과 세부 주제, 전체 목차까지 초안 형태로 정리해두면 좋을 것 같아서요.",
+          "date": "2026-03-20",
+          "time": "오후 10:55",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "message": "네 좋아요! 저희 어디에서 보는 것이 좋을까요? 편하신 곳에 맞추겠습니다!",
+          "date": "2026-03-21",
+          "time": "오후 10:56",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "my",
+          "message": "감사합니다! 그러면 수업 끝난 뒤 학교 근처에서 편하게 만나는 방향으로 하면 좋을 것 같습니다. 괜찮으시다면 교내 카페나 조용하게 이야기 나누기 좋은 공간으로 정해서 다시 말씀드리겠습니다.",
+          "date": "2026-03-21",
+          "time": "오후 10:57",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "message": "확인 감사합니다! 저도 초반 기획 단계가 제일 중요하다고 생각했는데, 이렇게 먼저 제안해 주셔서 감사해요.",
+          "date": "2026-03-21",
+          "time": "오후 10:59",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "message": "장소는 말씀하신 대로 교내 카페도 좋고, 만약 노트북으로 자료를 같이 봐야 한다면 근처에 콘센트 쓰기 편한 곳도 괜찮을 것 같아요! 장소 정해지면 알려주세요, 저는 어디든 다 좋습니다.",
+          "date": "2026-03-21",
+          "time": "오후 10:59",
+          "isRead": true,
+          "showReadStatus": true
+        }
+      ]
+    }
+  ]
+}
