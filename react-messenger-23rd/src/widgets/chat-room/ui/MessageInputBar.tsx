@@ -1,6 +1,6 @@
 // 하단 채팅 입력창 전체 레이아웃, button부분은 enter로 채팅이 보내지게 수정해야됨.
 import type { KeyboardEvent } from 'react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import smileIcon from '@/shared/assets/icons/chat-room/face-smile.svg';
 import microPhoneIcon from '@/shared/assets/icons/chat-room/microphone-01.svg';
@@ -14,12 +14,28 @@ interface MessageInputBarProps {
 
 const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
   const [isComposing, setIsComposing] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(e.target.value);
+
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (isComposing || e.nativeEvent.isComposing || e.keyCode === 229) return;
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       onSend();
+
+      //전송 후 높이 초기화
+      if (textareaRef.current) {
+        textareaRef.current.style.height = 'auto';
+      }
     }
   };
 
@@ -34,12 +50,13 @@ const MessageInputBar = ({ value, onChange, onSend }: MessageInputBarProps) => {
         </button>
 
         <div className="flex flex-1 items-center gap-2 pr-3 rounded-xl border border-[var(--color-gray-30)]">
-          <input
-            type="text"
+          <textarea
+            ref={textareaRef}
+            rows={1}
             placeholder=""
-            className="flex-1 bg-transparent outline-none px-4 py-2 text-base focus:outline-none"
+            className="flex-1 resize-none bg-transparent outline-none px-4 py-2 text-base focus:outline-none max-h-[120px] overflow-y-auto"
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={handleChange}
             onKeyDown={handleKeyDown}
             onCompositionStart={() => setIsComposing(true)}
             onCompositionEnd={() => setIsComposing(false)}
