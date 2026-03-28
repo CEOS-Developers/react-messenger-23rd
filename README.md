@@ -19,7 +19,6 @@
 
 그럼 이번 과제도 파이팅입니다!! 🎉
 
-
 # **과제**
 
 ## **목표**
@@ -36,7 +35,7 @@
 ## **Review Questions**
 
 - 디자이너와 협업하며 전달받은 자료
-(피그마 링크, 캡처본, 커뮤니케이션 과정 등)
+  (피그마 링크, 캡처본, 커뮤니케이션 과정 등)
 
 - JSX / JS / TSX / TS의 개념과 각각의 차이점, 사용 이유
 
@@ -44,17 +43,16 @@
 
 - SSR과 CSR의 개념 및 차이점
 
-
 ## **필수 구현 기능**
 
 - 피그마 **Dev Mode**를 통해, 매칭된 디자인 파트원의 UI를 구현합니다.
-    - [🔗 예시 1](https://react-messenger-21th-kwondu.vercel.app/)
-    - [🔗 예시 2](https://react-messenger-21th-nine.vercel.app/)
+  - [🔗 예시 1](https://react-messenger-21th-kwondu.vercel.app/)
+  - [🔗 예시 2](https://react-messenger-21th-nine.vercel.app/)
 - 디자인 시스템을 구축합니다.
 - tailwind CSS를 사용합니다.
 - 메세지를 보내면 채팅방 하단으로 스크롤을 이동시킵니다.
 - 메세지에 유저 정보(프로필 사진, 이름)를 표시합니다.
-    - user와 message 데이터를 json 파일에 저장합니다.
+  - user와 message 데이터를 json 파일에 저장합니다.
 - UI는 **반응형을 제외**하고 피그마파일을 따라서 진행합니다.
 
 ### **추가 구현 기능**
@@ -82,3 +80,4 @@
 - [[영상] : 컴포넌트에 대한 이해](https://www.youtube.com/watch?v=21eiJc90ggo)
 - [Tailwind CSS 장단점, 사용법](https://wonny.space/writing/dev/hello-tailwind-css)
 - [ts 절대경로 설정하기](https://tesseractjh.tistory.com/232)
+  > > > > > > > upstream/master
