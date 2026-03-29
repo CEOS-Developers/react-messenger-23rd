@@ -20,12 +20,12 @@ function ChatListHeader() {
         <img
           src={searchIcon}
           alt="검색"
-          className="block h-[18px] w-[18px] object-contain"
+          className="block h-[24px] w-[24px] object-contain"
         />
         <img
           src={addChatIcon}
           alt="채팅 추가"
-          className="block h-[18px] w-[18px] object-contain"
+          className="block h-[24px] w-[24px] object-contain"
         />
       </div>
     </header>
