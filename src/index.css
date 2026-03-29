@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+* {
+  font-family: 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, sans-serif;
+}

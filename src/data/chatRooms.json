@@ -1,0 +1,12 @@
+[
+  { "id": "1", "name": "최지우", "memberIds": ["me", "user1"], "isGroup": false },
+  { "id": "2", "name": "신예은", "memberIds": ["me", "user2"], "isGroup": false },
+  { "id": "3", "name": "단체 그룹 DM", "memberIds": ["me", "user9", "user10", "user3"], "isGroup": true },
+  { "id": "4", "name": "윤다희", "memberIds": ["me", "user3"], "isGroup": false },
+  { "id": "5", "name": "단체 그룹 DM 2", "memberIds": ["me", "user1", "user2", "user3", "user4", "user5", "user6", "user7"], "isGroup": true },
+  { "id": "6", "name": "김지안", "memberIds": ["me", "user4"], "isGroup": false },
+  { "id": "7", "name": "신혜린", "memberIds": ["me", "user5"], "isGroup": false },
+  { "id": "8", "name": "오하은", "memberIds": ["me", "user6"], "isGroup": false },
+  { "id": "9", "name": "오수아", "memberIds": ["me", "user7"], "isGroup": false },
+  { "id": "10", "name": "박은지", "memberIds": ["me", "user8"], "isGroup": false }
+]
