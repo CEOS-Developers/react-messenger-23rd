@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family:
+    'Pretendard',
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    sans-serif;
+}
+
+:root {
+  --color-chat-bg: #ebeced;
+  --font-primary:
+    'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --gray-5: #ffffff;
+  --gray-10: #f5f5f5;
+  --gray-20: #ebeced;
+  --gray-30: #dbdcdf;
+  --gray-40: #c4c7cc;
+  --gray-50: #aeb0b6;
+  --gray-60: #878a93;
+  --gray-70: #70737c;
+  --gray-80: #5a5c63;
+  --gray-90: #46474c;
+  --gray-95: #171719;
+
+  /* ===== Blue ===== */
+  --blue-5: #dfebf6;
+  --blue-10: #dfe8f6;
+  --blue-20: #b8d4f1;
+  --blue-30: #94bfe7;
+  --blue-40: #65a9ed;
+  --blue-50: #358fe9;
+  --blue-60: #207bd5;
+  --blue-70: #0b62b7;
+  --blue-80: #0f4b87;
+  --blue-90: #153767;
+  --blue-95: #10294d;
+
+  /* ===== Teal ===== */
+  --teal-5: #f6f8f9;
+  --teal-10: #eaf4f6;
+  --teal-20: #d8eaee;
+  --teal-30: #c2dee6;
+  --teal-40: #a8d3e1;
+  --teal-50: #8fcbdc;
+  --teal-60: #5fadc4;
+  --teal-70: #3f889c;
+  --teal-80: #2f5967;
+  --teal-90: #213e47;
+  --teal-95: #182a2f;
+
+  /* ===== Common ===== */
+  --white: #ffffff;
+  --black: #000000;
+}
+
+.app {
+  width: 375px;
+  height: 100vh;
+  margin: 0 auto;
+  background: var(--color-chat-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
