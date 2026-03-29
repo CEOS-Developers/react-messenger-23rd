@@ -144,9 +144,11 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
             {renderMessages()}
           </div>
         </div>
-        <MessageInput value={inputValue} onChange={setInputValue} onSend={handleSend} />
-        <div className="flex h-[34px] items-center justify-center">
-          <HomeIndicator />
+        <div style={{ background: colors.grey200 }}>
+          <MessageInput value={inputValue} onChange={setInputValue} onSend={handleSend} />
+          <div className="flex h-[34px] items-center justify-center">
+            <HomeIndicator />
+          </div>
         </div>
       </div>
     </PageFrame>

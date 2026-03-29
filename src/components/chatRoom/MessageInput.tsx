@@ -18,7 +18,7 @@ function MessageInput({ value, onChange, onSend }: MessageInputProps) {
   const [isFocused, setIsFocused] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const hasText = value.trim().length > 0
-  const isExpanded = isFocused || hasText
+  const isExpanded = isFocused
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(e.target.value)
@@ -28,12 +28,14 @@ function MessageInput({ value, onChange, onSend }: MessageInputProps) {
   }
 
   return (
-    <div className="flex w-full flex-col px-[20px] py-[10px]">
+    <div className="flex w-full flex-col px-[8px] py-[10px]">
       {isExpanded ? (
         <div
           style={{
-            borderRadius: '16px',
+            borderRadius: '20px',
             border: `1px solid ${colors.grey300}`,
+            background: colors.grey100,
+            boxShadow: '0 0 4px 0 rgba(0, 0, 0, 0.10)',
             padding: '16px 12px',
             maxHeight: '172px',
             display: 'flex',
@@ -45,9 +47,7 @@ function MessageInput({ value, onChange, onSend }: MessageInputProps) {
             value={value}
             onChange={handleChange}
             onFocus={() => setIsFocused(true)}
-            onBlur={() => {
-              if (!hasText) setIsFocused(false)
-            }}
+            onBlur={() => setIsFocused(false)}
             placeholder="메세지를 입력해 주세요"
             rows={1}
             className="w-full resize-none border-none bg-transparent outline-none"
@@ -109,6 +109,8 @@ function MessageInput({ value, onChange, onSend }: MessageInputProps) {
             padding: '8px 12px',
             borderRadius: '99px',
             border: `1px solid ${colors.grey300}`,
+            background: colors.grey100,
+            boxShadow: '0 0 4px 0 rgba(0, 0, 0, 0.10)',
           }}
         >
           <img src={plusIcon} alt="추가" className="block h-[24px] w-[24px] shrink-0" />
