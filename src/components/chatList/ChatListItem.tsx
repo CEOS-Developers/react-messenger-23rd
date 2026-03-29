@@ -93,6 +93,7 @@ function ChatListItem({
               fontSize: typography.b2_14_m.fontSize,
               fontWeight: typography.b2_14_m.fontWeight,
               lineHeight: typography.b2_14_m.lineHeight,
+              maxWidth: '238px',
             }}
           >
             {lastMessage || '\u00A0'}
