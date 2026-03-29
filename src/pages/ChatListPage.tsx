@@ -45,13 +45,13 @@ function ChatListPage({ activeTab, onTabChange, onChatSelect }: ChatListPageProp
         <ChatListHeader />
 
         <div className="flex-1 overflow-y-auto bg-white">
-          {chatListItems.map((item) => (
+          {chatListItems.map((item, index) => (
             <ChatListItem
               key={item.id}
               name={item.name}
               lastMessage={item.lastMessage}
               time={item.time}
-              isPinned
+              isPinned={index < 4}
               isGroup={item.isGroup}
               memberCount={item.isGroup ? item.memberIds.length : undefined}
               status={item.status as 'active' | 'away' | 'sleeping'}
