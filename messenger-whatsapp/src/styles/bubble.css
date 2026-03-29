@@ -1,0 +1,25 @@
+.bubble {
+  position: relative;
+  padding: 8px 14px;
+  white-space: pre-wrap;
+}
+
+.bubble-sent {
+  background-color: #00ad59;
+  color: white;
+  border-radius: 24px;
+}
+
+.bubble-sent.bubble-multiline {
+  border-radius: 16px;
+}
+
+.bubble-received {
+  background-color: #e5e8eb;
+  color: #191f28;
+  border-radius: 24px;
+}
+
+.bubble-received.bubble-multiline {
+  border-radius: 16px;
+}

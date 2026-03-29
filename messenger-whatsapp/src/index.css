@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@import "./styles/typography.css";
+@import "./styles/bubble.css";
+
+@theme {
+  /* Colors */
+  --color-main-green: #00ad59;
+  --color-main-bg: #f3f0eb;
+  --color-gray-01: #f9fafb;
+  --color-gray-02: #e5e8eb;
+  --color-gray-03: #d1d6db;
+  --color-gray-04: #6b7684;
+  --color-gray-05: #4e5968;
+  --color-gray-06: #191f28;
+  --color-gray-07: #333d4b;
+
+  /* Font family */
+  --font-pretendard: "Pretendard", sans-serif;
+}
+
+/* Apply Pretendard as default font */
+body {
+  font-family: var(--font-pretendard);
+  background-color: var(--color-gray-01);
+}
+
+/* 스크롤바 숨기기 유틸리티 */
+@utility no-scrollbar {
+  /* IE, Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* Chrome, Safari, Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
