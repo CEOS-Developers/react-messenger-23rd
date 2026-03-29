@@ -1,0 +1,9 @@
+[
+  { "id": 1, "name": "엄마", "participantIds": [0, 1] },
+  { "id": 2, "name": "최혜정", "participantIds": [0, 2] },
+  { "id": 3, "name": "오카방", "participantIds": [0, 3] },
+  { "id": 4, "name": "쩝", "participantIds": [0, 4] },
+  { "id": 5, "name": "아빠", "participantIds": [0, 5] },
+  { "id": 6, "name": "영원이", "participantIds": [0, 6] },
+  { "id": 7, "name": "홍길동", "participantIds": [0, 7] }
+]
