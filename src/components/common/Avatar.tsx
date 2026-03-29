@@ -17,10 +17,10 @@ const sizeMap: Record<
   AvatarSize,
   { container: number; icon: number; statusDot: number; borderRadius: number }
 > = {
-  xs: { container: 22, icon: 16.5, statusDot: 6, borderRadius: 6 },
-  s: { container: 28, icon: 21, statusDot: 7, borderRadius: 8 },
-  m: { container: 40, icon: 34, statusDot: 10, borderRadius: 8 },
-  l: { container: 56, icon: 34, statusDot: 12, borderRadius: 16 },
+  xs: { container: 22, icon: 16.5, statusDot: 8, borderRadius: 6 },
+  s: { container: 28, icon: 21, statusDot: 10, borderRadius: 8 },
+  m: { container: 40, icon: 34, statusDot: 13, borderRadius: 8 },
+  l: { container: 56, icon: 34, statusDot: 16, borderRadius: 16 },
 }
 
 const statusIconMap = {
@@ -116,10 +116,12 @@ function Avatar({
         <img
           src={statusIconMap[status]}
           alt={status}
-          className="absolute bottom-0 right-0"
+          className="absolute"
           style={{
             width: s.statusDot,
             height: s.statusDot,
+            bottom: -4,
+            right: -4,
           }}
         />
       )}
