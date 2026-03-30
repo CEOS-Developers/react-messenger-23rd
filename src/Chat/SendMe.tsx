@@ -36,7 +36,7 @@ function SendMe({ message, time, unreadCount, showTail, showTime }: Props) {
           />
         )}
 
-        <div className="max-w-[264px] break-words text-[16px]] leading-[22px] font-normal">
+        <div className="max-w-[264px] break-words text-[16px] leading-[22px] font-[400 antialiased">
           {message}
         </div>
       </div>
