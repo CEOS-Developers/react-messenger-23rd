@@ -56,13 +56,13 @@
 
 ## 링크 및 참고자료
 
-- [React docs - Hook](https://ko.reactjs.org/docs/hooks-intro.html)
+- [React docs - Hook](https://ko.react.dev/learn)
 - [React의 Hooks 완벽 정복하기](https://velog.io/@velopert/react-hooks#1-usestate)
-- [useEffect 완벽 가이드](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
+- [useEffect 완벽 가이드](https://overreacted.io/a-complete-guide-to-useeffect/)
 - [코딩 컨벤션](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
 - [타입스크립트 핸드북](https://joshua1988.github.io/ts/intro.html)
 - [리액트 프로젝트에서 타입스크립트 사용하기 (시리즈)](https://velog.io/@velopert/series/react-with-typescript)
 - [디자인 시스템 구축기](https://yozm.wishket.com/magazine/detail/1830/)
 - [[영상] : 컴포넌트에 대한 이해](https://www.youtube.com/watch?v=21eiJc90ggo)
-- [Tailwind CSS 장단점, 사용법](https://wonny.space/writing/dev/hello-tailwind-css)
+- [Tailwind CSS 사용법](https://www.heropy.dev/p/E67ZHS)
 - [ts 절대경로 설정하기](https://tesseractjh.tistory.com/232)
