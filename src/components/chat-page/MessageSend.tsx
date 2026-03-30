@@ -25,7 +25,20 @@ function MessageSend({ messages }: MessageSendProps) {
       <div className="flex w-full flex-col">
         {messages.map((message, index) => {
           const isMe = message.sender === "me";
+
           const previousMessage = index > 0 ? messages[index - 1] : null;
+          const nextMessage =
+            index < messages.length - 1 ? messages[index + 1] : null;
+
+          const isConnectedToPrevious =
+            previousMessage != null &&
+            previousMessage.sender === message.sender &&
+            Math.abs(message.sentAt - previousMessage.sentAt) < 60 * 1000;
+
+          const isConnectedToNext =
+            nextMessage != null &&
+            nextMessage.sender === message.sender &&
+            Math.abs(nextMessage.sentAt - message.sentAt) < 60 * 1000;
 
           const isSameSenderAsPrevious =
             previousMessage?.sender === message.sender;
@@ -41,13 +54,39 @@ function MessageSend({ messages }: MessageSendProps) {
                 ? "pt-[var(--space-1)]"
                 : "pt-[var(--space-12)] pb-[var(--space-1)]";
 
+          let bubbleRadiusClass = "";
+
+          if (isMe) {
+            if (isConnectedToPrevious && !isConnectedToNext) {
+              bubbleRadiusClass = "rounded-[20px_4px_20px_20px]";
+            } else if (!isConnectedToPrevious && isConnectedToNext) {
+              bubbleRadiusClass = "rounded-[20px_20px_4px_20px]";
+            } else if (isConnectedToPrevious && isConnectedToNext) {
+              bubbleRadiusClass = "rounded-[20px_4px_4px_20px]";
+            } else {
+              bubbleRadiusClass = "rounded-[20px]";
+            }
+          } else {
+            if (isConnectedToPrevious && !isConnectedToNext) {
+              bubbleRadiusClass = "rounded-[4px_20px_20px_20px]";
+            } else if (!isConnectedToPrevious && isConnectedToNext) {
+              bubbleRadiusClass = "rounded-[20px_20px_20px_4px]";
+            } else if (isConnectedToPrevious && isConnectedToNext) {
+              bubbleRadiusClass = "rounded-[4px_20px_20px_4px]";
+            } else {
+              bubbleRadiusClass = "rounded-[20px]";
+            }
+          }
+
           if (isMe) {
             return (
               <div
                 key={message.id}
                 className={`flex w-full justify-end ${topSpacing}`}
               >
-                <div className="max-w-[var(--width-message-max)] rounded-[var(--radius-bubble)] bg-[var(--color-bubble-me)] pl-[var(--space-10)] pr-[var(--space-12)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-white break-words">
+                <div
+                  className={`max-w-[var(--width-message-max)] ${bubbleRadiusClass} bg-[var(--color-bubble-me)] pl-[var(--space-10)] pr-[var(--space-12)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-white break-words`}
+                >
                   {message.text}
                 </div>
               </div>
@@ -67,7 +106,9 @@ function MessageSend({ messages }: MessageSendProps) {
                 />
               </div>
 
-              <div className="max-w-[var(--width-message-max)] rounded-[var(--radius-bubble)] bg-[var(--color-bubble-other)] pl-[var(--space-10)] pr-[var(--space-12)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-[var(--color-text-primary)] break-words">
+              <div
+                className={`max-w-[var(--width-message-max)] ${bubbleRadiusClass} bg-[var(--color-bubble-other)] pl-[var(--space-10)] pr-[var(--space-12)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-[var(--color-text-primary)] break-words`}
+              >
                 {message.text}
               </div>
             </div>
