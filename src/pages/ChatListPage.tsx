@@ -1,8 +1,8 @@
 import ChatTime from "@/components/ChatList/ChatTime";
 import CreateChatButton from "@/components/ChatList/CreateChatButton";
+import ProfileImage from "@/components/ChatList/ProfileImage";
 import Alert from "@/components/Common/Alert";
 import Header from "@/components/Common/Header";
-import ProfileImage from "@/components/Common/ProfileImage";
 import usersData from "@/data/users.json";
 import useScrolled from "@/hooks/useScrolled";
 
