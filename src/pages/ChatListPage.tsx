@@ -28,7 +28,9 @@ const ChatListPage = () => {
           const lastMessage = chatRoom.messages[chatRoom.messages.length - 1];
           const profiles = chatRoom.friendUserIds.map(id => getUserById(id)).filter(Boolean);
           if (!lastMessage || profiles.length === 0) return null;
+          const alertCount = chatRoom.messages.filter(m => m.userId !== 1 && !m.isRead).length;
           const isFixed = chatRoom.chatRoomId === PINNED_CHAT_ROOM_ID;
+
           return (
             <Link key={chatRoom.chatRoomId} to={`/chat/${chatRoom.chatRoomId}`}>
               <ChatListItem
@@ -37,6 +39,7 @@ const ChatListPage = () => {
                 time={lastMessage.time}
                 isRead={lastMessage.isRead}
                 isFixed={isFixed}
+                alertCount={alertCount}
               />
             </Link>
           );

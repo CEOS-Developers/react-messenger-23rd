@@ -21,9 +21,16 @@ const ChatRoomPage = () => {
 
   const chatRoom = useChatStore(state => state.chatRooms[chatRoomId]);
   const switchPerspective = useChatStore(state => state.switchPerspective);
+  const markMessagesRead = useChatStore(state => state.markMessagesRead);
   const sendMessage = useChatStore(state => state.sendMessage);
 
   const perspective = chatRoom?.perspective ?? chatRoom?.myUserId ?? 0;
+
+  useEffect(() => {
+    if (chatRoomId && perspective) {
+      markMessagesRead(chatRoomId, perspective);
+    }
+  }, [chatRoomId, perspective, markMessagesRead]);
   const otherIds = chatRoom
     ? [chatRoom.myUserId, ...chatRoom.friendUserIds].filter(id => id !== perspective)
     : [];

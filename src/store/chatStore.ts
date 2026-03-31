@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 import { CHAT_ROOM_STORAGE_PREFIX, CHAT_STORE_KEY, CHAT_STORE_VERSION } from "@/constants/chatRoom";
 import messagesJson from "@/data/messages.json";
-import type { ChatRoom, ChatRoomsMap, MessageItem, MessageType } from "@/types/message";
+import type { ChatRoom, ChatRoomsMap, MessageItem } from "@/types/message";
 
 import type { PersistStorage, StorageValue } from "zustand/middleware";
 
@@ -59,7 +59,7 @@ const updateRoom = (
 interface ChatState {
   chatRooms: ChatRoomsMap;
   switchPerspective: (chatRoomId: number) => void;
-  markMessagesRead: (chatRoomId: number, type: MessageType) => void;
+  markMessagesRead: (chatRoomId: number, perspective: number) => void;
   sendMessage: (chatRoomId: number, text: string, date: string, time: string) => void;
 }
 
@@ -75,23 +75,22 @@ export const useChatStore = create<ChatState>()(
           const participants = [room.myUserId, ...room.friendUserIds];
           const nextPerspective =
             participants[(participants.indexOf(room.perspective) + 1) % participants.length];
-          const currentMsgType: MessageType = room.perspective === room.myUserId ? "my" : "friend";
           return updateRoom(state.chatRooms, chatRoomId, {
             perspective: nextPerspective,
             messages: room.messages.map(msg =>
-              msg.userId === room.perspective ? { ...msg, isRead: true } : msg,
+              msg.userId !== nextPerspective ? { ...msg, isRead: true } : msg,
             ),
           });
         });
       },
 
-      markMessagesRead: (chatRoomId, type) => {
+      markMessagesRead: (chatRoomId, perspective) => {
         set(state => {
           const room = state.chatRooms[chatRoomId];
           if (!room) return state;
           return updateRoom(state.chatRooms, chatRoomId, {
             messages: room.messages.map(msg =>
-              msg.type === type ? { ...msg, isRead: true } : msg,
+              msg.userId !== perspective ? { ...msg, isRead: true } : msg,
             ),
           });
         });

@@ -65,7 +65,7 @@
           "message": "안녕하세요! 잘 부탁드려요~",
           "date": "2026-03-21",
           "time": "오후 10:54",
-          "isRead": true,
+          "isRead": false,
           "showReadStatus": true
         },
         {
@@ -91,7 +91,7 @@
           "message": "지민님 혹시 내일 수업 몇 시에 시작해요?",
           "date": "2026-03-22",
           "time": "오전 9:10",
-          "isRead": true,
+          "isRead": false,
           "showReadStatus": true
         },
         {
@@ -100,7 +100,7 @@
           "message": "오전 10시 시작이에요!",
           "date": "2026-03-22",
           "time": "오전 9:12",
-          "isRead": false,
+          "isRead": true,
           "showReadStatus": true
         },
         {
@@ -187,7 +187,7 @@
           "message": "지민씨 오늘 발표 준비 다 됐어요?",
           "date": "2026-03-20",
           "time": "오후 8:00",
-          "isRead": true,
+          "isRead": false,
           "showReadStatus": true
         },
         {
@@ -231,7 +231,7 @@
           "message": "토요일 오후 2시부터 8시까지! 가능하면 진짜 생명의 은인이야...",
           "date": "2026-03-24",
           "time": "오후 2:50",
-          "isRead": true,
+          "isRead": false,
           "showReadStatus": true
         }
       ]
@@ -263,10 +263,10 @@
         {
           "type": "friend",
           "userId": 4,
-          "message": "맞아! 고마워 진짜 ㅠㅠ 지금 바로 가볼게!!",
+          "message": "맞아! 고마워 진짜 ㅠㅠ 지금 바로 가봐야겠다!",
           "date": "2026-03-25",
           "time": "오전 10:22",
-          "isRead": true,
+          "isRead": false,
           "showReadStatus": true
         }
       ]
@@ -301,7 +301,7 @@
           "message": "아하 고마워! 그때 보자.",
           "date": "2026-03-22",
           "time": "오전 11:32",
-          "isRead": true,
+          "isRead": false,
           "showReadStatus": true
         }
       ]
