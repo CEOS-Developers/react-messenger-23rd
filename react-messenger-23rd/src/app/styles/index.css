@@ -2,7 +2,7 @@
 @import url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css');
 @import 'tailwindcss';
 
-:root {
+@theme {
   --text-Heading01R: 20px;
   --text-Heading01R--line-height: 1.2;
   --text-Heading01R--font-weight: 400;
@@ -93,4 +93,18 @@
 body {
   margin: 0;
   font-family: 'SUIT', sans-serif;
+}
+
+/* 스크롤바 숨기기 유틸리티 */
+@utility scrollbar-hide {
+  /* Chrome, Safari, Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE, Edge */
+  -ms-overflow-style: none;
 }
