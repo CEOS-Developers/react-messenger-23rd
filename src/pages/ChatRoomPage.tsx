@@ -23,11 +23,14 @@ const ChatRoomPage = () => {
   const switchPerspective = useChatStore(state => state.switchPerspective);
   const sendMessage = useChatStore(state => state.sendMessage);
 
-  const perspective = chatRoom?.perspective ?? "my";
-  const myUser = getUserById(chatRoom?.myUserId ?? 0);
-  const friendUser = getUserById(chatRoom?.friendUserId ?? 0);
-  const headerTitle = perspective === "my" ? (friendUser?.name ?? "") : (myUser?.name ?? "");
-  const friendDisplayUser = perspective === "my" ? friendUser : myUser;
+  const perspective = chatRoom?.perspective ?? chatRoom?.myUserId ?? 0;
+  const otherIds = chatRoom
+    ? [chatRoom.myUserId, ...chatRoom.friendUserIds].filter(id => id !== perspective)
+    : [];
+  const headerTitle = otherIds
+    .map(id => getUserById(id)?.name ?? "")
+    .filter(Boolean)
+    .join(", ");
 
   // 메시지 그룹 및 메타데이터를 단일 메모이제이션으로 계산
   const { dateGrouped, pointedCornerSet, showReadStatusSet } = useMemo(() => {
@@ -98,20 +101,33 @@ const ChatRoomPage = () => {
               <div className="flex justify-center">
                 <MessageDate date={date} />
               </div>
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col">
                 {groups.map((msgItems, groupIdx) => (
                   <div key={groupIdx} className="flex flex-col">
                     {msgItems.map(({ msg, msgIdx, idx }) => {
-                      const displayType = msg.type === perspective ? "my" : "friend";
+                      const isMyMsg = msg.userId === perspective;
+                      const displayType = isMyMsg ? "my" : "friend";
                       const isFriend = displayType === "friend";
                       const isNewTimeGroup = pointedCornerSet.has(idx) && msgIdx !== 0;
-                      const mt = msgIdx === 0 ? "" : isFriend && isNewTimeGroup ? "mt-3" : "mt-1";
+                      const isMultiFriend = otherIds.length >= 2;
+                      let mt: string;
+                      if (msgIdx === 0) {
+                        if (groupIdx === 0) {
+                          mt = "";
+                        } else {
+                          const prevIsMyMsg = groups[groupIdx - 1][0].msg.userId === perspective;
+                          mt = !isMyMsg && !prevIsMyMsg && isMultiFriend ? "mt-3" : "mt-8";
+                        }
+                      } else {
+                        mt = isFriend && isNewTimeGroup ? "mt-3" : "mt-1";
+                      }
+                      const sender = isFriend ? getUserById(msg.userId) : null;
                       return (
                         <div key={msgIdx} className={mt}>
                           <Message
                             type={displayType}
-                            name={isFriend ? (friendDisplayUser?.name ?? "") : ""}
-                            profileColor={isFriend ? (friendDisplayUser?.profileColor ?? "") : ""}
+                            name={sender?.name ?? ""}
+                            profileColor={sender?.profileColor ?? ""}
                             message={msg.message}
                             time={msg.time}
                             isRead={msg.isRead}

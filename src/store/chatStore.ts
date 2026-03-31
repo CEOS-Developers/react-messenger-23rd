@@ -13,13 +13,18 @@ const initialChatRooms: ChatRoomsMap = Object.fromEntries(
 
 type PersistedState = { chatRooms: ChatRoomsMap };
 
+const VERSION_KEY = `${CHAT_STORE_KEY}-version`;
+
 const chatStorage: PersistStorage<PersistedState> = {
   getItem: (): StorageValue<PersistedState> | null => {
+    if (Number(localStorage.getItem(VERSION_KEY)) !== CHAT_STORE_VERSION) return null;
+
     const chatRooms: ChatRoomsMap = {};
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key?.startsWith(CHAT_ROOM_STORAGE_PREFIX)) {
         const id = Number(key.slice(CHAT_ROOM_STORAGE_PREFIX.length));
+        if (!Number.isInteger(id) || id < 1) continue;
         const raw = localStorage.getItem(key);
         if (raw) chatRooms[id] = JSON.parse(raw) as ChatRoom;
       }
@@ -27,11 +32,13 @@ const chatStorage: PersistStorage<PersistedState> = {
     return Object.keys(chatRooms).length > 0 ? { state: { chatRooms } } : null;
   },
   setItem: (_name, value: StorageValue<PersistedState>) => {
+    localStorage.setItem(VERSION_KEY, String(CHAT_STORE_VERSION));
     Object.entries(value.state.chatRooms).forEach(([id, room]) => {
       localStorage.setItem(`${CHAT_ROOM_STORAGE_PREFIX}${id}`, JSON.stringify(room));
     });
   },
   removeItem: () => {
+    localStorage.removeItem(VERSION_KEY);
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
@@ -65,11 +72,14 @@ export const useChatStore = create<ChatState>()(
         set(state => {
           const room = state.chatRooms[chatRoomId];
           if (!room) return state;
-          const next = room.perspective === "my" ? "friend" : "my";
+          const participants = [room.myUserId, ...room.friendUserIds];
+          const nextPerspective =
+            participants[(participants.indexOf(room.perspective) + 1) % participants.length];
+          const currentMsgType: MessageType = room.perspective === room.myUserId ? "my" : "friend";
           return updateRoom(state.chatRooms, chatRoomId, {
-            perspective: next,
+            perspective: nextPerspective,
             messages: room.messages.map(msg =>
-              msg.type === room.perspective ? { ...msg, isRead: true } : msg,
+              msg.userId === room.perspective ? { ...msg, isRead: true } : msg,
             ),
           });
         });
@@ -91,7 +101,8 @@ export const useChatStore = create<ChatState>()(
         const room = get().chatRooms[chatRoomId];
         if (!room) return;
         const newMsg: MessageItem = {
-          type: room.perspective,
+          type: room.perspective === room.myUserId ? "my" : "friend",
+          userId: room.perspective,
           message: text,
           date,
           time,

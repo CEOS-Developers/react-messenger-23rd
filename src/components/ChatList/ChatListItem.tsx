@@ -38,7 +38,7 @@ const ChatListItem = ({
   const hasAlert = alertCount !== undefined && alertCount > 0;
 
   return (
-    <div className="flex items-center gap-3 p-4">
+    <div className="flex cursor-pointer items-center gap-3 p-4">
       <ProfileImage profiles={profiles} />
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex items-start justify-between">

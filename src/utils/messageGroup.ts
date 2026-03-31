@@ -4,7 +4,7 @@ export const groupMessages = (messages: readonly MessageItem[]): MessageItem[][]
   messages.reduce<MessageItem[][]>((groups, msg) => {
     const last = groups[groups.length - 1];
     const lastMsg = last?.[last.length - 1];
-    if (lastMsg?.type === msg.type && lastMsg?.date === msg.date) {
+    if (lastMsg?.userId === msg.userId && lastMsg?.date === msg.date) {
       last.push(msg);
     } else {
       groups.push([msg]);
@@ -13,7 +13,7 @@ export const groupMessages = (messages: readonly MessageItem[]): MessageItem[][]
   }, []);
 
 const isSameTimeGroup = (a: MessageItem, b: MessageItem) =>
-  a.type === b.type && a.time === b.time && a.date === b.date;
+  a.userId === b.userId && a.time === b.time && a.date === b.date;
 
 // 메시지 배열을 단일 순회하며 pointCornerSet과 showReadStatusSet을 동시에 계산
 export const computeMessageMeta = (messages: readonly MessageItem[]) => {

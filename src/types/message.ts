@@ -8,6 +8,7 @@ export interface User {
 
 export interface MessageItem {
   type: MessageType;
+  userId: number;
   message: string;
   date: string;
   time: string;
@@ -17,8 +18,8 @@ export interface MessageItem {
 export interface ChatRoom {
   chatRoomId: number;
   myUserId: number;
-  friendUserId: number;
-  perspective: MessageType;
+  friendUserIds: number[];
+  perspective: number;
   messages: MessageItem[];
 }
 
