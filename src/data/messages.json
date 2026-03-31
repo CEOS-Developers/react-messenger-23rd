@@ -187,7 +187,7 @@
           "message": "지민씨 오늘 발표 준비 다 됐어요?",
           "date": "2026-03-20",
           "time": "오후 8:00",
-          "isRead": false,
+          "isRead": true,
           "showReadStatus": true
         },
         {
