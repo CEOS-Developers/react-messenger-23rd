@@ -27,7 +27,7 @@
   --color-black: #14171a;
 
   /* 타이포그래피 */
-  --text-head-01: 24px; /*pt아니고 px맞는지 확인 필요*/
+  --text-head-01: 24px;
   --font-weight-head-01: 600;
   --line-height-head-01: 1.2;
   --letter-spacing-head-01: 0;
@@ -48,7 +48,7 @@
   --letter-spacing-body-01: -0.01em;
 
   --text-body-02: 14px;
-  --font-weight-body-02: 500;
+  --font-weight-body-02: 300;
   --line-height-body-02: 1.5;
   --letter-spacing-body-02: -0.02em;
 

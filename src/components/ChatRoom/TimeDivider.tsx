@@ -5,7 +5,7 @@ interface Props {
 export default function TimeDivider({ time }: Props) {
   return (
     <div className="flex justify-center my-5">
-      <span className="text-gray50 font-caption-02">{time}</span>
+      <span className="text-gray50 font-caption-02 text-xs">{time}</span>
     </div>
   );
 }

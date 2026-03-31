@@ -9,7 +9,7 @@ export default function SentBubble({ message }: Props) {
     <main className="flex justify-end items-end gap-1 my-2">
       {/* 대화 내용 */}
       <div
-        className="relative bg-main2 text-black px-2.5 py-4 rounded-xl gap-2.5 mr-2 max-w-[70%]
+        className="relative bg-main2 text-black px-4 py-3 rounded-lg gap-2.5 mr-2 max-w-[70%] font-body-02
       after:content-[''] after:absolute
       after:top-1/2 after:-translate-y-1/2 after:-right-3
       after:border-t-[6px] after:border-b-[6px] after:border-l-[6px] after:border-r-[6px]

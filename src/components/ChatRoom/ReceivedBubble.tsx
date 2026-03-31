@@ -18,7 +18,7 @@ export default function ReceivedBubble({ message }: Props) {
       </div>
       {/* 대화 내용 */}
       <div
-        className="relative bg-gray80 text-white px-2.5 py-4 rounded-xl gap-2.5 ml-2 max-w-[70%]
+        className="relative bg-gray80 text-white px-4 py-3 rounded-lg gap-2.5 ml-2 max-w-[70%] font-body-02
       after:content-[''] after:absolute
       after:top-1/2 after:-translate-y-1/2 after:-left-3
       after:border-t-[6px] after:border-b-[6px] after:border-l-[6px] after:border-r-[6px]
