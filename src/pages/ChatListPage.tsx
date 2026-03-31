@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import ChatListItem from "@/components/ChatList/ChatListItem";
 import Header from "@/components/Common/Header";
+import SearchBar from "@/components/Common/SearchBar";
 import { PINNED_CHAT_ROOM_ID } from "@/constants/chatRoom";
 import useScrolled from "@/hooks/useScrolled";
 import { useChatStore } from "@/store/chatStore";
@@ -23,27 +24,30 @@ const ChatListPage = () => {
   return (
     <div className="flex h-full flex-col">
       <Header text="대화" showShadow={scrolled} />
-      <main className="flex-1 overflow-y-auto" onScroll={handleScroll}>
-        {sortedChatRooms.map(chatRoom => {
-          const lastMessage = chatRoom.messages[chatRoom.messages.length - 1];
-          const profiles = chatRoom.friendUserIds.map(id => getUserById(id)).filter(Boolean);
-          if (!lastMessage || profiles.length === 0) return null;
-          const alertCount = chatRoom.messages.filter(m => m.userId !== 1 && !m.isRead).length;
-          const isFixed = chatRoom.chatRoomId === PINNED_CHAT_ROOM_ID;
+      <main className="flex flex-1 flex-col overflow-y-auto" onScroll={handleScroll}>
+        <SearchBar placeholder="Search Chats" />
+        <div className="mt-5 mb-28">
+          {sortedChatRooms.map(chatRoom => {
+            const lastMessage = chatRoom.messages[chatRoom.messages.length - 1];
+            const profiles = chatRoom.friendUserIds.map(id => getUserById(id)).filter(Boolean);
+            if (!lastMessage || profiles.length === 0) return null;
+            const alertCount = chatRoom.messages.filter(m => m.userId !== 1 && !m.isRead).length;
+            const isFixed = chatRoom.chatRoomId === PINNED_CHAT_ROOM_ID;
 
-          return (
-            <Link key={chatRoom.chatRoomId} to={`/chat/${chatRoom.chatRoomId}`}>
-              <ChatListItem
-                profiles={profiles as NonNullable<ReturnType<typeof getUserById>>[]}
-                lastMessage={lastMessage.message}
-                time={lastMessage.time}
-                isRead={lastMessage.isRead}
-                isFixed={isFixed}
-                alertCount={alertCount}
-              />
-            </Link>
-          );
-        })}
+            return (
+              <Link key={chatRoom.chatRoomId} to={`/chat/${chatRoom.chatRoomId}`}>
+                <ChatListItem
+                  profiles={profiles as NonNullable<ReturnType<typeof getUserById>>[]}
+                  lastMessage={lastMessage.message}
+                  time={lastMessage.time}
+                  isRead={lastMessage.isRead}
+                  isFixed={isFixed}
+                  alertCount={alertCount}
+                />
+              </Link>
+            );
+          })}
+        </div>
       </main>
     </div>
   );
