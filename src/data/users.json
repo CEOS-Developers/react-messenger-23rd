@@ -1,6 +1,14 @@
 {
   "users": [
     { "userId": 1, "name": "권지민", "profileColor": "bg-profile-6" },
-    { "userId": 2, "name": "김예지", "profileColor": "bg-profile-5" }
+    { "userId": 2, "name": "김예지", "profileColor": "bg-profile-5" },
+    { "userId": 3, "name": "이우림", "profileColor": "bg-profile-4" },
+    { "userId": 4, "name": "김미소", "profileColor": "bg-gradation" },
+    { "userId": 5, "name": "박서령", "profileColor": "bg-profile-1" },
+    { "userId": 6, "name": "문수인", "profileColor": "bg-profile-6" },
+    { "userId": 7, "name": "윤시연", "profileColor": "bg-profile-2" },
+    { "userId": 8, "name": "정은선", "profileColor": "bg-profile-3" },
+    { "userId": 9, "name": "이우림", "profileColor": "bg-gradation" },
+    { "userId": 10, "name": "성유정", "profileColor": "bg-profile-6" }
   ]
 }

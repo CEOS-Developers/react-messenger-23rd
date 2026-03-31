@@ -5,7 +5,7 @@ import { getFirstName } from "@/utils/getName";
 interface ProfileProps {
   name: string;
   profileColor: string;
-  type?: "chatroom" | "navibar";
+  type?: "chatroom" | "navibar" | "chatlist_1" | "chatlist_2" | "chatlist_3" | "chatlist_4";
 }
 
 const Profile = ({ name, profileColor, type = "navibar" }: ProfileProps) => {
