@@ -8,7 +8,8 @@
     { "userId": 6, "name": "문수인", "profileColor": "bg-profile-6" },
     { "userId": 7, "name": "윤시연", "profileColor": "bg-profile-2" },
     { "userId": 8, "name": "정은선", "profileColor": "bg-profile-3" },
-    { "userId": 9, "name": "이우림", "profileColor": "bg-gradation" },
-    { "userId": 10, "name": "성유정", "profileColor": "bg-profile-6" }
+    { "userId": 9, "name": "백지호", "profileColor": "bg-gradation" },
+    { "userId": 10, "name": "성유정", "profileColor": "bg-profile-6" },
+    { "userId": 11, "name": "한유나", "profileColor": "bg-profile-4" }
   ]
 }

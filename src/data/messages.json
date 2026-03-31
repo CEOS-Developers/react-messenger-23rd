@@ -274,13 +274,13 @@
     {
       "chatRoomId": 9,
       "myUserId": 1,
-      "friendUserIds": [6],
+      "friendUserIds": [6, 7, 8, 11],
       "perspective": 1,
       "messages": [
         {
           "type": "friend",
           "userId": 6,
-          "message": "지민아, 오늘 학생회 회의 몇 신지 알아?",
+          "message": "오늘 학생회 회의 몇 신지 알아?",
           "date": "2026-03-22",
           "time": "오전 11:30",
           "isRead": true,
@@ -297,10 +297,28 @@
         },
         {
           "type": "friend",
-          "userId": 6,
-          "message": "아하 고마워! 그때 보자.",
+          "userId": 7,
+          "message": "나도 갈게! 정문 앞에서 만나서 같이 갈 사람?",
           "date": "2026-03-22",
-          "time": "오전 11:32",
+          "time": "오전 11:33",
+          "isRead": false,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "userId": 8,
+          "message": "저요! 저 5시 40분에 정문 도착해요.",
+          "date": "2026-03-22",
+          "time": "오전 11:34",
+          "isRead": false,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "userId": 11,
+          "message": "저도 같이 가요! 정문에서 봐요 다들~",
+          "date": "2026-03-22",
+          "time": "오전 11:35",
           "isRead": false,
           "showReadStatus": true
         }
