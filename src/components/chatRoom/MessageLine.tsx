@@ -10,6 +10,7 @@ type MessageLineProps =
       isFirstLine: boolean
       showTime: boolean
       time?: string
+      status?: 'active' | 'away' | 'sleeping'
     }
   | {
       type: 'me'
@@ -59,12 +60,12 @@ function MessageLine(props: MessageLineProps) {
         display: 'flex',
         padding: props.isFirstLine ? '8px 20px 0' : '0 20px',
         alignItems: 'flex-start',
-        gap: '8px',
+        gap: '4px',
         alignSelf: 'stretch',
       }}
     >
       <div style={{ width: '32px', flexShrink: 0 }}>
-        {props.isFirstLine && <Avatar size="s" />}
+        {props.isFirstLine && <Avatar size="s" showStatus status={props.status} />}
       </div>
       <div
         style={{

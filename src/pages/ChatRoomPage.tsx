@@ -107,16 +107,17 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
           />
         )
       } else {
-        const senderName = userMap[msg.senderId]?.name ?? '알 수 없음'
+        const sender = userMap[msg.senderId]
         elements.push(
           <MessageLine
             key={msg.id}
             type="recipient"
-            senderName={senderName}
+            senderName={sender?.name ?? '알 수 없음'}
             messages={[msg.text]}
             isFirstLine={isFirstLine}
             showTime={showTime}
             time={formatMessageTime(msg.timestamp)}
+            status={sender?.status as 'active' | 'away' | 'sleeping'}
           />
         )
       }
@@ -128,18 +129,20 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
   return (
     <PageFrame>
       <div className="flex h-full flex-col bg-white">
-        <div className="h-[48px] shrink-0" />
-        <ChatRoomHeader
-          title={chatName}
-          memberCount={memberCount}
-          onBack={onBack}
-          onSwitchUser={handleSwitchUser}
-        />
         <div
           ref={scrollRef}
           className="flex-1 overflow-y-auto"
           style={{ background: colors.grey200 }}
         >
+          <div className="sticky top-0 z-10">
+            <div className="h-[48px] shrink-0 bg-white" />
+            <ChatRoomHeader
+              title={chatName}
+              memberCount={memberCount}
+              onBack={onBack}
+              onSwitchUser={handleSwitchUser}
+            />
+          </div>
           <div className="flex flex-col gap-[6px] pb-[8px]">
             {renderMessages()}
           </div>

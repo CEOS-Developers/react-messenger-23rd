@@ -12,7 +12,7 @@ type ChatRoomHeaderProps = {
 
 function ChatRoomHeader({ title, memberCount, onBack, onSwitchUser }: ChatRoomHeaderProps) {
   return (
-    <header className="flex w-full items-center px-[20px] py-[16px]">
+    <header className="flex w-full items-center px-[20px] py-[16px]" style={{ background: colors.whiteAlpha90 }}>
       <div className="flex flex-1 items-center gap-[4px]">
         <button type="button" onClick={onBack} className="shrink-0">
           <img
