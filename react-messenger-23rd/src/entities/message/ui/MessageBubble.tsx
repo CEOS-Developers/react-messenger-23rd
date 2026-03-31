@@ -40,9 +40,7 @@ const MessageBubble = ({ message, showTime, showProfile, isFlipped, marginClass 
 
             <div className="flex items-end gap-1">
               <div className="max-w-[232px] font-normal rounded-bl-[8px] rounded-br-[8px] rounded-tr-[8px] px-3 py-2 bg-white text-[var(--color-gray-80)]">
-                <p className="break-words text-[15px] font-normal leading-[150%] tracking-[-0.5px]">
-                  {message.messages}
-                </p>
+                <p className="break-words Body02R">{message.messages}</p>
               </div>
 
               {showTime && <span className="text-xs leading-4 text-[var(--color-gray-60)]">{message.time}</span>}
