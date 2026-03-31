@@ -3,8 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ChatIcon from "@/assets/icons/chats.svg?react";
 import ProfileCircleIcon from "@/assets/icons/profile_circle.svg?react";
 import SettingIcon from "@/assets/icons/setting.svg?react";
+import Alert from "@/components/Common/Alert";
 import Profile from "@/components/Common/Profile";
 import { NAV_ITEMS } from "@/constants/navItems";
+import { useChatStore } from "@/store/chatStore";
 import { cn } from "@/utils/cn";
 import { getUserById } from "@/utils/getUser";
 
@@ -19,12 +21,19 @@ const Navibar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const myUser = getUserById(1);
+  const chatRooms = useChatStore(state => state.chatRooms);
+
+  const totalUnreadCount = Object.values(chatRooms).reduce((acc, room) => {
+    return acc + room.messages.filter(m => m.userId !== 1 && !m.isRead).length;
+  }, 0);
 
   return (
     <nav className="rounded-100 shadow-box flex w-full flex-row items-center bg-white p-1">
       {NAV_ITEMS.map(({ path, label }) => {
         const Icon = ICON_MAP[path];
         const isActive = pathname.startsWith(path);
+        const isChat = path === "/chat";
+
         return (
           <button
             key={path}
@@ -43,7 +52,14 @@ const Navibar = () => {
                 />
               </div>
             ) : (
-              <Icon className="size-6" />
+              <div className="relative">
+                <Icon className="size-6" />
+                {isChat && totalUnreadCount > 0 && (
+                  <div className="absolute -top-2 -right-1">
+                    <Alert count={totalUnreadCount} />
+                  </div>
+                )}
+              </div>
             )}
             <span className="font-caption-1">{label}</span>
           </button>
