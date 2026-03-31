@@ -60,7 +60,7 @@ function MessageLine(props: MessageLineProps) {
         display: 'flex',
         padding: props.isFirstLine ? '8px 20px 0' : '0 20px',
         alignItems: 'flex-start',
-        gap: '4px',
+        gap: '8px',
         alignSelf: 'stretch',
       }}
     >
