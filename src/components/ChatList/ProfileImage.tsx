@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import Profile from "@/components/Common/Profile";
 import { PROFILE_POSITIONS as pos } from "@/constants/profile";
 
@@ -10,14 +12,11 @@ interface ProfileImageProps {
   profiles: ProfileData[];
 }
 
-const ProfileImage = ({ profiles }: ProfileImageProps) => {
+function ProfileImage({ profiles }: ProfileImageProps) {
   const count = profiles.length;
-
   const p = (i: number) => profiles[i];
 
-  if (count === 1) {
-    return <Profile {...p(0)} type="chatlist_1" />;
-  }
+  if (count === 1) return <Profile {...p(0)} type="chatlist_1" />;
 
   if (count === 2) {
     return (
@@ -64,6 +63,6 @@ const ProfileImage = ({ profiles }: ProfileImageProps) => {
       </div>
     </div>
   );
-};
+}
 
-export default ProfileImage;
+export default memo(ProfileImage);

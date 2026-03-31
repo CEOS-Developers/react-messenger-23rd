@@ -17,8 +17,8 @@ interface ChatListItemProps {
 }
 
 const getDisplayName = (profiles: ProfileData[]) => {
-  const count = profiles.length;
   const names = profiles.map(p => p.name);
+  const count = names.length;
 
   if (count === 1) return { name: names[0], count: null };
   if (count <= 3) return { name: names.join(", "), count };
@@ -26,16 +26,16 @@ const getDisplayName = (profiles: ProfileData[]) => {
   return { name: `${names.slice(0, 3).join(", ")}, ${names[3][0]}...`, count };
 };
 
-const ChatListItem = ({
+function ChatListItem({
   profiles,
   lastMessage,
   time,
   isRead,
   isFixed = false,
   alertCount,
-}: ChatListItemProps) => {
+}: ChatListItemProps) {
   const { name, count } = getDisplayName(profiles);
-  const hasAlert = alertCount !== undefined && alertCount > 0;
+  const hasAlert = !!alertCount;
 
   return (
     <div className="flex cursor-pointer items-center gap-3 p-4">
@@ -57,6 +57,6 @@ const ChatListItem = ({
       </div>
     </div>
   );
-};
+}
 
 export default ChatListItem;

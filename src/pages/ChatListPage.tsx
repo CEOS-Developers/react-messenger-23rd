@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import ChatListItem from "@/components/ChatList/ChatListItem";
@@ -16,22 +16,25 @@ const ChatListPage = () => {
   const chatRooms = useChatStore(state => state.chatRooms);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const roomsArray = Object.values(chatRooms);
-  const pinnedRoom = roomsArray.find(r => r.chatRoomId === PINNED_CHAT_ROOM_ID);
-  const otherRooms = roomsArray
-    .filter(r => r.chatRoomId !== PINNED_CHAT_ROOM_ID)
-    .sort((a, b) => getChatTimestamp(b) - getChatTimestamp(a));
+  const sortedChatRooms = useMemo(() => {
+    const roomsArray = Object.values(chatRooms);
+    const pinnedRoom = roomsArray.find(r => r.chatRoomId === PINNED_CHAT_ROOM_ID);
+    const otherRooms = roomsArray
+      .filter(r => r.chatRoomId !== PINNED_CHAT_ROOM_ID)
+      .sort((a, b) => getChatTimestamp(b) - getChatTimestamp(a));
+    return pinnedRoom ? [pinnedRoom, ...otherRooms] : otherRooms;
+  }, [chatRooms]);
 
-  const sortedChatRooms = pinnedRoom ? [pinnedRoom, ...otherRooms] : otherRooms;
-
-  const filteredChatRooms = searchQuery.trim()
-    ? sortedChatRooms.filter(room =>
-        room.friendUserIds
-          .map(id => getUserById(id))
-          .filter(Boolean)
-          .some(user => user!.name.includes(searchQuery.trim())),
-      )
-    : sortedChatRooms;
+  const filteredChatRooms = useMemo(() => {
+    const query = searchQuery.trim();
+    if (!query) return sortedChatRooms;
+    return sortedChatRooms.filter(room =>
+      room.friendUserIds
+        .map(id => getUserById(id))
+        .filter(Boolean)
+        .some(user => user!.name.includes(query)),
+    );
+  }, [sortedChatRooms, searchQuery]);
 
   return (
     <div className="relative flex h-full flex-col">
@@ -44,7 +47,6 @@ const ChatListPage = () => {
             const profiles = chatRoom.friendUserIds.map(id => getUserById(id)).filter(Boolean);
             if (!lastMessage || profiles.length === 0) return null;
             const alertCount = chatRoom.messages.filter(m => m.userId !== 1 && !m.isRead).length;
-            const isFixed = chatRoom.chatRoomId === PINNED_CHAT_ROOM_ID;
 
             return (
               <Link key={chatRoom.chatRoomId} to={`/chat/${chatRoom.chatRoomId}`}>
@@ -53,7 +55,7 @@ const ChatListPage = () => {
                   lastMessage={lastMessage.message}
                   time={lastMessage.time}
                   isRead={lastMessage.isRead}
-                  isFixed={isFixed}
+                  isFixed={chatRoom.chatRoomId === PINNED_CHAT_ROOM_ID}
                   alertCount={alertCount}
                 />
               </Link>
