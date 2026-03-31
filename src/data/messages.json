@@ -200,6 +200,111 @@
           "showReadStatus": true
         }
       ]
+    },
+    {
+      "chatRoomId": 7,
+      "myUserId": 1,
+      "friendUserIds": [10],
+      "perspective": 1,
+      "messages": [
+        {
+          "type": "friend",
+          "userId": 10,
+          "message": "지민아, 혹시 이번 주말에 카페 알바 대타 가능할까? 급한 일이 생겨서 ㅠㅠ",
+          "date": "2026-03-24",
+          "time": "오후 2:30",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "my",
+          "userId": 1,
+          "message": "주말 몇시부터 몇시까지야?",
+          "date": "2026-03-24",
+          "time": "오후 2:45",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "userId": 10,
+          "message": "토요일 오후 2시부터 8시까지! 가능하면 진짜 생명의 은인이야...",
+          "date": "2026-03-24",
+          "time": "오후 2:50",
+          "isRead": true,
+          "showReadStatus": true
+        }
+      ]
+    },
+    {
+      "chatRoomId": 8,
+      "myUserId": 1,
+      "friendUserIds": [4],
+      "perspective": 1,
+      "messages": [
+        {
+          "type": "friend",
+          "userId": 4,
+          "message": "지민아~ 혹시 강의실에 내 파우치 있는 거 못 봤어? 어디 갔는지 안 보이네 ㅠㅠ",
+          "date": "2026-03-25",
+          "time": "오전 10:15",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "my",
+          "userId": 1,
+          "message": "아까 교탁 위에 핑크색 파우치 있는 거 봤는데 그거 아냐?",
+          "date": "2026-03-25",
+          "time": "오전 10:20",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "userId": 4,
+          "message": "맞아! 고마워 진짜 ㅠㅠ 지금 바로 가볼게!!",
+          "date": "2026-03-25",
+          "time": "오전 10:22",
+          "isRead": true,
+          "showReadStatus": true
+        }
+      ]
+    },
+    {
+      "chatRoomId": 9,
+      "myUserId": 1,
+      "friendUserIds": [6],
+      "perspective": 1,
+      "messages": [
+        {
+          "type": "friend",
+          "userId": 6,
+          "message": "지민아, 오늘 학생회 회의 몇 신지 알아?",
+          "date": "2026-03-22",
+          "time": "오전 11:30",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "my",
+          "userId": 1,
+          "message": "오후 6시로 알고 있어! 장소는 학생회관 204호야.",
+          "date": "2026-03-22",
+          "time": "오전 11:31",
+          "isRead": true,
+          "showReadStatus": true
+        },
+        {
+          "type": "friend",
+          "userId": 6,
+          "message": "아하 고마워! 그때 보자.",
+          "date": "2026-03-22",
+          "time": "오전 11:32",
+          "isRead": true,
+          "showReadStatus": true
+        }
+      ]
     }
   ]
 }

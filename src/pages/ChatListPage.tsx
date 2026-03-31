@@ -2,22 +2,33 @@ import { Link } from "react-router-dom";
 
 import ChatListItem from "@/components/ChatList/ChatListItem";
 import Header from "@/components/Common/Header";
+import { PINNED_CHAT_ROOM_ID } from "@/constants/chatRoom";
 import useScrolled from "@/hooks/useScrolled";
 import { useChatStore } from "@/store/chatStore";
+import { getChatTimestamp } from "@/utils/formatTime";
 import { getUserById } from "@/utils/getUser";
 
 const ChatListPage = () => {
   const { scrolled, handleScroll } = useScrolled();
   const chatRooms = useChatStore(state => state.chatRooms);
 
+  const roomsArray = Object.values(chatRooms);
+  const pinnedRoom = roomsArray.find(r => r.chatRoomId === PINNED_CHAT_ROOM_ID);
+  const otherRooms = roomsArray
+    .filter(r => r.chatRoomId !== PINNED_CHAT_ROOM_ID)
+    .sort((a, b) => getChatTimestamp(b) - getChatTimestamp(a));
+
+  const sortedChatRooms = pinnedRoom ? [pinnedRoom, ...otherRooms] : otherRooms;
+
   return (
     <div className="flex h-full flex-col">
       <Header text="대화" showShadow={scrolled} />
       <main className="flex-1 overflow-y-auto" onScroll={handleScroll}>
-        {Object.values(chatRooms).map(chatRoom => {
+        {sortedChatRooms.map(chatRoom => {
           const lastMessage = chatRoom.messages[chatRoom.messages.length - 1];
           const profiles = chatRoom.friendUserIds.map(id => getUserById(id)).filter(Boolean);
           if (!lastMessage || profiles.length === 0) return null;
+          const isFixed = chatRoom.chatRoomId === PINNED_CHAT_ROOM_ID;
           return (
             <Link key={chatRoom.chatRoomId} to={`/chat/${chatRoom.chatRoomId}`}>
               <ChatListItem
@@ -25,6 +36,7 @@ const ChatListPage = () => {
                 lastMessage={lastMessage.message}
                 time={lastMessage.time}
                 isRead={lastMessage.isRead}
+                isFixed={isFixed}
               />
             </Link>
           );
