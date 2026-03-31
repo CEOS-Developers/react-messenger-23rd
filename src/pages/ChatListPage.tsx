@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import ChatListItem from "@/components/ChatList/ChatListItem";
+import CreateChatButton from "@/components/ChatList/CreateChatButton";
 import Header from "@/components/Common/Header";
 import SearchBar from "@/components/Common/SearchBar";
 import { PINNED_CHAT_ROOM_ID } from "@/constants/chatRoom";
@@ -33,7 +34,7 @@ const ChatListPage = () => {
     : sortedChatRooms;
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="relative flex h-full flex-col">
       <Header text="대화" showShadow={scrolled} />
       <main className="flex flex-1 flex-col overflow-y-auto" onScroll={handleScroll}>
         <SearchBar placeholder="Search Chats" value={searchQuery} onChange={setSearchQuery} />
@@ -60,6 +61,9 @@ const ChatListPage = () => {
           })}
         </div>
       </main>
+      <div className="absolute right-4 bottom-30">
+        <CreateChatButton />
+      </div>
     </div>
   );
 };
