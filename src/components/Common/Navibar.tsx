@@ -55,7 +55,7 @@ const Navibar = () => {
               <div className="relative">
                 <Icon className="size-6" />
                 {isChat && totalUnreadCount > 0 && (
-                  <div className="absolute -top-2 -right-1">
+                  <div className="absolute top-1/5 left-1/2 -translate-y-1/2">
                     <Alert count={totalUnreadCount} />
                   </div>
                 )}
