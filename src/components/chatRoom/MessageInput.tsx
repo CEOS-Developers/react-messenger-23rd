@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import emojiIcon from '@/assets/icons/Emoji.svg'
 import mentionIcon from '@/assets/icons/Mention.svg'
@@ -19,6 +19,12 @@ function MessageInput({ value, onChange, onSend }: MessageInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const hasText = value.trim().length > 0
   const isExpanded = isFocused
+
+  useEffect(() => {
+    if (isExpanded && textareaRef.current) {
+      textareaRef.current.focus()
+    }
+  }, [isExpanded])
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(e.target.value)
