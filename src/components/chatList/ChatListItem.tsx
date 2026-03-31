@@ -30,7 +30,7 @@ function ChatListItem({
   return (
     <div
       onClick={onClick}
-      className="flex w-full cursor-pointer items-center gap-[12px] self-stretch px-[20px] py-[12px]"
+      className="flex w-full cursor-pointer items-center gap-[12px] self-stretch px-[20px] py-[12px] transition-colors hover:bg-grey-100 active:bg-grey-100"
       style={{ borderBottom: `1px solid ${colors.grey200}` }}
     >
       <Avatar size="m" showStatus={!isGroup} status={status} isGroup={isGroup} />
