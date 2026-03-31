@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import ChatListItem from "@/components/ChatList/ChatListItem";
@@ -12,6 +13,7 @@ import { getUserById } from "@/utils/getUser";
 const ChatListPage = () => {
   const { scrolled, handleScroll } = useScrolled();
   const chatRooms = useChatStore(state => state.chatRooms);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const roomsArray = Object.values(chatRooms);
   const pinnedRoom = roomsArray.find(r => r.chatRoomId === PINNED_CHAT_ROOM_ID);
@@ -21,13 +23,22 @@ const ChatListPage = () => {
 
   const sortedChatRooms = pinnedRoom ? [pinnedRoom, ...otherRooms] : otherRooms;
 
+  const filteredChatRooms = searchQuery.trim()
+    ? sortedChatRooms.filter(room =>
+        room.friendUserIds
+          .map(id => getUserById(id))
+          .filter(Boolean)
+          .some(user => user!.name.includes(searchQuery.trim())),
+      )
+    : sortedChatRooms;
+
   return (
     <div className="flex h-full flex-col">
       <Header text="대화" showShadow={scrolled} />
       <main className="flex flex-1 flex-col overflow-y-auto" onScroll={handleScroll}>
-        <SearchBar placeholder="Search Chats" />
+        <SearchBar placeholder="Search Chats" value={searchQuery} onChange={setSearchQuery} />
         <div className="mt-5 mb-28">
-          {sortedChatRooms.map(chatRoom => {
+          {filteredChatRooms.map(chatRoom => {
             const lastMessage = chatRoom.messages[chatRoom.messages.length - 1];
             const profiles = chatRoom.friendUserIds.map(id => getUserById(id)).filter(Boolean);
             if (!lastMessage || profiles.length === 0) return null;
