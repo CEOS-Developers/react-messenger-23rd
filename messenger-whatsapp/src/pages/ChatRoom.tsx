@@ -26,7 +26,7 @@ export default function ChatRoom() {
   return (
     <div className="flex flex-col h-screen bg-main-bg no-scrollbar">
       <TopBar />
-      <ChatHeader chatName={chatPartner?.name ?? ""} profileImage={chatPartner?.profileImage} />
+      <ChatHeader chatName={chatPartner?.name ?? ""} profileImage={chatPartner?.profileImage} chatRoomId={roomIdNum} />
       <div ref={scrollRef} className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar">
         {messages.map((msg, index) => {
           const isSent = msg.senderId === currentUserId;

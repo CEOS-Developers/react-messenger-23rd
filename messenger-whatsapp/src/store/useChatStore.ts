@@ -28,7 +28,7 @@ type ChatStore = {
   currentUserId: number;
   messages: Message[];
   sendMessage: (text: string, chatRoomId: number) => void;
-  swapPerspective: () => void;
+  swapPerspective: (chatRoomId: number) => void;
 };
 
 export const useChatStore = create<ChatStore>()(
@@ -52,9 +52,13 @@ export const useChatStore = create<ChatStore>()(
             },
           ],
         })),
-      swapPerspective: () => {
-        const { users, currentUserId, messages } = get();
-        const other = users.find((u) => u.id !== currentUserId);
+      swapPerspective: (chatRoomId: number) => {
+        const { users, chatRooms, currentUserId, messages } = get();
+        const room = chatRooms.find((r) => r.id === chatRoomId);
+        if (!room) return;
+        const other = users.find(
+          (u) => u.id !== currentUserId && room.participantIds.includes(u.id),
+        );
         if (!other) return;
         set({
           currentUserId: other.id,
