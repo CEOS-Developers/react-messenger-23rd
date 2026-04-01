@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import PlusIcon from "@/assets/Plus.svg?react";
+import PlusIcon from "@/assets/input_add.svg?react";
 import EmojiIcon from "@/assets/emoji.svg?react";
 import SendIcon from "@/assets/send.svg?react";
 
