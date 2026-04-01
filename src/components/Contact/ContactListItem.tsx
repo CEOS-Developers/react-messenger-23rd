@@ -6,6 +6,7 @@ interface ContactListItemProps {
   profileColor: string;
   lastSeen: string;
   surnameDisplay?: "show" | "hidden" | "none";
+  onClick?: () => void;
 }
 
 const ContactListItem = ({
@@ -13,16 +14,17 @@ const ContactListItem = ({
   profileColor,
   lastSeen,
   surnameDisplay = "show",
+  onClick,
 }: ContactListItemProps) => {
   return (
-    <div className="flex cursor-pointer items-center gap-3 p-4">
+    <div className="flex cursor-pointer items-center gap-3 p-4" onClick={onClick}>
       {surnameDisplay === "show" && (
-        <span className="font-body-5 rounded-4 bg-gray-100 px-1.5 py-0.5 text-gray-500">
+        <span className="font-body-5 rounded-4 bg-gray-100 px-1.5 py-0.5 text-gray-400">
           {getSurname(name)}
         </span>
       )}
       {surnameDisplay === "hidden" && (
-        <span className="font-body-5 rounded-4 invisible bg-gray-100 px-1.5 py-0.5 text-gray-500">
+        <span className="font-body-5 rounded-4 invisible bg-gray-100 px-1.5 py-0.5 text-gray-400">
           {getSurname(name)}
         </span>
       )}
