@@ -34,4 +34,8 @@ export const PROFILE_VARIANTS = {
       "flex items-center justify-center shrink-0 text-white size-[22px] rounded-[14.326px] border-[0.651px] border-white",
     text: "font-suit text-[8px] font-semibold leading-[150%] tracking-[-0.16px]",
   },
+  profile_big: {
+    container: "flex items-center justify-center shrink-0 text-white size-20 rounded-full",
+    text: "font-suit text-[26.667px] font-bold leading-[140%] tracking-[-0.8px]",
+  },
 };
