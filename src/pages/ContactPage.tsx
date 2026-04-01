@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ListByNameIcon from "@/assets/icons/list_name.svg?react";
@@ -61,40 +61,65 @@ const ContactPage = () => {
   const { scrolled, handleScroll } = useScrolled();
   const navigate = useNavigate();
   const [sortByTime, setSortByTime] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredByTime = useMemo(() => {
+    const query = searchQuery.trim();
+    if (!query) return sortedByTime;
+    return sortedByTime.filter(u => u.name.includes(query));
+  }, [searchQuery]);
+
+  const filteredByName = useMemo(() => {
+    const query = searchQuery.trim();
+    const base = query ? sortedByName.filter(u => u.name.includes(query)) : sortedByName;
+    return base.map((user, i, arr) => ({
+      ...user,
+      surnameDisplay:
+        i > 0 && getSurname(arr[i - 1].name) === getSurname(user.name)
+          ? ("hidden" as const)
+          : ("show" as const),
+    }));
+  }, [searchQuery]);
 
   return (
     <div className="flex h-full flex-col">
       <Header text="연락처" rightIcon={<PlusIcon />} showShadow={scrolled} />
       <main className="flex-1 overflow-y-auto" onScroll={handleScroll}>
-        <SearchBar placeholder="Search Contacts" />
+        <SearchBar placeholder="Search Contacts" value={searchQuery} onChange={setSearchQuery} />
         <div className="mt-5 mb-28">
           <div className="flex flex-col gap-4">
+            {!searchQuery && (
+              <>
+                <div className="flex flex-col gap-1">
+                  <span className="font-body-5 px-4 text-gray-500">내 프로필</span>
+                  <ContactListItem
+                    name={usersData.users[0].name}
+                    profileColor={usersData.users[0].profileColor}
+                    lastSeen="온라인"
+                    surnameDisplay="none"
+                    onClick={() => navigate("/profile")}
+                  />
+                </div>
+                <hr className="mx-auto h-px w-83.75 border-0 bg-gray-100" />
+              </>
+            )}
             <div className="flex flex-col gap-1">
-              <span className="font-body-5 px-4 text-gray-500">내 프로필</span>
-              <ContactListItem
-                name={usersData.users[0].name}
-                profileColor={usersData.users[0].profileColor}
-                lastSeen="온라인"
-                surnameDisplay="none"
-                onClick={() => navigate("/profile")}
-              />
-            </div>
-            <hr className="mx-auto h-px w-83.75 border-0 bg-gray-100" />
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center justify-between px-4">
-                <span className="font-body-5 text-gray-500">
-                  {sortByTime ? "마지막 접속 순으로 정렬" : "이름 순으로 정렬"}
-                </span>
-                <button
-                  className="cursor-pointer text-gray-500"
-                  onClick={() => setSortByTime(prev => !prev)}
-                >
-                  {sortByTime ? <ListByNameIcon /> : <ListByTimeIcon />}
-                </button>
-              </div>
+              {!searchQuery && (
+                <div className="flex items-center justify-between px-4">
+                  <span className="font-body-5 text-gray-500">
+                    {sortByTime ? "마지막 접속 순으로 정렬" : "이름 순으로 정렬"}
+                  </span>
+                  <button
+                    className="cursor-pointer text-gray-500"
+                    onClick={() => setSortByTime(prev => !prev)}
+                  >
+                    {sortByTime ? <ListByNameIcon /> : <ListByTimeIcon />}
+                  </button>
+                </div>
+              )}
               <div>
                 {sortByTime
-                  ? sortedByTime.map(user => (
+                  ? filteredByTime.map(user => (
                       <ContactListItem
                         key={user.userId}
                         name={user.name}
@@ -103,13 +128,13 @@ const ContactPage = () => {
                         surnameDisplay="none"
                       />
                     ))
-                  : sortedByName.map(user => (
+                  : filteredByName.map(user => (
                       <ContactListItem
                         key={user.userId}
                         name={user.name}
                         profileColor={user.profileColor}
                         lastSeen={user.displayByName}
-                        surnameDisplay={user.surnameDisplay}
+                        surnameDisplay={searchQuery ? "none" : user.surnameDisplay}
                       />
                     ))}
               </div>
