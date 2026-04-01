@@ -10,7 +10,12 @@ interface ChatRoomItemProps {
   messages: Message[];
 }
 
-const ChatRoomItem = ({ chatRoom, currentUserId, users, messages }: ChatRoomItemProps) => {
+const ChatRoomItem = ({
+  chatRoom,
+  currentUserId,
+  users,
+  messages,
+}: ChatRoomItemProps) => {
   const navigate = useNavigate();
   const partner = findPartner(users, chatRoom.participantIds, currentUserId);
   const roomMessages = messages.filter((m) => m.chatRoomId === chatRoom.id);
@@ -23,19 +28,27 @@ const ChatRoomItem = ({ chatRoom, currentUserId, users, messages }: ChatRoomItem
     >
       <div className="w-12 h-12 rounded-full bg-gray-02 shrink-0 overflow-hidden">
         {partner?.profileImage && (
-          <img src={partner.profileImage} alt={partner.name} className="w-full h-full object-cover" />
+          <img
+            src={partner.profileImage}
+            alt={partner.name}
+            className="w-full h-full object-cover"
+          />
         )}
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex justify-between items-baseline">
-          <span className="typo-body-01 text-gray-06">{partner?.name ?? ""}</span>
+          <span className="text-body-01 text-gray-06">
+            {partner?.name ?? ""}
+          </span>
           {lastMessage && (
-            <span className="typo-caption-2 text-gray-04 shrink-0 ml-2">
+            <span className="text-caption-2 text-gray-04 shrink-0 ml-2">
               {formatTime(lastMessage.timestamp)}
             </span>
           )}
         </div>
-        <p className="typo-body-04 text-gray-04 truncate">{lastMessage?.text ?? ""}</p>
+        <p className="text-body-04 text-gray-04 truncate">
+          {lastMessage?.text ?? ""}
+        </p>
       </div>
     </div>
   );

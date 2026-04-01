@@ -16,7 +16,7 @@ const ChatHeader = ({ chatName, chatRoomId }: ChatHeaderProps) => {
 
   return (
     <div className="flex justify-between px-4 py-2.5">
-      <div className="flex flex-row items-center gap-3 text-gray-06 font-semibold typo-headline-2">
+      <div className="flex flex-row items-center gap-3 text-gray-06 font-semibold text-headline-2">
         <BackIcon className="cursor-pointer" onClick={() => navigate("/")} />
         <p
           className="cursor-pointer"

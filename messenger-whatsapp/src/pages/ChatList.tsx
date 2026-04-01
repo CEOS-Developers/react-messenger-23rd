@@ -13,7 +13,7 @@ const ChatList = () => {
     <div className="flex flex-col h-screen bg-white">
       <TopBar />
       <div className="flex flex-row items-center justify-between px-4 py-3">
-        <h1 className="typo-headline-1 text-gray-06">대화</h1>
+        <h1 className="text-headline-1 text-gray-06">대화</h1>
         <div className="flex flex-row gap-3">
           <Search />
           <More_Square />

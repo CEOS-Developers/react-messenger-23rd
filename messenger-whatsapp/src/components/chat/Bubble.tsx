@@ -12,7 +12,7 @@ interface BubbleProps {
   unreadCount: number;
 }
 
-// typo-body-03: font-size 14px, line-height 150% = 21px + padding 8px*2 = 37px
+// text-body-03: font-size 14px, line-height 150% = 21px + padding 8px*2 = 37px
 const SINGLE_LINE_HEIGHT = 37;
 
 export default function Bubble({
@@ -40,7 +40,7 @@ export default function Bubble({
         <div
           ref={ref}
           className={clsx(
-            "relative bubble typo-body-03",
+            "relative bubble text-body-03 break-all",
             isSent ? "bubble-sent" : "bubble-received",
             isMultiLine && "bubble-multiline",
           )}
@@ -61,13 +61,13 @@ export default function Bubble({
           )}
         >
           {isSent && unreadCount > 0 && (
-            <span className="typo-caption-2 text-main-green">
+            <span className="text-caption-2 text-main-green">
               {unreadCount}
             </span>
           )}
           <span
             className={clsx(
-              "typo-caption-2 text-gray-04",
+              "text-caption-2 text-gray-04",
               !showTime && "invisible",
             )}
           >

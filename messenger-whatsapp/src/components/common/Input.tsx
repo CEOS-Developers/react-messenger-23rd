@@ -50,7 +50,7 @@ export default function InputBox({ onSend }: InputBoxProps) {
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
           rows={1}
-          className="flex-1 bg-transparent resize-none outline-none items-end typo-body-02 text-gray-06 max-h-40 overflow-hidden"
+          className="flex-1 bg-transparent resize-none outline-none items-end text-body-02 text-gray-06 max-h-40 overflow-hidden"
         />
         <button className="mb-1">
           <EmojiIcon />
