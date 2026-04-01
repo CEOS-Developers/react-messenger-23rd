@@ -87,6 +87,10 @@ body {
   background-color: var(--color-gray-01);
 }
 
+button {
+  cursor: pointer;
+}
+
 /* 스크롤바 숨기기 유틸리티 */
 @utility no-scrollbar {
   /* IE, Edge */
