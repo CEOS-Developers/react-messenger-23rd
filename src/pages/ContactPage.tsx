@@ -117,7 +117,7 @@ const ContactPage = () => {
                   </button>
                 </div>
               )}
-              <div>
+              <div className="flex flex-col gap-1">
                 {sortByTime
                   ? filteredByTime.map(user => (
                       <ContactListItem

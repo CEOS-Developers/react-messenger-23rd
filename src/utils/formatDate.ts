@@ -27,10 +27,10 @@ export const getLastSeenDisplay = (date: string, time: string, suffix = false): 
   const msgDate = new Date(date);
   msgDate.setHours(0, 0, 0, 0);
   const diffDays = Math.round((today.getTime() - msgDate.getTime()) / (1000 * 60 * 60 * 24));
-  const end = suffix ? "접속함" : "접속";
+  const end = suffix ? "으로 접속함" : " 접속";
 
-  if (diffDays === 0) return `${time}에 마지막으로 ${end}`;
-  if (diffDays === 1) return `어제 ${time}에 마지막으로 ${end}`;
+  if (diffDays === 0) return `${time}에 마지막${end}`;
+  if (diffDays === 1) return `어제 ${time}에 마지막${end}`;
   const [, month, day] = date.split("-").map(Number);
-  return `${month}월 ${day}일 ${time}에 마지막으로 ${end}`;
+  return `${month}월 ${day}일 ${time}에 마지막${end}`;
 };
