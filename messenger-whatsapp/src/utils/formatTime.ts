@@ -1,3 +1,17 @@
+const DAYS = ["일", "월", "화", "수", "목", "금", "토"];
+
+/**
+ * 날짜 포맷 (날짜 구분 칩)
+ * ex) 2026. 03. 18. 화
+ */
+export const getFormattedDate = (date: Date): string => {
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0");
+  const day = DAYS[date.getDay()];
+  return `${yyyy}. ${mm}. ${dd}. ${day}`;
+};
+
 /**
  * 오전/오후 + 12시간제 포맷 (버블 타임스탬프, 채팅 목록)
  * ex) 오전 9:05
