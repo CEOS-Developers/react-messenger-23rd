@@ -41,7 +41,7 @@ const Message = ({
   }
 
   return (
-    <div className="flex w-full items-end justify-start px-4">
+    <div className="flex w-full items-end justify-start pr-4 pl-3">
       <div className="flex items-end gap-2">
         {isFirst || isFirstInTimeGroup ? (
           <div className="self-start">
