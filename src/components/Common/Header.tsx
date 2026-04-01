@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 
 import MoreIcon from "@/assets/icons/more.svg?react";
+import SearchIcon from "@/assets/icons/search.svg?react";
 import { cn } from "@/utils/cn";
 
 interface HeaderProps {
@@ -11,7 +12,9 @@ interface HeaderProps {
   onTextClick?: () => void;
   onRightIconClick?: () => void;
   onMoreClick?: () => void;
+  onSearchIconClick?: () => void;
   showShadow?: boolean;
+  showSearchIcon?: boolean;
   className?: string;
 }
 
@@ -23,7 +26,9 @@ const Header = ({
   onTextClick,
   onRightIconClick,
   onMoreClick,
+  onSearchIconClick,
   showShadow = false,
+  showSearchIcon = false,
   className,
 }: HeaderProps) => (
   <header
@@ -53,6 +58,11 @@ const Header = ({
       )}
     </div>
     <div className="flex shrink-0 flex-row items-center gap-3">
+      {showSearchIcon && (
+        <button onClick={onSearchIconClick} className="size-6 cursor-pointer text-gray-500">
+          <SearchIcon className="size-6" />
+        </button>
+      )}
       {rightIcon && (
         <button onClick={onRightIconClick} className="size-6 cursor-pointer text-gray-500">
           {rightIcon}

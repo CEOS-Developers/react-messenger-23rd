@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ListByNameIcon from "@/assets/icons/list_name.svg?react";
@@ -60,6 +60,7 @@ const sortedByName = [...contacts]
 const ContactPage = () => {
   const { scrolled, handleScroll } = useScrolled();
   const navigate = useNavigate();
+  const mainRef = useRef<HTMLElement>(null);
   const [sortByTime, setSortByTime] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -83,8 +84,16 @@ const ContactPage = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <Header text="연락처" rightIcon={<PlusIcon />} showShadow={scrolled} />
-      <main className="flex-1 overflow-y-auto" onScroll={handleScroll}>
+      <Header
+        text="연락처"
+        rightIcon={<PlusIcon />}
+        showShadow={scrolled}
+        showSearchIcon={scrolled}
+        onSearchIconClick={() => {
+          if (mainRef.current) mainRef.current.scrollTop = 0;
+        }}
+      />
+      <main ref={mainRef} className="flex-1 overflow-y-auto scroll-smooth" onScroll={handleScroll}>
         <SearchBar placeholder="Search Contacts" value={searchQuery} onChange={setSearchQuery} />
         <div className="mt-5 mb-28">
           <div className="flex flex-col gap-4">

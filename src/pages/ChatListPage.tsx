@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import ChatListItem from "@/components/ChatList/ChatListItem";
@@ -15,6 +15,7 @@ const ChatListPage = () => {
   const { scrolled, handleScroll } = useScrolled();
   const chatRooms = useChatStore(state => state.chatRooms);
   const [searchQuery, setSearchQuery] = useState("");
+  const mainRef = useRef<HTMLElement>(null);
 
   const sortedChatRooms = useMemo(() => {
     const roomsArray = Object.values(chatRooms);
@@ -38,8 +39,19 @@ const ChatListPage = () => {
 
   return (
     <div className="relative flex h-full flex-col">
-      <Header text="대화" showShadow={scrolled} />
-      <main className="flex flex-1 flex-col overflow-y-auto" onScroll={handleScroll}>
+      <Header
+        text="대화"
+        showShadow={scrolled}
+        showSearchIcon={scrolled}
+        onSearchIconClick={() => {
+          if (mainRef.current) mainRef.current.scrollTop = 0;
+        }}
+      />
+      <main
+        ref={mainRef}
+        className="flex flex-1 flex-col overflow-y-auto scroll-smooth"
+        onScroll={handleScroll}
+      >
         <SearchBar placeholder="Search Chats" value={searchQuery} onChange={setSearchQuery} />
         <div className="mt-5 mb-28">
           {filteredChatRooms.map(chatRoom => {
