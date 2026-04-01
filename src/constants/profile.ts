@@ -24,13 +24,11 @@ export const PROFILE_VARIANTS = {
       "flex items-center justify-center shrink-0 text-white size-[31px] rounded-[20.977px] border-[0.953px] border-white",
     text: "font-caption-1",
   },
-
   chatlist_3: {
     container:
       "flex items-center justify-center shrink-0 text-white size-[22px] rounded-[14.326px] border-[0.651px] border-white",
     text: "font-suit text-[8px] font-semibold leading-[150%] tracking-[-0.16px]",
   },
-
   chatlist_4: {
     container:
       "flex items-center justify-center shrink-0 text-white size-[22px] rounded-[14.326px] border-[0.651px] border-white",
