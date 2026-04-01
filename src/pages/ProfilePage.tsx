@@ -1,6 +1,7 @@
 import QrIcon from "@/assets/icons/qr.svg?react";
 import Header from "@/components/Common/Header";
 import ToggleTap from "@/components/Profile/ToggleTap";
+import UploadButton from "@/components/Profile/UploadButton";
 
 const ProfilePage = () => {
   return (
@@ -9,6 +10,7 @@ const ProfilePage = () => {
       <main>
         {/* 페이지 내용 */}
         <ToggleTap />
+        <UploadButton />
       </main>
     </div>
   );

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "./typography.css";
+@import "@/typography.css";
 
 @theme {
   /* Main Color */
@@ -78,6 +78,7 @@
   --shadow-box: 0 1px 8px 0 rgba(0, 0, 0, 0.15);
   --shadow-header: 0 2px 2px 0 rgba(0, 0, 0, 0.02);
   --shadow-toggle: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+  --shadow-button: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
 }
 
 @layer base {
