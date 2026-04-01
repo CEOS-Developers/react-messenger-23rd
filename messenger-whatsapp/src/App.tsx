@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ChatList from "./pages/ChatList";
-import ChatRoom from "./pages/ChatRoom";
+import ChatList from "@/pages/ChatList";
+import ChatRoom from "@/pages/ChatRoom";
 
 function App() {
   return (

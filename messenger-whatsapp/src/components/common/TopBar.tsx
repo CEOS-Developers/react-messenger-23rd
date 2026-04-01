@@ -1,4 +1,4 @@
-import RightSide from "../../assets/right_side.svg?react";
+import RightSide from "@/assets/right_side.svg?react";
 
 const formatTime = (timestamp: number) => {
   const date = new Date(timestamp);

@@ -1,4 +1,4 @@
-import { getFormattedDate } from "../../utils/formatTime";
+import { getFormattedDate } from "@/utils/formatTime";
 
 interface ChipDateProps {
   date: Date;

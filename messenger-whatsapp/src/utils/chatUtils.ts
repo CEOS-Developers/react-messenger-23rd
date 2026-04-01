@@ -1,4 +1,4 @@
-import type { User, Message } from "../store/useChatStore";
+import type { User, Message } from "@/store/useChatStore";
 
 /** 두 타임스탬프가 같은 날인지 비교 */
 export const isSameDay = (a: number, b: number): boolean => {

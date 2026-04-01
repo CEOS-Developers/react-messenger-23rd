@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import mockData from "../data/mockData.json";
+import mockData from "@/data/mockData.json";
 
 export type User = {
   id: number;

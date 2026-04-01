@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import SentTail from "../../assets/tail.svg?react";
-import ReceivedTail from "../../assets/tail2.svg?react";
-import { useMultiLineDetection } from "../../hooks/useMultiLineDetection";
-import { formatTime } from "../../utils/formatTime";
+import SentTail from "@/assets/tail.svg?react";
+import ReceivedTail from "@/assets/tail2.svg?react";
+import { useMultiLineDetection } from "@/hooks/useMultiLineDetection";
+import { formatTime } from "@/utils/formatTime";
 
 interface BubbleProps {
   message: string;

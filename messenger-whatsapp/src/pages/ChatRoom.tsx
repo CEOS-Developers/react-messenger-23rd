@@ -1,13 +1,13 @@
 import { Fragment, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import Bubble from "../components/chat/Bubble";
-import InputBox from "../components/common/Input";
-import ChipDate from "../components/chip/ChatDate";
-import ChatHeader from "../components/chat/ChatHeader";
-import TopBar from "../components/common/TopBar";
-import { useChatStore } from "../store/useChatStore";
-import { isSameDay, findPartner, getUnreadCount } from "../utils/chatUtils";
-import { formatMinute } from "../utils/formatTime";
+import Bubble from "@/components/chat/Bubble";
+import InputBox from "@/components/common/Input";
+import ChipDate from "@/components/chip/ChatDate";
+import ChatHeader from "@/components/chat/ChatHeader";
+import TopBar from "@/components/common/TopBar";
+import { useChatStore } from "@/store/useChatStore";
+import { isSameDay, findPartner, getUnreadCount } from "@/utils/chatUtils";
+import { formatMinute } from "@/utils/formatTime";
 
 export default function ChatRoom() {
   const { roomId } = useParams();

@@ -1,10 +1,9 @@
-import TopBar from "../components/common/TopBar";
-import ChatRoomItem from "../components/chat/ChatRoomItem";
-import { useChatStore } from "../store/useChatStore";
-import Search from "../assets/Search.svg?react";
-import More_Square from "../assets/More_Square.svg?react";
-
-import Plus from "../assets/Plus.svg?react";
+import TopBar from "@/components/common/TopBar";
+import ChatRoomItem from "@/components/chat/ChatRoomItem";
+import { useChatStore } from "@/store/useChatStore";
+import Search from "@/assets/Search.svg?react";
+import More_Square from "@/assets/More_Square.svg?react";
+import Plus from "@/assets/Plus.svg?react";
 
 const ChatList = () => {
   const { chatRooms } = useChatStore();

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import type { ChatRoom } from "../../store/useChatStore";
-import { useChatStore } from "../../store/useChatStore";
-import { findPartner } from "../../utils/chatUtils";
-import { formatTime } from "../../utils/formatTime";
+import type { ChatRoom } from "@/store/useChatStore";
+import { useChatStore } from "@/store/useChatStore";
+import { findPartner } from "@/utils/chatUtils";
+import { formatTime } from "@/utils/formatTime";
 
 interface ChatRoomItemProps {
   chatRoom: ChatRoom;
