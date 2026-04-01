@@ -7,7 +7,7 @@ import More_Square from "../assets/More_Square.svg?react";
 import Plus from "../assets/Plus.svg?react";
 
 const ChatList = () => {
-  const { chatRooms, users, messages, currentUserId } = useChatStore();
+  const { chatRooms } = useChatStore();
 
   return (
     <div className="flex flex-col h-screen bg-white">
@@ -22,13 +22,7 @@ const ChatList = () => {
       </div>
       <div className="flex-1 overflow-y-auto no-scrollbar">
         {chatRooms.map((room) => (
-          <ChatRoomItem
-            key={room.id}
-            chatRoom={room}
-            currentUserId={currentUserId}
-            users={users}
-            messages={messages}
-          />
+          <ChatRoomItem key={room.id} chatRoom={room} />
         ))}
       </div>
     </div>

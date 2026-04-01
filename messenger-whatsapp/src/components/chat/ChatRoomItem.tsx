@@ -1,22 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import type { ChatRoom, User, Message } from "../../store/useChatStore";
+import type { ChatRoom } from "../../store/useChatStore";
+import { useChatStore } from "../../store/useChatStore";
 import { findPartner } from "../../utils/chatUtils";
 import { formatTime } from "../../utils/formatTime";
 
 interface ChatRoomItemProps {
   chatRoom: ChatRoom;
-  currentUserId: number;
-  users: User[];
-  messages: Message[];
 }
 
-const ChatRoomItem = ({
-  chatRoom,
-  currentUserId,
-  users,
-  messages,
-}: ChatRoomItemProps) => {
+const ChatRoomItem = ({ chatRoom }: ChatRoomItemProps) => {
   const navigate = useNavigate();
+  const { users, messages, currentUserId } = useChatStore();
+
   const partner = findPartner(users, chatRoom.participantIds, currentUserId);
   const roomMessages = messages.filter((m) => m.chatRoomId === chatRoom.id);
   const lastMessage = roomMessages[roomMessages.length - 1];
