@@ -1,0 +1,35 @@
+import type { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
+import BackIcon from "@/assets/left.svg?react";
+
+interface PageHeaderProps {
+  title: string;
+  right?: ReactNode;
+  onBack?: () => void;
+  showBack?: boolean;
+}
+
+export default function PageHeader({
+  title,
+  right,
+  onBack,
+  showBack = false,
+}: PageHeaderProps) {
+  const navigate = useNavigate();
+
+  const handleBack = onBack ?? (() => navigate(-1));
+
+  return (
+    <div className="flex items-center justify-between px-4 py-2.5">
+      <div className="flex items-center gap-3">
+        {showBack && (
+          <BackIcon className="cursor-pointer shrink-0" onClick={handleBack} />
+        )}
+        <span className="text-headline-2 text-gray-06 font-semibold">
+          {title}
+        </span>
+      </div>
+      {right && <div className="flex items-center gap-3">{right}</div>}
+    </div>
+  );
+}
