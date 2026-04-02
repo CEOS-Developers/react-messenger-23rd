@@ -62,7 +62,7 @@ const ProfilePage = () => {
               <EditButton type="info" />
             </div>
           </div>
-          <hr className="w-83.75 text-gray-100" />
+          <hr className="w-83.75 self-center text-gray-100" />
           <div className="flex justify-center">
             <ToggleTap active={activeTab} onToggle={setActiveTab} />
           </div>
