@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import QrIcon from "@/assets/icons/qr.svg?react";
 import PostedImage1 from "@/assets/images/PostedImage1.jpg";
@@ -35,6 +35,14 @@ const savedImages = [SavedImage1, SavedImage2, SavedImage3, SavedImage4];
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState<ToggleTapType>("posts");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    // TODO: 업로드 처리
+    console.log(file);
+  };
 
   return (
     <div className="relative flex h-full flex-col">
@@ -66,7 +74,14 @@ const ProfilePage = () => {
         </div>
       </main>
       <div className="absolute bottom-27.5 flex w-full justify-center">
-        <UploadButton />
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleFileChange}
+        />
+        <UploadButton onClick={() => fileInputRef.current?.click()} />
       </div>
     </div>
   );
