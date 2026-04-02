@@ -24,7 +24,7 @@ export const NavBar = () => {
       id: 'chat',
       label: '채팅',
       icon: isChat ? messageOn : messageOff,
-      badge: 17,
+      badge: 200,
       path: '/chat',
     },
     {
@@ -49,8 +49,8 @@ export const NavBar = () => {
 
             {/* 읽지 않은 알림(뱃지)이 있을 경우에만 렌더링 */}
             {badge && (
-              <div className="absolute -top-1 -right-3 px-1 py-0.5 bg-green-500 rounded-2xl flex justify-center items-center min-w-5">
-                <span className="text-black text-xs font-normal font-['Pretendard'] leading-3">
+              <div className="absolute -top-1 -right-3 px-1.25 py-0.7 bg-green200 rounded-[15px] flex justify-center items-center min-w-5">
+                <span className="text-caption-12">
                   {badge}
                 </span>
               </div>
@@ -58,7 +58,7 @@ export const NavBar = () => {
           </div>
 
           {/* 텍스트 라벨 */}
-          <span className="text-black text-xs font-normal font-['Pretendard'] leading-5">
+          <span className="text-caption-12">
             {label}
           </span>
         </button>
