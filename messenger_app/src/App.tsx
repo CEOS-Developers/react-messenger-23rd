@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
 import { ChatPage } from '../pages/ChatPage.tsx';
+import { ChatListPage } from '../pages/ChatListPage.tsx';
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<ChatPage/>}/>
+          <Route path='/chat' element={<ChatListPage/>}/>
         </Routes>
       </BrowserRouter>
     </div>
