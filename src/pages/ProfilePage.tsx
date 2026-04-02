@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import QrIcon from "@/assets/icons/qr.svg?react";
 import PostedImage1 from "@/assets/images/PostedImage1.jpg";
@@ -35,6 +35,7 @@ const savedImages = [SavedImage1, SavedImage2, SavedImage3, SavedImage4];
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState<ToggleTapType>("posts");
+  const fileInputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="relative flex h-full flex-col">
       <main className="flex-1 overflow-y-auto">
@@ -65,10 +66,8 @@ const ProfilePage = () => {
         </div>
       </main>
       <div className="absolute bottom-27.5 flex w-full justify-center">
-        <label>
-          <input type="file" accept="image/*" className="hidden" />
-          <UploadButton />
-        </label>
+        <input ref={fileInputRef} type="file" accept="image/*" className="hidden" />
+        <UploadButton onClick={() => fileInputRef.current?.click()} />
       </div>
     </div>
   );
