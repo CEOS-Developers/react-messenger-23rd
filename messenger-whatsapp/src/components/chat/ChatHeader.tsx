@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import BackIcon from "@/assets/left.svg?react";
+import BackIcon from "@/assets/pageheader_back.svg?react";
 import CameraIcon from "@/assets/camera.svg?react";
 import CallIcon from "@/assets/call.svg?react";
 import { useChatStore } from "@/store/useChatStore";

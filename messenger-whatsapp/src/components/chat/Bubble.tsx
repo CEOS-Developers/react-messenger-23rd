@@ -49,7 +49,7 @@ export default function Bubble({
           {isSent ? (
             <SentTail className="absolute bottom-0 -right-[6px]" />
           ) : (
-            <ReceivedTail className="absolute bottom-0 -left-[6px]" />
+            <ReceivedTail className="absolute bottom-0 -back-[6px]" />
           )}
         </div>
 
