@@ -1,7 +1,6 @@
 import usersJson from "@/data/users.json";
 import type { User } from "@/types/message";
 
-const users = usersJson.users as User[];
+const userMap = new Map(usersJson.users.map(u => [u.userId, u as User]));
 
-export const getUserById = (userId: number): User | undefined =>
-  users.find(u => u.userId === userId);
+export const getUserById = (userId: number): User | undefined => userMap.get(userId);

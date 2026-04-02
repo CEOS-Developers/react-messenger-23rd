@@ -17,25 +17,25 @@ const ChatListPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const mainRef = useRef<HTMLElement>(null);
 
-  const sortedChatRooms = useMemo(() => {
-    const roomsArray = Object.values(chatRooms);
-    const pinnedRoom = roomsArray.find(r => r.chatRoomId === PINNED_CHAT_ROOM_ID);
-    const otherRooms = roomsArray
+  const enrichedChatRooms = useMemo(() => {
+    const roomsArray = Object.values(chatRooms).map(room => ({
+      ...room,
+      profiles: room.friendUserIds.map(id => getUserById(id)).filter(u => u !== undefined),
+      alertCount: room.messages.filter(m => m.userId !== 1 && !m.isRead).length,
+      lastMessage: room.messages.at(-1),
+    }));
+    const pinned = roomsArray.find(r => r.chatRoomId === PINNED_CHAT_ROOM_ID);
+    const others = roomsArray
       .filter(r => r.chatRoomId !== PINNED_CHAT_ROOM_ID)
       .sort((a, b) => getChatTimestamp(b) - getChatTimestamp(a));
-    return pinnedRoom ? [pinnedRoom, ...otherRooms] : otherRooms;
+    return pinned ? [pinned, ...others] : others;
   }, [chatRooms]);
 
   const filteredChatRooms = useMemo(() => {
     const query = searchQuery.trim();
-    if (!query) return sortedChatRooms;
-    return sortedChatRooms.filter(room =>
-      room.friendUserIds
-        .map(id => getUserById(id))
-        .filter(Boolean)
-        .some(user => user!.name.includes(query)),
-    );
-  }, [sortedChatRooms, searchQuery]);
+    if (!query) return enrichedChatRooms;
+    return enrichedChatRooms.filter(room => room.profiles.some(u => u.name.includes(query)));
+  }, [enrichedChatRooms, searchQuery]);
 
   return (
     <div className="relative flex h-full flex-col">
@@ -54,20 +54,16 @@ const ChatListPage = () => {
       >
         <SearchBar placeholder="Search Chats" value={searchQuery} onChange={setSearchQuery} />
         <div className="mt-5 mb-28">
-          {filteredChatRooms.map(chatRoom => {
-            const lastMessage = chatRoom.messages[chatRoom.messages.length - 1];
-            const profiles = chatRoom.friendUserIds.map(id => getUserById(id)).filter(Boolean);
+          {filteredChatRooms.map(({ chatRoomId, profiles, alertCount, lastMessage }) => {
             if (!lastMessage || profiles.length === 0) return null;
-            const alertCount = chatRoom.messages.filter(m => m.userId !== 1 && !m.isRead).length;
-
             return (
-              <Link key={chatRoom.chatRoomId} to={`/chat/${chatRoom.chatRoomId}`}>
+              <Link key={chatRoomId} to={`/chat/${chatRoomId}`}>
                 <ChatListItem
-                  profiles={profiles as NonNullable<ReturnType<typeof getUserById>>[]}
+                  profiles={profiles}
                   lastMessage={lastMessage.message}
                   time={lastMessage.time}
                   isRead={lastMessage.isRead}
-                  isFixed={chatRoom.chatRoomId === PINNED_CHAT_ROOM_ID}
+                  isFixed={chatRoomId === PINNED_CHAT_ROOM_ID}
                   alertCount={alertCount}
                 />
               </Link>

@@ -35,7 +35,6 @@ function ChatListItem({
   alertCount,
 }: ChatListItemProps) {
   const { name, count } = getDisplayName(profiles);
-  const hasAlert = !!alertCount;
 
   return (
     <div className="flex cursor-pointer items-center gap-3 p-4">
@@ -52,7 +51,7 @@ function ChatListItem({
           <span className="font-body-6 text-gray-500">
             {lastMessage.length > 24 ? `${lastMessage.slice(0, 24)}...` : lastMessage}
           </span>
-          {hasAlert && <Alert count={alertCount!} />}
+          {!!alertCount && <Alert count={alertCount} />}
         </div>
       </div>
     </div>

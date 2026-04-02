@@ -17,15 +17,17 @@ const ICON_MAP = {
   "/profile": ProfileCircleIcon,
 } as const;
 
+const myUser = getUserById(1);
+
 const Navibar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const myUser = getUserById(1);
-  const chatRooms = useChatStore(state => state.chatRooms);
-
-  const totalUnreadCount = Object.values(chatRooms).reduce((acc, room) => {
-    return acc + room.messages.filter(m => m.userId !== 1 && !m.isRead).length;
-  }, 0);
+  const totalUnreadCount = useChatStore(state =>
+    Object.values(state.chatRooms).reduce(
+      (acc, room) => acc + room.messages.filter(m => m.userId !== 1 && !m.isRead).length,
+      0,
+    ),
+  );
 
   return (
     <nav className="rounded-100 shadow-box flex w-full flex-row items-center bg-white p-1">
