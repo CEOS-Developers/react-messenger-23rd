@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import SentTail from "@/assets/tail.svg?react";
-import ReceivedTail from "@/assets/tail2.svg?react";
+import SentTail from "@/assets/chat_tail_sent.svg?react";
+import ReceivedTail from "@/assets/chat_tail_received.svg?react";
 import { useMultiLineDetection } from "@/hooks/useMultiLineDetection";
 import { formatTime } from "@/utils/formatTime";
 
@@ -49,7 +49,7 @@ export default function Bubble({
           {isSent ? (
             <SentTail className="absolute bottom-0 -right-[6px]" />
           ) : (
-            <ReceivedTail className="absolute bottom-0 -back-[6px]" />
+            <ReceivedTail className="absolute bottom-0 -left-[6px]" />
           )}
         </div>
 

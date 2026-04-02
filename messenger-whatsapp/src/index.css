@@ -77,7 +77,7 @@
   /* Caption 2: 10px / 16px = 0.625em */
   --text-caption-2: 0.625em;
   --text-caption-2--line-height: 1.6; /* 160% */
-  --text-caption-2--letter-spacing: -0.025em;
+  --text-caption-2--letter-spacing: -0.01em;
   --text-caption-2--font-weight: 400;
 }
 
