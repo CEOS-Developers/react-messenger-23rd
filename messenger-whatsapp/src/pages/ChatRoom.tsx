@@ -1,9 +1,11 @@
 import { Fragment, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import CameraIcon from "@/assets/camera.svg?react";
+import CallIcon from "@/assets/call.svg?react";
 import Bubble from "@/components/chat/Bubble";
 import InputBox from "@/components/common/Input";
 import ChipDate from "@/components/chip/ChatDate";
-import ChatHeader from "@/components/chat/ChatHeader";
+import PageHeader from "@/components/common/PageHeader";
 import TopBar from "@/components/common/TopBar";
 import { useChatStore } from "@/store/useChatStore";
 import { isSameDay, findPartner, getUnreadCount } from "@/utils/chatUtils";
@@ -11,8 +13,9 @@ import { formatMinute } from "@/utils/formatTime";
 
 export default function ChatRoom() {
   const { roomId } = useParams();
+  const navigate = useNavigate();
   const roomIdNum = Number(roomId);
-  const { messages: allMessages, chatRooms, users, currentUserId, sendMessage } = useChatStore();
+  const { messages: allMessages, chatRooms, users, currentUserId, sendMessage, swapPerspective } = useChatStore();
   const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
   const room = chatRooms.find((r) => r.id === roomIdNum);
   const participantIds = room?.participantIds ?? [];
@@ -26,7 +29,18 @@ export default function ChatRoom() {
   return (
     <div className="flex flex-col h-screen bg-main-bg no-scrollbar">
       <TopBar />
-      <ChatHeader chatName={chatPartner?.name ?? ""} profileImage={chatPartner?.profileImage} chatRoomId={roomIdNum} />
+      <PageHeader
+        title={chatPartner?.name ?? ""}
+        showBack
+        onBack={() => navigate(-1)}
+        onTitleClick={() => swapPerspective(roomIdNum)}
+        right={
+          <>
+            <CameraIcon />
+            <CallIcon />
+          </>
+        }
+      />
       <div ref={scrollRef} className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar">
         {messages.map((msg, index) => {
           const isSent = msg.senderId === currentUserId;
