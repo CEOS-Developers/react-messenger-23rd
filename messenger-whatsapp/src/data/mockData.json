@@ -1,7 +1,7 @@
 {
   "chatRooms": [{ "id": 1, "participantIds": [1, 2] }],
   "users": [
-    { "id": 1, "name": "이윤서", "profileImage": "/profiles/me.png" },
+    { "id": 1, "name": "문수인", "profileImage": "/profiles/me.png" },
     { "id": 2, "name": "세오스", "profileImage": "/profiles/default.png" }
   ],
   "currentUserId": 1,

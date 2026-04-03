@@ -20,7 +20,7 @@ export default function PageHeader({
   const handleBack = onBack ?? (() => navigate(-1));
 
   return (
-    <div className="flex items-center justify-between px-4 py-2.5">
+    <div className="flex sticky top-0 z-10 items-center justify-between px-4 py-2.5">
       <div className="flex items-center gap-3">
         {showBack && (
           <BackIcon className="cursor-pointer shrink-0" onClick={handleBack} />
