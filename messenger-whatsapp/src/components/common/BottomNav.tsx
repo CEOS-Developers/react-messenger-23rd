@@ -7,9 +7,24 @@ import ProfileDefault from "@/assets/bottomnav_profile_default.svg?react";
 import ProfileActive from "@/assets/bottomnav_profile_active.svg?react";
 
 const NAV_ITEMS = [
-  { path: "/", Default: FriendsDefault, Active: FriendsActive },
-  { path: "/chat", Default: ChatDefault, Active: ChatActive },
-  { path: "/profile", Default: ProfileDefault, Active: ProfileActive },
+  {
+    navigateTo: "/",
+    isActive: (p: string) => p === "/" || p.startsWith("/profile/"),
+    Default: FriendsDefault,
+    Active: FriendsActive,
+  },
+  {
+    navigateTo: "/chat",
+    isActive: (p: string) => p.startsWith("/chat"),
+    Default: ChatDefault,
+    Active: ChatActive,
+  },
+  {
+    navigateTo: "/profile",
+    isActive: (p: string) => p === "/profile",
+    Default: ProfileDefault,
+    Active: ProfileActive,
+  },
 ];
 
 export default function BottomNav() {
@@ -18,11 +33,11 @@ export default function BottomNav() {
 
   return (
     <div className="flex flex-row justify-around items-center px-8 py-3 bg-white border-t border-gray-02">
-      {NAV_ITEMS.map(({ path, Default, Active }) => {
-        const isActive = pathname === path;
-        const Icon = isActive ? Active : Default;
+      {NAV_ITEMS.map(({ navigateTo, isActive, Default, Active }) => {
+        const active = isActive(pathname);
+        const Icon = active ? Active : Default;
         return (
-          <button key={path} onClick={() => navigate(path)}>
+          <button key={navigateTo} onClick={() => navigate(navigateTo)}>
             <Icon />
           </button>
         );

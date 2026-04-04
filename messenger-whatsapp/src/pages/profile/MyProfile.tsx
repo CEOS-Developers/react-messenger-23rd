@@ -23,14 +23,14 @@ export default function MyProfile() {
     me?.links?.map((l) => ({ type: l.type, url: l.url })) ?? [],
   );
 
-  const handleToggleEdit = () => {
-    if (isEditing) {
-      updateFriend(MY_ID, { name, phone, statusMessage, links: linkValues });
-    }
-    setIsEditing((prev) => !prev);
-  };
-
   useEffect(() => {
+    const handleToggleEdit = () => {
+      if (isEditing) {
+        updateFriend(MY_ID, { name, phone, statusMessage, links: linkValues });
+      }
+      setIsEditing((prev) => !prev);
+    };
+
     setHeaderConfig({
       title: "",
       showBack: true,
@@ -43,7 +43,15 @@ export default function MyProfile() {
         </button>
       ),
     });
-  }, [setHeaderConfig, isEditing]);
+  }, [
+    setHeaderConfig,
+    isEditing,
+    name,
+    phone,
+    statusMessage,
+    linkValues,
+    updateFriend,
+  ]);
 
   return (
     <div className="flex flex-col gap-6 pb-10">
