@@ -19,6 +19,7 @@ export default function MyProfile() {
   const [name, setName] = useState(me?.name ?? "");
   const [phone, setPhone] = useState(me?.phone ?? "");
   const [statusMessage, setStatusMessage] = useState(me?.statusMessage ?? "");
+  const [profileImage, setProfileImage] = useState(me?.profileImage ?? "");
   const [linkValues, setLinkValues] = useState(
     me?.links?.map((l) => ({ type: l.type, url: l.url })) ?? [],
   );
@@ -26,7 +27,7 @@ export default function MyProfile() {
   useEffect(() => {
     const handleToggleEdit = () => {
       if (isEditing) {
-        updateFriend(MY_ID, { name, phone, statusMessage, links: linkValues });
+        updateFriend(MY_ID, { name, phone, statusMessage, profileImage, links: linkValues });
       }
       setIsEditing((prev) => !prev);
     };
@@ -49,6 +50,7 @@ export default function MyProfile() {
     name,
     phone,
     statusMessage,
+    profileImage,
     linkValues,
     updateFriend,
   ]);
@@ -58,9 +60,11 @@ export default function MyProfile() {
       <ProfileCard
         name={me?.name ?? ""}
         statusMessage={statusMessage}
+        profileImage={profileImage || undefined}
         isMe
         isEditing={isEditing}
         onStatusMessageChange={setStatusMessage}
+        onPhotoChange={(v) => setProfileImage(v ?? "")}
       />
       <div className="flex flex-col gap-4">
         <ProfileField

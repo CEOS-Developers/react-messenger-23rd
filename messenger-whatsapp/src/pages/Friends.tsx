@@ -31,7 +31,7 @@ export default function Friends() {
 
   return (
     <div>
-      <Friend id={1} name={me?.name ?? ""} isMe />
+      <Friend id={1} name={me?.name ?? ""} isMe profileImage={me?.profileImage || undefined} />
       <div className="p-4 text-caption-1 text-gray-04">친구 {friendCount}</div>
       <FriendsList />
     </div>

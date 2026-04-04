@@ -23,6 +23,7 @@ export default function FriendProfile() {
       <ProfileCard
         name={friend?.name ?? ""}
         statusMessage={friend?.statusMessage}
+        profileImage={friend?.profileImage || undefined}
       />
       <div className="flex flex-col gap-4">
         <ProfileField label="이름" value={friend?.name ?? ""} />
