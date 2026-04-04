@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import BackIcon from "@/assets/pageheader_back.svg?react";
 
 interface PageHeaderProps {
-  title: string;
+  title?: string;
   right?: ReactNode;
   onBack?: () => void;
   showBack?: boolean;

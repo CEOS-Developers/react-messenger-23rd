@@ -6,7 +6,7 @@ import BottomNav from "@/components/common/BottomNav";
 import PageHeader from "@/components/common/PageHeader";
 
 export interface HeaderConfig {
-  title: string;
+  title?: string;
   right?: ReactNode;
   showBack?: boolean;
   onBack?: () => void;

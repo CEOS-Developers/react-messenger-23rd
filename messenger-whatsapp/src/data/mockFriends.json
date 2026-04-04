@@ -1,4 +1,16 @@
 [
+  {
+    "id": 1,
+    "name": "문수인",
+    "profileImage": "/profiles/me.png",
+    "statusMessage": "수면중이에요!",
+    "phone": "010-1234-5678",
+    "links": [
+      { "type": "링크", "url": "https://behance.net/munsuIn" },
+      { "type": "링크", "url": "https://github.com/munsuIn" }
+    ]
+  },
+  { "id": 2, "name": "세오스", "profileImage": "/profiles/default.png" },
   { "id": 3, "name": "이윤서", "profileImage": "/profiles/default.png" },
   {
     "id": 4,

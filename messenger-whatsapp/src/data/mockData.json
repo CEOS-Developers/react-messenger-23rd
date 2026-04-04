@@ -1,7 +1,17 @@
 {
   "chatRooms": [{ "id": 1, "participantIds": [1, 2] }],
   "users": [
-    { "id": 1, "name": "문수인", "profileImage": "/profiles/me.png" },
+    {
+      "id": 1,
+      "name": "문수인",
+      "profileImage": "/profiles/me.png",
+      "statusMessage": "수면중이에요!",
+      "phone": "010-1234-5678",
+      "links": [
+        { "type": "behance", "url": "https://behance.net/munsuIn" },
+        { "type": "github", "url": "https://github.com/munsuIn" }
+      ]
+    },
     { "id": 2, "name": "세오스", "profileImage": "/profiles/default.png" }
   ],
   "currentUserId": 1,

@@ -70,6 +70,6 @@ export const useChatStore = create<ChatStore>()(
         });
       },
     }),
-    { name: "chat-store", version: 3 },
+    { name: "chat-store", version: 4 },
   ),
 );
