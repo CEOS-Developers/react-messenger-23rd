@@ -7,6 +7,7 @@ import MessageSend, {
 import profile from "../assets/chat-page/profile.svg";
 import rawMessages from "../data/messages.json";
 import rawUsers from "../data/users.json";
+import { useParams } from "react-router-dom";
 
 const STORAGE_KEY = "chat-messages";
 
@@ -23,6 +24,12 @@ const initialMessages: ChatMessage[] = rawMessages.map((message) => {
 });
 
 function ChatRoomPage() {
+  const { chatId } = useParams();
+
+  if (!chatId) {
+    return <div>채팅방을 찾을 수 없습니다.</div>;
+  }
+
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
     const savedMessages = localStorage.getItem(STORAGE_KEY);
 
@@ -35,6 +42,10 @@ function ChatRoomPage() {
       return initialMessages;
     }
   });
+
+  useEffect(() => {
+    console.log("현재 채팅방 ID", chatId);
+  }, [chatId]);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
