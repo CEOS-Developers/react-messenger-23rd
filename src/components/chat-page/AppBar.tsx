@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function AppBar() {
   const navigate = useNavigate();
   return (
-    <div className="box-border flex w-[var(--screen-width)] items-center justify-between border-b border-b-[var(--color-border-default)] bg-[var(--color-white)] pt-[var(--space-6)] pr-[var(--space-12)] pb-[var(--space-22)] pl-[var(--space-12)]">
+    <div className="box-border flex w-[var(--screen-width)] items-center justify-between border-b border-b-[var(--color-grey-300)] bg-[var(--color-grey-50)] pt-[var(--space-6)] pr-[var(--space-12)] pb-[var(--space-22)] pl-[var(--space-12)]">
       <section className="flex items-center gap-[var(--space-12)]">
         <button
           onClick={() => navigate("/")}
@@ -34,7 +34,7 @@ function AppBar() {
                 className="aspect-square h-[var(--size-12)] w-[var(--size-12)]"
               />
             </div>
-            <p className="flex-1 self-stretch text-[var(--color-text-secondary)] text-[var(--text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-tight)]">
+            <p className="flex-1 self-stretch text-[var(--color-grey-600)] text-[var(--text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-tight)]">
               nameSpace
             </p>
           </section>

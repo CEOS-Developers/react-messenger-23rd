@@ -107,7 +107,7 @@ function MessageSend({ messages }: MessageSendProps) {
               </div>
 
               <div
-                className={`max-w-[var(--width-message-max)] ${bubbleRadiusClass} bg-[var(--color-bubble-other)] pl-[var(--space-10)] pr-[var(--space-12)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-[var(--color-text-primary)] break-words`}
+                className={`max-w-[var(--width-message-max)] ${bubbleRadiusClass} bg-[var(--color-grey-100)] pl-[var(--space-10)] pr-[var(--space-12)] py-[var(--space-12)] text-[var(--text-sm)] leading-[var(--line-height-tight)] text-[var(--color-text-primary)] break-words`}
               >
                 {message.text}
               </div>

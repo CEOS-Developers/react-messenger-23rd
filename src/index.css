@@ -5,12 +5,12 @@
   --screen-width: 375px;
   --screen-height: 812px;
 
-  /* color */
-  --color-white: #ffffff;
-  --color-border-default: #e8edef;
+  /* color - grey */
+  --color-grey-50: #feffff; /*--color-white*/
+  --color-grey-100: #f3f4f7; /*--color-bubble-other*/
+  --color-grey-300: #e8edef; /*--color-border-default*/
   --color-text-primary: #0a1014;
-  --color-text-secondary: #68717b;
-  --color-bubble-other: #f3f4f6;
+  --color-grey-600: #68717b; /*--color-text-secondary */
   --color-bubble-me: #d91ce2;
   --color-action-primary: #5f4cff;
   --color-input-surface: rgba(238, 238, 238, 0.35);

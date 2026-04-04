@@ -23,7 +23,7 @@ function MessageNavBar({ onSendMessage }: MessageNavBarProps) {
   return (
     <div className="inline-flex w-[var(--screen-width)] items-center gap-[var(--space-8)] px-[var(--space-12)] pt-[var(--space-10)] pb-[var(--space-40)]">
       <section>
-        <button className="flex h-[var(--size-34)] w-[var(--size-34)] items-center justify-center gap-[var(--space-10)] rounded-[var(--radius-full)] bg-[var(--color-bubble-other)]">
+        <button className="flex h-[var(--size-34)] w-[var(--size-34)] items-center justify-center gap-[var(--space-10)] rounded-[var(--radius-full)] bg-[var(--color-gray-100)]">
           <img
             src={plusFile}
             alt="plusFile"
@@ -44,7 +44,7 @@ function MessageNavBar({ onSendMessage }: MessageNavBarProps) {
               }
             }}
             placeholder="메시지 보내기..."
-            className="text-[var(--text-sm)] font-medium leading-[var(--line-height-tight)] text-[var(--color-text-secondary)]"
+            className="text-[var(--text-sm)] font-medium leading-[var(--line-height-tight)] text-[var(--color-grey-600)]"
           ></input>
         </section>
 
