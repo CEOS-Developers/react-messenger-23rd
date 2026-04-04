@@ -4,7 +4,7 @@ import type { HeaderConfig } from "@/components/Layouts/MainLayout";
 import SearchIcon from "@/assets/pageheader_search.svg?react";
 import SettingIcon from "@/assets/pageheader_setting.svg?react";
 import AddUserIcon from "@/assets/pageheader_adduser.svg?react";
-import FriendMe from "@/components/friends/FriendMe";
+import Friend from "@/components/friends/Friend";
 import FriendsList from "@/components/friends/FriendsList";
 import { useFriendsStore } from "@/store/useFriendsStore";
 
@@ -12,7 +12,9 @@ export default function Friends() {
   const { setHeaderConfig } = useOutletContext<{
     setHeaderConfig: (c: HeaderConfig) => void;
   }>();
-  const friendCount = useFriendsStore((s) => s.friends.length);
+  const friends = useFriendsStore((s) => s.friends);
+  const me = friends.find((f) => f.id === 1);
+  const friendCount = friends.length - 1;
 
   useEffect(() => {
     setHeaderConfig({
@@ -29,7 +31,7 @@ export default function Friends() {
 
   return (
     <div>
-      <FriendMe />
+      <Friend id={1} name={me?.name ?? ""} isMe />
       <div className="p-4 text-caption-1 text-gray-04">친구 {friendCount}</div>
       <FriendsList />
     </div>
