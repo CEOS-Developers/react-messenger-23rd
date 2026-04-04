@@ -9,7 +9,7 @@ const CATEGORIES = [
 
 export const ChatCategory = () => {
   return (
-    <div className="w-full inline-flex justify-start items-center gap-2">
+    <div className="w-full inline-flex justify-start items-center gap-2 px-4">
       {/* 카테고리 리스트 */}
       {CATEGORIES.map(({ id, label, isActive }) => (
         <button

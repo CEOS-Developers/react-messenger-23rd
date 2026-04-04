@@ -1,4 +1,4 @@
-import arrow_left from '../../icons/icon_arrow_left.svg';
+import arrow_right from '../../icons/icon_arrow_right.svg';
 import video from '../../icons/icon_video.svg';
 import call from '../../icons/icon_callOff.svg';
 import profile from '../../assets/profile.jpg';
@@ -14,7 +14,7 @@ export const ChatHeader = () => {
       {/* 상단바(헤더) */}
       <header className="w-full px-4 h-12 flex flex-row shrink-0 items-center justify-between bg-Ivory">
         <div className="flex w-12 h-7 items-center justify-between">
-          <img src={arrow_left} alt="" onClick={() => navigate('/chat')}/>
+          <img src={arrow_right} alt="" onClick={() => navigate('/call')} />
           <div className="text-body-02">{CHAT_COUNTS}</div>
         </div>
 

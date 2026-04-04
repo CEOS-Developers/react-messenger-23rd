@@ -12,3 +12,12 @@ export interface Message {
   isRead: boolean;
   timestamp: string;
 }
+
+export interface ChatRoom {
+  id: string;
+  participants: User[];
+  messages: Message[];
+  title?: string;
+  unreadCount?: number;
+  lastMessageAt?: string;
+}

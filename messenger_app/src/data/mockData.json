@@ -1,30 +1,239 @@
 {
-  "users": [
+  "chatRooms": [
     {
-      "id": "user_1",
-      "name": "김예린",
-      "profileImage": "/src/assets/profile.jpg"
+      "id": "room_001",
+      "isGroup": false,
+      "unreadCount": 0,
+      "participants": [
+        { "id": "user_yelin", "name": "김예린", "profileImage": "/src/assets/profiles/yelin.jpg" },
+        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+      ],
+      "messages": [
+        {
+          "id": "msg_001_1",
+          "senderId": "user_me",
+          "text": "혹시 내일 전공 수업 과제 다 했어? 나 지금 시작함...",
+          "isRead": true,
+          "timestamp": "2026-04-04T20:30:00.000Z"
+        },
+        {
+          "id": "msg_001_2",
+          "senderId": "user_yelin",
+          "text": "미친 나도 아직 시작도 안함 ㅋㅋㅋ",
+          "isRead": true,
+          "timestamp": "2026-04-04T20:35:00.000Z"
+        },
+        {
+          "id": "msg_001_3",
+          "senderId": "user_yelin",
+          "text": "이거 분량 너무 많지 않아? ㅠ",
+          "isRead": true,
+          "timestamp": "2026-04-04T20:35:30.000Z"
+        },
+        {
+          "id": "msg_001_4",
+          "senderId": "user_me",
+          "text": "다행이다 나만 그런게 아니었어 ㅠ 내일 점심 먹고 같이 할래?",
+          "isRead": true,
+          "timestamp": "2026-04-04T20:40:00.000Z"
+        },
+        {
+          "id": "msg_001_5",
+          "senderId": "user_yelin",
+          "text": "좋아!! 도서관에서 볼까?",
+          "isRead": true,
+          "timestamp": "2026-04-04T20:42:00.000Z"
+        },
+        {
+          "id": "msg_001_6",
+          "senderId": "user_me",
+          "text": "웅 나 1시에 교양 수업 끝나니까 그때쯤 보자",
+          "isRead": true,
+          "timestamp": "2026-04-04T20:55:00.000Z"
+        },
+        {
+          "id": "msg_001_7",
+          "senderId": "user_yelin",
+          "text": "너 공강 없어?",
+          "isRead": true,
+          "timestamp": "2026-04-04T21:01:00.000Z"
+        }
+      ]
     },
     {
-      "id": "user_2",
-      "name": "나",
-      "profileImage": ""
-    }
-  ],
-  "messages": [
-    {
-      "id": "msg_001",
-      "senderId": "user_1",
-      "text": "안녕하세요! 과제 진행은 잘 돼가시나요?",
-      "isRead": true,
-      "timestamp": "2023-10-27T10:00:00.000Z"
+      "id": "room_002",
+      "isGroup": true,
+      "title": "서울 러너 모임",
+      "unreadCount": 9,
+      "participants": [
+        { "id": "user_runner1", "name": "운영진_제이", "profileImage": "/src/assets/profiles/runner.jpg" },
+        { "id": "user_runner2", "name": "초보러너", "profileImage": "/src/assets/profiles/default.jpg" },
+        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+      ],
+      "messages": [
+        {
+          "id": "msg_002_1",
+          "senderId": "user_runner2",
+          "text": "오늘 날씨 너무 좋네요~ 다들 퇴근하시고 뛰시나요?",
+          "isRead": true,
+          "timestamp": "2026-04-04T13:10:00.000Z"
+        },
+        {
+          "id": "msg_002_2",
+          "senderId": "user_me",
+          "text": "저는 오늘 야근이라 못 뛸 것 같아요 ㅠㅠ 다들 화이팅!",
+          "isRead": true,
+          "timestamp": "2026-04-04T13:15:00.000Z"
+        },
+        {
+          "id": "msg_002_3",
+          "senderId": "user_runner2",
+          "text": "앗 아쉽네요 다음 정모 때 뵈어요!",
+          "isRead": true,
+          "timestamp": "2026-04-04T13:20:00.000Z"
+        },
+        {
+          "id": "msg_002_4",
+          "senderId": "user_runner1",
+          "text": "📢 3월 30일 저녁 6시 한강 러닝 크루 모집합니다. 참석하실 분들은 투표 부탁드려요!",
+          "isRead": false,
+          "timestamp": "2026-04-04T15:00:00.000Z"
+        }
+      ]
     },
     {
-      "id": "msg_002",
-      "senderId": "user_2",
-      "text": "아...일단 텍스트부터 길게 써보고 어떻게 보이는지를 봐야 할 것 같아요. 텍스트텍스트텍스트텍스트텍스트. 줄바꿈 잘 보이시나요?",
-      "isRead": true,
-      "timestamp": "2023-10-27T10:00:00.000Z"
+      "id": "room_003",
+      "isGroup": false,
+      "unreadCount": 2,
+      "participants": [
+        { "id": "user_elena", "name": "Elena", "profileImage": "/src/assets/profiles/elena.jpg" },
+        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+      ],
+      "messages": [
+        {
+          "id": "msg_003_1",
+          "senderId": "user_elena",
+          "text": "Hey! Did you finish the design draft for the new feature?",
+          "isRead": true,
+          "timestamp": "2026-04-03T18:00:00.000Z"
+        },
+        {
+          "id": "msg_003_2",
+          "senderId": "user_me",
+          "text": "Almost done! I'll send it to you before EOD.",
+          "isRead": true,
+          "timestamp": "2026-04-03T18:15:00.000Z"
+        },
+        {
+          "id": "msg_003_3",
+          "senderId": "user_elena",
+          "text": "Great, thanks!",
+          "isRead": true,
+          "timestamp": "2026-04-03T18:20:00.000Z"
+        },
+        {
+          "id": "msg_003_4",
+          "senderId": "user_elena",
+          "text": "did you also get this email? in the morning",
+          "isRead": false,
+          "timestamp": "2026-04-04T01:21:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "room_004",
+      "isGroup": false,
+      "unreadCount": 0,
+      "participants": [
+        { "id": "user_mom", "name": "엄마", "profileImage": "/src/assets/profiles/default_green.jpg" },
+        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+      ],
+      "messages": [
+        {
+          "id": "msg_004_1",
+          "senderId": "user_mom",
+          "text": "우리 딸 밥은 먹었어?",
+          "isRead": true,
+          "timestamp": "2026-04-03T12:00:00.000Z"
+        },
+        {
+          "id": "msg_004_2",
+          "senderId": "user_me",
+          "text": "웅 방금 학식 먹었엉 엄마는??",
+          "isRead": true,
+          "timestamp": "2026-04-03T12:15:00.000Z"
+        },
+        {
+          "id": "msg_004_3",
+          "senderId": "user_mom",
+          "text": "엄마도 아빠랑 먹었지~ 서울 날씨는 어때 춥지 않아?",
+          "isRead": true,
+          "timestamp": "2026-04-03T13:00:00.000Z"
+        },
+        {
+          "id": "msg_004_4",
+          "senderId": "user_me",
+          "text": "오늘은 비 와서 그런지 좀 쌀쌀하네 ㅠㅠ",
+          "isRead": true,
+          "timestamp": "2026-04-03T13:05:00.000Z"
+        },
+        {
+          "id": "msg_004_5",
+          "senderId": "user_mom",
+          "text": "담주부터 부산, 서울 다 15도 정도 완전 봄날씨래~ 옷 얇은거 챙겨라",
+          "isRead": true,
+          "timestamp": "2026-04-03T14:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "room_007",
+      "isGroup": true,
+      "title": "마라탕",
+      "participantCount": 5,
+      "unreadCount": 0,
+      "participants": [
+        { "id": "user_friend1", "name": "김민지", "profileImage": "/src/assets/profiles/default_green.jpg" },
+        { "id": "user_friend2", "name": "이수아", "profileImage": "/src/assets/profiles/default.jpg" },
+        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+      ],
+      "messages": [
+        {
+          "id": "msg_007_1",
+          "senderId": "user_friend1",
+          "text": "얘들아 우리 언제 만나 ㅠㅠ 방학 때 얼굴 한 번을 못봤네",
+          "isRead": true,
+          "timestamp": "2026-03-12T19:00:00.000Z"
+        },
+        {
+          "id": "msg_007_2",
+          "senderId": "user_friend2",
+          "text": "내말이 ㅠㅠ 마라탕 수혈 시급함",
+          "isRead": true,
+          "timestamp": "2026-03-12T19:05:00.000Z"
+        },
+        {
+          "id": "msg_007_3",
+          "senderId": "user_me",
+          "text": "개강 첫 주 주말 어때?",
+          "isRead": true,
+          "timestamp": "2026-03-12T19:10:00.000Z"
+        },
+        {
+          "id": "msg_007_4",
+          "senderId": "user_friend1",
+          "text": "오 좋아 토요일에 홍대에서 보자",
+          "isRead": true,
+          "timestamp": "2026-03-12T19:15:00.000Z"
+        },
+        {
+          "id": "msg_007_5",
+          "senderId": "user_friend1",
+          "text": "다들 개강 잘 했어?",
+          "isRead": true,
+          "timestamp": "2026-03-14T12:00:00.000Z"
+        }
+      ]
     }
   ]
 }

@@ -36,12 +36,12 @@ export const NavBar = () => {
   ];
 
   return (
-    <nav className="absolute bottom-8.5 flex justify-start items-center">
+    <nav className="w-full absolute bottom-0 flex justify-center items-center bg-white border-t border-[0.5px] border-gray-300">
       {NAV_ITEMS.map(({ id, label, icon, badge, path }) => (
         <button
           key={id}
           onClick={() => navigate(path)}
-          className="w-28 h-12 relative bg-white flex flex-col justify-center items-center gap-0.5"
+          className="w-28 h-20.5 pt-3 relative flex flex-col justify-start items-center gap-0.5"
         >
           {/* 아이콘 및 뱃지 영역 */}
           <div className="w-6 h-6 relative shrink-0">

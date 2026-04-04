@@ -6,12 +6,14 @@ import { MainChatHeader } from '../src/components/chat/MainChatHeader';
 
 export const ChatListPage = () => {
   return (
-    <div className="flex flex-col px-4 py-1.25">
+    <div className="flex flex-col py-1.25">
       <MainChatHeader chatTitle="채팅"/>
 
       <SearchBar/>
 
       <ChatCategory/>
+
+      {/* <ChatList /> */}
 
       <NavBar/>
     </div>
