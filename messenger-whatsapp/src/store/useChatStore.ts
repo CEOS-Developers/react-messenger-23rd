@@ -29,6 +29,7 @@ type ChatStore = {
   messages: Message[];
   sendMessage: (text: string, chatRoomId: number) => void;
   swapPerspective: (chatRoomId: number) => void;
+  resetPerspective: () => void;
 };
 
 export const useChatStore = create<ChatStore>()(
@@ -52,24 +53,36 @@ export const useChatStore = create<ChatStore>()(
             },
           ],
         })),
+      resetPerspective: () => {
+        set({ currentUserId: 1 });
+      },
       swapPerspective: (chatRoomId: number) => {
-        const { users, chatRooms, currentUserId, messages } = get();
-        const room = chatRooms.find((r) => r.id === chatRoomId);
-        if (!room) return;
-        const other = users.find(
-          (u) => u.id !== currentUserId && room.participantIds.includes(u.id),
-        );
-        if (!other) return;
-        set({
-          currentUserId: other.id,
-          messages: messages.map((m) =>
-            m.readBy.includes(other.id)
-              ? m
-              : { ...m, readBy: [...m.readBy, other.id] },
-          ),
+        set((state) => {
+          const { chatRooms, currentUserId, messages } = state;
+
+          // 1. 현재 채팅방 정보를 가져와서 다음 사용자(nextId) 결정
+          const room = chatRooms.find((r) => r.id === chatRoomId);
+          if (!room) return state;
+
+          const ids = room.participantIds;
+          const nextId = ids[(ids.indexOf(currentUserId) + 1) % ids.length];
+
+          // 2. 모든 메시지를 순회하며 readBy에 nextId가 없으면 추가
+          const updatedMessages = messages.map((m) =>
+            m.chatRoomId === chatRoomId && !m.readBy.includes(nextId)
+              ? { ...m, readBy: [...m.readBy, nextId] }
+              : m,
+          );
+
+          // 3. 상태 업데이트
+          return {
+            ...state,
+            currentUserId: nextId,
+            messages: updatedMessages,
+          };
         });
       },
     }),
-    { name: "chat-store", version: 4 },
+    { name: "chat-store", version: 6 },
   ),
 );
