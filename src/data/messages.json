@@ -2,14 +2,14 @@
   {
     "id": 1,
     "text": "나는 지금 홍문관이야",
-    "sender": "other",
+    "senderID": "user1",
     "userId": 1,
     "sentAt": 1710000000000
   },
   {
     "id": 2,
     "text": "예스예스~~",
-    "sender": "me",
+    "senderID": "me",
     "sentAt": 1710000000000
   }
 ]

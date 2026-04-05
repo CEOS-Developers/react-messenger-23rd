@@ -12,12 +12,12 @@ import { useParams } from "react-router-dom";
 const STORAGE_KEY = "chat-messages";
 
 const initialMessages: ChatMessage[] = rawMessages.map((message) => {
-  const matchedUser = rawUsers.find((user) => user.id === message.userId);
+  const matchedUser = rawUsers.find((user) => user.id === message.senderID);
 
   return {
     id: message.id,
     text: message.text,
-    sender: message.sender as "me" | "other",
+    sender: message.senderID === "me" ? "me" : "other",
     profileImage: matchedUser?.profileImage === "profile" ? profile : "",
     sentAt: message.sentAt,
   };

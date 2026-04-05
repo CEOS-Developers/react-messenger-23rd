@@ -1,0 +1,8 @@
+[
+  {
+    "id": "1",
+    "name": "홍문관",
+    "memberIds": ["me", "user1"],
+    "isGroup": false
+  }
+]

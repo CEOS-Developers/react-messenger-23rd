@@ -1,12 +1,17 @@
 [
   {
-    "id": 1,
+    "id": "user1",
     "name": "홍문관",
     "profileImage": "profile"
   },
   {
-    "id": 2,
+    "id": "me",
     "name": "나",
+    "profileImage": "profile"
+  },
+  {
+    "id": "emma",
+    "name": "emma",
     "profileImage": "profile"
   }
 ]
