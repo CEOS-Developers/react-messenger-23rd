@@ -6,6 +6,8 @@ import ChatRoomPage from '@/pages/chat-room/ui/ChatRoomPage';
 import FriendsPage from '@/pages/friends/ui/FriendsPage';
 import MobileLayout from '@/shared/ui/MobileLayout';
 
+import MyProfilePage from './pages/my-profile/ui/MyProfilePage';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -14,6 +16,7 @@ const App = () => {
           <Route path="/" element={<ChatListPage />} />
           <Route path="/chat/:id" element={<ChatRoomPage />} />
           <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/my-profile" element={<MyProfilePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
