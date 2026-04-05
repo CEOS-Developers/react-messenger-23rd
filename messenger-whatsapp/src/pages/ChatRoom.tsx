@@ -8,19 +8,37 @@ import ChipDate from "@/components/chip/ChatDate";
 import PageHeader from "@/components/common/PageHeader";
 import TopBar from "@/components/common/TopBar";
 import { useChatStore } from "@/store/useChatStore";
-import { isSameDay, findPartner, getUnreadCount } from "@/utils/chatUtils";
+import { isSameDay, getUnreadCount } from "@/utils/chatUtils";
 import { formatMinute } from "@/utils/formatTime";
 
 export default function ChatRoom() {
   const { roomId } = useParams();
   const navigate = useNavigate();
   const roomIdNum = Number(roomId);
-  const { messages: allMessages, chatRooms, users, currentUserId, sendMessage, swapPerspective } = useChatStore();
+  const {
+    messages: allMessages,
+    chatRooms,
+    users,
+    currentUserId,
+    sendMessage,
+    markAsRead,
+    swapPerspective,
+    resetPerspective,
+  } = useChatStore();
   const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
   const room = chatRooms.find((r) => r.id === roomIdNum);
   const participantIds = room?.participantIds ?? [];
-  const chatPartner = findPartner(users, participantIds, currentUserId);
+  const roomName = users
+    .filter((u) => u.id !== currentUserId && participantIds.includes(u.id))
+    .map((u) => u.name)
+    .join(", ");
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    resetPerspective();
+    markAsRead(roomIdNum);
+    return () => resetPerspective();
+  }, [roomIdNum]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
@@ -30,7 +48,7 @@ export default function ChatRoom() {
     <div className="flex flex-col h-screen bg-main-bg no-scrollbar">
       <TopBar />
       <PageHeader
-        title={chatPartner?.name ?? ""}
+        title={roomName}
         showBack
         onBack={() => navigate(-1)}
         onTitleClick={() => swapPerspective(roomIdNum)}
@@ -41,13 +59,18 @@ export default function ChatRoom() {
           </>
         }
       />
-      <div ref={scrollRef} className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar">
+      <div
+        ref={scrollRef}
+        className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar"
+      >
         {messages.map((msg, index) => {
           const isSent = msg.senderId === currentUserId;
           const prev = messages[index - 1];
           const nextMsg = messages[index + 1];
-          const showDate = index === 0 || !isSameDay(prev.timestamp, msg.timestamp);
-          const senderChanged = prev && (prev.senderId === currentUserId) !== isSent;
+          const showDate =
+            index === 0 || !isSameDay(prev.timestamp, msg.timestamp);
+          const senderChanged =
+            prev && (prev.senderId === currentUserId) !== isSent;
           const showTime =
             !nextMsg ||
             (nextMsg.senderId === currentUserId) !== isSent ||

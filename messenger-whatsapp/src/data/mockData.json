@@ -1,36 +1,432 @@
 {
-  "chatRooms": [{ "id": 1, "participantIds": [1, 2] }],
+  "chatRooms": [
+    { "id": 1, "participantIds": [1, 2] },
+    { "id": 2, "participantIds": [1, 3] },
+    { "id": 3, "participantIds": [1, 6] },
+    { "id": 4, "participantIds": [1, 2, 3] },
+    { "id": 5, "participantIds": [1, 4, 5, 8] },
+    { "id": 6, "participantIds": [1, 7, 9, 11, 14] }
+  ],
   "users": [
     {
       "id": 1,
       "name": "문수인",
-      "profileImage": "/profiles/me.png",
-      "statusMessage": "수면중이에요!",
-      "phone": "010-1234-5678",
-      "links": [
-        { "type": "behance", "url": "https://behance.net/munsuIn" },
-        { "type": "github", "url": "https://github.com/munsuIn" }
-      ]
+      "profileImage": "@assets/profile_default.svg"
     },
-    { "id": 2, "name": "세오스", "profileImage": "/profiles/default.png" }
+    {
+      "id": 2,
+      "name": "세오스",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    {
+      "id": 3,
+      "name": "이윤서",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    {
+      "id": 4,
+      "name": "신짱구",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    { "id": 5, "name": "맹구", "profileImage": "@assets/profile_default.svg" },
+    {
+      "id": 6,
+      "name": "최유리",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    {
+      "id": 7,
+      "name": "김철수",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    {
+      "id": 8,
+      "name": "이훈이",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    {
+      "id": 9,
+      "name": "한수지",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    {
+      "id": 10,
+      "name": "신짱아",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    {
+      "id": 11,
+      "name": "장한솔",
+      "profileImage": "@assets/profile_default.svg"
+    },
+    { "id": 14, "name": "정석", "profileImage": "@assets/profile_default.svg" }
   ],
   "currentUserId": 1,
   "messages": [
     {
       "id": 1,
       "chatRoomId": 1,
-      "text": "동해물과 백두산이",
-      "senderId": 1,
-      "timestamp": 1742247000000,
+      "text": "야 오늘 뭐해?",
+      "senderId": 2,
+      "timestamp": 1775264400000,
       "readBy": [1, 2]
     },
     {
       "id": 2,
       "chatRoomId": 1,
-      "text": "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세",
-      "senderId": 2,
-      "timestamp": 1742247060000,
+      "text": "집에서 뒹굴거리는 중ㅋㅋ",
+      "senderId": 1,
+      "timestamp": 1775264700000,
       "readBy": [1, 2]
+    },
+    {
+      "id": 3,
+      "chatRoomId": 1,
+      "text": "나 점심 같이 먹을 사람 구하는 중인데",
+      "senderId": 2,
+      "timestamp": 1775265000000,
+      "readBy": [1, 2]
+    },
+    {
+      "id": 4,
+      "chatRoomId": 1,
+      "text": "어디서?",
+      "senderId": 1,
+      "timestamp": 1775265300000,
+      "readBy": [1, 2]
+    },
+    {
+      "id": 5,
+      "chatRoomId": 1,
+      "text": "홍대 쪽으로 나올 수 있어?",
+      "senderId": 2,
+      "timestamp": 1775265600000,
+      "readBy": [1, 2]
+    },
+    {
+      "id": 6,
+      "chatRoomId": 1,
+      "text": "ㅇㅇ 한 시간 후에 가능",
+      "senderId": 1,
+      "timestamp": 1775269800000,
+      "readBy": [1, 2]
+    },
+    {
+      "id": 7,
+      "chatRoomId": 1,
+      "text": "ㅊㅋ 그럼 12시에 홍대입구 3번 출구 앞에서 봐",
+      "senderId": 2,
+      "timestamp": 1775270100000,
+      "readBy": [1, 2]
+    },
+    {
+      "id": 8,
+      "chatRoomId": 1,
+      "text": "ㅇㅋ",
+      "senderId": 1,
+      "timestamp": 1775270400000,
+      "readBy": [1, 2]
+    },
+
+    {
+      "id": 9,
+      "chatRoomId": 2,
+      "text": "수인아 과제 다 했어?",
+      "senderId": 3,
+      "timestamp": 1775278800000,
+      "readBy": [1, 3]
+    },
+    {
+      "id": 10,
+      "chatRoomId": 2,
+      "text": "거의 다 했는데 마지막 부분이 안 풀림 ㅠ",
+      "senderId": 1,
+      "timestamp": 1775279100000,
+      "readBy": [1, 3]
+    },
+    {
+      "id": 11,
+      "chatRoomId": 2,
+      "text": "어떤 부분?",
+      "senderId": 3,
+      "timestamp": 1775279400000,
+      "readBy": [1, 3]
+    },
+    {
+      "id": 12,
+      "chatRoomId": 2,
+      "text": "zustand persist 설정하는 게 계속 에러 남",
+      "senderId": 1,
+      "timestamp": 1775279700000,
+      "readBy": [1, 3]
+    },
+    {
+      "id": 13,
+      "chatRoomId": 2,
+      "text": "아 그거 version 올려봐 나도 그랬었는데 그렇게 해결했어",
+      "senderId": 3,
+      "timestamp": 1775280000000,
+      "readBy": [1, 3]
+    },
+    {
+      "id": 14,
+      "chatRoomId": 2,
+      "text": "진짜?? 해볼게 고마워!!",
+      "senderId": 1,
+      "timestamp": 1775280300000,
+      "readBy": [1, 3]
+    },
+    {
+      "id": 15,
+      "chatRoomId": 2,
+      "text": "ㅎㅎ 화이팅~",
+      "senderId": 3,
+      "timestamp": 1775304000000,
+      "readBy": [1, 3]
+    },
+    {
+      "id": 46,
+      "chatRoomId": 2,
+      "text": "아 근데 리액트 컴파일러 경고 어떻게 해결했어?",
+      "senderId": 3,
+      "timestamp": 1775307600000,
+      "readBy": [3]
+    },
+
+    {
+      "id": 16,
+      "chatRoomId": 3,
+      "text": "유리야 이번 주 토요일에 시간 돼?",
+      "senderId": 1,
+      "timestamp": 1774695600000,
+      "readBy": [1, 6]
+    },
+    {
+      "id": 17,
+      "chatRoomId": 3,
+      "text": "오후에는 돼! 왜?",
+      "senderId": 6,
+      "timestamp": 1774697400000,
+      "readBy": [1, 6]
+    },
+    {
+      "id": 18,
+      "chatRoomId": 3,
+      "text": "전시회 같이 가고 싶어서 ㅎㅎ 혜화 쪽에 요즘 핫한 데 있거든",
+      "senderId": 1,
+      "timestamp": 1774697700000,
+      "readBy": [1, 6]
+    },
+    {
+      "id": 19,
+      "chatRoomId": 3,
+      "text": "오 좋아! 몇 시에?",
+      "senderId": 6,
+      "timestamp": 1774698000000,
+      "readBy": [1, 6]
+    },
+    {
+      "id": 20,
+      "chatRoomId": 3,
+      "text": "2시 어때?",
+      "senderId": 1,
+      "timestamp": 1774698300000,
+      "readBy": [1, 6]
+    },
+    {
+      "id": 21,
+      "chatRoomId": 3,
+      "text": "ㅇㅇ 완전 좋아 기대된다~!",
+      "senderId": 6,
+      "timestamp": 1774698600000,
+      "readBy": [1, 6]
+    },
+
+    {
+      "id": 22,
+      "chatRoomId": 4,
+      "text": "얘들아 저녁 뭐 먹을 거야?",
+      "senderId": 1,
+      "timestamp": 1775192400000,
+      "readBy": [1, 2, 3]
+    },
+    {
+      "id": 23,
+      "chatRoomId": 4,
+      "text": "삼겹살 먹고 싶은데",
+      "senderId": 2,
+      "timestamp": 1775192700000,
+      "readBy": [1, 2, 3]
+    },
+    {
+      "id": 24,
+      "chatRoomId": 4,
+      "text": "나도!!!",
+      "senderId": 3,
+      "timestamp": 1775193000000,
+      "readBy": [1, 2, 3]
+    },
+    {
+      "id": 25,
+      "chatRoomId": 4,
+      "text": "그럼 7시에 신촌에서 봐?",
+      "senderId": 1,
+      "timestamp": 1775203200000,
+      "readBy": [1, 2, 3]
+    },
+    {
+      "id": 26,
+      "chatRoomId": 4,
+      "text": "ㅇㅋ",
+      "senderId": 2,
+      "timestamp": 1775203500000,
+      "readBy": [1, 2, 3]
+    },
+    {
+      "id": 27,
+      "chatRoomId": 4,
+      "text": "오케이~",
+      "senderId": 3,
+      "timestamp": 1775203800000,
+      "readBy": [1, 2, 3]
+    },
+    {
+      "id": 28,
+      "chatRoomId": 4,
+      "text": "근데 어디 맛집 알아?",
+      "senderId": 2,
+      "timestamp": 1775214000000,
+      "readBy": [1, 2, 3]
+    },
+    {
+      "id": 29,
+      "chatRoomId": 4,
+      "text": "내가 찜해둔 데 있어 맛있을 거야",
+      "senderId": 1,
+      "timestamp": 1775214300000,
+      "readBy": [1, 2, 3]
+    },
+
+    {
+      "id": 30,
+      "chatRoomId": 5,
+      "text": "[공지] 이번 주 방범대 임무\n\n1. 공원 미끄럼틀 밑에 숨겨둔 맹구의 돌 컬렉션 지키기\n\n2. 유리네 집 토끼 인형 안부 확인하기\n\n3. 짱구네 흰둥이 산책 같이 시켜주기 (간식 지참 필수)",
+      "senderId": 4,
+      "timestamp": 1775106000000,
+      "readBy": [1, 4, 5, 8]
+    },
+    {
+      "id": 31,
+      "chatRoomId": 5,
+      "text": "반장님 역시!! 저 돌 컬렉션 지킬게요",
+      "senderId": 5,
+      "timestamp": 1775106300000,
+      "readBy": [1, 4, 5, 8]
+    },
+    {
+      "id": 32,
+      "chatRoomId": 5,
+      "text": "흰둥이 산책은 내가 할게~ 간식도 챙겨갈게",
+      "senderId": 8,
+      "timestamp": 1775106600000,
+      "readBy": [1, 4, 5, 8]
+    },
+    {
+      "id": 33,
+      "chatRoomId": 5,
+      "text": "그럼 나는 유리네 집 담당!",
+      "senderId": 1,
+      "timestamp": 1775109600000,
+      "readBy": [1, 4, 5, 8]
+    },
+    {
+      "id": 34,
+      "chatRoomId": 5,
+      "text": "역시 수인이 명예 방범대원답다~~ 오늘 초코비 쏠게",
+      "senderId": 4,
+      "timestamp": 1775109900000,
+      "readBy": [1, 4, 5, 8]
+    },
+    {
+      "id": 35,
+      "chatRoomId": 5,
+      "text": "짱구야 유리네 토끼 인형 눈이 약간 삐뚤어진 것 같은데?",
+      "senderId": 1,
+      "timestamp": 1775110200000,
+      "readBy": [4, 5, 8]
+    },
+    {
+      "id": 36,
+      "chatRoomId": 5,
+      "text": "어어 그거 원래 그래요 유리가 직접 꿰맨 거라서",
+      "senderId": 5,
+      "timestamp": 1775113200000,
+      "readBy": [4, 5, 8]
+    },
+
+    {
+      "id": 37,
+      "chatRoomId": 6,
+      "text": "디지몬 어드벤처 리마스터 나왔다!! 다들 봤어?",
+      "senderId": 11,
+      "timestamp": 1775008800000,
+      "readBy": [1, 7, 9, 11, 14]
+    },
+    {
+      "id": 38,
+      "chatRoomId": 6,
+      "text": "나 어제 정주행 했어 ㅠㅠ 아구몬 너무 귀여워",
+      "senderId": 9,
+      "timestamp": 1775009100000,
+      "readBy": [1, 7, 9, 11, 14]
+    },
+    {
+      "id": 39,
+      "chatRoomId": 6,
+      "text": "레전드지... 어린 시절 추억 소환",
+      "senderId": 7,
+      "timestamp": 1775009400000,
+      "readBy": [1, 7, 9, 11, 14]
+    },
+    {
+      "id": 40,
+      "chatRoomId": 6,
+      "text": "다 같이 보는 날 잡자",
+      "senderId": 14,
+      "timestamp": 1775009700000,
+      "readBy": [1, 7, 9, 11, 14]
+    },
+    {
+      "id": 41,
+      "chatRoomId": 6,
+      "text": "ㄱㄱ 다음 주 금요일 어때?",
+      "senderId": 1,
+      "timestamp": 1775010000000,
+      "readBy": [1, 7, 9, 11, 14]
+    },
+    {
+      "id": 42,
+      "chatRoomId": 6,
+      "text": "좋아!! 치킨이지 당연히",
+      "senderId": 7,
+      "timestamp": 1775010600000,
+      "readBy": [7, 9, 11, 14]
+    },
+    {
+      "id": 43,
+      "chatRoomId": 6,
+      "text": "저도요~! 뭐 먹을지도 미리 정해요 ㅎㅎ",
+      "senderId": 9,
+      "timestamp": 1775010900000,
+      "readBy": [7, 9, 11, 14]
+    },
+    {
+      "id": 44,
+      "chatRoomId": 6,
+      "text": "오메가몬 언제나오냐",
+      "senderId": 11,
+      "timestamp": 1775012400000,
+      "readBy": [7, 9, 11, 14]
     }
   ]
 }

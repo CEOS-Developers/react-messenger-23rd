@@ -60,7 +60,7 @@ export default function Bubble({
             isSent ? "items-end" : "items-start",
           )}
         >
-          {isSent && unreadCount > 0 && (
+          {unreadCount > 0 && (
             <span className="text-caption-2 text-main-green">
               {unreadCount}
             </span>

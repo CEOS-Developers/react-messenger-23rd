@@ -28,17 +28,19 @@ type ChatStore = {
   currentUserId: number;
   messages: Message[];
   sendMessage: (text: string, chatRoomId: number) => void;
+  markAsRead: (chatRoomId: number) => void;
   swapPerspective: (chatRoomId: number) => void;
   resetPerspective: () => void;
 };
 
 export const useChatStore = create<ChatStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       chatRooms: mockData.chatRooms,
       users: mockData.users,
       currentUserId: mockData.currentUserId,
       messages: mockData.messages,
+
       sendMessage: (text, chatRoomId) =>
         set((state) => ({
           messages: [
@@ -53,9 +55,20 @@ export const useChatStore = create<ChatStore>()(
             },
           ],
         })),
+
+      markAsRead: (chatRoomId) =>
+        set((state) => ({
+          messages: state.messages.map((m) =>
+            m.chatRoomId === chatRoomId && !m.readBy.includes(1)
+              ? { ...m, readBy: [...m.readBy, 1] }
+              : m,
+          ),
+        })),
+
       resetPerspective: () => {
         set({ currentUserId: 1 });
       },
+
       swapPerspective: (chatRoomId: number) => {
         set((state) => {
           const { chatRooms, currentUserId, messages } = state;
@@ -83,6 +96,6 @@ export const useChatStore = create<ChatStore>()(
         });
       },
     }),
-    { name: "chat-store", version: 6 },
+    { name: "chat-store", version: 7 },
   ),
 );
