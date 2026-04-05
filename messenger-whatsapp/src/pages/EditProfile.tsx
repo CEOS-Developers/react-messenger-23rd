@@ -33,7 +33,7 @@ export default function EditProfile() {
         profileImage,
         links: linkValues,
       });
-      navigate("/profile");
+      navigate(-1);
     };
 
     setHeaderConfig({
