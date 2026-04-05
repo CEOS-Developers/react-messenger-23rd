@@ -5,7 +5,7 @@ import profile from "../../assets/chat-page/profile.svg";
 import changeProfile from "../../assets/chat-page/change-profile.svg";
 import { useNavigate } from "react-router-dom";
 
-function AppBar() {
+function AppBarChatRoom() {
   const navigate = useNavigate();
   return (
     <div className="box-border flex w-[var(--screen-width)] items-center justify-between border-b border-b-[var(--color-grey-300)] bg-[var(--color-grey-50)] pt-[var(--space-6)] pr-[var(--space-12)] pb-[var(--space-22)] pl-[var(--space-12)]">
@@ -52,4 +52,4 @@ function AppBar() {
   );
 }
 
-export default AppBar;
+export default AppBarChatRoom;

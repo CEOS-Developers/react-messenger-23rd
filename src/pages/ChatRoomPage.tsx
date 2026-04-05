@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AppBar from "../components/chat-page/AppBar";
+import AppBarChatRoom from "../components/chat-page/AppBarChatRoom";
 import MessageNavBar from "../components/chat-page/MessageNavBar";
 import MessageSend, {
   type ChatMessage,
@@ -66,7 +66,7 @@ function ChatRoomPage() {
 
   return (
     <div className="flex h-full w-full flex-col">
-      <AppBar />
+      <AppBarChatRoom />
       <MessageSend messages={messages} />
       <MessageNavBar onSendMessage={handleSendMessage} />
     </div>
