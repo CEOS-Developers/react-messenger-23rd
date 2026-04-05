@@ -29,9 +29,7 @@ export default function ProfileField({
             placeholder={placeholder ?? `${label ?? ""}을(를) 입력해주세요`}
           />
         ) : (
-          <span className="text-body-03 text-gray-06">
-            {value ? value : `${label || "정보"}가 없습니다`}
-          </span>
+          value && <span className="text-body-03 text-gray-06">{value}</span>
         )}
         {href && !isEditing && (
           <a href={href} target="_blank" rel="noopener noreferrer">

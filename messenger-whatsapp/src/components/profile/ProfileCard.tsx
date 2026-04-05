@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useRef, useState } from "react";
 import EditingProfile from "@/assets/profile_reverse.svg?react";
 import DefaultProfile from "@/assets/profile_default.svg?react";
@@ -58,23 +59,31 @@ export default function ProfileCard({
 
   return (
     <div className="flex flex-col items-center mb-8 mt-1">
-      <div className="relative">
+      <div className="relative z-10">
         {isEditing ? (
-          <input
-            className={`relative z-10 flex items-center justify-center text-body-01 text-gray-06 text-center py-4 w-49 rounded-[52px] outline-none bg-main-bg`}
-            value={statusMessage ?? ""}
-            onChange={(e) => onStatusMessageChange?.(e.target.value)}
-            placeholder="상태를 입력해주세요"
-          />
+          <>
+            <div className="relative z-10 inline-block">
+              <span className="invisible inline-block text-body-01 py-4 px-10 whitespace-pre min-w-31.5">
+                {statusMessage || "상태를 입력해주세요"}
+              </span>
+              <input
+                className="absolute inset-0 w-full text-body-01 text-gray-06 text-center rounded-[52px] outline-none bg-main-bg"
+                value={statusMessage ?? ""}
+                onChange={(e) => onStatusMessageChange?.(e.target.value)}
+                placeholder="상태를 입력해주세요"
+              />
+            </div>
+            <EditTail className="w-8 absolute left-1/4 -bottom-5.5 z-0" />
+          </>
+        ) : statusMessage ? (
+          <>
+            <span className="relative z-10 flex items-center justify-center text-body-01 text-gray-06 min-w-31.5 py-4 px-10 rounded-[52px] bg-gray-01">
+              {statusMessage}
+            </span>
+            <Tail className="w-8 absolute left-1/4 -bottom-5.5 z-0" />
+          </>
         ) : (
-          <span className="relative z-10 flex items-center justify-center text-body-01 text-gray-06 py-4 w-49 rounded-[52px] bg-gray-01">
-            {statusMessage ? "" + statusMessage : "상태 메시지가 없습니다"}
-          </span>
-        )}
-        {isEditing ? (
-          <EditTail className="w-8 absolute left-12 -bottom-5.5 z-0" />
-        ) : (
-          <Tail className="w-8 absolute left-12 -bottom-5.5 z-0" />
+          <div className="py-4" />
         )}
       </div>
 
@@ -82,7 +91,7 @@ export default function ProfileCard({
         <div
           onClick={() => isMe && isEditing && fileInputRef.current?.click()}
           onContextMenu={handleContextMenu}
-          className={isMe && isEditing ? "cursor-pointer" : ""}
+          className={clsx(isMe && isEditing && "cursor-pointer")}
         >
           {renderAvatar()}
         </div>

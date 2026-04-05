@@ -3,8 +3,8 @@ import MainLayout from "@/components/Layouts/MainLayout";
 import ChatList from "@/pages/ChatList";
 import ChatRoom from "@/pages/ChatRoom";
 import Friends from "@/pages/Friends";
-import Profile from "@/pages/profile/MyProfile";
-import FriendProfile from "@/pages/profile/FriendProfile";
+import Profile from "@/pages/Profile";
+import EditProfile from "@/pages/EditProfile";
 
 function App() {
   return (
@@ -15,7 +15,8 @@ function App() {
             <Route path="/" element={<Friends />} />
             <Route path="/chat" element={<ChatList />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/:userId" element={<FriendProfile />} />
+            <Route path="/profile/edit" element={<EditProfile />} />
+            <Route path="/profile/:userId" element={<Profile />} />
           </Route>
           <Route path="/chat/:roomId" element={<ChatRoom />} />
         </Routes>
