@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { ChatRoom } from "@/store/useChatStore";
 import { useChatStore } from "@/store/useChatStore";
+import { useFriendsStore } from "@/store/useFriendsStore";
 import { formatTime } from "@/utils/formatTime";
 import ChatThumbnail from "@/components/chat/ChatThumbnail";
 
@@ -10,14 +11,15 @@ interface ChatRoomItemProps {
 
 const ChatRoomItem = ({ chatRoom }: ChatRoomItemProps) => {
   const navigate = useNavigate();
-  const { users, messages, currentUserId } = useChatStore();
+  const { messages, currentUserId } = useChatStore();
+  const { friends } = useFriendsStore();
 
-  const participants = users.filter(
-    (u) => u.id !== currentUserId && chatRoom.participantIds.includes(u.id),
+  const participants = friends.filter(
+    (f) => f.id !== currentUserId && chatRoom.participantIds.includes(f.id),
   );
   const roomMessages = messages.filter((m) => m.chatRoomId === chatRoom.id);
   const lastMessage = roomMessages[roomMessages.length - 1];
-  const roomName = participants.map((u) => u.name).join(", ");
+  const roomName = participants.map((f) => f.name).join(", ");
   const unreadCount = roomMessages.filter((m) => !m.readBy.includes(1)).length;
 
   return (

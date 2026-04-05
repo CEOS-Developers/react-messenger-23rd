@@ -8,7 +8,7 @@ export default function FriendsList() {
   return (
     <div className="flex flex-col">
       {friends.map((friend) => (
-        <Friend key={friend.id} id={friend.id} name={friend.name} />
+        <Friend key={friend.id} id={friend.id} name={friend.name} profileImage={friend.profileImage || undefined} />
       ))}
     </div>
   );

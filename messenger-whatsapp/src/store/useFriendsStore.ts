@@ -32,6 +32,6 @@ export const useFriendsStore = create<FriendsStore>()(
           ),
         })),
     }),
-    { name: "friends-store", version: 2 },
+    { name: "friends-store", version: 4 },
   ),
 );

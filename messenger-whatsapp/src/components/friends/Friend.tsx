@@ -14,7 +14,7 @@ export default function Friend({ id, name, isMe = false, profileImage }: FriendP
   const navigate = useNavigate();
 
   const renderAvatar = () => {
-    if (profileImage?.startsWith("data:")) {
+    if (profileImage) {
       return (
         <img
           src={profileImage}

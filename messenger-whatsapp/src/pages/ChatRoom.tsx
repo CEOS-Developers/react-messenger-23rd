@@ -8,6 +8,7 @@ import ChipDate from "@/components/chip/ChatDate";
 import PageHeader from "@/components/common/PageHeader";
 import TopBar from "@/components/common/TopBar";
 import { useChatStore } from "@/store/useChatStore";
+import { useFriendsStore } from "@/store/useFriendsStore";
 import { isSameDay, getUnreadCount } from "@/utils/chatUtils";
 import { formatMinute } from "@/utils/formatTime";
 
@@ -18,19 +19,19 @@ export default function ChatRoom() {
   const {
     messages: allMessages,
     chatRooms,
-    users,
     currentUserId,
     sendMessage,
     markAsRead,
     swapPerspective,
     resetPerspective,
   } = useChatStore();
+  const { friends } = useFriendsStore();
   const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
   const room = chatRooms.find((r) => r.id === roomIdNum);
   const participantIds = room?.participantIds ?? [];
-  const roomName = users
-    .filter((u) => u.id !== currentUserId && participantIds.includes(u.id))
-    .map((u) => u.name)
+  const roomName = friends
+    .filter((f) => f.id !== currentUserId && participantIds.includes(f.id))
+    .map((f) => f.name)
     .join(", ");
   const scrollRef = useRef<HTMLDivElement>(null);
 

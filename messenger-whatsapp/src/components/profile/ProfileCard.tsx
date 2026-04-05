@@ -37,13 +37,13 @@ export default function ProfileCard({
   };
 
   const handleContextMenu = (e: React.MouseEvent) => {
-    if (!isMe || !isEditing || !profileImage?.startsWith("data:")) return;
+    if (!isMe || !isEditing || !profileImage) return;
     e.preventDefault();
     setShowDeleteMenu(true);
   };
 
   const renderAvatar = () => {
-    if (profileImage?.startsWith("data:")) {
+    if (profileImage) {
       return (
         <img
           src={profileImage}

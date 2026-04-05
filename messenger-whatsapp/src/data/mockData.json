@@ -11,53 +11,53 @@
     {
       "id": 1,
       "name": "문수인",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     {
       "id": 2,
       "name": "세오스",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     {
       "id": 3,
       "name": "이윤서",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     {
       "id": 4,
       "name": "신짱구",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
-    { "id": 5, "name": "맹구", "profileImage": "@assets/profile_default.svg" },
+    { "id": 5, "name": "맹구", "profileImage": "@/assets/profile_default.svg" },
     {
       "id": 6,
       "name": "최유리",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     {
       "id": 7,
       "name": "김철수",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     {
       "id": 8,
       "name": "이훈이",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     {
       "id": 9,
       "name": "한수지",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     {
       "id": 10,
       "name": "신짱아",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     {
       "id": 11,
       "name": "장한솔",
-      "profileImage": "@assets/profile_default.svg"
+      "profileImage": "@/assets/profile_default.svg"
     },
     { "id": 14, "name": "정석", "profileImage": "@assets/profile_default.svg" }
   ],
