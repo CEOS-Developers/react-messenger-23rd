@@ -31,7 +31,7 @@ const ChatRoomList = () => {
   };
 
   return (
-    <section className="flex-1 overflow-y-auto">
+    <section className="flex-1 overflow-y-auto scrollbar-hide">
       <ul className="flex flex-col">
         {sortedRooms.map((room) => {
           const lastMessage = getLastMessage(room.id);
