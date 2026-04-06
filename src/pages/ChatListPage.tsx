@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import AppBarChatList from "../components/chat-list/AppBarChatList";
+import PlaceHolder from "../components/chat-list/PlaceHolder";
 
 function ChatListPage() {
   const navigate = useNavigate();
@@ -7,6 +8,7 @@ function ChatListPage() {
   return (
     <div className="flex h-full w-full flex-col">
       <AppBarChatList />
+      <PlaceHolder />
 
       <h1>채팅 목록 페이지</h1>
 
