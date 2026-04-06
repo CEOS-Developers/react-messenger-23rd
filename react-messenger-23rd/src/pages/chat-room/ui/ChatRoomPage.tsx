@@ -95,7 +95,7 @@ const ChatRoomPage = () => {
         isFlipped={isFlipped}
         title={currentRoom?.name ?? '채팅방'}
       />
-      <MessageList messages={roomMessages} bottomRef={bottomRef} isFlipped={isFlipped} />
+      <MessageList messages={roomMessages} bottomRef={bottomRef} isFlipped={isFlipped} roomName={currentRoom?.name ?? '채팅방'} />
       <MessageInputBar value={inputValue} onChange={setInputValue} onSend={handleSendMessage} />
     </main>
   );
