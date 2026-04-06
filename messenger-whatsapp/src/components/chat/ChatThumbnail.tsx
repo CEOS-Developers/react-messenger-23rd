@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import type { Friend } from "@/store/useFriendsStore";
+import ProfileDefault from "@/assets/profile_default.svg?react";
 
 interface ChatThumbnailProps {
   participants: Friend[];
@@ -13,12 +14,14 @@ function Avatar({ user, className }: { user?: Friend; className?: string }) {
         className,
       )}
     >
-      {user?.profileImage && (
+      {user?.profileImage ? (
         <img
           src={user.profileImage}
           alt={user.name}
           className="w-full h-full object-cover"
         />
+      ) : (
+        <ProfileDefault className="w-full h-full" />
       )}
     </div>
   );
@@ -59,7 +62,7 @@ export default function ChatThumbnail({ participants }: ChatThumbnailProps) {
         />
         <Avatar
           user={participants[2]}
-          className="absolute bottom-0 translate-x-1/2 w-5 h-5"
+          className="absolute bottom-0 translate-x-2/3 w-5 h-5"
         />
       </div>
     );
