@@ -3,6 +3,7 @@ import { ChatCategory } from '../src/components/chat/ChatCategory';
 import { SearchBar } from '../src/components/utils/SearchBar';
 import { NavBar } from '../src/components/utils/Navbar';
 import { MainChatHeader } from '../src/components/chat/MainChatHeader';
+import { ChatList } from '../src/components/chat/ChatList';
 
 export const ChatListPage = () => {
   return (
@@ -13,7 +14,7 @@ export const ChatListPage = () => {
 
       <ChatCategory/>
 
-      {/* <ChatList /> */}
+      <ChatList />
 
       <NavBar/>
     </div>

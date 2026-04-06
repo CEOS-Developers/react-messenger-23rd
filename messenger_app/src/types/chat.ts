@@ -15,9 +15,10 @@ export interface Message {
 
 export interface ChatRoom {
   id: string;
+  isGroup: boolean;
   participants: User[];
   messages: Message[];
   title?: string;
-  unreadCount?: number;
+  unreadCount: number;
   lastMessageAt?: string;
 }

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const NavBar = () => {
   const navigate = useNavigate();
-  const isCall = window.location.pathname.includes('call');
+  const isCall = window.location.pathname.endsWith('/');
   const isChat = window.location.pathname.includes('chat');
   const isProfile = window.location.pathname.includes('profile');
 
@@ -18,7 +18,7 @@ export const NavBar = () => {
       label: '통화',
       icon: isCall ? callOn : callOff,
       badge: 3,
-      path: '/call',
+      path: '/',
     },
     {
       id: 'chat',
@@ -43,11 +43,9 @@ export const NavBar = () => {
           onClick={() => navigate(path)}
           className="w-28 h-20.5 pt-3 relative flex flex-col justify-start items-center gap-0.5"
         >
-          {/* 아이콘 및 뱃지 영역 */}
           <div className="w-6 h-6 relative shrink-0">
             <img src={icon} alt={label} className="w-full h-full" />
 
-            {/* 읽지 않은 알림(뱃지)이 있을 경우에만 렌더링 */}
             {badge && (
               <div className="absolute -top-1 -right-3 px-1.25 py-0.7 bg-green200 rounded-[15px] flex justify-center items-center min-w-5">
                 <span className="text-caption-12">

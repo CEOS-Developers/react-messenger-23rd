@@ -1,66 +1,95 @@
 import { create } from 'zustand';
-import type { Message, User } from '../types/chat';
+import type { ChatRoom, Message, User } from '../types/chat';
 import { persist } from 'zustand/middleware';
 import mockData from '../data/mockData.json';
 
 interface ChatStore {
-  users: User[];
   currentUser: User;
-  messages: Message[];
+  chatRooms: ChatRoom[];
+  currentRoomId: string | null;
+  // messages: Message[];
+
+  setCurrentRoom: (roomId: string) => void;
   sendMessage: (text: string) => void;
   readMessage: () => void;
-  switchUser: () => void;
-  loadData: () => void;
+  // switchUser: () => void;
+  // loadData: () => void;
 }
 
 export const useChatStore = create<ChatStore>()(
   persist(
-    (set) => ({
-      users: mockData.users,
-      currentUser: mockData.users[1],
-      messages: mockData.messages,
+    (set, get) => ({
+      currentUser: {
+        id: 'user_me',
+        name: '나',
+        profileImage: '/src/assets/me.jpg',
+      },
+      chatRooms: mockData.chatRooms,
+      currentRoomId: null,
+
+      setCurrentRoom: (roomId) => {
+        set({ currentRoomId: roomId });
+        if (roomId) get().readMessage();
+      },
 
       sendMessage: (text: string) =>
         set((state) => {
-          if (!text.trim()) return state;
+          if (!text.trim() || !state.currentRoomId) return state;
 
           const newMessage: Message = {
             id: crypto.randomUUID(),
             senderId: state.currentUser.id,
-            text: text,
+            text,
             isRead: false,
             timestamp: new Date().toISOString(),
           };
 
-          return { messages: [...state.messages, newMessage] };
+          const updatedRooms = state.chatRooms.map((room) =>
+            room.id === state.currentRoomId
+              ? { ...room, messages: [...room.messages, newMessage] }
+              : room
+          );
+
+          const roomIndex = updatedRooms.findIndex(
+            (r) => r.id === state.currentRoomId
+          );
+          if (roomIndex > 0) {
+            updatedRooms.unshift(updatedRooms.splice(roomIndex, 1)[0]);
+          }
+
+          return { chatRooms: updatedRooms };
         }),
 
       readMessage: () =>
         set((state) => {
-          const updatedMessages = state.messages.map((msg) => {
-            if (msg.senderId !== state.currentUser.id && msg.isRead === false) {
-              return { ...msg, isRead: true };
+          if (!state.currentRoomId) return state;
+
+          const updatedRooms = state.chatRooms.map((room) => {
+            if (room.id === state.currentRoomId) {
+              return {
+                ...room,
+                unreadCount: 0,
+                // 필요하다면 개별 메시지의 isRead 속성도 업데이트 (상대방 메시지를 읽음 처리)
+                messages: room.messages.map((msg) =>
+                  msg.senderId !== state.currentUser.id
+                    ? { ...msg, isRead: true }
+                    : msg
+                ),
+              };
             }
-            return msg;
+            return room;
           });
 
-          return { messages: updatedMessages };
+          return { chatRooms: updatedRooms };
         }),
 
-      switchUser: () =>
-        set((state) => {
-          const nextUser =
-            state.users.find((u) => u.id !== state.currentUser.id) ||
-            state.users[0];
-          return { currentUser: nextUser };
-        }),
-
-      loadData: () =>
-        set({
-          users: mockData.users,
-          currentUser: mockData.users[1],
-          messages: mockData.messages,
-        }),
+      // switchUser: () =>
+      //   set((state) => {
+      //     const nextUser =
+      //       state.users.find((u) => u.id !== state.currentUser.id) ||
+      //       state.users[0];
+      //     return { currentUser: nextUser };
+      //   }),
     }),
     {
       name: 'chat-storage',

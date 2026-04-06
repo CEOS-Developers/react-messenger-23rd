@@ -14,7 +14,7 @@ export const ChatHeader = () => {
       {/* 상단바(헤더) */}
       <header className="w-full px-4 h-12 flex flex-row shrink-0 items-center justify-between bg-Ivory">
         <div className="flex w-12 h-7 items-center justify-between">
-          <img src={arrow_right} alt="" onClick={() => navigate('/call')} />
+          <img src={arrow_right} alt="" onClick={() => navigate('/chat')} />
           <div className="text-body-02">{CHAT_COUNTS}</div>
         </div>
 
