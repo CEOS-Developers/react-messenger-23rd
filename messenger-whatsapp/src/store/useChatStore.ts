@@ -27,10 +27,12 @@ type ChatStore = {
   users: User[];
   currentUserId: number;
   messages: Message[];
+  favorites: number[];
   sendMessage: (text: string, chatRoomId: number) => void;
   markAsRead: (chatRoomId: number) => void;
   swapPerspective: (chatRoomId: number) => void;
   resetPerspective: () => void;
+  toggleFavorite: (chatRoomId: number) => void;
 };
 
 export const useChatStore = create<ChatStore>()(
@@ -40,6 +42,7 @@ export const useChatStore = create<ChatStore>()(
       users: mockData.users,
       currentUserId: mockData.currentUserId,
       messages: mockData.messages,
+      favorites: [],
 
       sendMessage: (text, chatRoomId) =>
         set((state) => ({
@@ -69,6 +72,13 @@ export const useChatStore = create<ChatStore>()(
         set({ currentUserId: 1 });
       },
 
+      toggleFavorite: (chatRoomId) =>
+        set((state) => ({
+          favorites: state.favorites.includes(chatRoomId)
+            ? state.favorites.filter((id) => id !== chatRoomId)
+            : [...state.favorites, chatRoomId],
+        })),
+
       swapPerspective: (chatRoomId: number) => {
         set((state) => {
           const { chatRooms, currentUserId, messages } = state;
@@ -96,6 +106,6 @@ export const useChatStore = create<ChatStore>()(
         });
       },
     }),
-    { name: "chat-store", version: 7 },
+    { name: "chat-store", version: 8 },
   ),
 );

@@ -14,8 +14,9 @@ const ChatList = () => {
   const { setHeaderConfig } = useOutletContext<{
     setHeaderConfig: (c: HeaderConfig) => void;
   }>();
-  const { chatRooms, messages } = useChatStore();
+  const { chatRooms, messages, favorites } = useChatStore();
   const [filter, setFilter] = useState<FilterType>("all");
+  const [openSwipeId, setOpenSwipeId] = useState<number | null>(null);
 
   // 총 미읽음 메시지 수
   const unreadMessageCount = messages.filter(
@@ -27,15 +28,24 @@ const ChatList = () => {
     (room) => room.participantIds.length >= 3,
   ).length;
 
-  const filteredRooms = chatRooms.filter((room) => {
-    if (filter === "unread")
-      return messages.some(
-        (m) => m.chatRoomId === room.id && !m.readBy.includes(MY_ID),
-      );
-    if (filter === "group") return room.participantIds.length >= 3;
-    if (filter === "favorites") return false; // 추후 구현
-    return true;
-  });
+  const getLastMessageTime = (roomId: number) => {
+    const roomMessages = messages.filter((m) => m.chatRoomId === roomId);
+    return roomMessages.length > 0
+      ? roomMessages[roomMessages.length - 1].timestamp
+      : 0;
+  };
+
+  const filteredRooms = chatRooms
+    .filter((room) => {
+      if (filter === "unread")
+        return messages.some(
+          (m) => m.chatRoomId === room.id && !m.readBy.includes(MY_ID),
+        );
+      if (filter === "group") return room.participantIds.length >= 3;
+      if (filter === "favorites") return favorites.includes(room.id);
+      return true;
+    })
+    .sort((a, b) => getLastMessageTime(b.id) - getLastMessageTime(a.id));
 
   useEffect(() => {
     setHeaderConfig({
@@ -62,7 +72,12 @@ const ChatList = () => {
       </div>
       <div className="no-scrollbar">
         {filteredRooms.map((room) => (
-          <ChatRoomItem key={room.id} chatRoom={room} />
+          <ChatRoomItem
+            key={room.id}
+            chatRoom={room}
+            openId={openSwipeId}
+            onSwipeOpen={setOpenSwipeId}
+          />
         ))}
       </div>
     </div>

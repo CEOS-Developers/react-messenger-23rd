@@ -26,6 +26,21 @@ export const formatTime = (ts: number): string => {
 };
 
 /**
+ * 채팅 목록 마지막 메시지 시간 (오늘이면 시간, 아니면 날짜)
+ * ex) 오후 3:45 / 4/3
+ */
+export const formatLastMessageTime = (ts: number): string => {
+  const d = new Date(ts);
+  const now = new Date();
+  const isToday =
+    d.getFullYear() === now.getFullYear() &&
+    d.getMonth() === now.getMonth() &&
+    d.getDate() === now.getDate();
+  if (isToday) return formatTime(ts);
+  return `${d.getMonth() + 1}월 ${d.getDate()}일`;
+};
+
+/**
  * 분 단위 비교용 포맷 (메시지 그룹핑)
  * ex) 9:5
  */
