@@ -75,19 +75,19 @@ export default function ProfileCard({
             </div>
             <EditTail className="w-8 absolute left-1/4 -bottom-5.5 z-0" />
           </>
-        ) : statusMessage ? (
-          <>
-            <span className="relative z-10 flex items-center justify-center text-body-01 text-gray-06 min-w-31.5 py-4 px-10 rounded-[52px] bg-gray-01">
-              {statusMessage}
-            </span>
-            <Tail className="w-8 absolute left-1/4 -bottom-5.5 z-0" />
-          </>
         ) : (
-          <div className="py-4" />
+          statusMessage && (
+            <>
+              <span className="relative z-10 flex items-center justify-center text-body-01 text-gray-06 min-w-31.5 py-4 px-10 rounded-[52px] bg-gray-01">
+                {statusMessage}
+              </span>
+              <Tail className="w-8 absolute left-1/4 -bottom-5.5 z-0" />
+            </>
+          )
         )}
       </div>
 
-      <div className="relative mt-1">
+      <div className={`relative ${statusMessage ? "mt-1" : "mt-9"}`}>
         <div
           onClick={() => isMe && isEditing && fileInputRef.current?.click()}
           onContextMenu={handleContextMenu}
