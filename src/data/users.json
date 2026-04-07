@@ -1,0 +1,17 @@
+[
+  {
+    "id": "user1",
+    "name": "홍문관",
+    "profileImage": "profile"
+  },
+  {
+    "id": "me",
+    "name": "나",
+    "profileImage": "profile"
+  },
+  {
+    "id": "emma",
+    "name": "emma",
+    "profileImage": "profile"
+  }
+]
