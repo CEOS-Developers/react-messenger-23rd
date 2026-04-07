@@ -104,7 +104,7 @@ const ChatRoomItem = ({ chatRoom, onSwipeOpen, openId }: ChatRoomItemProps) => {
     dragStart(e.clientX, e.clientY);
 
     const onMove = (ev: MouseEvent) => dragMove(ev.clientX, ev.clientY);
-    const onUp = (ev: MouseEvent) => {
+    const onUp = () => {
       dragEnd(offsetRef.current);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", onUp);
