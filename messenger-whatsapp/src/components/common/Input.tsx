@@ -13,6 +13,7 @@ const MAX_HEIGHT = 160; // max-h-40 = 160px
 export default function InputBox({ onSend }: InputBoxProps) {
   const [value, setValue] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const hasText = value.trim().length > 0;
 
   useEffect(() => {
@@ -39,7 +40,11 @@ export default function InputBox({ onSend }: InputBoxProps) {
 
   return (
     <div className="flex items-end gap-2.5 px-4 py-3 bg-white">
-      <button className="w-8 h-8 rounded-full bg-gray-01 flex items-center justify-center shrink-0">
+      <input ref={fileInputRef} type="file" className="hidden" />
+      <button
+        className="w-8 h-8 rounded-full bg-gray-01 flex items-center justify-center shrink-0"
+        onClick={() => fileInputRef.current?.click()}
+      >
         <PlusIcon />
       </button>
 
