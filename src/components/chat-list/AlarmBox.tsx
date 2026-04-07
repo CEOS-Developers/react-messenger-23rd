@@ -16,7 +16,7 @@ function AlarmBox() {
         </div>
       </section>
       <section className="flex px-[var(--space-8)] py-[var(--space-10)] items-center justify-center gap-[var(--space-10)]">
-        <div className="text-[var(--text-xs)] font-semibold leading-[var(--line-height-tight)] text-[var(--color-grey-600)]">
+        <div className="text-[length:var(--text-xs)] font-semibold leading-[var(--line-height-tight)] text-[color:var(--color-grey-600)]">
           요청
         </div>
       </section>
