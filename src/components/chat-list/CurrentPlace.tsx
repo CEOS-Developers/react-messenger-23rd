@@ -7,7 +7,7 @@ function CurrentPlace() {
       <section className="flex w-[84px] shrink-0 flex-col items-center gap-[var(--space-4)]">
         <img
           src={earth}
-          alt="지도"
+          alt="earth"
           className="h-[84px] self-stretch aspect-square"
         />
         <div>지도</div>
@@ -18,7 +18,7 @@ function CurrentPlace() {
           <div className="flex h-[10px] w-[10px] items-center justify-center p-[1.15px]">
             <img
               src={positionOff}
-              alt="위치 해제"
+              alt="positionOff"
               className="w-[7.7px] h-[7.7px] shrink-0 aspect-square"
             />
           </div>
