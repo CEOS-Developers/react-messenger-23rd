@@ -9,7 +9,7 @@ import ProfileActive from "@/assets/bottomnav_profile_active.svg?react";
 const NAV_ITEMS = [
   {
     navigateTo: "/",
-    isActive: (p: string) => p === "/" || p.startsWith("/profile/"),
+    isActive: (p: string) => p === "/" || (p.startsWith("/profile/") && p !== "/profile/edit"),
     Default: FriendsDefault,
     Active: FriendsActive,
   },
@@ -21,7 +21,7 @@ const NAV_ITEMS = [
   },
   {
     navigateTo: "/profile",
-    isActive: (p: string) => p === "/profile",
+    isActive: (p: string) => p === "/profile" || p === "/profile/edit",
     Default: ProfileDefault,
     Active: ProfileActive,
   },
