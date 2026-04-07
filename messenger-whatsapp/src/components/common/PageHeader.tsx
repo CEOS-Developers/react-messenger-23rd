@@ -4,6 +4,7 @@ import BackIcon from "@/assets/pageheader_back.svg?react";
 
 interface PageHeaderProps {
   title?: string;
+  isTitle?: boolean;
   right?: ReactNode;
   onBack?: () => void;
   showBack?: boolean;
@@ -12,6 +13,7 @@ interface PageHeaderProps {
 
 export default function PageHeader({
   title,
+  isTitle = true,
   right,
   onBack,
   showBack = false,
@@ -28,7 +30,7 @@ export default function PageHeader({
           <BackIcon className="cursor-pointer shrink-0" onClick={handleBack} />
         )}
         <span
-          className="text-headline-2 text-gray-06 font-semibold"
+          className={`${isTitle ? "text-headline-1" : "text-headline-2"} text-gray-06 font-semibold`}
           onClick={onTitleClick}
         >
           {title}
