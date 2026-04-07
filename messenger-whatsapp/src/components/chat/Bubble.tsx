@@ -10,6 +10,7 @@ interface BubbleProps {
   showTime: boolean;
   isSent: boolean;
   unreadCount: number;
+  senderName?: string;
 }
 
 // text-body-03: font-size 14px, line-height 150% = 21px + padding 8px*2 = 37px
@@ -21,6 +22,7 @@ export default function Bubble({
   showTime,
   isSent,
   unreadCount,
+  senderName,
 }: BubbleProps) {
   const { ref, isMultiLine } = useMultiLineDetection(SINGLE_LINE_HEIGHT);
 
@@ -31,48 +33,52 @@ export default function Bubble({
         isSent ? "justify-end" : "justify-start",
       )}
     >
-      <div
-        className={clsx(
-          "flex items-end gap-x-2.5 max-w-[74%]",
-          isSent ? "flex-row-reverse" : "flex-row",
+      <div className={clsx("flex flex-col max-w-[74%]", isSent && "items-end")}>
+        {senderName && (
+          <span className="text-caption-2 text-gray-05 mb-1">{senderName}</span>
         )}
-      >
-        <div
-          ref={ref}
-          className={clsx(
-            "relative bubble text-body-03 break-all",
-            isSent ? "bubble-sent" : "bubble-received",
-            isMultiLine && "bubble-multiline",
-          )}
-        >
-          {message}
-          {isSent ? (
-            <SentTail className="absolute bottom-0 -right-[6px]" />
-          ) : (
-            <ReceivedTail className="absolute bottom-0 -left-[6px]" />
-          )}
-        </div>
-
-        {/* 읽음 수 + 시간 */}
         <div
           className={clsx(
-            "flex flex-col shrink-0",
-            isSent ? "items-end" : "items-start",
+            "flex items-end gap-x-2.5",
+            isSent ? "flex-row-reverse" : "flex-row",
           )}
         >
-          {unreadCount > 0 && (
-            <span className="text-caption-2 text-main-green">
-              {unreadCount}
-            </span>
-          )}
-          <span
+          <div
+            ref={ref}
             className={clsx(
-              "text-caption-2 text-gray-04",
-              !showTime && "invisible",
+              "relative bubble text-body-03 break-all",
+              isSent ? "bubble-sent" : "bubble-received",
+              isMultiLine && "bubble-multiline",
             )}
           >
-            {formatTime(timestamp)}
-          </span>
+            {message}
+            {isSent ? (
+              <SentTail className="absolute bottom-0 -right-[6px]" />
+            ) : (
+              <ReceivedTail className="absolute bottom-0 -left-[6px]" />
+            )}
+          </div>
+
+          <div
+            className={clsx(
+              "flex flex-col shrink-0",
+              isSent ? "items-end" : "items-start",
+            )}
+          >
+            {unreadCount > 0 && (
+              <span className="text-caption-2 text-main-green">
+                {unreadCount}
+              </span>
+            )}
+            <span
+              className={clsx(
+                "text-caption-2 text-gray-04",
+                !showTime && "invisible",
+              )}
+            >
+              {formatTime(timestamp)}
+            </span>
+          </div>
         </div>
       </div>
     </div>

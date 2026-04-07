@@ -29,6 +29,7 @@ export default function ChatRoom() {
   const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
   const room = chatRooms.find((r) => r.id === roomIdNum);
   const participantIds = room?.participantIds ?? [];
+  const isGroup = participantIds.length >= 3;
   const roomName = friends
     .filter((f) => f.id !== currentUserId && participantIds.includes(f.id))
     .map((f) => f.name)
@@ -50,6 +51,7 @@ export default function ChatRoom() {
       <TopBar />
       <PageHeader
         title={roomName}
+        isTitle={false}
         showBack
         onBack={() => navigate(-1)}
         onTitleClick={() => swapPerspective(roomIdNum)}
@@ -76,6 +78,11 @@ export default function ChatRoom() {
             !nextMsg ||
             (nextMsg.senderId === currentUserId) !== isSent ||
             formatMinute(nextMsg.timestamp) !== formatMinute(msg.timestamp);
+          const isFirstInSequence = !prev || prev.senderId !== msg.senderId;
+          const senderName =
+            !isSent && isGroup && isFirstInSequence
+              ? friends.find((f) => f.id === msg.senderId)?.name
+              : undefined;
 
           return (
             <Fragment key={msg.id}>
@@ -92,6 +99,7 @@ export default function ChatRoom() {
                     showTime={showTime}
                     isSent={isSent}
                     unreadCount={getUnreadCount(msg, participantIds)}
+                    senderName={senderName}
                   />
                 </div>
               </div>
