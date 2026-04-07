@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import CameraIcon from "@/assets/camera.svg?react";
 import CallIcon from "@/assets/call.svg?react";
@@ -9,8 +9,8 @@ import PageHeader from "@/components/common/PageHeader";
 import TopBar from "@/components/common/TopBar";
 import { useChatStore } from "@/store/useChatStore";
 import { useFriendsStore } from "@/store/useFriendsStore";
-import { isSameDay, getUnreadCount } from "@/utils/chatUtils";
-import { formatMinute } from "@/utils/formatTime";
+import { useMemo } from "react";
+import { groupMessages } from "@/hooks/useMessageGrouping";
 
 export default function ChatRoom() {
   const { roomId } = useParams();
@@ -29,11 +29,14 @@ export default function ChatRoom() {
   const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
   const room = chatRooms.find((r) => r.id === roomIdNum);
   const participantIds = room?.participantIds ?? [];
-  const isGroup = participantIds.length >= 3;
   const roomName = friends
     .filter((f) => f.id !== currentUserId && participantIds.includes(f.id))
     .map((f) => f.name)
     .join(", ");
+  const groupedMessages = useMemo(
+    () => groupMessages(messages, currentUserId, participantIds, friends),
+    [messages, currentUserId, participantIds, friends],
+  );
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -66,23 +69,9 @@ export default function ChatRoom() {
         ref={scrollRef}
         className="flex-1 flex flex-col gap-1.5 overflow-y-auto pt-2 pb-2 no-scrollbar"
       >
-        {messages.map((msg, index) => {
-          const isSent = msg.senderId === currentUserId;
-          const prev = messages[index - 1];
-          const nextMsg = messages[index + 1];
-          const showDate =
-            index === 0 || !isSameDay(prev.timestamp, msg.timestamp);
-          const senderChanged =
-            prev && (prev.senderId === currentUserId) !== isSent;
-          const showTime =
-            !nextMsg ||
-            (nextMsg.senderId === currentUserId) !== isSent ||
-            formatMinute(nextMsg.timestamp) !== formatMinute(msg.timestamp);
-          const isFirstInSequence = !prev || prev.senderId !== msg.senderId;
-          const senderName =
-            !isSent && isGroup && isFirstInSequence
-              ? friends.find((f) => f.id === msg.senderId)?.name
-              : undefined;
+        {groupedMessages.map(({ msg, isSent, showDate, showTime, senderName, unreadCount }, index) => {
+          const prev = groupedMessages[index - 1];
+          const senderChanged = prev && prev.isSent !== isSent;
 
           return (
             <Fragment key={msg.id}>
@@ -98,7 +87,7 @@ export default function ChatRoom() {
                     timestamp={msg.timestamp}
                     showTime={showTime}
                     isSent={isSent}
-                    unreadCount={getUnreadCount(msg, participantIds)}
+                    unreadCount={unreadCount}
                     senderName={senderName}
                   />
                 </div>
