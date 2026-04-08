@@ -2,14 +2,14 @@ import add from '../../icons/icon_add.svg';
 
 const CATEGORIES = [
   { id: 'all', label: '모두', isActive: true },
-  { id: 'unread', label: '읽지 않음 15', isActive: false },
+  { id: 'unread', label: '읽지 않음 ', isActive: false },
   { id: 'favorites', label: '즐겨찾기', isActive: false },
-  { id: 'groups', label: '그룹 5', isActive: false },
+  { id: 'groups', label: '그룹 2', isActive: false },
 ];
 
 export const ChatCategory = () => {
   return (
-    <div className="w-full inline-flex justify-start items-center gap-2 px-4">
+    <div className="w-full inline-flex justify-start items-center gap-2 px-4 mb-4">
       {/* 카테고리 리스트 */}
       {CATEGORIES.map(({ id, label, isActive }) => (
         <button

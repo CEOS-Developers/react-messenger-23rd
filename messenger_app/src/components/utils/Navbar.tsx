@@ -7,6 +7,7 @@ import profileOff from '../../icons/icon_profileOff.svg';
 import { useNavigate } from 'react-router-dom';
 import { useChatStore } from '../../store/useChatStore';
 
+
 export const NavBar = () => {
   const navigate = useNavigate();
   const { chatRooms } = useChatStore();

@@ -42,65 +42,54 @@ export const ChatList = () => {
 
   const handleRoomClick = (roomId: string) => {
     setCurrentRoom(roomId);
-    navigate(`/chat/${roomId}`); // 클릭 시 해당 채팅방 페이지로 이동
+    navigate(`/chat/${roomId}`);
   };
 
   return (
-    // NavBar 위로 스크롤되도록 flex-1과 overflow-y-auto 적용, 하단 여백 확보
     <div className="flex-1 w-full overflow-y-auto pb-20">
       {chatRooms.map((room) => {
-        // 방의 가장 마지막 메시지를 가져옴
         const lastMessage = room.messages[room.messages.length - 1];
         if (!lastMessage) return null;
-
-        // 상대방 정보 찾기 (나를 제외한 참여자)
         const otherParticipant = room.participants.find(p => p.id !== currentUser.id);
-
-        // 방 이름: title이 있으면 우선 사용, 없으면 상대방 이름
         const roomTitle = room.title || otherParticipant?.name || '알 수 없음';
-        // 프로필 사진: 상대방 프사 사용 (그룹일 경우 별도 로직 추가 가능)
-        const roomImage = otherParticipant?.profileImage || '/src/assets/default_profile.png';
+        const roomImage = otherParticipant?.profileImage || '../src/assets/profile_me.png';
 
         return (
           <div
             key={room.id}
             onClick={() => handleRoomClick(room.id)}
-            className="flex items-center px-4 py-3 cursor-pointer hover:bg-gray-50 active:bg-gray-100"
+            className="flex h-19 items-center px-4 py-2.5 cursor-pointer hover:bg-gray-50 active:bg-gray-100"
           >
-            {/* 1. 프로필 이미지 영역 */}
             <img
               src={roomImage}
               alt={roomTitle}
-              className="w-12 h-12 rounded-full object-cover shrink-0 bg-gray-200"
+              className="w-14 h-14 rounded-full object-cover shrink-0 bg-gray-200"
             />
 
-            {/* 2. 중앙 텍스트 영역 (이름, 마지막 메시지) */}
-            <div className="ml-4 flex-1 min-w-0 flex flex-col justify-center">
+            <div className="ml-3 flex-1 min-w-0 flex flex-col justify-center">
               <div className="flex items-center mb-0.5">
-                <span className="text-base font-semibold text-gray-900 truncate">
+                <span className="text-body-01 truncate">
                   {roomTitle}
                 </span>
-                {/* 그룹 채팅일 경우 참여자 수 표시 (스크린샷 참고) */}
                 {room.isGroup && (
-                  <span className="ml-1.5 text-sm text-gray-400">
+                  <span className="ml-1 text-body-02 text-Gray600">
                     {room.participants.length}
                   </span>
                 )}
               </div>
-              <p className="text-sm text-gray-500 truncate">
+              <p className="text-body-sub text-Gray600 truncate">
                 {lastMessage.text}
               </p>
             </div>
 
             {/* 3. 우측 정보 영역 (시간, 안 읽음 뱃지) */}
-            <div className="ml-3 flex flex-col items-end shrink-0 min-w-[50px]">
-              <span className="text-xs text-gray-400 mb-1.5">
+            <div className="ml-3 flex flex-col h-10.5 items-end shrink-0 min-w-13.5 gap-1.5">
+              <span className="text-caption-12 text-Gray600">
                 {formatChatListTime(lastMessage.timestamp)}
               </span>
               
               {room.unreadCount > 0 && (
-                <div className="bg-[#2DCE89] text-white text-[10px] font-bold rounded-full px-1.5 min-w-[20px] h-5 flex items-center justify-center">
-                  {/* 안 읽은 메시지가 99개 이상이면 99+로 표시 */}
+                <div className="flex bg-green200 text-caption-01 rounded-[15px] px-1.5 min-w-5 h-5 items-center justify-center">
                   {room.unreadCount > 99 ? '99+' : room.unreadCount}
                 </div>
               )}
