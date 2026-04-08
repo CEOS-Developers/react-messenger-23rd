@@ -7,7 +7,10 @@ import check_gray from '../../icons/icon_check_gray.svg';
 
 export const MainChat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { messages, currentUser, readMessage } = useChatStore();
+  const { chatRooms, currentRoomId, currentUser, readMessage } = useChatStore();
+
+  const currentRoom = chatRooms.find((room) => room.id === currentRoomId);
+  const messages = currentRoom ? currentRoom.messages : [];
 
   // messages.length가 변경될 때에만 메시지 읽음함수 처리. messages 자체를 불러오면 useEffect가 messages를 변경하고 무한루프 발생 가능
   useEffect(() => {
@@ -15,6 +18,11 @@ export const MainChat = () => {
 
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages.length, currentUser.id, readMessage]);
+
+  if (!currentRoom) {
+    return <div className="flex-1" />;
+  }
+
   return (
     <div>
       {/* 메인 채팅창 */}
@@ -38,6 +46,10 @@ export const MainChat = () => {
             formatTime(nextMsg.timestamp) !== formatTime(msg.timestamp);
 
           const isMe = msg.senderId === currentUser.id;
+
+          const senderInfo = currentRoom.participants.find(
+            (p) => p.id === msg.senderId
+          );
 
           return (
             <React.Fragment key={msg.id}>
@@ -70,11 +82,11 @@ export const MainChat = () => {
                 <div
                   className={`flex flex-col max-w-[80%] ${isMe ? 'items-end' : 'items-start'}`}
                 >
-                  {/* 이름 생기면 주석에서 빼기 {!isMe && (
-                    <span className="text-caption-02 mb-1 ml-1">
+                  {!isMe && (isDifferentSender || showDateDivider) && (
+                    <span className="text-caption-02 mb-1 ml-1 text-gray-600">
                       {senderInfo?.name}
                     </span>
-                  )} */}
+                  )}
 
                   <div className="flex items-end gap-1.5">
                     {/* 내 메시지일 때: 말풍선 '왼쪽'에 체크마크와 시간이 위치함 */}

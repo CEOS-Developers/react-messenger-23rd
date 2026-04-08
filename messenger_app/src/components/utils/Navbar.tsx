@@ -5,9 +5,12 @@ import callOff from '../../icons/icon_callOff.svg';
 import messageOff from '../../icons/icon_messageOff.svg';
 import profileOff from '../../icons/icon_profileOff.svg';
 import { useNavigate } from 'react-router-dom';
+import { useChatStore } from '../../store/useChatStore';
 
 export const NavBar = () => {
   const navigate = useNavigate();
+  const { chatRooms } = useChatStore();
+  const totalUnreadCount = chatRooms.reduce((acc, room) => acc + room.unreadCount, 0);
   const isCall = window.location.pathname.endsWith('/');
   const isChat = window.location.pathname.includes('chat');
   const isProfile = window.location.pathname.includes('profile');
@@ -24,7 +27,7 @@ export const NavBar = () => {
       id: 'chat',
       label: '채팅',
       icon: isChat ? messageOn : messageOff,
-      badge: 200,
+      badge: totalUnreadCount > 99 ? '99+' : totalUnreadCount > 0 ? totalUnreadCount.toString() : undefined,
       path: '/chat',
     },
     {

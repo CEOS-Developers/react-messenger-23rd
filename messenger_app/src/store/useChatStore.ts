@@ -7,7 +7,6 @@ interface ChatStore {
   currentUser: User;
   chatRooms: ChatRoom[];
   currentRoomId: string | null;
-  // messages: Message[];
 
   setCurrentRoom: (roomId: string) => void;
   sendMessage: (text: string) => void;
@@ -22,7 +21,7 @@ export const useChatStore = create<ChatStore>()(
       currentUser: {
         id: 'user_me',
         name: '나',
-        profileImage: '/src/assets/me.jpg',
+        profileImage: '../src/assets/profile_me.png',
       },
       chatRooms: mockData.chatRooms,
       currentRoomId: null,
@@ -69,7 +68,6 @@ export const useChatStore = create<ChatStore>()(
               return {
                 ...room,
                 unreadCount: 0,
-                // 필요하다면 개별 메시지의 isRead 속성도 업데이트 (상대방 메시지를 읽음 처리)
                 messages: room.messages.map((msg) =>
                   msg.senderId !== state.currentUser.id
                     ? { ...msg, isRead: true }

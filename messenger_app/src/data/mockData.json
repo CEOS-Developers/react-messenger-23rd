@@ -5,8 +5,16 @@
       "isGroup": false,
       "unreadCount": 0,
       "participants": [
-        { "id": "user_yelin", "name": "김예린", "profileImage": "/src/assets/profiles/yelin.jpg" },
-        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+        {
+          "id": "user_yelin",
+          "name": "김예린",
+          "profileImage": "../src/assets/profile_yelin.jpg"
+        },
+        {
+          "id": "user_me",
+          "name": "나",
+          "profileImage": "../src/assets/profile_me.png"
+        }
       ],
       "messages": [
         {
@@ -47,7 +55,7 @@
         {
           "id": "msg_001_6",
           "senderId": "user_me",
-          "text": "웅 나 1시에 교양 수업 끝나니까 그때쯤 보자",
+          "text": "응 나 1시에 교양 수업 끝나니까 그때쯤 보자",
           "isRead": true,
           "timestamp": "2026-04-04T20:55:00.000Z"
         },
@@ -66,9 +74,21 @@
       "title": "서울 러너 모임",
       "unreadCount": 9,
       "participants": [
-        { "id": "user_runner1", "name": "운영진_제이", "profileImage": "/src/assets/profiles/runner.jpg" },
-        { "id": "user_runner2", "name": "초보러너", "profileImage": "/src/assets/profiles/default.jpg" },
-        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+        {
+          "id": "user_runner1",
+          "name": "운영진_제이",
+          "profileImage": "../src/assets/profile_runner.png"
+        },
+        {
+          "id": "user_runner2",
+          "name": "초보러너",
+          "profileImage": "../src/assets/profile_default.jpg"
+        },
+        {
+          "id": "user_me",
+          "name": "나",
+          "profileImage": "../src/assets/profile_me.png"
+        }
       ],
       "messages": [
         {
@@ -106,8 +126,16 @@
       "isGroup": false,
       "unreadCount": 2,
       "participants": [
-        { "id": "user_elena", "name": "Elena", "profileImage": "/src/assets/profiles/elena.jpg" },
-        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+        {
+          "id": "user_elena",
+          "name": "Elena",
+          "profileImage": "../src/assets/profile_elena.png"
+        },
+        {
+          "id": "user_me",
+          "name": "나",
+          "profileImage": "../src/assets/profile_me.png"
+        }
       ],
       "messages": [
         {
@@ -145,8 +173,16 @@
       "isGroup": false,
       "unreadCount": 0,
       "participants": [
-        { "id": "user_mom", "name": "엄마", "profileImage": "/src/assets/profiles/default_green.jpg" },
-        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+        {
+          "id": "user_mom",
+          "name": "엄마",
+          "profileImage": "../src/assets/profile_me.png"
+        },
+        {
+          "id": "user_me",
+          "name": "나",
+          "profileImage": "../src/assets/profile_me.png"
+        }
       ],
       "messages": [
         {
@@ -159,7 +195,7 @@
         {
           "id": "msg_004_2",
           "senderId": "user_me",
-          "text": "웅 방금 학식 먹었엉 엄마는??",
+          "text": "응 방금 학식 먹었엉 엄마는??",
           "isRead": true,
           "timestamp": "2026-04-03T12:15:00.000Z"
         },
@@ -193,9 +229,21 @@
       "participantCount": 5,
       "unreadCount": 0,
       "participants": [
-        { "id": "user_friend1", "name": "김민지", "profileImage": "/src/assets/profiles/default_green.jpg" },
-        { "id": "user_friend2", "name": "이수아", "profileImage": "/src/assets/profiles/default.jpg" },
-        { "id": "user_me", "name": "나", "profileImage": "/src/assets/profiles/me.jpg" }
+        {
+          "id": "user_friend1",
+          "name": "김민지",
+          "profileImage": "../src/assets/profile_maratang.png"
+        },
+        {
+          "id": "user_friend2",
+          "name": "이수아",
+          "profileImage": "../src/assets/profiles/default.jpg"
+        },
+        {
+          "id": "user_me",
+          "name": "나",
+          "profileImage": "../src/assets/profiles/profile_me.jpg"
+        }
       ],
       "messages": [
         {

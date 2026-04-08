@@ -1,7 +1,7 @@
 import arrow_right from '../../icons/icon_arrow_right.svg';
 import video from '../../icons/icon_video.svg';
 import call from '../../icons/icon_callOff.svg';
-import profile from '../../assets/profile.jpg';
+import profile from '../../assets/profile_yelin.jpg';
 import { useNavigate } from 'react-router-dom';
 
 const CHAT_COUNTS = 29;
