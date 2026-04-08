@@ -39,7 +39,7 @@ export const ProfilePage = () => {
   ];
 
   return (
-    <div className="w-full h-screen bg-Gray200 flex flex-col">
+    <div className="w-full h-screen pb-24 bg-Gray200 flex flex-col">
       <ProfileHeader />
 
       <div className="flex flex-col justify-center items-center pt-3 gap-2">

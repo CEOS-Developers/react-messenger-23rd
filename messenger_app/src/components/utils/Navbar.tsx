@@ -21,7 +21,6 @@ export const NavBar = () => {
       id: 'call',
       label: '통화',
       icon: isCall ? callOn : callOff,
-      badge: 3,
       path: '/',
     },
     {

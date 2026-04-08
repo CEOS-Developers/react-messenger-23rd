@@ -72,7 +72,7 @@
       "id": "room_002",
       "isGroup": true,
       "title": "서울 러너 모임",
-      "unreadCount": 9,
+      "unreadCount": 2,
       "participants": [
         {
           "id": "user_runner1",
@@ -227,7 +227,7 @@
       "isGroup": true,
       "title": "마라탕",
       "participantCount": 5,
-      "unreadCount": 0,
+      "unreadCount": 2,
       "participants": [
         {
           "id": "user_friend1",

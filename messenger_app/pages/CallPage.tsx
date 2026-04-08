@@ -1,18 +1,27 @@
+import { useState } from 'react';
 import { CallProfileList } from '../src/components/call/CallProfileList';
 import { MainChatHeader } from '../src/components/chat/MainChatHeader';
 import { NavBar } from '../src/components/utils/Navbar';
 import { SearchBar } from '../src/components/utils/SearchBar';
+import { UserSelectModal } from '../src/components/call/NewChatModal';
 
 export const CallPage = () => {
-    return (
-        <div className="w-full h-screen flex flex-col py-1.25">
-            <MainChatHeader chatTitle="통화"/>
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  return (
+    // dvh 써줘야 주소창 높이까지 계산해서 화면 꽉 채워짐
+    <div className="w-full h-dvh flex flex-col py-1.25">
+      <MainChatHeader
+        chatTitle="통화"
+        onAddClick={() => setIsModalOpen(true)}
+      />
 
-            <SearchBar/>
+      <SearchBar />
 
-            <CallProfileList/>
+      <CallProfileList />
 
-            <NavBar/>
-        </div>
-    )
-}
+      <NavBar />
+
+      {isModalOpen && <UserSelectModal onClose={() => setIsModalOpen(false)} />}
+    </div>
+  );
+};
