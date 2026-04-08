@@ -1,6 +1,6 @@
 @font-face {
   font-family: "SUIT Variable";
-  src: url("./assets/fonts/SUIT-Variable.woff2") format("woff2");
+  src: url("/fonts/SUIT-Variable.woff2") format("woff2");
   font-weight: 500 700;
   font-style: normal;
   font-display: swap;
