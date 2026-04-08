@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 
-import MoreIcon from "@/assets/icons/more.svg?react";
-import SearchIcon from "@/assets/icons/search.svg?react";
+import MoreIcon from "@/assets/icons/icon_more_fill.svg?react";
+import SearchIcon from "@/assets/icons/icon_search_regular.svg?react";
 import { cn } from "@/utils/cn";
 
 interface HeaderProps {

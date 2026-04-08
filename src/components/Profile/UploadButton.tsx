@@ -1,4 +1,4 @@
-import CameraIcon from "@/assets/icons/camera.svg?react";
+import CameraIcon from "@/assets/icons/icon_camera_fill.svg?react";
 
 interface UploadButtonProps {
   onClick?: () => void;

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import QrIcon from "@/assets/icons/qr.svg?react";
+import QrIcon from "@/assets/icons/icon_qr_regular.svg?react";
 import PostedImage1 from "@/assets/images/PostedImage1.jpg";
 import PostedImage2 from "@/assets/images/PostedImage2.jpg";
 import PostedImage3 from "@/assets/images/PostedImage3.jpg";

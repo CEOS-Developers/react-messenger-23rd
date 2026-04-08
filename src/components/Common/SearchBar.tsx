@@ -1,4 +1,4 @@
-import SearchIcon from "@/assets/icons/search.svg?react";
+import SearchIcon from "@/assets/icons/icon_search_regular.svg?react";
 
 interface SearchBarProps {
   value?: string;

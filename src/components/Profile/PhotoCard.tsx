@@ -1,4 +1,4 @@
-import StarIcon from "@/assets/icons/star.svg?react";
+import StarIcon from "@/assets/icons/icon_star_regular.svg?react";
 
 interface PhotoCardProps {
   src: string;

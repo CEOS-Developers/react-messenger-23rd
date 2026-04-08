@@ -1,9 +1,9 @@
 import { memo, useRef, useState } from "react";
 
-import EmojiIcon from "@/assets/icons/emoji.svg?react";
-import FileIcon from "@/assets/icons/file.svg?react";
-import SendMessageIcon from "@/assets/icons/send_message.svg?react";
-import VoiceMessageIcon from "@/assets/icons/voice_message.svg?react";
+import EmojiIcon from "@/assets/icons/icon_emoji_regular.svg?react";
+import FileIcon from "@/assets/icons/icon_file_regular.svg?react";
+import SendMessageIcon from "@/assets/icons/icon_send_message_fill.svg?react";
+import VoiceMessageIcon from "@/assets/icons/icon_voice_message_fill.svg?react";
 import { MAX_TEXTAREA_HEIGHT } from "@/constants/chatRoom";
 import { cn } from "@/utils/cn";
 

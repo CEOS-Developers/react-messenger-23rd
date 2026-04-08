@@ -1,5 +1,5 @@
-import EditIcon from "@/assets/icons/edit.svg?react";
-import ProfileIcon from "@/assets/icons/profile.svg?react";
+import EditIcon from "@/assets/icons/icon_edit_regular.svg?react";
+import ProfileIcon from "@/assets/icons/icon_profile_regular.svg?react";
 
 type EditButtonType = "profile" | "info";
 

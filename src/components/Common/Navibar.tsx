@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import ChatIcon from "@/assets/icons/chats.svg?react";
-import ProfileCircleIcon from "@/assets/icons/profile_circle.svg?react";
-import SettingIcon from "@/assets/icons/setting.svg?react";
+import ChatIcon from "@/assets/icons/icon_chat_regular.svg?react";
+import ProfileCircleIcon from "@/assets/icons/icon_profile_circle_regular.svg?react";
+import SettingIcon from "@/assets/icons/icon_setting_regular.svg?react";
 import Alert from "@/components/Common/Alert";
 import Profile from "@/components/Common/Profile";
 import { NAV_ITEMS } from "@/constants/navItems";

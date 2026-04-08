@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import BackIcon from "@/assets/icons/back.svg?react";
-import CallIcon from "@/assets/icons/call.svg?react";
+import BackIcon from "@/assets/icons/icon_arrow_left_regular.svg?react";
+import CallIcon from "@/assets/icons/icon_call_fill.svg?react";
 import Message from "@/components/ChatRoom/Message";
 import MessageDate from "@/components/ChatRoom/MessageDate";
 import TextField from "@/components/ChatRoom/TextField";

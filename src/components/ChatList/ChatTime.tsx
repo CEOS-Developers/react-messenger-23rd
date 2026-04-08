@@ -1,7 +1,7 @@
 import { memo } from "react";
 
-import CheckIcon from "@/assets/icons/check.svg?react";
-import PinIcon from "@/assets/icons/pin.svg?react";
+import CheckIcon from "@/assets/icons/icon_check_regular.svg?react";
+import PinIcon from "@/assets/icons/icon_pin_fill.svg?react";
 import { cn } from "@/utils/cn";
 
 interface ChatTimeProps {

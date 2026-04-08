@@ -1,7 +1,7 @@
-import BatteryIcon from "@/assets/icons/iphone_battery.svg?react";
-import SignalIcon from "@/assets/icons/iphone_signal.svg?react";
-import TimeIcon from "@/assets/icons/iphone_time.svg?react";
-import WifiIcon from "@/assets/icons/iphone_wifi.svg?react";
+import BatteryIcon from "@/assets/icons/icon_iphone_battery_fill.svg?react";
+import SignalIcon from "@/assets/icons/icon_iphone_signal_fill.svg?react";
+import TimeIcon from "@/assets/icons/icon_iphone_time_regular.svg?react";
+import WifiIcon from "@/assets/icons/icon_iphone_wifi_fill.svg?react";
 
 const StatusBar = () => {
   return (

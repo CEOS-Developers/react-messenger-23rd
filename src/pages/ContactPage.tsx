@@ -1,9 +1,9 @@
 import { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import ListByNameIcon from "@/assets/icons/list_name.svg?react";
-import ListByTimeIcon from "@/assets/icons/list_time.svg?react";
-import PlusIcon from "@/assets/icons/plus.svg?react";
+import ListByNameIcon from "@/assets/icons/icon_list_name_regular.svg?react";
+import ListByTimeIcon from "@/assets/icons/icon_list_time_regular.svg?react";
+import PlusIcon from "@/assets/icons/icon_plus_regular.svg?react";
 import Header from "@/components/Common/Header";
 import SearchBar from "@/components/Common/SearchBar";
 import ContactListItem from "@/components/Contact/ContactListItem";

@@ -1,4 +1,4 @@
-import AddChatIcon from "@/assets/icons/add_chat.svg?react";
+import AddChatIcon from "@/assets/icons/icon_add_chat_fill.svg?react";
 
 const CreateChatButton = () => {
   return (

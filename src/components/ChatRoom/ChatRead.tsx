@@ -1,4 +1,4 @@
-import CheckIcon from "@/assets/icons/check.svg?react";
+import CheckIcon from "@/assets/icons/icon_check_regular.svg?react";
 import { cn } from "@/utils/cn";
 
 interface ChatReadProps {
