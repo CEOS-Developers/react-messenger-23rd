@@ -8,12 +8,12 @@
         {
           "id": "user_yelin",
           "name": "김예린",
-          "profileImage": "../src/assets/profile_yelin.jpg"
+          "profileKey": "profile_yelin"
         },
         {
           "id": "user_me",
           "name": "나",
-          "profileImage": "../src/assets/profile_me.png"
+          "profileKey": "profile_me"
         }
       ],
       "messages": [
@@ -77,17 +77,17 @@
         {
           "id": "user_runner1",
           "name": "운영진_제이",
-          "profileImage": "../src/assets/profile_runner.png"
+          "profileKey": "profile_runner"
         },
         {
           "id": "user_runner2",
           "name": "초보러너",
-          "profileImage": "../src/assets/profile_default.jpg"
+          "profileKey": "profile_default"
         },
         {
           "id": "user_me",
           "name": "나",
-          "profileImage": "../src/assets/profile_me.png"
+          "profileKey": "profile_me"
         }
       ],
       "messages": [
@@ -129,12 +129,12 @@
         {
           "id": "user_elena",
           "name": "Elena",
-          "profileImage": "../src/assets/profile_elena.png"
+          "profileKey": "profile_elena"
         },
         {
           "id": "user_me",
           "name": "나",
-          "profileImage": "../src/assets/profile_me.png"
+          "profileKey": "profile_me"
         }
       ],
       "messages": [
@@ -176,12 +176,12 @@
         {
           "id": "user_mom",
           "name": "엄마",
-          "profileImage": "../src/assets/profile_me.png"
+          "profileKey": "profile_mom"
         },
         {
           "id": "user_me",
           "name": "나",
-          "profileImage": "../src/assets/profile_me.png"
+          "profileKey": "profile_me"
         }
       ],
       "messages": [
@@ -232,17 +232,17 @@
         {
           "id": "user_friend1",
           "name": "김민지",
-          "profileImage": "../src/assets/profile_maratang.png"
+          "profileKey": "profile_maratang"
         },
         {
           "id": "user_friend2",
           "name": "이수아",
-          "profileImage": "../src/assets/profiles/default.jpg"
+          "profileKey": "profile_default"
         },
         {
           "id": "user_me",
           "name": "나",
-          "profileImage": "../src/assets/profiles/profile_me.jpg"
+          "profileKey": "profile_me"
         }
       ],
       "messages": [

@@ -12,7 +12,6 @@ interface ChatStore {
   sendMessage: (text: string) => void;
   readMessage: () => void;
   // switchUser: () => void;
-  // loadData: () => void;
 }
 
 export const useChatStore = create<ChatStore>()(
@@ -21,7 +20,7 @@ export const useChatStore = create<ChatStore>()(
       currentUser: {
         id: 'user_me',
         name: '나',
-        profileImage: '../src/assets/profile_me.png',
+        profileKey: 'profile_me',
       },
       chatRooms: mockData.chatRooms,
       currentRoomId: null,

@@ -1,7 +1,7 @@
 export interface User {
   id: string;
   name: string;
-  profileImage: string;
+  profileKey: string;
 }
 
 export interface Message {

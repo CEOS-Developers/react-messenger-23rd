@@ -1,37 +1,7 @@
 import { useChatStore } from '../../store/useChatStore';
 import { useNavigate } from 'react-router-dom';
-
-// 시간에 따라 '오후 9:01', '어제', '월요일', '3월 14일' 등으로 변환해주는 유틸 함수
-const formatChatListTime = (timestamp: string) => {
-  const date = new Date(timestamp);
-  const now = new Date();
-  
-  const isToday = date.toDateString() === now.toDateString();
-  
-  const yesterday = new Date(now);
-  yesterday.setDate(now.getDate() - 1);
-  const isYesterday = date.toDateString() === yesterday.toDateString();
-  
-  const diffTime = Math.abs(now.getTime() - date.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-  if (isToday) {
-    return new Intl.DateTimeFormat('ko-KR', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-    }).format(date);
-  } else if (isYesterday) {
-    return '어제';
-  } else if (diffDays < 7) {
-    return new Intl.DateTimeFormat('ko-KR', { weekday: 'long' }).format(date);
-  } else {
-    return new Intl.DateTimeFormat('ko-KR', {
-      month: 'short',
-      day: 'numeric',
-    }).format(date);
-  }
-};
+import { formatChatListTime } from '../../utils/formatChatListTime';
+import { imageMap } from '../../utils/imageMaps';
 
 export const ChatList = () => {
   const { chatRooms, currentUser, setCurrentRoom } = useChatStore();
@@ -47,9 +17,14 @@ export const ChatList = () => {
       {chatRooms.map((room) => {
         const lastMessage = room.messages[room.messages.length - 1];
         if (!lastMessage) return null;
-        const otherParticipant = room.participants.find(p => p.id !== currentUser.id);
+        const otherParticipant = room.participants.find(
+          (p) => p.id !== currentUser.id
+        );
         const roomTitle = room.title || otherParticipant?.name || '알 수 없음';
-        const roomImage = otherParticipant?.profileImage || '../src/assets/profile_me.png';
+        const roomImage =
+          (otherParticipant?.profileKey &&
+            imageMap[otherParticipant.profileKey]) ||
+          imageMap['profile_default'];
 
         return (
           <div
@@ -65,9 +40,7 @@ export const ChatList = () => {
 
             <div className="ml-3 flex-1 min-w-0 flex flex-col justify-center">
               <div className="flex items-center mb-0.5">
-                <span className="text-body-01 truncate">
-                  {roomTitle}
-                </span>
+                <span className="text-body-01 truncate">{roomTitle}</span>
                 {room.isGroup && (
                   <span className="ml-1 text-body-02 text-Gray600">
                     {room.participants.length}
@@ -84,7 +57,7 @@ export const ChatList = () => {
               <span className="text-caption-12 text-Gray600">
                 {formatChatListTime(lastMessage.timestamp)}
               </span>
-              
+
               {room.unreadCount > 0 && (
                 <div className="flex bg-green200 text-caption-01 rounded-[15px] px-1.5 min-w-5 h-5 items-center justify-center">
                   {room.unreadCount > 99 ? '99+' : room.unreadCount}
