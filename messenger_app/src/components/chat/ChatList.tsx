@@ -1,6 +1,3 @@
-// src/components/chat/ChatList.tsx
-import React from 'react';
-// import { useNavigate } from 'react-router-dom'; // 라우터 사용 시 주석 해제
 import { useChatStore } from '../../store/useChatStore';
 import { useNavigate } from 'react-router-dom';
 
