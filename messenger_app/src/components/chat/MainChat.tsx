@@ -26,7 +26,7 @@ export const MainChat = () => {
   return (
     <div>
       {/* 메인 채팅창 */}
-      <div className="flex w-full h-full overflow-y-auto px-4 flex-col">
+      <div className="flex w-full h-full overflow-y-auto px-4 flex-col pb-4.5">
         {messages.map((msg, index) => {
           const prevMsg = messages[index - 1];
           const nextMsg = messages[index + 1];

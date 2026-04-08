@@ -86,7 +86,7 @@ export const UserSelectModal = ({ onClose }: UserSelectModalProps) => {
 
         {/* --- 스크롤 가능한 리스트 영역 --- */}
         {/* ✨ flex-1과 overflow-y-auto를 여기에 부여하여 이 영역만 스크롤되게 만듦 */}
-        <div className="flex-1 overflow-y-auto flex flex-col gap-4 mt-2">
+        <div className="flex-1 overflow-y-auto flex flex-col gap-4 mt-2 [&::-webkit-scrollbar]:hidden">
           
           {/* 새 아이템 리스트 */}
           {searchQuery === '' && (
