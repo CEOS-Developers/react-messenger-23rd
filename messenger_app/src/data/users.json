@@ -1,0 +1,44 @@
+{
+    "users": [
+        {
+            "id": "user_janchi",
+            "name": "잔치 단 언니",
+            "profileImage": "../src/assets/profile_janchi.png"
+        },
+        {
+            "id": "user_nosia",
+            "name": "노시아",
+            "profileImage": "../src/assets/profile_nosia.png"
+        },
+        {
+            "id": "user_elena",
+            "name": "Elena",
+            "profileImage": "../src/assets/profile_elena.png"
+        },
+        {
+            "id": "user_suyeon",
+            "name": "다움_수연언니",
+            "profileImage": "../src/assets/profile_suyeon.png"
+        },
+        {
+            "id": "user_daram",
+            "name": "다람이",
+            "profileImage": "../src/assets/profile_me.png"
+        },
+        {
+            "id": "user_igyu",
+            "name": "동기 이규",
+            "profileImage": "../src/assets/profile_igyu.png"
+        },
+        {
+            "id": "user_hyon",
+            "name": "동기 횬이브기니",
+            "profileImage": "../src/assets/profile_hyon.png"
+        },
+        {
+            "id": "user_yj",
+            "name": "영준",
+            "profileImage": "../src/assets/profile_me.png"
+        }
+    ]
+}
