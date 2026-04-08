@@ -3,42 +3,42 @@
         {
             "id": "user_janchi",
             "name": "잔치 단 언니",
-            "profileImage": "../src/assets/profile_janchi.png"
+            "profileKey": "profile_janchi"
         },
         {
             "id": "user_nosia",
             "name": "노시아",
-            "profileImage": "../src/assets/profile_nosia.png"
+            "profileKey": "profile_nosia"
         },
         {
             "id": "user_elena",
             "name": "Elena",
-            "profileImage": "../src/assets/profile_elena.png"
+            "profileKey": "profile_elena"
         },
         {
             "id": "user_suyeon",
             "name": "다움_수연언니",
-            "profileImage": "../src/assets/profile_suyeon.png"
+            "profileKey": "profile_suyeon"
         },
         {
             "id": "user_daram",
             "name": "다람이",
-            "profileImage": "../src/assets/profile_me.png"
+            "profileKey": "profile_daram"
         },
         {
             "id": "user_igyu",
             "name": "동기 이규",
-            "profileImage": "../src/assets/profile_igyu.png"
+            "profileKey": "profile_igyu"
         },
         {
             "id": "user_hyon",
             "name": "동기 횬이브기니",
-            "profileImage": "../src/assets/profile_hyon.png"
+            "profileKey": "profile_hyon"
         },
         {
             "id": "user_yj",
             "name": "영준",
-            "profileImage": "../src/assets/profile_me.png"
+            "profileKey": "profile_me"
         }
     ]
 }
