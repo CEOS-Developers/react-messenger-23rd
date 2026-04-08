@@ -40,7 +40,7 @@ const Header = ({
   >
     <div className="flex shrink-0 flex-row items-center gap-3">
       {leftIcon && (
-        <button onClick={onLeftIconClick} className="size-6 cursor-pointer">
+        <button onClick={onLeftIconClick} className="size-6 cursor-pointer text-gray-500">
           {leftIcon}
         </button>
       )}

@@ -122,7 +122,11 @@ const ContactPage = () => {
                     className="cursor-pointer text-gray-500"
                     onClick={() => setSortByTime(prev => !prev)}
                   >
-                    {sortByTime ? <ListByNameIcon /> : <ListByTimeIcon />}
+                    {sortByTime ? (
+                      <ListByNameIcon className="size-6" />
+                    ) : (
+                      <ListByTimeIcon className="size-6" />
+                    )}
                   </button>
                 </div>
               )}

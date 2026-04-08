@@ -21,7 +21,7 @@ const EditButton = ({ type, onClick }: EditButtonProps) => {
       className="rounded-60 flex h-10.5 w-39 cursor-pointer items-center justify-center gap-2 bg-gray-100 px-3 py-2.5 text-gray-700"
       onClick={onClick}
     >
-      <span className="text-gray-500">{icon}</span>
+      <span className="size-6 text-gray-500">{icon}</span>
       <span className="font-body-5 text-gray-500">{label}</span>
     </button>
   );

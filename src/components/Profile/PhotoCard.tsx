@@ -11,7 +11,7 @@ const PhotoCard = ({ src, showStar = false }: PhotoCardProps) => {
       <img src={src} alt="" className="h-full w-full object-cover" />
       {showStar && (
         <div className="absolute top-1 right-1">
-          <StarIcon className="text-white" />
+          <StarIcon className="size-6 text-white" />
         </div>
       )}
     </div>
