@@ -42,26 +42,28 @@ export const ProfilePage = () => {
     <div className="w-full h-dvh bg-Gray200 flex flex-col">
       <ProfileHeader />
 
-      <div className="flex flex-col justify-center items-center pt-3 gap-2">
-        <img
-          src={profile_me}
-          alt="프로필"
-          className="w-35 rounded-full object-cover"
-        />
-        <button className="text-body-02 text-Purple">편집</button>
-      </div>
-
-      <div className="flex flex-col">
-        {PROFILE_DATA.map((item) => (
-          <ProfileField
-            key={item.id}
-            label={item.label}
-            value={item.value}
-            isAction={item.isAction}
+      <div className="flex-1 overflow-y-auto pb-24">
+        <div className="flex flex-col justify-center items-center pt-3 gap-2">
+          <img
+            src={profile_me}
+            alt="프로필"
+            className="w-35 rounded-full object-cover"
           />
-        ))}
-      </div>
+          <button className="text-body-02 text-Purple">편집</button>
+        </div>
 
+        <div className="flex flex-col">
+          {PROFILE_DATA.map((item) => (
+            <ProfileField
+              key={item.id}
+              label={item.label}
+              value={item.value}
+              isAction={item.isAction}
+            />
+          ))}
+        </div>
+      </div>
+      
       <NavBar />
     </div>
   );
