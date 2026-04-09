@@ -39,7 +39,7 @@ export const ProfilePage = () => {
   ];
 
   return (
-    <div className="w-full h-dvh bg-Gray200 flex flex-col">
+    <div className="w-full h-dvh bg-Gray200 flex flex-col pb-24">
       <ProfileHeader />
 
       <div className="flex-1 overflow-y-auto pb-24">
@@ -63,7 +63,7 @@ export const ProfilePage = () => {
           ))}
         </div>
       </div>
-      
+
       <NavBar />
     </div>
   );
