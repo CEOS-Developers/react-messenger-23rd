@@ -8,7 +8,7 @@ const MyProfilePage = () => {
   return (
     <main className="flex h-full flex-col bg-white">
       <MyProfileHeader />
-      <section className="flex-1 overflow-y-auto">
+      <section className="flex-1 overflow-y-auto scrollbar-hide">
         <ProfileInfoSection />
         <ProfileIdSection />
         <ProfileMenuList />
