@@ -51,7 +51,7 @@ export const ProfilePage = () => {
         <button className="text-body-02 text-Purple">편집</button>
       </div>
 
-      <div className="flex flex-col flex-1 overflow-y-auto pb-24">
+      <div className="flex flex-col pb-24">
         {PROFILE_DATA.map((item) => (
           <ProfileField
             key={item.id}
