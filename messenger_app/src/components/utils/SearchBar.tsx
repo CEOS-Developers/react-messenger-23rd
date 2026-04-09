@@ -1,6 +1,11 @@
 import search from '../../icons/icon_search.svg';
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const SearchBar = ({ value, onChange }: SearchBarProps) => {
   return (
     <div className='px-4'>
       {/* 검색창 */}
@@ -8,7 +13,13 @@ export const SearchBar = () => {
         <div className="flex items-center justify-center w-6 h-6">
           <img src={search} alt="" />
         </div>
-        <input type='text' className="w-full text-body-02 text-Gray600 placeholder-opacity-100 outline-none" placeholder='검색'/>
+        <input
+          type='text'
+          value={value}
+          onChange={onChange}
+          className="w-full text-body-02 text-Gray600 placeholder-opacity-100 outline-none"
+          placeholder='검색'
+        />
       </div>
     </div>
   );

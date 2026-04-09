@@ -3,10 +3,18 @@ import video from '../../icons/icon_video.svg';
 import call from '../../icons/icon_callOff.svg';
 import { imageMap } from '../../utils/imageMaps';
 
-export const CallProfileList = () => {
+interface CallProfileListProps {
+  searchQuery: string;
+}
+
+export const CallProfileList = ({ searchQuery }: CallProfileListProps) => {
+  const filteredUsers = userData.users.filter((user) =>
+    user.name.includes(searchQuery)
+  );
+
   return (
     <div className="flex-1 overflow-y-auto pb-24">
-      {userData.users.map((user) => {
+      {filteredUsers.map((user) => {
         const actualImage = imageMap[user.profileKey] || imageMap['default'];
         return (
           <div

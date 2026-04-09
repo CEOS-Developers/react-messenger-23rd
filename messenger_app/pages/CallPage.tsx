@@ -7,6 +7,8 @@ import { UserSelectModal } from '../src/components/call/NewChatModal';
 
 export const CallPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     // dvh 써줘야 주소창 높이까지 계산해서 화면 꽉 채워짐
     <div className="w-full h-dvh flex flex-col py-1.25">
@@ -15,9 +17,9 @@ export const CallPage = () => {
         onAddClick={() => setIsModalOpen(true)}
       />
 
-      <SearchBar />
+      <SearchBar value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
 
-      <CallProfileList />
+      <CallProfileList searchQuery={searchQuery}/>
 
       <NavBar />
 
