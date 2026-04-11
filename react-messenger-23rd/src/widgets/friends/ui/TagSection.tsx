@@ -40,7 +40,7 @@ const TagSection = ({ isOpen, onToggle }: TagSectionProps) => {
           <div className="flex flex-col gap-1">
             {mockTags.map((tag) => (
               <button key={tag.id} type="button" className="inline-flex items-center gap-4 py-2 text-left">
-                <span className="Body01M text-gray-80 pr-4">{tag.name}</span>
+                <span className="Body01M text-gray-80">{tag.name}</span>
 
                 <div className="flex items-center">
                   <span className="Body03R text-gray-70">{tag.count}</span>

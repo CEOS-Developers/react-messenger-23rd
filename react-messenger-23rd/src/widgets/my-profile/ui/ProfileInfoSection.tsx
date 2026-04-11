@@ -8,7 +8,7 @@ const ProfileInfoSection = () => {
           <img src={profileIcon} alt="내 프로필" className="h-12 w-12 text-main-light" />
         </div>
         <div className="flex flex-col justify-center gap-1">
-          <span className="Heading02SB">고다현</span>
+          <span className="Heading02SB text-black">고다현</span>
           <span className="Caption01R text-gray-70">잘 부탁드립니다! 고다현이라고 합니다</span>
         </div>
       </div>

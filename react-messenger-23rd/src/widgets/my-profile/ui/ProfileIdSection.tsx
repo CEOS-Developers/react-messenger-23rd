@@ -6,7 +6,7 @@ const ProfileIdSection = () => {
       <span className="text-sm font-medium leading-5 text-gray-50">ID</span>
 
       <div className="flex items-center justify-between">
-        <span className="Heading02R">wxid_net0sc3hdxum12</span>
+        <span className="Heading02R text-black">wxid_net0sc3hdxum12</span>
 
         <button>
           <img src={copyIcon} alt="복사" className="h-5 w-5" />

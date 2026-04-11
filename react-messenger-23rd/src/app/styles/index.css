@@ -87,20 +87,21 @@
   --color-gray-10: #f3f5f7;
   --color-gray-20: #edeff2;
   --color-gray-30: #e4e7eb;
-  --color-gray-40: #CCD2D9;
+  --color-gray-40: #ccd2d9;
   --color-gray-50: #b4b9c2;
   --color-gray-60: #959ca6;
+
   --color-gray-70: #636973;
   --color-gray-80: #464950;
   --color-gray-90: #282c33;
   --color-main: #16d96a;
   --color-main-light: #c1f7d9;
-  --color-main-light2: #E3FCEE;
+  --color-main-light2: #e3fcee;
   --color-textbox: #3dcc61;
   --color-pressed: #1f9853;
 
   --color-white: #ffffff;
-  --color-black: #000000;
+  --color-black: #191919;
 
   /* font */
   --font-suit: 'SUIT', sans-serif;
