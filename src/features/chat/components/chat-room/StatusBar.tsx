@@ -15,7 +15,7 @@ export default function StatusBar({
       : "bg-chat-blue-100/80 backdrop-blur-[2px]";
 
   return (
-    <div className={`relative h-[47px] w-full self-stretch ${backgroundClassName}`}>
+    <div className={`relative hidden h-[47px] w-full self-stretch md:block ${backgroundClassName}`}>
       <div className="flex h-[47px] w-[88px] items-center justify-end pt-[17px] pr-[6.5px] pb-[13px] pl-[46.5px]">
         <span className="typo-ios-status">
           9:41

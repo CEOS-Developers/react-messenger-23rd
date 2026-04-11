@@ -83,7 +83,7 @@ export default function BottomNavigator({
         ))}
       </div>
 
-      <div className="flex h-[34px] w-full items-center justify-center pt-[21px] pb-[8px]">
+      <div className="hidden h-[34px] w-full items-center justify-center pt-[21px] pb-[8px] md:flex">
         <div className="h-[5px] w-[134px] rounded-[100px] bg-chat-home-indicator" />
       </div>
     </nav>
