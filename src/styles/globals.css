@@ -1,59 +1,253 @@
-:root {
-  /* layout */
-  --screen-width: 375px;
-  --screen-height: 812px;
-  --radius-xl: 16px;
-  --grid-margin: 8px;
-  --grid-gutter: 16px;
-
-  /* colors */
-  --color-yellow-100: #FEEEB8;
-  --color-yellow-200: #FFE000;
-  --color-brown: #421D1D;
-
-  --color-blue-100: #A7C8E8;
-  --color-blue-200: #9CB7EE;
-
-  --color-accent-100: #FF5E25;
-  --color-accent-200: #FF4300;
-
-  --color-gray-700: #272729;
-  --color-gray-600: #363638;
-  --color-gray-500: #525254;
-  --color-gray-400: #79797B;
-  --color-gray-300: #A2A2A4;
-  --color-gray-200: #D6D6D8;
-  --color-gray-150: #EDEDEF;
-  --color-gray-100: #F2F2F4;
-
-  --color-black: #191919;
-  --color-white: #FFFFFF;
-
-  /* skeleton */
-  --color-skeleton-50: rgba(214, 214, 216, 0.5);
-  --color-skeleton-20: rgba(245, 245, 247, 0.75);
-
-  /* typography */
-  --font-big: "Kakao Big Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --font-small: "Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+@font-face {
+  font-family: "Kakao Big Sans";
+  src: url("/fonts/kakao/KakaoBigSans-Regular.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
 }
 
-html,
-body,
-#root {
-  height: 100%;
+@font-face {
+  font-family: "Kakao Big Sans";
+  src: url("/fonts/kakao/KakaoBigSans-Bold.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
 }
 
-body {
-  margin: 0;
+@font-face {
+  font-family: "Kakao Big Sans";
+  src: url("/fonts/kakao/KakaoBigSans-ExtraBold.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 800;
 }
 
-/* 스크롤은 가능하지만 스크롤바는 숨김 */
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@font-face {
+  font-family: "Kakao Small Sans";
+  src: url("/fonts/kakao/KakaoSmallSans-Regular.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
 }
 
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
+@font-face {
+  font-family: "Kakao Small Sans";
+  src: url("/fonts/kakao/KakaoSmallSans-Bold.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@theme {
+  --font-kakao-big: "Kakao Big Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-kakao-small: "Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-ios-status: "SF Pro", "SF Pro Display", sans-serif;
+
+  --color-chat-yellow-100: #FEEEB8;
+  --color-chat-yellow-200: #FFE000;
+  --color-chat-brown: #421D1D;
+  --color-chat-blue-100: #A7C8E8;
+  --color-chat-blue-200: #9CB7EE;
+  --color-chat-accent-100: #FF5E25;
+  --color-chat-accent-200: #FF4300;
+  --color-chat-gray-700: #272729;
+  --color-chat-gray-600: #363638;
+  --color-chat-gray-500: #525254;
+  --color-chat-gray-400: #79797B;
+  --color-chat-gray-300: #A2A2A4;
+  --color-chat-gray-200: #D6D6D8;
+  --color-chat-gray-150: #EDEDEF;
+  --color-chat-gray-100: #F2F2F4;
+  --color-chat-gray-50: #F5F5F7;
+  --color-chat-black: #191919;
+  --color-chat-home-indicator: #111111;
+  --color-chat-white: #FFFFFF;
+}
+
+@layer base {
+  :root {
+    --screen-width: 375px;
+    --screen-height: 812px;
+    --radius-xl: 16px;
+    --grid-margin: 8px;
+    --grid-gutter: 16px;
+    --color-skeleton-50: rgba(214, 214, 216, 0.5);
+    --color-skeleton-20: rgba(245, 245, 247, 0.75);
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-chat-gray-150);
+    color: var(--color-chat-black);
+    font-family: var(--font-kakao-small);
+    font-feature-settings: "liga" off, "clig" off;
+  }
+
+  button {
+    cursor: pointer;
+    font: inherit;
+  }
+
+  button:disabled {
+    cursor: default;
+  }
+
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  img,
+  svg {
+    display: block;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .svg-icon {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .typo-title-01 {
+    font-family: var(--font-kakao-big);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.96px;
+    line-height: 130%;
+  }
+
+  .typo-heading-01 {
+    font-family: var(--font-kakao-big);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    line-height: 140%;
+  }
+
+  .typo-heading-02 {
+    font-family: var(--font-kakao-big);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.72px;
+    line-height: 140%;
+  }
+
+  .typo-body-01 {
+    font-family: var(--font-kakao-small);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.64px;
+    line-height: 160%;
+  }
+
+  .typo-body-02 {
+    font-family: var(--font-kakao-small);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.64px;
+    line-height: 160%;
+  }
+
+  .typo-sub-body {
+    font-family: var(--font-kakao-small);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.56px;
+    line-height: 160%;
+  }
+
+  .typo-button {
+    font-family: var(--font-kakao-small);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.64px;
+    line-height: 160%;
+  }
+
+  .typo-label {
+    font-family: var(--font-kakao-small);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.56px;
+    line-height: 160%;
+  }
+
+  .typo-caption-01 {
+    font-family: var(--font-kakao-small);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.48px;
+    line-height: 160%;
+  }
+
+  .typo-caption-02 {
+    font-family: var(--font-kakao-small);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.48px;
+    line-height: 160%;
+  }
+
+  .typo-caption-03 {
+    font-family: var(--font-kakao-small);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    line-height: 140%;
+  }
+
+  .typo-badge {
+    font-family: var(--font-kakao-small);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: -0.44px;
+    line-height: 100%;
+  }
+
+  .typo-ios-status {
+    color: #000;
+    font-feature-settings: "ss03" on;
+    font-family: "SF Pro";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 590;
+    letter-spacing: -0.5px;
+    line-height: 17px;
+    text-align: center;
+  }
+}
+
+@layer components {
+  .chat-text {
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .hangul-jamo-fix {
+    display: inline-block;
+    font-size: 0.82em;
+    line-height: 1;
+    vertical-align: 0.06em;
+  }
+
+  .hangul-jamo-input {
+    font-size: 11.5px;
+    line-height: 22.4px;
+  }
 }

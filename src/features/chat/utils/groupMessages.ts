@@ -1,11 +1,11 @@
-import type { Message } from "../types/chat";
+import type { Message } from "@/features/chat/types/chat";
 
 export type GroupedMessage = Message & {
   showTime: boolean;
 };
 
 export type MessageGroup = {
-  senderId: string;
+  senderId: number;
   createdDate: string;
   messages: GroupedMessage[];
 };

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import ImageMessageGrid from "./ImageMessageGrid";
+import ImageMessageGrid from "@/features/chat/components/chat-room/ImageMessageGrid";
+import { isHangulCompatibilityJamo } from "@/features/chat/utils/hangulJamo";
 
 type MessageBubbleProps = {
   text?: string;
@@ -24,6 +25,18 @@ function extractEmojiUnits(text: string) {
   );
 
   return isEmojiOnly ? units : [];
+}
+
+function renderTextWithJamoFix(text: string) {
+  return Array.from(text).map((char, index) =>
+    isHangulCompatibilityJamo(char) ? (
+      <span key={`${char}-${index}`} className="hangul-jamo-fix">
+        {char}
+      </span>
+    ) : (
+      char
+    )
+  );
 }
 
 function EmojiOnlyBubble({ emojis }: { emojis: string[] }) {
@@ -91,30 +104,18 @@ function TextBubbleContent({
     };
   }, [text]);
 
-  const bubbleBg = isMine ? "#FFE000" : "#FFFFFF";
-
-  const textStyle = {
-    fontFamily:
-      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-    fontFeatureSettings: '"liga" off, "clig" off',
-    lineHeight: "160%",
-    letterSpacing: "-0.56px",
-    wordBreak: "break-word" as const,
-    whiteSpace: "normal" as const,
-  };
+  const bubbleBgClass = isMine ? "bg-chat-yellow-200" : "bg-chat-white";
 
   if (!isMaxVariant) {
     return (
       <div
-        className={`max-w-[240px] rounded-[8px] px-[12px] pt-[7px] pb-[5px] md:py-[6px] ${isMine ? "bg-[#FFE000]" : "bg-white"
-          }`}
+        className={`max-w-[240px] rounded-[8px] px-[12px] pt-[7px] pb-[5px] md:py-[6px] ${bubbleBgClass}`}
       >
         <p
           ref={measureRef}
-          className="text-[14px] font-normal text-[#191919]"
-          style={textStyle}
+          className="typo-sub-body chat-text text-chat-black"
         >
-          {text}
+          {renderTextWithJamoFix(text)}
         </p>
       </div>
     );
@@ -122,42 +123,22 @@ function TextBubbleContent({
 
   return (
     <div
-      className="flex w-[240px] max-w-[240px] flex-col items-end gap-[6px] rounded-[8px] pt-[6px] pr-[12px] pb-[8px] pl-[12px]"
-      style={{ background: bubbleBg }}
+      className={`flex w-[240px] max-w-[240px] flex-col items-end gap-[6px] rounded-[8px] pt-[6px] pr-[12px] pb-[8px] pl-[12px] ${bubbleBgClass}`}
     >
       <p
         ref={measureRef}
-        className={`w-full overflow-hidden text-[14px] font-normal text-[#191919] ${isExpanded ? "" : "line-clamp-[11]"
+        className={`typo-sub-body chat-text w-full overflow-hidden text-chat-black ${isExpanded ? "" : "line-clamp-[11]"
           }`}
-        style={textStyle}
       >
-        {text}
+        {renderTextWithJamoFix(text)}
       </p>
 
-      <div
-        className="w-full"
-        style={{
-          height: 0,
-          alignSelf: "stretch",
-          borderTop: "0.75px solid rgba(25, 25, 25, 0.10)",
-        }}
-      />
+      <div className="h-0 w-full self-stretch border-t-[0.75px] border-chat-black/10" />
 
       <button
         type="button"
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="overflow-hidden text-right text-[10px] font-normal text-[#525254] transition-colors hover:font-medium hover:text-[#363638]"
-        style={{
-          fontFamily:
-            '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-          fontFeatureSettings: '"liga" off, "clig" off',
-          lineHeight: "140%",
-          letterSpacing: "-0.4px",
-          display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
-          WebkitLineClamp: 1,
-          textOverflow: "ellipsis",
-        }}
+        className="typo-caption-03 line-clamp-1 overflow-hidden text-right text-chat-gray-500 transition-colors hover:font-medium hover:text-chat-gray-600"
       >
         {isExpanded ? "접기" : "전체보기"}
       </button>
@@ -195,13 +176,7 @@ export default function MessageBubble({
             <div className="flex items-center gap-[4px]">
               {showTime && time ? (
                 <span
-                  className="text-right text-[10px] font-normal text-[#79797B]"
-                  style={{
-                    fontFamily:
-                      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                    lineHeight: "140%",
-                    letterSpacing: "-0.4px",
-                  }}
+                  className="typo-caption-03 text-right text-chat-gray-400"
                 >
                   {time}
                 </span>
@@ -209,13 +184,7 @@ export default function MessageBubble({
 
               {unreadCount !== undefined ? (
                 <span
-                  className="text-[10px] font-normal text-[#FFEEB8]"
-                  style={{
-                    fontFamily:
-                      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                    lineHeight: "140%",
-                    letterSpacing: "-0.4px",
-                  }}
+                  className="typo-caption-03 text-chat-yellow-100"
                 >
                   {unreadCount}
                 </span>
@@ -257,13 +226,7 @@ export default function MessageBubble({
             <div className="flex items-center gap-[4px]">
               {unreadCount !== undefined ? (
                 <span
-                  className="text-[10px] font-normal text-[#FFEEB8]"
-                  style={{
-                    fontFamily:
-                      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                    lineHeight: "140%",
-                    letterSpacing: "-0.4px",
-                  }}
+                  className="typo-caption-03 text-chat-yellow-100"
                 >
                   {unreadCount}
                 </span>
@@ -271,13 +234,7 @@ export default function MessageBubble({
 
               {showTime && time ? (
                 <span
-                  className="text-right text-[10px] font-normal text-[#79797B]"
-                  style={{
-                    fontFamily:
-                      '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                    lineHeight: "140%",
-                    letterSpacing: "-0.4px",
-                  }}
+                  className="typo-caption-03 text-right text-chat-gray-400"
                 >
                   {time}
                 </span>

@@ -2,6 +2,10 @@ type ImageMessageGridProps = {
   imageUrls: string[];
 };
 
+function getChatImageAlt(index: number) {
+  return `채팅 이미지 ${index + 1}`;
+}
+
 function renderSingleImage(imageUrl: string) {
   return (
     <div
@@ -11,7 +15,11 @@ function renderSingleImage(imageUrl: string) {
         height: "240px",
       }}
     >
-      <img src={imageUrl} alt="" className="h-full w-full object-cover" />
+      <img
+        src={imageUrl}
+        alt={getChatImageAlt(0)}
+        className="h-full w-full object-cover"
+      />
     </div>
   );
 }
@@ -29,7 +37,11 @@ function renderTwoGrid(imageUrls: string[]) {
             className="overflow-hidden rounded-[8px]"
             style={{ width: `${cellSize}px`, height: `${cellSize}px` }}
           >
-            <img src={src} alt="" className="h-full w-full object-cover" />
+            <img
+              src={src}
+              alt={getChatImageAlt(index)}
+              className="h-full w-full object-cover"
+            />
           </div>
         ))}
       </div>
@@ -43,7 +55,11 @@ function renderTwoGrid(imageUrls: string[]) {
           className="overflow-hidden rounded-[8px]"
           style={{ width: `${cellSize}px`, height: "240px" }}
         >
-          <img src={imageUrls[0]} alt="" className="h-full w-full object-cover" />
+          <img
+            src={imageUrls[0]}
+            alt={getChatImageAlt(0)}
+            className="h-full w-full object-cover"
+          />
         </div>
 
         <div className="flex flex-col gap-[2px]">
@@ -51,13 +67,21 @@ function renderTwoGrid(imageUrls: string[]) {
             className="overflow-hidden rounded-[8px]"
             style={{ width: `${cellSize}px`, height: `${cellSize}px` }}
           >
-            <img src={imageUrls[1]} alt="" className="h-full w-full object-cover" />
+            <img
+              src={imageUrls[1]}
+              alt={getChatImageAlt(1)}
+              className="h-full w-full object-cover"
+            />
           </div>
           <div
             className="overflow-hidden rounded-[8px]"
             style={{ width: `${cellSize}px`, height: `${cellSize}px` }}
           >
-            <img src={imageUrls[2]} alt="" className="h-full w-full object-cover" />
+            <img
+              src={imageUrls[2]}
+              alt={getChatImageAlt(2)}
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </div>
@@ -72,7 +96,11 @@ function renderTwoGrid(imageUrls: string[]) {
           className="overflow-hidden rounded-[8px]"
           style={{ width: `${cellSize}px`, height: `${cellSize}px` }}
         >
-          <img src={src} alt="" className="h-full w-full object-cover" />
+          <img
+            src={src}
+            alt={getChatImageAlt(index)}
+            className="h-full w-full object-cover"
+          />
         </div>
       ))}
     </div>
@@ -136,20 +164,11 @@ function renderThreeGrid(imageUrls: string[]) {
             return (
               <div
                 key={`count-tile-${index}`}
-                className="flex items-center justify-center rounded-[8px] bg-white text-[#191919]"
+                className="typo-label flex items-center justify-center rounded-[8px] bg-chat-white text-chat-black shadow-[0_0_4.8px_0_rgba(255,255,255,0.80)]"
                 style={{
                   width: `${tileWidth}px`,
                   height: `${colWidth * 2 + gap}px`,
-                  boxShadow: "0 0 4.8px 0 rgba(255, 255, 255, 0.80)",
                   gridColumn: `span ${span}`,
-                  fontFamily:
-                    '"Kakao Small Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif',
-                  fontFeatureSettings: '"liga" off, "clig" off',
-                  fontSize: "14px",
-                  fontStyle: "normal",
-                  fontWeight: 700,
-                  lineHeight: "160%",
-                  letterSpacing: "-0.56px",
                 }}
               >
                 {count}장
@@ -169,7 +188,7 @@ function renderThreeGrid(imageUrls: string[]) {
             >
               <img
                 src={imageUrls[index]}
-                alt=""
+                alt={getChatImageAlt(index)}
                 className="h-full w-full object-cover"
               />
             </div>

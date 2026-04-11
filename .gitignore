@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Local font downloads
+/카카오작은글씨/
+/카카오큰글씨/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

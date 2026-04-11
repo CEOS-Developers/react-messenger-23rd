@@ -1,23 +1,23 @@
 [
   {
-    "id": "seed-1",
-    "senderId": "me",
+    "id": 1,
+    "senderId": 1,
     "type": "text",
     "text": "철수야 철수야",
     "createdAt": "12:01",
     "createdDate": "2025-03-27"
   },
   {
-    "id": "seed-2",
-    "senderId": "me",
+    "id": 2,
+    "senderId": 1,
     "type": "text",
     "text": "훈이 우는 사진 보내줘",
     "createdAt": "12:02",
     "createdDate": "2025-03-27"
   },
   {
-    "id": "seed-3",
-    "senderId": "kim",
+    "id": 3,
+    "senderId": 2,
     "type": "text",
     "text": "싫은데 싫은데",
     "createdAt": "12:02",
@@ -25,8 +25,8 @@
     "unreadCount": 1
   },
   {
-    "id": "seed-4",
-    "senderId": "kim",
+    "id": 4,
+    "senderId": 2,
     "type": "text",
     "text": "ㅎㅎ",
     "createdAt": "12:03",

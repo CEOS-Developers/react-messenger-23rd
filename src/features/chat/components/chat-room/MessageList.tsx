@@ -1,13 +1,14 @@
-import type { Message, User } from "../../types/chat";
-import { groupMessages } from "../../utils/groupMessages";
-import MessageBubble from "./MessageBubble";
-import MessageItem from "./MessageItem";
-import DateDivider from "./DateDivider";
+import type { RefObject } from "react";
+import DateDivider from "@/features/chat/components/chat-room/DateDivider";
+import MessageBubble from "@/features/chat/components/chat-room/MessageBubble";
+import MessageItem from "@/features/chat/components/chat-room/MessageItem";
+import { groupMessages } from "@/features/chat/utils/groupMessages";
+import type { Message, User } from "@/features/chat/types/chat";
 
 type MessageListProps = {
   messages: Message[];
   users: User[];
-  bottomRef: React.RefObject<HTMLDivElement | null>;
+  bottomRef: RefObject<HTMLDivElement | null>;
 };
 
 function formatDateDividerLabel(dateString: string) {

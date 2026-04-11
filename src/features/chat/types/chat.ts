@@ -1,15 +1,15 @@
 export type User = {
-  id: string;
+  id: number;
   name: string;
   profileImage: string;
-  isMe?: boolean;
+  isMe: boolean;
 };
 
 export type MessageType = "text" | "image";
 
 export type Message = {
-  id: string;
-  senderId: string;
+  id: number;
+  senderId: number;
   type: MessageType;
   text?: string;
   imageUrl?: string;
