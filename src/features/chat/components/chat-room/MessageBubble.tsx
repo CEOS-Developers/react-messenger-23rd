@@ -106,9 +106,8 @@ function TextBubbleContent({
   if (!isMaxVariant) {
     return (
       <div
-        className={`max-w-[240px] rounded-[8px] px-[12px] py-[6px] ${
-          isMine ? "bg-[#FFE000]" : "bg-white"
-        }`}
+        className={`max-w-[240px] rounded-[8px] px-[12px] pt-[7px] pb-[5px] md:py-[6px] ${isMine ? "bg-[#FFE000]" : "bg-white"
+          }`}
       >
         <p
           ref={measureRef}
@@ -128,9 +127,8 @@ function TextBubbleContent({
     >
       <p
         ref={measureRef}
-        className={`w-full overflow-hidden text-[14px] font-normal text-[#191919] ${
-          isExpanded ? "" : "line-clamp-[11]"
-        }`}
+        className={`w-full overflow-hidden text-[14px] font-normal text-[#191919] ${isExpanded ? "" : "line-clamp-[11]"
+          }`}
         style={textStyle}
       >
         {text}
