@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import { formatChatRoomListTime } from '@/entities/chat-room/lib/formatChatRoomListTime';
 import type { ChatRoom } from '@/entities/chat-room/model/types';
 import type { Message } from '@/entities/message/model/types';
 import profileIcon from '@/shared/assets/icons/chat-list/user-02.svg';
@@ -26,7 +27,7 @@ const ChatRoomItem = ({ room, lastMessage }: ChatRoomItemProps) => {
             {room.memberCount && <span className="Body03M text-gray-50">{room.memberCount}</span>}
           </div>
           {/*시간*/}
-          <span className="shrink-0 py-0.5 Caption02R text-gray-60">{lastMessage?.time ?? ''}</span>
+          <span className="shrink-0 py-0.5 Caption02R text-gray-60">{formatChatRoomListTime(lastMessage, room)}</span>
         </div>
         {/*아래쪽 (메시지 + unread)*/}
         <div className="flex items-end justify-between gap-2">
