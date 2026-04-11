@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
-import ProfileImageSvg from "@/assets/icons/chat/ProfileImage.svg";
+import ProfileImageSvg from "@/assets/icons/ProfileImage.svg";
+import ProfileImageOnePng from "@/assets/images/ProfileImage_1.png";
+import ProfileImageTwoPng from "@/assets/images/ProfileImage_2.png";
 import type { User } from "@/features/chat/types/chat";
 
 type MessageItemProps = {
@@ -9,6 +11,8 @@ type MessageItemProps = {
 
 const profileImageMap: Record<string, string> = {
   "ProfileImage.svg": ProfileImageSvg,
+  "ProfileImage_1.png": ProfileImageOnePng,
+  "ProfileImage_2.png": ProfileImageTwoPng,
 };
 
 export default function MessageItem({ sender, children }: MessageItemProps) {

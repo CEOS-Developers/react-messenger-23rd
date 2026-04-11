@@ -1,21 +1,24 @@
-import ChevronLeftIconSvg from "@/assets/icons/chat/ic_Chevron_Left.svg";
-import SearchIconSvg from "@/assets/icons/chat/ic_Search.svg";
-import MenuIconSvg from "@/assets/icons/chat/ic_Menu.svg";
+import ChevronLeftIconSvg from "@/assets/icons/ic_Chevron_Left.svg";
+import SearchIconSvg from "@/assets/icons/ic_Search.svg";
+import MenuIconSvg from "@/assets/icons/ic_Menu.svg";
 
 type ChatRoomHeaderProps = {
   title: string;
   participantCount?: number;
+  onBack?: () => void;
 };
 
 export default function ChatRoomHeader({
   title,
   participantCount,
+  onBack,
 }: ChatRoomHeaderProps) {
   return (
     <header className="relative flex h-[40px] w-full items-center justify-between bg-chat-blue-100/80 px-[8px] py-[4px] backdrop-blur-[2px]">
       <button
         type="button"
         aria-label="뒤로가기"
+        onClick={onBack}
         className="flex h-[40px] w-[40px] shrink-0 items-center justify-center"
       >
         <div className="flex h-[40px] w-[40px] items-center justify-center p-[4px]">

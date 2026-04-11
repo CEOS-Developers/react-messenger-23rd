@@ -8,9 +8,40 @@ import IosHomeIndicator from "@/features/chat/components/chat-room/IosHomeIndica
 import useAutoScroll from "@/features/chat/hooks/useAutoScroll";
 import usersData from "@/features/chat/data/users.json";
 import messagesData from "@/features/chat/data/messages.json";
+import groupUsersData from "@/features/chat/data/groupUsers.json";
+import groupMessagesData from "@/features/chat/data/groupMessages.json";
+import {
+  DIRECT_CHAT_ROOM_MESSAGES_STORAGE_KEY,
+  GROUP_CHAT_ROOM_MESSAGES_STORAGE_KEY,
+} from "@/features/chat/constants/chatStorage";
 import type { Message, User } from "@/features/chat/types/chat";
 
-const LOCAL_STORAGE_KEY = "chat-room-messages-v2";
+type ChatRoomConfig = {
+  title: string;
+  participantCount?: number;
+  users: User[];
+  messages: Message[];
+  localStorageKey: string;
+};
+
+const DIRECT_ROOM_CONFIG: ChatRoomConfig = {
+  title: "김철수",
+  users: usersData as User[],
+  messages: messagesData as Message[],
+  localStorageKey: DIRECT_CHAT_ROOM_MESSAGES_STORAGE_KEY,
+};
+
+const GROUP_ROOM_CONFIG: ChatRoomConfig = {
+  title: "떡잎마을방범대",
+  participantCount: 4,
+  users: groupUsersData as User[],
+  messages: groupMessagesData as Message[],
+  localStorageKey: GROUP_CHAT_ROOM_MESSAGES_STORAGE_KEY,
+};
+
+function getRoomConfig(roomId: number) {
+  return roomId === 2 ? GROUP_ROOM_CONFIG : DIRECT_ROOM_CONFIG;
+}
 
 function mergeMessages(seedMessages: Message[], savedMessages: Message[]) {
   const map = new Map<number, Message>();
@@ -27,21 +58,51 @@ function getNextMessageId(messages: Message[]) {
   return maxId + 1;
 }
 
-export default function ChatRoomPage() {
-  const [users] = useState<User[]>(usersData as User[]);
-  const [messages, setMessages] = useState<Message[]>([]);
+function saveMessagesToStorage(storageKey: string, messages: Message[]) {
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(messages));
+  } catch (error) {
+    console.error("메시지를 저장하지 못했습니다.", error);
+  }
+}
 
+type ChatRoomPageProps = {
+  roomId?: number;
+  onBack?: () => void;
+};
+
+export default function ChatRoomPage({
+  roomId = 1,
+  onBack,
+}: ChatRoomPageProps) {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [hasLoadedMessages, setHasLoadedMessages] = useState(false);
+  const [loadedStorageKey, setLoadedStorageKey] = useState("");
+
+  const roomConfig = useMemo(() => getRoomConfig(roomId), [roomId]);
+  const users = roomConfig.users;
   const bottomRef = useAutoScroll(messages);
   const me = useMemo(() => users.find((user) => user.isMe), [users]);
 
   useEffect(() => {
-    const seedMessages = messagesData as Message[];
-    const savedMessages = localStorage.getItem(LOCAL_STORAGE_KEY);
+    setHasLoadedMessages(false);
+    setLoadedStorageKey("");
+
+    const seedMessages = roomConfig.messages;
+    let savedMessages: string | null = null;
+
+    try {
+      savedMessages = localStorage.getItem(roomConfig.localStorageKey);
+    } catch (error) {
+      console.error("저장된 메시지를 불러오지 못했습니다.", error);
+    }
 
     if (savedMessages) {
       try {
         const parsed = JSON.parse(savedMessages) as Message[];
         setMessages(mergeMessages(seedMessages, parsed));
+        setLoadedStorageKey(roomConfig.localStorageKey);
+        setHasLoadedMessages(true);
         return;
       } catch (error) {
         console.error("저장된 메시지를 불러오지 못했습니다.", error);
@@ -49,15 +110,20 @@ export default function ChatRoomPage() {
     }
 
     setMessages(seedMessages);
-  }, []);
+    setLoadedStorageKey(roomConfig.localStorageKey);
+    setHasLoadedMessages(true);
+  }, [roomConfig]);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(messages));
-    } catch (error) {
-      console.error("메시지를 저장하지 못했습니다.", error);
+    if (
+      !hasLoadedMessages ||
+      loadedStorageKey !== roomConfig.localStorageKey
+    ) {
+      return;
     }
-  }, [messages]);
+
+    saveMessagesToStorage(roomConfig.localStorageKey, messages);
+  }, [hasLoadedMessages, loadedStorageKey, messages, roomConfig]);
 
   const getCurrentTime = () => {
     const now = new Date();
@@ -90,7 +156,10 @@ export default function ChatRoomPage() {
         unreadCount: 1,
       };
 
-      return [...prev, newMessage];
+      const nextMessages = [...prev, newMessage];
+      saveMessagesToStorage(roomConfig.localStorageKey, nextMessages);
+
+      return nextMessages;
     });
   };
 
@@ -110,7 +179,10 @@ export default function ChatRoomPage() {
         unreadCount: 1,
       };
 
-      return [...prev, newMessage];
+      const nextMessages = [...prev, newMessage];
+      saveMessagesToStorage(roomConfig.localStorageKey, nextMessages);
+
+      return nextMessages;
     });
   };
 
@@ -119,7 +191,11 @@ export default function ChatRoomPage() {
       <div className="relative flex h-full w-full flex-col overflow-hidden bg-chat-blue-100">
         <div className="absolute left-0 right-0 top-0 z-20">
           <StatusBar />
-          <ChatRoomHeader title="김철수" />
+          <ChatRoomHeader
+            title={roomConfig.title}
+            participantCount={roomConfig.participantCount}
+            onBack={onBack}
+          />
         </div>
 
         <MessageList messages={messages} users={users} bottomRef={bottomRef} />

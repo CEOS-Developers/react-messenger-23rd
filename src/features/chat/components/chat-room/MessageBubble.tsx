@@ -109,7 +109,7 @@ function TextBubbleContent({
   if (!isMaxVariant) {
     return (
       <div
-        className={`max-w-[240px] rounded-[8px] px-[12px] pt-[7px] pb-[5px] md:py-[6px] ${bubbleBgClass}`}
+        className={`max-w-[240px] rounded-[8px] px-[12px] py-[6px] ${bubbleBgClass}`}
       >
         <p
           ref={measureRef}
@@ -138,7 +138,7 @@ function TextBubbleContent({
       <button
         type="button"
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="typo-caption-03 line-clamp-1 overflow-hidden text-right text-chat-gray-500 transition-colors hover:font-medium hover:text-chat-gray-600"
+        className="typo-caption-03 line-clamp-1 overflow-hidden text-right text-chat-gray-500 transition-colors hover:text-chat-black"
       >
         {isExpanded ? "접기" : "전체보기"}
       </button>

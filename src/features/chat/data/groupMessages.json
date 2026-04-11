@@ -1,0 +1,73 @@
+[
+  {
+    "id": 1,
+    "senderId": 1,
+    "type": "text",
+    "text": "유리야 정말 미안해. 이 토끼 키링은 내가 잘 세탁해서...",
+    "createdAt": "00:00",
+    "createdDate": "2026-03-18"
+  },
+  {
+    "id": 2,
+    "senderId": 2,
+    "type": "text",
+    "text": "이게 누굴 장난으로 아나.",
+    "createdAt": "00:00",
+    "createdDate": "2026-03-18"
+  },
+  {
+    "id": 3,
+    "senderId": 2,
+    "type": "text",
+    "text": "눈물 다 젖었어.",
+    "createdAt": "00:00",
+    "createdDate": "2026-03-18"
+  },
+  {
+    "id": 4,
+    "senderId": 2,
+    "type": "text",
+    "text": "하... 너때매 아끼던 미피 하나 날렸다?",
+    "createdAt": "00:00",
+    "createdDate": "2026-03-18"
+  },
+  {
+    "id": 5,
+    "senderId": 1,
+    "type": "text",
+    "text": "너 그때 치타 아니었음 너였어. 알아?",
+    "createdAt": "00:00",
+    "createdDate": "2026-03-18"
+  },
+  {
+    "id": 6,
+    "senderId": 0,
+    "type": "system",
+    "systemType": "leave",
+    "actorName": "이우리",
+    "createdAt": "00:00",
+    "createdDate": "2026-03-18"
+  },
+  {
+    "id": 7,
+    "senderId": 0,
+    "type": "system",
+    "systemType": "invite",
+    "actorName": "김철수",
+    "invitedNames": [
+      "이우리",
+      "신짱구"
+    ],
+    "createdAt": "00:00",
+    "createdDate": "2026-03-19"
+  },
+  {
+    "id": 8,
+    "senderId": 3,
+    "type": "text",
+    "text": "맹구 어디있는지 아는 사람",
+    "createdAt": "00:00",
+    "createdDate": "2026-03-19",
+    "unreadCount": 1
+  }
+]

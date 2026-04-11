@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "name": "김철수",
+    "profileImages": [
+      "ProfileImage_2.png"
+    ],
+    "lastMessage": "ㅎㅎ",
+    "lastMessageCreatedAt": "12:03",
+    "lastMessageCreatedDate": "2025-03-27",
+    "unreadLabel": "2",
+    "isPinned": true,
+    "isMuted": true
+  },
+  {
+    "id": 2,
+    "name": "떡잎마을방범대",
+    "participantCount": 4,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage_1.png",
+      "ProfileImage_2.png",
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "맹구 어디있는지 아는 사람",
+    "lastMessageCreatedAt": "00:00",
+    "lastMessageCreatedDate": "2026-03-19",
+    "unreadLabel": "5",
+    "isPinned": true
+  },
+  {
+    "id": 3,
+    "name": "유리와 친구들",
+    "participantCount": 2,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage.svg"
+    ],
+    "lastMessageType": "image",
+    "imageCount": 2,
+    "previewImageUrl": "image_1.jpg",
+    "lastMessage": "사진",
+    "lastMessageCreatedAt": "09:24",
+    "lastMessageCreatedDate": "2026-04-11",
+    "unreadLabel": "14"
+  },
+  {
+    "id": 4,
+    "name": "흰둥이",
+    "profileImages": [
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "멍! 멍멍!",
+    "lastMessageCreatedAt": "21:18",
+    "lastMessageCreatedDate": "2026-04-10"
+  },
+  {
+    "id": 5,
+    "name": "노하라 가족 오늘 저녁 메뉴 결정 회의방",
+    "participantCount": 4,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg"
+    ],
+    "lastMessageType": "image",
+    "imageCount": 1,
+    "previewImageUrl": "image_2.jpg",
+    "lastMessage": "사진",
+    "lastMessageCreatedAt": "18:42",
+    "lastMessageCreatedDate": "2026-04-03",
+    "unreadLabel": "1",
+    "isMuted": true
+  },
+  {
+    "id": 6,
+    "name": "맹구의 돌멩이 연구회",
+    "participantCount": 5,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "나 오늘 돌멩이 주웠어. 자세히 보면 얼굴처럼 보여.",
+    "lastMessageCreatedAt": "17:20",
+    "lastMessageCreatedDate": "2026-04-02"
+  },
+  {
+    "id": 7,
+    "name": "짱아도 참여중",
+    "participantCount": 2,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "얘들아, 내 초코과자 누가 먹었어? 분명히 여기 뒀단 말이야…",
+    "lastMessageCreatedAt": "15:12",
+    "lastMessageCreatedDate": "2026-03-31",
+    "unreadLabel": "6",
+    "isMuted": true
+  },
+  {
+    "id": 8,
+    "name": "나미리 선생님",
+    "profileImages": [
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "조용히 안 하면 선생님 정말 화낼 거예요. 이번엔 진짜예요.",
+    "lastMessageCreatedAt": "11:04",
+    "lastMessageCreatedDate": "2026-03-30"
+  },
+  {
+    "id": 9,
+    "name": "유리 공주와 친구들",
+    "participantCount": 3,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "어머, 너무 귀여운 스티커다. 나도 하나만 가지면 안 될까?",
+    "lastMessageCreatedAt": "22:11",
+    "lastMessageCreatedDate": "2026-03-28"
+  },
+  {
+    "id": 10,
+    "name": "유치원 끝나고 다 같이 수다 떠는 방",
+    "participantCount": 6,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "다들 숙제는 미리미리 해야 해. 난 벌써 절반이나 끝냈다고.",
+    "lastMessageCreatedAt": "08:33",
+    "lastMessageCreatedDate": "2026-03-27",
+    "unreadLabel": "23",
+    "isMuted": true
+  }
+]

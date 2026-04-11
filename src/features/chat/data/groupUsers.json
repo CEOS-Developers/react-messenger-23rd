@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "나",
+    "profileImage": "ProfileImage.svg",
+    "isMe": true
+  },
+  {
+    "id": 2,
+    "name": "이우리",
+    "profileImage": "ProfileImage_1.png",
+    "isMe": false
+  },
+  {
+    "id": 3,
+    "name": "김철수",
+    "profileImage": "ProfileImage_2.png",
+    "isMe": false
+  },
+  {
+    "id": 4,
+    "name": "신짱구",
+    "profileImage": "ProfileImage.svg",
+    "isMe": false
+  }
+]

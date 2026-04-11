@@ -2,6 +2,7 @@ import type { RefObject } from "react";
 import DateDivider from "@/features/chat/components/chat-room/DateDivider";
 import MessageBubble from "@/features/chat/components/chat-room/MessageBubble";
 import MessageItem from "@/features/chat/components/chat-room/MessageItem";
+import SystemMessage from "@/features/chat/components/chat-room/SystemMessage";
 import { groupMessages } from "@/features/chat/utils/groupMessages";
 import type { Message, User } from "@/features/chat/types/chat";
 
@@ -28,20 +29,40 @@ export default function MessageList({
 
   return (
     <main className="scrollbar-hidden min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
-      <div className="flex w-full flex-col items-start justify-end gap-[24px] pt-[120px] pb-[34px]">
+      <div className="flex w-full flex-col items-start justify-end pt-[120px] pb-[34px]">
         {groups.map((group, groupIndex) => {
+          const prevGroup = groups[groupIndex - 1];
+          const shouldShowDateDivider =
+            groupIndex !== 0 && prevGroup?.createdDate !== group.createdDate;
+          const shouldRemoveGapBeforeDateDivider =
+            shouldShowDateDivider && prevGroup?.kind === "system";
+          const groupSpacingClass =
+            groupIndex === 0 || shouldRemoveGapBeforeDateDivider ? "" : "mt-[24px]";
+
+          if (group.kind === "system") {
+            return (
+              <div
+                key={`system-wrapper-${group.message.id}`}
+                className={`flex w-full flex-col ${groupSpacingClass}`}
+              >
+                {shouldShowDateDivider ? (
+                  <DateDivider label={formatDateDividerLabel(group.createdDate)} />
+                ) : null}
+
+                <SystemMessage message={group.message} />
+              </div>
+            );
+          }
+
           const sender = users.find((user) => user.id === group.senderId);
           if (!sender) return null;
 
           const isMine = !!sender.isMe;
-          const prevGroup = groups[groupIndex - 1];
-          const shouldShowDateDivider =
-            groupIndex !== 0 && prevGroup.createdDate !== group.createdDate;
 
           return (
             <div
               key={`group-wrapper-${groupIndex}`}
-              className="flex w-full flex-col gap-[24px]"
+              className={`flex w-full flex-col gap-[24px] ${groupSpacingClass}`}
             >
               {shouldShowDateDivider ? (
                 <DateDivider label={formatDateDividerLabel(group.createdDate)} />

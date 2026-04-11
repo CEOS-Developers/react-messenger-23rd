@@ -1,10 +1,21 @@
-import SignalIconSvg from "@/assets/icons/chat/Signal.svg";
-import ConnectionIconSvg from "@/assets/icons/chat/Connection.svg";
-import BatteryIconSvg from "@/assets/icons/chat/Battery.svg";
+import SignalIconSvg from "@/assets/icons/Signal.svg";
+import ConnectionIconSvg from "@/assets/icons/Connection.svg";
+import BatteryIconSvg from "@/assets/icons/Battery.svg";
 
-export default function StatusBar() {
+type StatusBarProps = {
+  backgroundColor?: "chatRoom" | "white";
+};
+
+export default function StatusBar({
+  backgroundColor = "chatRoom",
+}: StatusBarProps) {
+  const backgroundClassName =
+    backgroundColor === "white"
+      ? "bg-chat-white"
+      : "bg-chat-blue-100/80 backdrop-blur-[2px]";
+
   return (
-    <div className="relative h-[47px] w-full self-stretch bg-chat-blue-100/80 backdrop-blur-[2px]">
+    <div className={`relative h-[47px] w-full self-stretch ${backgroundClassName}`}>
       <div className="flex h-[47px] w-[88px] items-center justify-end pt-[17px] pr-[6.5px] pb-[13px] pl-[46.5px]">
         <span className="typo-ios-status">
           9:41

@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 import { compressImageFiles } from "@/features/chat/utils/imageCompression";
 import { isHangulJamoOnlyText } from "@/features/chat/utils/hangulJamo";
-import PlusIconSvg from "@/assets/icons/chat/ic_Plus.svg";
-import EmojiIconSvg from "@/assets/icons/chat/ic_Emoji.svg";
-import HashIconSvg from "@/assets/icons/chat/ic_Hash.svg";
-import SendIconSvg from "@/assets/icons/chat/ic_Send.svg";
+import PlusIconSvg from "@/assets/icons/ic_Plus.svg";
+import EmojiIconSvg from "@/assets/icons/ic_Emoji.svg";
+import HashIconSvg from "@/assets/icons/ic_Hash.svg";
+import SendIconSvg from "@/assets/icons/ic_Send.svg";
 
 type ChatInputBarProps = {
   onSendText: (text: string) => void;
@@ -106,7 +106,7 @@ export default function ChatInputBar({
           placeholder={isUploading ? "이미지 준비 중..." : "메시지 입력"}
           disabled={isUploading}
           rows={1}
-          className={`typo-sub-body max-h-[157px] min-h-[22.4px] min-w-0 flex-1 resize-none bg-transparent text-chat-black outline-none placeholder:text-chat-gray-300 disabled:opacity-60 ${shouldUseJamoFix ? "hangul-jamo-input" : ""
+          className={`scrollbar-hidden typo-sub-body max-h-[157px] min-h-[22.4px] min-w-0 flex-1 resize-none bg-transparent text-chat-black outline-none placeholder:text-chat-gray-300 disabled:opacity-60 ${shouldUseJamoFix ? "hangul-jamo-input" : ""
             }`}
         />
 
