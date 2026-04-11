@@ -32,7 +32,6 @@ type ProfileTileProps = {
 };
 
 const ACTION_AREA_WIDTH = 160;
-const SWIPE_THRESHOLD = 64;
 
 const profileImageMap: Record<string, string> = {
   "ProfileImage.svg": ProfileImageSvg,
@@ -265,9 +264,7 @@ export default function ChatRoomListItem({
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
 
-    updateTranslateX(
-      currentTranslateXRef.current <= -SWIPE_THRESHOLD ? -ACTION_AREA_WIDTH : 0
-    );
+    updateTranslateX(0);
   };
 
   const handleClick = () => {

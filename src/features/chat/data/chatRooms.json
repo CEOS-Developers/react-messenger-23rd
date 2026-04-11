@@ -29,6 +29,35 @@
     "isPinned": true
   },
   {
+    "id": 6,
+    "name": "맹구의 돌멩이 연구회",
+    "participantCount": 5,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg",
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "나 오늘 돌멩이 주웠어. 자세히 보면 얼굴처럼 보여. 근데 돌멩이가 정말정말 귀여운거 있지? 아니 하나 더 갖고 싶었다니까.",
+    "lastMessageCreatedAt": "17:20",
+    "lastMessageCreatedDate": "2026-04-02"
+  },
+  {
+    "id": 7,
+    "name": "짱아도 참여중",
+    "participantCount": 2,
+    "profileImages": [
+      "ProfileImage.svg",
+      "ProfileImage.svg"
+    ],
+    "lastMessage": "얘들아, 내 초코과자 누가 먹었어? 분명히 여기 뒀단 말이야…",
+    "lastMessageCreatedAt": "15:12",
+    "lastMessageCreatedDate": "2026-03-31",
+    "unreadLabel": "6",
+    "isMuted": true
+  },
+  {
     "id": 3,
     "name": "유리와 친구들",
     "participantCount": 2,
@@ -71,35 +100,6 @@
     "lastMessageCreatedAt": "18:42",
     "lastMessageCreatedDate": "2026-04-03",
     "unreadLabel": "1",
-    "isMuted": true
-  },
-  {
-    "id": 6,
-    "name": "맹구의 돌멩이 연구회",
-    "participantCount": 5,
-    "profileImages": [
-      "ProfileImage.svg",
-      "ProfileImage.svg",
-      "ProfileImage.svg",
-      "ProfileImage.svg",
-      "ProfileImage.svg"
-    ],
-    "lastMessage": "나 오늘 돌멩이 주웠어. 자세히 보면 얼굴처럼 보여.",
-    "lastMessageCreatedAt": "17:20",
-    "lastMessageCreatedDate": "2026-04-02"
-  },
-  {
-    "id": 7,
-    "name": "짱아도 참여중",
-    "participantCount": 2,
-    "profileImages": [
-      "ProfileImage.svg",
-      "ProfileImage.svg"
-    ],
-    "lastMessage": "얘들아, 내 초코과자 누가 먹었어? 분명히 여기 뒀단 말이야…",
-    "lastMessageCreatedAt": "15:12",
-    "lastMessageCreatedDate": "2026-03-31",
-    "unreadLabel": "6",
     "isMuted": true
   },
   {
