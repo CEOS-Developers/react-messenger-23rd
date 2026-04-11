@@ -38,7 +38,7 @@ function getImageUrls(message: Message) {
   return [];
 }
 
-function getRoomWithSavedPreview(room: ChatRoom) {
+function getRoomWithSavedPreview(room: ChatRoom): ChatRoom {
   const storageKey = getChatRoomMessagesStorageKey(room.id);
   if (!storageKey) return room;
 
