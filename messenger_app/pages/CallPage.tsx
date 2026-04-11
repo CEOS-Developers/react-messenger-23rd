@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { CallProfileList } from '../src/components/call/CallProfileList';
-import { MainChatHeader } from '../src/components/chat/MainChatHeader';
-import { NavBar } from '../src/components/utils/Navbar';
-import { SearchBar } from '../src/components/utils/SearchBar';
-import { UserSelectModal } from '../src/components/call/NewChatModal';
+import { CallProfileList } from '@/components/call/CallProfileList';
+import { MainChatHeader } from '@/components/chat/MainChatHeader';
+import { NavBar } from '@/components/utils/Navbar';
+import { SearchBar } from '@/components/utils/SearchBar';
+import { UserSelectModal } from '@/components/call/NewChatModal';
 
 export const CallPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

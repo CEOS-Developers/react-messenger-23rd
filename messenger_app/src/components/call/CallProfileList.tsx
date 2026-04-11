@@ -1,7 +1,7 @@
-import userData from '../../data/users.json';
-import video from '../../icons/icon_video.svg';
-import call from '../../icons/icon_callOff.svg';
-import { imageMap } from '../../utils/imageMaps';
+import userData from '@/data/users.json';
+import video from '@/icons/icon_video.svg';
+import call from '@/icons/icon_callOff.svg';
+import { imageMap } from '@/utils/imageMaps';
 
 interface CallProfileListProps {
   searchQuery: string;

@@ -1,11 +1,11 @@
-import callOn from '../../icons/icon_callOn.svg';
-import messageOn from '../../icons/icon_messageOn.svg';
-import profileOn from '../../icons/icon_profileOn.svg';
-import callOff from '../../icons/icon_callOff.svg';
-import messageOff from '../../icons/icon_messageOff.svg';
-import profileOff from '../../icons/icon_profileOff.svg';
+import callOn from '@/icons/icon_callOn.svg';
+import messageOn from '@/icons/icon_messageOn.svg';
+import profileOn from '@/icons/icon_profileOn.svg';
+import callOff from '@/icons/icon_callOff.svg';
+import messageOff from '@/icons/icon_messageOff.svg';
+import profileOff from '@/icons/icon_profileOff.svg';
 import { useNavigate } from 'react-router-dom';
-import { useChatStore } from '../../store/useChatStore';
+import { useChatStore } from '@/store/useChatStore';
 
 
 export const NavBar = () => {

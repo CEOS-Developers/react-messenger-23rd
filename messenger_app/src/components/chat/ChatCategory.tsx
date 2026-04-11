@@ -1,5 +1,5 @@
-import add from '../../icons/icon_add.svg';
-import { useChatStore } from '../../store/useChatStore';
+import add from '@/icons/icon_add.svg';
+import { useChatStore } from '@/store/useChatStore';
 
 const CATEGORIES = [
   { id: 'all', label: '모두', isActive: true },

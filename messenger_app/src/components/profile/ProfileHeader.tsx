@@ -1,5 +1,5 @@
-import qr from '../../icons/icon_qr.svg';
-import setting from '../../icons/icon_setting.svg';
+import qr from '@/icons/icon_qr.svg';
+import setting from '@/icons/icon_setting.svg';
 
 export const ProfileHeader = () => {
   return (
@@ -11,7 +11,6 @@ export const ProfileHeader = () => {
           <img src={setting} className="w-6 h-6" />
         </div>
       </div>
-      
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import type { ChatRoom, Message, User } from '../types/chat';
+import type { ChatRoom, Message, User } from '@/types/chat';
 import { persist } from 'zustand/middleware';
-import mockData from '../data/mockData.json';
+import mockData from '@/data/mockData.json';
 
 interface ChatStore {
   currentUser: User;

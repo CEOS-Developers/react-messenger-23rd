@@ -1,12 +1,15 @@
-import add_circle from '../../icons/icon_add_circle.svg';
-import setting from '../../icons/icon_setting.svg';
+import add_circle from '@/icons/icon_add_circle.svg';
+import setting from '@/icons/icon_setting.svg';
 
 interface MainChatHeaderProps {
   chatTitle: string;
   onAddClick?: () => void;
 }
 
-export const MainChatHeader = ({ chatTitle, onAddClick }: MainChatHeaderProps) => {
+export const MainChatHeader = ({
+  chatTitle,
+  onAddClick,
+}: MainChatHeaderProps) => {
   return (
     <div className="flex w-full justify-between items-center h-11 px-4">
       <p className="text-title">{chatTitle}</p>

@@ -1,13 +1,13 @@
 import { useState } from 'react'; // ✨ useState 추가
-import userData from '../../data/users.json';
-import { imageMap } from '../../utils/imageMaps';
-import { getInitialConsonant } from '../../utils/string';
+import userData from '@/data/users.json';
+import { imageMap } from '@/utils/imageMaps';
+import { getInitialConsonant } from '@/utils/string';
 
-import close_circle from '../../icons/icon_close_circle.svg';
-import icon_message from '../../icons/icon_message.svg';
-import icon_user_add from '../../icons/icon_user_add.svg';
-import icon_community from '../../icons/icon_community.svg';
-import search from '../../icons/icon_search.svg';
+import close_circle from '@/icons/icon_close_circle.svg';
+import icon_message from '@/icons/icon_message.svg';
+import icon_user_add from '@/icons/icon_user_add.svg';
+import icon_community from '@/icons/icon_community.svg';
+import search from '@/icons/icon_search.svg';
 
 interface UserSelectModalProps {
   onClose: () => void;

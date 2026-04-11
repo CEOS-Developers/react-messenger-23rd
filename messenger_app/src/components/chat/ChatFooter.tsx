@@ -1,7 +1,7 @@
-import add from '../../icons/icon_add.svg';
-import shapes from '../../icons/icon_shapes.svg';
-import send from '../../icons/icon_send.svg';
-import { useChatStore } from '../../store/useChatStore';
+import add from '@/icons/icon_add.svg';
+import shapes from '@/icons/icon_shapes.svg';
+import send from '@/icons/icon_send.svg';
+import { useChatStore } from '@/store/useChatStore';
 import { useState, useRef } from 'react';
 
 export const ChatFooter = () => {

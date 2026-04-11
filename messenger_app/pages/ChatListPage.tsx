@@ -1,9 +1,9 @@
 
-import { ChatCategory } from '../src/components/chat/ChatCategory';
-import { SearchBar } from '../src/components/utils/SearchBar';
-import { NavBar } from '../src/components/utils/Navbar';
-import { MainChatHeader } from '../src/components/chat/MainChatHeader';
-import { ChatList } from '../src/components/chat/ChatList';
+import { ChatCategory } from '@/components/chat/ChatCategory';
+import { SearchBar } from '@/components/utils/SearchBar';
+import { NavBar } from '@/components/utils/Navbar';
+import { MainChatHeader } from '@/components/chat/MainChatHeader';
+import { ChatList } from '@/components/chat/ChatList';
 import { useState } from 'react';
 
 export const ChatListPage = () => {

@@ -1,6 +1,6 @@
-import { ChatFooter } from '../src/components/chat/ChatFooter';
-import { ChatHeader } from '../src/components/chat/ChatHeader';
-import { MainChat } from '../src/components/chat/MainChat';
+import { ChatFooter } from '@/components/chat/ChatFooter';
+import { ChatHeader } from '@/components/chat/ChatHeader';
+import { MainChat } from '@/components/chat/MainChat';
 
 export const ChatPage = () => {
   return (

@@ -1,7 +1,7 @@
-import { useChatStore } from '../../store/useChatStore';
+import { useChatStore } from '@/store/useChatStore';
 import { useNavigate } from 'react-router-dom';
-import { formatChatListTime } from '../../utils/formatChatListTime';
-import { imageMap } from '../../utils/imageMaps';
+import { formatChatListTime } from '@/utils/formatChatListTime';
+import { imageMap } from '@/utils/imageMaps';
 
 export const ChatList = () => {
   const { chatRooms, currentUser, setCurrentRoom } = useChatStore();

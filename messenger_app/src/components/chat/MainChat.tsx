@@ -1,9 +1,9 @@
-import { useChatStore } from '../../store/useChatStore';
-import { isDifferentDay, formatTime } from '../../utils/time';
+import { useChatStore } from '@/store/useChatStore';
+import { isDifferentDay, formatTime } from '@/utils/time';
 import React, { useEffect, useRef } from 'react';
 
-import check_purple from '../../icons/icon_check_purple.svg';
-import check_gray from '../../icons/icon_check_gray.svg';
+import check_purple from '@/icons/icon_check_purple.svg';
+import check_gray from '@/icons/icon_check_gray.svg';
 
 export const MainChat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
