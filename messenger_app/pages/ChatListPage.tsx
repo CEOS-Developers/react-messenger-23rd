@@ -1,4 +1,3 @@
-
 import { ChatCategory } from '@/components/chat/ChatCategory';
 import { SearchBar } from '@/components/utils/SearchBar';
 import { NavBar } from '@/components/utils/Navbar';

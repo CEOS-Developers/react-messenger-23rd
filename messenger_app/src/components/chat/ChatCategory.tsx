@@ -14,7 +14,7 @@ export const ChatCategory = () => {
   const groupCount = chatRooms.filter(room => room.isGroup).length;
   
   return (
-    <div className="w-full inline-flex justify-start items-center gap-2 px-4 mb-4">
+    <div className="w-full inline-flex items-center justify-between gap-2 px-4 mb-4">
       {/* 카테고리 리스트 */}
       {CATEGORIES.map(({ id, label, isActive }) => (
         <button
@@ -22,7 +22,7 @@ export const ChatCategory = () => {
           className={`flex h-8 px-3 py-2.5 rounded-2xl outline outline-offset-1 justify-center items-center gap-2.5 ${
             isActive
               ? 'bg-green100 border-green-800/30 text-green400'
-              : 'bg-white outline-gray-200 text-neutral-500'
+              : 'bg-white outline-Gray300 text-Gray600'
           }`}
         >
           <span className="text-label">
@@ -42,7 +42,7 @@ export const ChatCategory = () => {
       ))}
 
       {/* 추가 버튼 */}
-      <button className="h-8 px-1.5 py-2.5 bg-white rounded-2xl outline outline-offset-1 outline-gray-200 flex justify-center items-center gap-2.5">
+      <button className="h-8 px-1.5 py-2.5 bg-white rounded-2xl outline outline-offset-1 outline-Gray300 flex justify-center items-center gap-2.5">
         <div className="w-6 h-6 relative">
           <img src={add} alt="추가" />
         </div>
