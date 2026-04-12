@@ -1,0 +1,44 @@
+{
+    "users": [
+        {
+            "id": "user_janchi",
+            "name": "잔치 단 언니",
+            "profileKey": "profile_janchi"
+        },
+        {
+            "id": "user_nosia",
+            "name": "노시아",
+            "profileKey": "profile_nosia"
+        },
+        {
+            "id": "user_elena",
+            "name": "Elena",
+            "profileKey": "profile_elena"
+        },
+        {
+            "id": "user_suyeon",
+            "name": "다움_수연언니",
+            "profileKey": "profile_suyeon"
+        },
+        {
+            "id": "user_daram",
+            "name": "다람이",
+            "profileKey": "profile_daram"
+        },
+        {
+            "id": "user_igyu",
+            "name": "동기 이규",
+            "profileKey": "profile_igyu"
+        },
+        {
+            "id": "user_hyon",
+            "name": "동기 횬이브기니",
+            "profileKey": "profile_hyon"
+        },
+        {
+            "id": "user_yj",
+            "name": "영준",
+            "profileKey": "profile_me"
+        }
+    ]
+}
