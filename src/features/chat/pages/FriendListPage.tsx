@@ -334,7 +334,7 @@ export default function FriendListPage({
                 className="font-kakao-big text-[18px] leading-[140%] font-bold tracking-[-0.72px] text-chat-gray-400"
                 style={{ fontFeatureSettings: '"liga" off, "clig" off' }}
               >
-                000
+                30
               </span>
               <img
                 src={ChevronRightIconSvg}
