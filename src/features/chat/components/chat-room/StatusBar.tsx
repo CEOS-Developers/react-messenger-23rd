@@ -3,7 +3,7 @@ import ConnectionIconSvg from "@/assets/icons/Connection.svg";
 import BatteryIconSvg from "@/assets/icons/Battery.svg";
 
 type StatusBarProps = {
-  backgroundColor?: "chatRoom" | "white";
+  backgroundColor?: "chatRoom" | "transparent" | "white" | "yellow";
 };
 
 export default function StatusBar({
@@ -12,6 +12,10 @@ export default function StatusBar({
   const backgroundClassName =
     backgroundColor === "white"
       ? "bg-chat-white"
+      : backgroundColor === "yellow"
+        ? "bg-chat-yellow-200"
+      : backgroundColor === "transparent"
+        ? "bg-transparent"
       : "bg-chat-blue-100/80 backdrop-blur-[2px]";
 
   return (

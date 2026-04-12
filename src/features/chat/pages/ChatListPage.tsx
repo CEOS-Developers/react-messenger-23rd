@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MobileLayout from "@/layouts/MobileLayout";
 import BottomNavigator from "@/features/chat/components/chat-list/BottomNavigator";
+import type { BottomNavigationTab } from "@/features/chat/components/chat-list/BottomNavigator";
 import ChatListHeader from "@/features/chat/components/chat-list/ChatListHeader";
 import ChatRoomList from "@/features/chat/components/chat-list/ChatRoomList";
 import StatusBar from "@/features/chat/components/chat-room/StatusBar";
@@ -8,6 +9,7 @@ import chatRoomsData from "@/features/chat/data/chatRooms.json";
 
 type ChatListPageProps = {
   onOpenChatRoom?: (roomId: number) => void;
+  onOpenFriends?: () => void;
 };
 
 type ChatRoomUnreadSummary = {
@@ -16,7 +18,7 @@ type ChatRoomUnreadSummary = {
 
 type ChatListFilter = "all" | "unread";
 
-const chatNotificationLabel = String(
+export const chatNotificationLabel = String(
   (chatRoomsData as ChatRoomUnreadSummary[]).reduce((total, room) => {
     const unreadCount = Number.parseInt(room.unreadLabel ?? "0", 10);
 
@@ -24,7 +26,10 @@ const chatNotificationLabel = String(
   }, 0)
 );
 
-export default function ChatListPage({ onOpenChatRoom }: ChatListPageProps) {
+export default function ChatListPage({
+  onOpenChatRoom,
+  onOpenFriends,
+}: ChatListPageProps) {
   const [activeFilter, setActiveFilter] = useState<ChatListFilter>("all");
 
   return (
@@ -44,7 +49,15 @@ export default function ChatListPage({ onOpenChatRoom }: ChatListPageProps) {
           />
         </main>
 
-        <BottomNavigator chatNotificationLabel={chatNotificationLabel} />
+        <BottomNavigator
+          activeTab="chat"
+          chatNotificationLabel={chatNotificationLabel}
+          onSelectTab={(tab: BottomNavigationTab) => {
+            if (tab === "friends") {
+              onOpenFriends?.();
+            }
+          }}
+        />
       </div>
     </MobileLayout>
   );
