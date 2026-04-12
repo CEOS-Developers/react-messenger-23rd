@@ -6,7 +6,7 @@ type MobileLayoutProps = {
 
 export default function MobileLayout({ children }: MobileLayoutProps) {
   return (
-    <div className="min-h-dvh bg-chat-gray-150 md:flex md:items-start md:justify-center md:p-6">
+    <div className="min-h-dvh bg-[var(--app-theme-color)] md:flex md:items-start md:justify-center md:bg-chat-gray-150 md:p-6">
       <div
         className="
           h-dvh w-full overflow-hidden bg-chat-white

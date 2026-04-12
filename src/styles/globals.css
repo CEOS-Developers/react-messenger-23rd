@@ -73,6 +73,7 @@
     --grid-gutter: 16px;
     --color-skeleton-50: rgba(214, 214, 216, 0.5);
     --color-skeleton-20: rgba(245, 245, 247, 0.75);
+    --app-theme-color: var(--color-chat-white);
   }
 
   html,
@@ -83,7 +84,7 @@
 
   body {
     margin: 0;
-    background: var(--color-chat-gray-150);
+    background: var(--app-theme-color);
     color: var(--color-chat-black);
     font-family: var(--font-kakao-small);
     font-feature-settings: "liga" off, "clig" off;

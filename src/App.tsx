@@ -9,6 +9,29 @@ import SplashPage from "@/features/chat/pages/SplashPage";
 
 type ChatView = "friends" | "list" | "profile" | "room";
 
+const SPLASH_THEME_COLOR = "#FFE000";
+
+const CHAT_VIEW_THEME_COLORS: Record<ChatView, string> = {
+  friends: "#FFFFFF",
+  list: "#FFFFFF",
+  profile: "#FFFFFF",
+  room: "#A7C8E8",
+};
+
+function getThemeColorMetaElement() {
+  const currentMetaElement = document.querySelector<HTMLMetaElement>(
+    'meta[name="theme-color"]'
+  );
+
+  if (currentMetaElement) return currentMetaElement;
+
+  const metaElement = document.createElement("meta");
+  metaElement.name = "theme-color";
+  document.head.appendChild(metaElement);
+
+  return metaElement;
+}
+
 export default function App() {
   const [isSplashVisible, setIsSplashVisible] = useState(true);
   const [chatView, setChatView] = useState<ChatView>("list");
@@ -21,6 +44,17 @@ export default function App() {
 
     return () => window.clearTimeout(splashTimerId);
   }, []);
+
+  useEffect(() => {
+    const themeColor = isSplashVisible
+      ? SPLASH_THEME_COLOR
+      : CHAT_VIEW_THEME_COLORS[chatView];
+    const themeColorMetaElement = getThemeColorMetaElement();
+
+    themeColorMetaElement.content = themeColor;
+    document.documentElement.style.setProperty("--app-theme-color", themeColor);
+    document.body.style.backgroundColor = themeColor;
+  }, [chatView, isSplashVisible]);
 
   if (isSplashVisible) {
     return <SplashPage />;
