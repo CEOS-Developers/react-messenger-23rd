@@ -5,7 +5,7 @@ const MyProfileSection = () => {
   return (
     <section className="flex items-center justify-between px-4 py-5 mb-5">
       <div className="flex items-center gap-3">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[10.7px] bg-main-light2">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[10.7px] bg-main-light2 px-[4.36px] pt-[6px] pb-[2.73px]">
           <img src={profileIcon} alt="프로필" className="h-[39.27px] w-[39.27px] text-main-light" />
         </div>
         <span className="Heading02SB">고다현</span>

@@ -4,7 +4,7 @@ const ProfileInfoSection = () => {
   return (
     <section className="px-4 py-2 mb-1">
       <div className="flex gap-4">
-        <div className="flex shrink-0 items-center justify-center h-16 w-16 rounded-[8px] bg-main-light2">
+        <div className="flex shrink-0 items-center justify-center h-16 w-16 rounded-[8px] bg-main-light2 px-[8px] pt-[10px] pb-[6px]">
           <img src={profileIcon} alt="내 프로필" className="h-12 w-12 text-main-light" />
         </div>
         <div className="flex flex-col justify-center gap-1">

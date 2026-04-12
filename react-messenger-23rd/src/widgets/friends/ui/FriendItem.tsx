@@ -20,7 +20,7 @@ const FriendItem = ({ friend }: { friend: Friend }) => {
   return (
     <div className="flex items-center justify-between px-4 py-2">
       <div className="flex items-center gap-4">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-main-light2">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-main-light2 px-[3.27px] pt-[4.5px] tb-[2.05px]">
           <img src={profileIcon} alt={`${friend.name} 프로필`} className="h-9 w-9 text-main-light" />
         </div>
         <span className="Body01M text-gray-90">{friend.name}</span>
