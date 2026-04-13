@@ -120,7 +120,7 @@ export default function BottomNavigator({
   return (
     <nav
       aria-label="하단 탭"
-      className="flex w-full shrink-0 flex-col items-center justify-center gap-[4px] rounded-t-[16px] border-t border-chat-gray-150 bg-[#F5F5F7] px-[16px] pt-[8px]"
+      className="flex w-full shrink-0 flex-col items-center justify-center gap-[4px] rounded-t-[16px] border-t border-chat-gray-150 bg-[#F5F5F7] px-[16px] py-[8px] md:pb-0"
     >
       <div className="flex items-center">
         {NAV_ITEMS.map((item) => {
@@ -148,8 +148,8 @@ export default function BottomNavigator({
         })}
       </div>
 
-      <div className="flex h-[34px] w-full items-center justify-center pt-[21px] pb-[8px]">
-        <div className="hidden h-[5px] w-[134px] rounded-[100px] bg-chat-home-indicator md:block" />
+      <div className="hidden h-[34px] w-full items-center justify-center pt-[21px] pb-[8px] md:flex">
+        <div className="h-[5px] w-[134px] rounded-[100px] bg-chat-home-indicator" />
       </div>
     </nav>
   );

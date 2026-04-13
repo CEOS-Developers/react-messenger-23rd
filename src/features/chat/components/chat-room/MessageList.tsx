@@ -29,7 +29,7 @@ export default function MessageList({
 
   return (
     <main className="scrollbar-hidden min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
-      <div className="flex w-full flex-col items-start justify-end pt-[73px] pb-0 md:pt-[120px] md:pb-[34px]">
+      <div className="flex w-full flex-col items-start justify-end pt-[73px] pb-0 md:pt-[120px]">
         {groups.map((group, groupIndex) => {
           const prevGroup = groups[groupIndex - 1];
           const shouldShowDateDivider =

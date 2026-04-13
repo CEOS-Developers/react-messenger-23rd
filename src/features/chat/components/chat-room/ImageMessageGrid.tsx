@@ -164,7 +164,7 @@ function renderThreeGrid(imageUrls: string[]) {
             return (
               <div
                 key={`count-tile-${index}`}
-                className="typo-label flex items-center justify-center rounded-[8px] bg-chat-white text-chat-black shadow-[0_0_4.8px_0_rgba(255,255,255,0.80)]"
+                className="typo-label flex items-center justify-center rounded-[8px] bg-[#FFFFFFBF] text-chat-black shadow-[0_0_4.8px_0_rgba(255,255,255,0.80)]"
                 style={{
                   width: `${tileWidth}px`,
                   height: `${colWidth * 2 + gap}px`,

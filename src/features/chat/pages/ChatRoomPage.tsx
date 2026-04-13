@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import MobileLayout from "@/layouts/MobileLayout";
 import StatusBar from "@/features/chat/components/chat-room/StatusBar";
 import ChatRoomHeader from "@/features/chat/components/chat-room/ChatRoomHeader";
@@ -66,6 +66,21 @@ function saveMessagesToStorage(storageKey: string, messages: Message[]) {
   }
 }
 
+function loadMessagesFromStorage(roomConfig: ChatRoomConfig) {
+  const seedMessages = roomConfig.messages;
+
+  try {
+    const savedMessages = localStorage.getItem(roomConfig.localStorageKey);
+    if (!savedMessages) return seedMessages;
+
+    const parsed = JSON.parse(savedMessages) as Message[];
+    return mergeMessages(seedMessages, parsed);
+  } catch (error) {
+    console.error("저장된 메시지를 불러오지 못했습니다.", error);
+    return seedMessages;
+  }
+}
+
 type ChatRoomPageProps = {
   roomId?: number;
   onBack?: () => void;
@@ -75,55 +90,30 @@ export default function ChatRoomPage({
   roomId = 1,
   onBack,
 }: ChatRoomPageProps) {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [hasLoadedMessages, setHasLoadedMessages] = useState(false);
-  const [loadedStorageKey, setLoadedStorageKey] = useState("");
-
   const roomConfig = useMemo(() => getRoomConfig(roomId), [roomId]);
+  const [messages, setMessages] = useState<Message[]>(() =>
+    loadMessagesFromStorage(roomConfig)
+  );
+  const [loadedStorageKey, setLoadedStorageKey] = useState(
+    roomConfig.localStorageKey
+  );
+
   const users = roomConfig.users;
   const bottomRef = useAutoScroll(messages);
   const me = useMemo(() => users.find((user) => user.isMe), [users]);
 
-  useEffect(() => {
-    setHasLoadedMessages(false);
-    setLoadedStorageKey("");
-
-    const seedMessages = roomConfig.messages;
-    let savedMessages: string | null = null;
-
-    try {
-      savedMessages = localStorage.getItem(roomConfig.localStorageKey);
-    } catch (error) {
-      console.error("저장된 메시지를 불러오지 못했습니다.", error);
-    }
-
-    if (savedMessages) {
-      try {
-        const parsed = JSON.parse(savedMessages) as Message[];
-        setMessages(mergeMessages(seedMessages, parsed));
-        setLoadedStorageKey(roomConfig.localStorageKey);
-        setHasLoadedMessages(true);
-        return;
-      } catch (error) {
-        console.error("저장된 메시지를 불러오지 못했습니다.", error);
-      }
-    }
-
-    setMessages(seedMessages);
+  useLayoutEffect(() => {
+    setMessages(loadMessagesFromStorage(roomConfig));
     setLoadedStorageKey(roomConfig.localStorageKey);
-    setHasLoadedMessages(true);
   }, [roomConfig]);
 
   useEffect(() => {
-    if (
-      !hasLoadedMessages ||
-      loadedStorageKey !== roomConfig.localStorageKey
-    ) {
+    if (loadedStorageKey !== roomConfig.localStorageKey) {
       return;
     }
 
     saveMessagesToStorage(roomConfig.localStorageKey, messages);
-  }, [hasLoadedMessages, loadedStorageKey, messages, roomConfig]);
+  }, [loadedStorageKey, messages, roomConfig]);
 
   const getCurrentTime = () => {
     const now = new Date();
@@ -200,7 +190,7 @@ export default function ChatRoomPage({
 
         <MessageList messages={messages} users={users} bottomRef={bottomRef} />
 
-        <div className="shrink-0 bg-chat-white">
+        <div className="shrink-0 bg-chat-blue-100 pt-[32px]">
           <ChatInputBar
             onSendText={handleSendText}
             onSendImages={handleSendImages}

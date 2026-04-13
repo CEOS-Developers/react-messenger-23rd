@@ -64,8 +64,10 @@ export default function ChatListHeader({
           type="button"
           aria-pressed={isAllActive}
           onClick={() => onFilterChange("all")}
-          className={`flex items-center justify-center gap-[10px] rounded-[100px] px-[12px] py-[6px] ${
-            isAllActive ? "bg-chat-black" : "border border-chat-gray-200"
+          className={`box-border flex items-center justify-center gap-[10px] rounded-[100px] border px-[11px] py-[5px] ${
+            isAllActive
+              ? "border-transparent bg-chat-black"
+              : "border-chat-gray-200"
           }`}
         >
           <span
@@ -81,8 +83,10 @@ export default function ChatListHeader({
           type="button"
           aria-pressed={isUnreadActive}
           onClick={() => onFilterChange("unread")}
-          className={`flex items-center justify-center gap-[4px] rounded-[100px] px-[12px] py-[6px] ${
-            isUnreadActive ? "bg-chat-black" : "border border-chat-gray-200"
+          className={`box-border flex h-[34.4px] w-[88.55px] items-center justify-center gap-[4px] rounded-[100px] ${
+            isUnreadActive
+              ? "bg-chat-black px-[12px] py-[6px]"
+              : "border border-chat-gray-200 px-[11px] py-[5px]"
           }`}
         >
           <span

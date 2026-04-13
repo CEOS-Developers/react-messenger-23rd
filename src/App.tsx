@@ -80,7 +80,7 @@ export default function App() {
   }
 
   if (chatView === "profile") {
-    return <MyProfilePage />;
+    return <MyProfilePage onBack={() => setChatView("friends")} />;
   }
 
   return (

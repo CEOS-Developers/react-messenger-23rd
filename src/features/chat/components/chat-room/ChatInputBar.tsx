@@ -106,7 +106,7 @@ export default function ChatInputBar({
           placeholder={isUploading ? "이미지 준비 중..." : "메시지 입력"}
           disabled={isUploading}
           rows={1}
-          className={`scrollbar-hidden typo-sub-body max-h-[157px] min-h-[22.4px] min-w-0 flex-1 resize-none bg-transparent text-chat-black outline-none placeholder:text-chat-gray-300 disabled:opacity-60 ${shouldUseJamoFix ? "hangul-jamo-input" : ""
+          className={`scrollbar-hidden typo-sub-body max-h-[157px] min-h-[22.4px] min-w-0 flex-1 resize-none self-center bg-transparent text-chat-black outline-none placeholder:text-chat-gray-300 disabled:opacity-60 md:self-auto ${shouldUseJamoFix ? "hangul-jamo-input" : ""
             }`}
         />
 

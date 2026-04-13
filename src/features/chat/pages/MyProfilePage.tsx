@@ -2,9 +2,13 @@ import MobileLayout from "@/layouts/MobileLayout";
 import StatusBar from "@/features/chat/components/chat-room/StatusBar";
 import ProfileBgPng from "@/assets/images/ProfileBg_1.png";
 import ProfileImagePng from "@/assets/images/ProfileImage_3.png";
+import ChevronLeftIconSvg from "@/assets/icons/ic_Chevron_Left.svg";
 import EditIconSvg from "@/assets/icons/ic_Edit.svg";
-import ImageIconSvg from "@/assets/icons/ic_Image.svg";
 import KakaoStoryIconSvg from "@/assets/icons/ic_KakaoStory.svg";
+
+type MyProfilePageProps = {
+  onBack?: () => void;
+};
 
 function GlassIconButton({
   label,
@@ -24,7 +28,7 @@ function GlassIconButton({
   );
 }
 
-export default function MyProfilePage() {
+export default function MyProfilePage({ onBack }: MyProfilePageProps) {
   return (
     <MobileLayout>
       <div className="relative flex h-full w-full flex-col overflow-hidden bg-chat-gray-100">
@@ -41,25 +45,36 @@ export default function MyProfilePage() {
           <header className="flex items-center justify-between self-stretch p-[16px]">
             <button
               type="button"
-              className="flex items-center justify-center gap-[4px] rounded-[100px] border border-chat-white bg-white/60 py-[8px] pr-[12px] pl-[12px] backdrop-blur-[4px]"
+              aria-label="뒤로가기"
+              onClick={onBack}
+              className="flex items-center rounded-[100px] border border-chat-white bg-white/60 p-[8px] backdrop-blur-[4px]"
             >
-              <span className="flex h-[20px] w-[20px] items-center justify-center px-[3px] pt-[2.58px] pb-[0.42px]">
-                <img
-                  src={KakaoStoryIconSvg}
-                  alt=""
-                  className="svg-icon h-[17px] w-[14px]"
-                />
-              </span>
-              <span
-                className="text-center font-kakao-small text-[14px] leading-[160%] font-bold tracking-[-0.56px] text-chat-gray-600"
-                style={{ fontFeatureSettings: '"liga" off, "clig" off' }}
-              >
-                카카오스토리
-              </span>
+              <img
+                src={ChevronLeftIconSvg}
+                alt=""
+                className="svg-icon h-[24px] w-[24px]"
+              />
             </button>
 
-            <div className="flex items-center gap-[16px]">
-              <GlassIconButton label="프로필 배경 이미지" iconSrc={ImageIconSvg} />
+            <div className="flex items-center gap-[8px]">
+              <button
+                type="button"
+                className="flex items-center justify-center gap-[4px] rounded-[100px] border border-chat-white bg-white/60 py-[8px] pr-[12px] pl-[12px] backdrop-blur-[4px]"
+              >
+                <span className="flex h-[20px] w-[20px] items-center justify-center px-[3px] pt-[2.58px] pb-[0.42px]">
+                  <img
+                    src={KakaoStoryIconSvg}
+                    alt=""
+                    className="svg-icon h-[17px] w-[14px]"
+                  />
+                </span>
+                <span
+                  className="text-center font-kakao-small text-[14px] leading-[160%] font-bold tracking-[-0.56px] text-chat-gray-600"
+                  style={{ fontFeatureSettings: '"liga" off, "clig" off' }}
+                >
+                  카카오스토리
+                </span>
+              </button>
               <GlassIconButton label="프로필 편집" iconSrc={EditIconSvg} />
             </div>
           </header>

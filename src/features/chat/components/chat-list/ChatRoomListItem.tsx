@@ -1,4 +1,4 @@
-import { useRef, useState, type PointerEvent } from "react";
+import { useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import CountBadge from "@/features/chat/components/chat-list/CountBadge";
 import ProfileImageSvg from "@/assets/icons/ProfileImage.svg";
 import ProfileImageOnePng from "@/assets/images/ProfileImage_1.png";
@@ -7,7 +7,6 @@ import ImageOneJpg from "@/assets/images/image_1.jpg";
 import ImageTwoJpg from "@/assets/images/image_2.jpg";
 import TackIconSvg from "@/assets/icons/ic_Tack.svg";
 import BellOffIconSvg from "@/assets/icons/ic_BellOff.svg";
-import ProfilePlusIconSvg from "@/assets/icons/ic_ProfilePlus.svg";
 import type { MessageType } from "@/features/chat/types/chat";
 
 type ChatRoomListItemProps = {
@@ -23,15 +22,18 @@ type ChatRoomListItemProps = {
   showPinnedIcon?: boolean;
   showMutedIcon?: boolean;
   disabled?: boolean;
+  resetSwipeKey?: string;
   onClick?: () => void;
 };
 
 type ProfileTileProps = {
   className: string;
   imageSrc: string;
+  roundedClassName?: string;
 };
 
 const ACTION_AREA_WIDTH = 160;
+const SWIPE_DIRECTION_THRESHOLD = 24;
 
 const profileImageMap: Record<string, string> = {
   "ProfileImage.svg": ProfileImageSvg,
@@ -58,10 +60,14 @@ function resolvePreviewImage(imageUrl?: string) {
   return previewImageMap[imageUrl] ?? imageUrl;
 }
 
-function ProfileTile({ className, imageSrc }: ProfileTileProps) {
+function ProfileTile({
+  className,
+  imageSrc,
+  roundedClassName = "rounded-[10px]",
+}: ProfileTileProps) {
   return (
     <span
-      className={`flex items-center justify-center overflow-hidden rounded-[10px] border border-chat-white bg-chat-gray-100 ${className}`}
+      className={`flex items-center justify-center overflow-hidden border border-chat-white bg-chat-gray-100 ${roundedClassName} ${className}`}
     >
       <img src={imageSrc} alt="" className="h-full w-full object-cover" />
     </span>
@@ -76,11 +82,11 @@ function GroupProfileImage({ profileImages }: { profileImages: string[] }) {
     return (
       <span className="relative h-[48px] w-[48px] shrink-0">
         <ProfileTile
-          className="absolute top-[10px] left-[4px] h-[28px] w-[28px]"
+          className="absolute top-[10px] left-[1px] h-[28px] w-[28px]"
           imageSrc={resolvedProfileImages[0]}
         />
         <ProfileTile
-          className="absolute top-[10px] left-[22px] h-[28px] w-[28px]"
+          className="absolute top-[10px] left-[19px] h-[28px] w-[28px]"
           imageSrc={resolvedProfileImages[1]}
         />
       </span>
@@ -91,15 +97,15 @@ function GroupProfileImage({ profileImages }: { profileImages: string[] }) {
     return (
       <span className="relative h-[48px] w-[48px] shrink-0">
         <ProfileTile
-          className="absolute top-[4px] left-[2px] h-[28px] w-[28px]"
+          className="absolute top-0 left-0 h-[28px] w-[28px]"
           imageSrc={resolvedProfileImages[0]}
         />
         <ProfileTile
-          className="absolute top-[4px] left-[22px] h-[28px] w-[28px]"
+          className="absolute top-0 left-[20px] h-[28px] w-[28px]"
           imageSrc={resolvedProfileImages[1]}
         />
         <ProfileTile
-          className="absolute top-[24px] left-[12px] h-[28px] w-[28px]"
+          className="absolute top-[20px] left-[10px] h-[28px] w-[28px]"
           imageSrc={resolvedProfileImages[2]}
         />
       </span>
@@ -107,22 +113,15 @@ function GroupProfileImage({ profileImages }: { profileImages: string[] }) {
   }
 
   return (
-    <span className="relative grid h-[48px] w-[48px] shrink-0 grid-cols-2">
-      <ProfileTile className="h-[24px] w-[24px]" imageSrc={resolvedProfileImages[0]} />
-      <ProfileTile className="h-[24px] w-[24px]" imageSrc={resolvedProfileImages[1]} />
-      <ProfileTile className="h-[24px] w-[24px]" imageSrc={resolvedProfileImages[2]} />
-
-      {count > 4 ? (
-        <span className="flex h-[24px] w-[24px] items-center justify-center rounded-[10px] border border-chat-white bg-chat-gray-100 p-[8px]">
-          <img
-            src={ProfilePlusIconSvg}
-            alt=""
-            className="svg-icon h-[8px] w-[8px]"
-          />
-        </span>
-      ) : (
-        <ProfileTile className="h-[24px] w-[24px]" imageSrc={resolvedProfileImages[3]} />
-      )}
+    <span className="grid h-[48px] w-[48px] shrink-0 grid-cols-2 place-items-center">
+      {resolvedProfileImages.slice(0, 4).map((imageSrc, index) => (
+        <ProfileTile
+          key={`${imageSrc}-${index}`}
+          className="h-[24px] w-[24px]"
+          imageSrc={imageSrc}
+          roundedClassName="rounded-[8px]"
+        />
+      ))}
     </span>
   );
 }
@@ -162,12 +161,12 @@ function ImageMessagePreview({
         className="h-[32px] w-[32px] shrink-0 object-cover"
       />
 
-      <span className="flex min-w-0 items-center gap-[2px]">
+      <span className="flex min-w-0 items-center gap-0">
         <span className="line-clamp-1 overflow-hidden text-ellipsis font-kakao-small text-[12px] leading-[160%] font-normal tracking-[0] text-chat-gray-400">
           {imageCountLabel}
         </span>
         <span className="line-clamp-1 overflow-hidden text-ellipsis font-kakao-small text-[12px] leading-[160%] font-normal tracking-[0] text-chat-gray-400">
-          장의 이미지
+          장의 사진을 보냈습니다.
         </span>
       </span>
     </span>
@@ -214,6 +213,7 @@ export default function ChatRoomListItem({
   showPinnedIcon = false,
   showMutedIcon = false,
   disabled = false,
+  resetSwipeKey,
   onClick,
 }: ChatRoomListItemProps) {
   const [translateX, setTranslateX] = useState(0);
@@ -225,11 +225,19 @@ export default function ChatRoomListItem({
 
   const hasTitleMeta =
     participantCount !== undefined || showPinnedIcon || showMutedIcon;
+  const isActionVisible = isDragging || translateX < 0;
 
   const updateTranslateX = (nextTranslateX: number) => {
     currentTranslateXRef.current = nextTranslateX;
     setTranslateX(nextTranslateX);
   };
+
+  useLayoutEffect(() => {
+    currentTranslateXRef.current = 0;
+    setTranslateX(0);
+    setIsDragging(false);
+    suppressClickRef.current = false;
+  }, [resetSwipeKey]);
 
   const handlePointerDown = (event: PointerEvent<HTMLButtonElement>) => {
     setIsDragging(true);
@@ -264,7 +272,13 @@ export default function ChatRoomListItem({
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
 
-    updateTranslateX(0);
+    const dragDistance = event.clientX - startXRef.current;
+    const shouldOpen =
+      Math.abs(dragDistance) > SWIPE_DIRECTION_THRESHOLD
+        ? dragDistance < 0
+        : currentTranslateXRef.current <= -ACTION_AREA_WIDTH / 2;
+
+    updateTranslateX(shouldOpen ? -ACTION_AREA_WIDTH : 0);
   };
 
   const handleClick = () => {
@@ -285,7 +299,11 @@ export default function ChatRoomListItem({
 
   return (
     <div className="relative h-[80px] w-full overflow-hidden bg-chat-white">
-      <div className="absolute top-0 right-0 flex h-[80px]">
+      <div
+        className={`absolute top-0 right-0 flex h-[80px] ${
+          isActionVisible ? "" : "hidden"
+        }`}
+      >
         <button
           type="button"
           className="flex h-[80px] w-[80px] items-center justify-center gap-[10px] bg-chat-gray-400 p-[10px]"

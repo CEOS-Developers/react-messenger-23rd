@@ -90,7 +90,7 @@ export default function ChatRoomList({
     .filter((room) => !showUnreadOnly || room.unreadLabel !== undefined);
 
   return (
-    <section aria-label="채팅방 목록" className="flex flex-col gap-[4px] bg-chat-white">
+    <section aria-label="채팅방 목록" className="flex flex-col gap-0 bg-chat-white">
       {rooms.map((room) => {
         const canOpenRoom = !!onOpenChatRoom && (room.id === 1 || room.id === 2);
 
@@ -112,6 +112,7 @@ export default function ChatRoomList({
             showPinnedIcon={room.isPinned}
             showMutedIcon={room.isMuted}
             disabled={!canOpenRoom}
+            resetSwipeKey={showUnreadOnly ? "unread" : "all"}
             onClick={canOpenRoom ? () => onOpenChatRoom?.(room.id) : undefined}
           />
         );
