@@ -11,7 +11,6 @@ import BirthIconSvg from "@/assets/icons/ic_Birth.svg";
 import GiftIconSvg from "@/assets/icons/ic_Gift.svg";
 import ChevronDownIconSvg from "@/assets/icons/ic_Chevron_Down.svg";
 import ChevronRightIconSvg from "@/assets/icons/ic_Chevron_Right.svg";
-import ChevronUpIconSvg from "@/assets/icons/ic_Chevron_Up.svg";
 import EditIconSvg from "@/assets/icons/ic_Edit.svg";
 import SearchIconSvg from "@/assets/icons/ic_Search.svg";
 import SettingIconSvg from "@/assets/icons/ic_Setting.svg";
@@ -208,13 +207,15 @@ function SavedFriendGroupItem({
   const friendCount = friends.length;
 
   return (
-    <div
-      className={`flex w-[343px] flex-col items-center justify-center gap-[16px] rounded-[8px] bg-chat-gray-50 pt-[12px] ${
-        isExpanded ? "pb-[16px]" : "pb-[12px]"
-      }`}
-    >
-      <div className="flex items-center justify-between self-stretch px-[20px]">
-        <div className="flex items-center gap-[8px] pb-[2px]">
+    <div className="flex w-[343px] flex-col items-center overflow-hidden rounded-[8px] bg-chat-gray-50">
+      <button
+        type="button"
+        aria-expanded={isExpanded}
+        aria-label={`${label} ${isExpanded ? "접기" : "펼치기"}`}
+        onClick={onToggle}
+        className="flex w-full items-center justify-between px-[20px] py-[12px]"
+      >
+        <div className="flex items-center gap-[8px]">
           <span
             className="font-kakao-small text-[16px] leading-[160%] font-bold tracking-[-0.64px] text-chat-black"
             style={{ fontFeatureSettings: '"liga" off, "clig" off' }}
@@ -229,28 +230,28 @@ function SavedFriendGroupItem({
           </span>
         </div>
 
-        <button
-          type="button"
-          aria-expanded={isExpanded}
-          aria-label={`${label} ${isExpanded ? "접기" : "펼치기"}`}
-          onClick={onToggle}
-          className="flex h-[24px] w-[24px] items-center justify-center"
-        >
-          <img
-            src={isExpanded ? ChevronUpIconSvg : ChevronDownIconSvg}
-            alt=""
-            className="svg-icon h-[24px] w-[24px]"
-          />
-        </button>
-      </div>
+        <img
+          src={ChevronDownIconSvg}
+          alt=""
+          className={`svg-icon h-[24px] w-[24px] transition-transform duration-300 ease-in-out ${
+            isExpanded ? "rotate-180" : ""
+          }`}
+        />
+      </button>
 
-      {isExpanded ? (
-        <ul className="m-0 flex list-none flex-wrap content-center items-center gap-x-[16px] gap-y-[12px] self-stretch p-0 pl-[18px]">
-          {friends.map((friend) => (
-            <SavedFriendProfileItem key={friend.name} {...friend} />
-          ))}
-        </ul>
-      ) : null}
+      <div
+        className={`grid w-full transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+          isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <ul className="m-0 flex list-none flex-wrap content-center items-center gap-x-[16px] gap-y-[12px] self-stretch p-0 pb-[16px] pl-[18px]">
+            {friends.map((friend) => (
+              <SavedFriendProfileItem key={friend.name} {...friend} />
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
