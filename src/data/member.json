@@ -1,0 +1,76 @@
+{
+  "members": [
+    {
+      "id": 1,
+      "name": "유나현",
+      "major": "경영학과",
+      "favorite": true
+    },
+    {
+      "id": 2,
+      "name": "원지원",
+      "major": "미디어&엔터테인먼트",
+      "favorite": true
+    },
+    {
+      "id": 3,
+      "name": "ABE YUNA",
+      "major": "경영학부",
+      "favorite": false
+    },
+    {
+      "id": 4,
+      "name": "ACHIWA SHOTA",
+      "major": "게페르트국제학부",
+      "favorite": false
+    },
+    {
+      "id": 5,
+      "name": "ADAMES VERGARA ISABEL",
+      "major": "국제대학원",
+      "favorite": false
+    },
+    {
+      "id": 6,
+      "name": "ADAMES JANOSCH NOEL",
+      "major": "글로벌한국학부",
+      "favorite": false
+    },
+    {
+      "id": 7,
+      "name": "ADHIKARI KUSHAL",
+      "major": "경영학부",
+      "favorite": false
+    },
+    {
+      "id": 8,
+      "name": "김가윤",
+      "major": "경영학부",
+      "favorite": false
+    },
+    {
+      "id": 9,
+      "name": "김가빈",
+      "major": "경영학부",
+      "favorite": false
+    },
+    {
+      "id": 10,
+      "name": "김한",
+      "major": "경영학부",
+      "favorite": false
+    },
+    {
+      "id": 11,
+      "name": "남기림",
+      "major": "컴퓨터공학과",
+      "favorite": false
+    },
+    {
+      "id": 12,
+      "name": "김채연",
+      "major": "스포츠과학과",
+      "favorite": false
+    }
+  ]
+}
