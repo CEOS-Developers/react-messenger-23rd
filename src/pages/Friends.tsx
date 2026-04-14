@@ -11,7 +11,7 @@ function Friends() {
   const [currentTab, setCurrentTab] = useState<TabType>('all')
 
   useEffect(() => {
-    fetch('public/data/member.json')
+    fetch('/data/member.json')
       .then((res) => res.json())
       .then((data) => setMembers(data.members))
       .catch((err) => console.error('에러 발생', err))
