@@ -1,45 +1,32 @@
-import ProfileHeaderInst from '@assets/ProfileHeaderInst.svg'
-import ToggleDown from '@assets/ToggleDown.svg'
-import Hamburger from '@assets/Hamburger.svg'
-import search from '@assets/search.svg'
-import ChatPlus from '@assets/ChatPlus.svg'
+import { useState } from 'react'
+
+const TABS = ['모두', '읽지 않음', '즐겨찾기', '그룹'] as const
 
 function ChatListFilter() {
-  return (
-    <div className="flex flex-row gap-[6px] h-[54px] py-3 px-4">
-      <div className="flex flex-row ">
-        <img
-          src={ProfileHeaderInst}
-          alt="단체"
-        />
-        <button className="cursor-pointer">
-          <img
-            src={ToggleDown}
-            alt="토글"
-          />
-        </button>
-      </div>
+  const [activeTab, setActiveTab] = useState<string>('모두')
 
-      <div className="flex flex-row gap-1">
-        <button className="cursor-pointer">
-          <img
-            src={ChatPlus}
-            alt="채팅 추가"
-          />
+  return (
+    <div className="flex flex-row items-center gap-1.5 h-[54px] py-3 px-4">
+      {TABS.map((tab) => (
+        <button
+          key={tab}
+          onClick={() => setActiveTab(tab)}
+          className={`
+            px-3.5 py-1.5 rounded-full whitespace-nowrap antialiased
+            ${
+              activeTab === tab
+                ? 'bg-blue-50 text-white text-body3_sb'
+                : 'border border-gray-30 text-gray-80 bg-white text-body3_r'
+            }
+          `}
+        >
+          {tab}
         </button>
-        <button className="cursor-pointer">
-          <img
-            src={Hamburger}
-            alt="목록"
-          />
-        </button>
-        <button className="cursor-pointer">
-          <img
-            src={search}
-            alt="돋보기"
-          />
-        </button>
-      </div>
+      ))}
+
+      <button className="w-7 h-7 flex items-center justify-center rounded-full border border-gray-30 text-gray-60 text-base leading-none">
+        +
+      </button>
     </div>
   )
 }
