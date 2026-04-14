@@ -8,7 +8,7 @@ function Favorites() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    fetch('src/data/member.json')
+    fetch('public/data/member.json')
       .then((res) => res.json())
       .then((data) => setMembers(data.members))
       .catch((err) => console.error('멤버 데이터를 불러오지 못했습니다.', err))
