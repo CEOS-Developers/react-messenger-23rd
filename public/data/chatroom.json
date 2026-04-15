@@ -4,46 +4,177 @@
       "id": 1,
       "name": "학생생활상담연구소",
       "memberCount": 23,
-      "lastMessage": "[학생생활상담연구소] 나 자신과 잘 지내는 연습 집단상담 안내",
       "lastMessageTime": "방금",
       "unreadCount": 12,
-      "isPinned": true
+      "isPinned": true,
+      "messages": [
+        {
+          "id": "1-1",
+          "text": "안녕하세요, 학생생활상담연구소입니다.",
+          "sender": "other",
+          "senderName": "상담센터",
+          "time": "09:00",
+          "date": "2026-04-14",
+          "unreadCount": 0
+        },
+        {
+          "id": "1-2",
+          "text": "집단상담 프로그램 참가자를 모집합니다.",
+          "sender": "other",
+          "senderName": "상담센터",
+          "time": "09:01",
+          "date": "2026-04-14",
+          "unreadCount": 0
+        },
+        {
+          "id": "1-3",
+          "text": "[학생생활상담연구소] 나 자신과 잘 지내는 연습 집단상담 안내",
+          "sender": "other",
+          "senderName": "상담센터",
+          "time": "10:22",
+          "date": "2026-04-15",
+          "unreadCount": 0
+        }
+      ]
     },
     {
       "id": 2,
       "name": "Creative Capstone Project",
       "memberCount": 23,
-      "lastMessage": "강의 개설 안내",
       "lastMessageTime": "3월 2일",
       "unreadCount": 0,
-      "isPinned": true
+      "isPinned": true,
+      "messages": [
+        {
+          "id": "2-1",
+          "text": "팀 프로젝트 관련 안내사항입니다.",
+          "sender": "other",
+          "senderName": "담당교수",
+          "time": "10:00",
+          "date": "2026-03-01",
+          "unreadCount": 0
+        },
+        {
+          "id": "2-2",
+          "text": "강의 개설 안내",
+          "sender": "other",
+          "senderName": "담당교수",
+          "time": "11:30",
+          "date": "2026-03-02",
+          "unreadCount": 0
+        }
+      ]
     },
     {
       "id": 3,
       "name": "융합교육혁신팀",
       "memberCount": 23,
-      "lastMessage": "비대면(3/17, 화, 18시)대학생 진로설정법 및 TO-DO 특강(최성욱 팀장 직강)",
       "lastMessageTime": "17:45",
       "unreadCount": 0,
-      "isPinned": false
+      "isPinned": false,
+      "messages": [
+        {
+          "id": "3-1",
+          "text": "안녕하세요, 융합교육혁신팀입니다.",
+          "sender": "other",
+          "senderName": "혁신팀",
+          "time": "09:00",
+          "date": "2026-04-15",
+          "unreadCount": 0
+        },
+        {
+          "id": "3-2",
+          "text": "비대면(3/17, 화, 18시)대학생 진로설정법 및 TO-DO 특강(최성욱 팀장 직강)",
+          "sender": "other",
+          "senderName": "혁신팀",
+          "time": "17:45",
+          "date": "2026-04-15",
+          "unreadCount": 0
+        }
+      ]
     },
     {
       "id": 4,
       "name": "교수학습센터",
       "memberCount": 23,
-      "lastMessage": "[26-1] 스터디그룹 모집 안내(오늘 마감!)",
       "lastMessageTime": "어제",
       "unreadCount": 1,
-      "isPinned": false
+      "isPinned": false,
+      "messages": [
+        {
+          "id": "4-1",
+          "text": "스터디그룹 모집 안내드립니다.",
+          "sender": "other",
+          "senderName": "학습센터",
+          "time": "10:00",
+          "date": "2026-04-14",
+          "unreadCount": 0
+        },
+        {
+          "id": "4-2",
+          "text": "[26-1] 스터디그룹 모집 안내(오늘 마감!)",
+          "sender": "other",
+          "senderName": "학습센터",
+          "time": "14:30",
+          "date": "2026-04-14",
+          "unreadCount": 0
+        }
+      ]
     },
     {
       "id": 5,
       "name": "Data Visualization",
-      "memberCount": 23,
-      "lastMessage": "안녕하세요, 이 점 인지하지 못해 죄송합니다. 방금 생성해두었습니다!",
+      "memberCount": 27,
       "lastMessageTime": "3월 9일",
       "unreadCount": 3,
-      "isPinned": false
+      "isPinned": false,
+      "messages": [
+        {
+          "id": "5-1",
+          "text": "강의실 변경 확인해주세요.",
+          "sender": "other",
+          "senderName": "정다샘",
+          "time": "15:14",
+          "date": "2026-03-09",
+          "unreadCount": 0
+        },
+        {
+          "id": "5-2",
+          "text": "확인하였습니다.",
+          "sender": "me",
+          "senderName": "나",
+          "time": "15:14",
+          "date": "2026-03-09",
+          "unreadCount": 5
+        },
+        {
+          "id": "5-3",
+          "text": "채팅방에 한하여 전체 프레임 좌우 마진을 12로 설정합니다.",
+          "sender": "me",
+          "senderName": "나",
+          "time": "15:14",
+          "date": "2026-03-09",
+          "unreadCount": 5
+        },
+        {
+          "id": "5-4",
+          "text": "정해진 너비를 넘어가면 줄바꿈을 해 줍니다.",
+          "sender": "other",
+          "senderName": "정다샘",
+          "time": "15:14",
+          "date": "2026-03-09",
+          "unreadCount": 0
+        },
+        {
+          "id": "5-5",
+          "text": "ChatBox 간 간격은 4픽셀로 유지해 줍니다.",
+          "sender": "other",
+          "senderName": "정다샘",
+          "time": "15:14",
+          "date": "2026-03-09",
+          "unreadCount": 0
+        }
+      ]
     }
   ]
 }
