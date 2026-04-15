@@ -8,7 +8,9 @@ import CalendarIcon from '@assets/CalendarIcon.svg'
 
 export default function Chat() {
   const { id } = useParams()
-  const { chatList, chatroomName, memberCount, sendMessage } = useChat(Number(id))
+  const { chatList, chatroomName, memberCount, sendMessage } = useChat(
+    Number(id)
+  )
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const formatDate = (dateString: string) => {
@@ -29,7 +31,10 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col flex-1 overflow-hidden w-full bg-gray-20">
-      <ChatHeader title={chatroomName} memberCount={memberCount} />
+      <ChatHeader
+        title={chatroomName}
+        memberCount={memberCount}
+      />
 
       <div
         ref={scrollRef}
@@ -53,7 +58,7 @@ export default function Chat() {
             >
               {isNewDay && (
                 <div className="flex flex-row justify-center items-center my-5">
-                  <div className="flex flex-row gap-0.5 justify-center items-center bg-gray-60 text-gray-5 text-[11px] px-3 py-1  rounded-full">
+                  <div className="flex flex-row gap-0.5 justify-center items-center bg-gray-60 text-gray-5 text-caption2_r antialiased px-3 py-1  rounded-full">
                     <button>
                       <img
                         src={CalendarIcon}

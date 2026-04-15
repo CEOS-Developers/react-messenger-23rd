@@ -1,5 +1,4 @@
 import { type RouteObject, Navigate } from 'react-router-dom'
-
 import PublicLayout from '@/layout/PublicLayout'
 import ChatList from '@/pages/ChatList'
 import Chat from '@/pages/Chat'
