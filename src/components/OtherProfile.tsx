@@ -32,7 +32,7 @@ function OtherProfile({ profile }: { profile: Profile }) {
             alt="즐겨찾기 아이콘"
             className="w-5 h-5"
           />
-          <span className="text-caption2_sb antialiased">즐겨찾기</span>
+          <span className="text-caption2_sb antialiased whitespace-nowrap">즐겨찾기</span>
         </button>
       </div>
 
