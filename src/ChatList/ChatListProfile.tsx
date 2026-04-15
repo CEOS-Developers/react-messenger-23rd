@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import ChatroomProfile from '@assets/ChatListProfile.svg'
 import Pin from '@assets/Pin.svg'
 import type { Chatroom } from '@/types/chatroom'
@@ -7,17 +8,15 @@ interface Props {
 }
 
 function ChatListProfile({ chatroom }: Props) {
-  const {
-    name,
-    memberCount,
-    lastMessage,
-    lastMessageTime,
-    unreadCount,
-    isPinned,
-  } = chatroom
+  const navigate = useNavigate()
+  const { id, name, memberCount, lastMessageTime, unreadCount, isPinned, messages } = chatroom
+  const lastMessage = messages.at(-1)?.text ?? ''
 
   return (
-    <div className="flex flex-row justify-between  py-3 border-b border-gray-20">
+    <div
+      className="flex flex-row justify-between px-4 py-3 border-b border-gray-20 cursor-pointer active:bg-gray-10"
+      onClick={() => navigate(`/chat/${id}`)}
+    >
       <div className="flex flex-row gap-3 flex-1 min-w-0">
         <img
           src={ChatroomProfile}
