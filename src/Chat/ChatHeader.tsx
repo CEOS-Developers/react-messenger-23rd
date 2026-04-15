@@ -12,7 +12,7 @@ function ChatHeader({ title, memberCount }: Props) {
   const navigate = useNavigate()
 
   return (
-    <div className="flex items-center justify-between py-2 px-3 h-13 bg-none border-b border-[0.75px] border-gray-30">
+    <div className="flex items-center justify-between py-2 px-1.5 h-13 bg-none border-b border-[0.75px] border-gray-30">
       <div className="flex items-center gap-1">
         <button
           className="w-9 h-9 flex items-center justify-center text-gray-90 cursor-pointer"
