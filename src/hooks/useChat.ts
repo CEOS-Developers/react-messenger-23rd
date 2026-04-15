@@ -1,68 +1,48 @@
 import { useEffect, useState } from 'react'
 import type { Message } from '@/types/chat'
 
-//채팅 리스트, 메시지
-export function useChat() {
+export function useChat(chatroomId: number) {
   const [chatList, setChatList] = useState<Message[]>([])
-  const dummyData: Message[] = [
-    {
-      id: '1',
-      text: '강의실 변경 확인해주세요.',
-      sender: 'other',
-      time: '15:14',
-      date: '2026-03-09',
-      unreadCount: 0,
-    },
-    {
-      id: '2',
-      text: '확인하였습니다.',
-      sender: 'me',
-      time: '15:14',
-      date: '2026-03-09',
-      unreadCount: 0,
-    },
-    {
-      id: '3',
-      text: '채팅방에 한하여 전체 프레임 좌우 마진을 12로 설정합니다.',
-      sender: 'me',
-      time: '15:14',
-      date: '2026-03-09',
-      unreadCount: 0,
-    },
-    {
-      id: '4',
-      text: '연속된 텍스트라면 제일 마지막에 시간을 표시하고 뾰족한 말풍선 표시를 제거합니다.',
-      sender: 'me',
-      time: '15:14',
-      date: '2026-03-09',
-      unreadCount: 0,
-    },
-  ]
+  const [chatroomName, setChatroomName] = useState('')
+  const [memberCount, setMemberCount] = useState(0)
+
+  const storageKey = `chatList_${chatroomId}`
 
   useEffect(() => {
-    const saved = localStorage.getItem('chatList')
-    if (!saved) {
-      setChatList(dummyData)
-      return
+    fetch('/data/chatroom.json')
+      .then((res) => res.json())
+      .then((data) => {
+        const room = data.chatrooms.find((c: { id: number }) => c.id === chatroomId)
+        if (!room) return
+
+        setChatroomName(room.name)
+        setMemberCount(room.memberCount)
+
+        const saved = localStorage.getItem(storageKey)
+        if (saved) {
+          const parsed = JSON.parse(saved)
+          setChatList(parsed.length ? parsed : room.messages)
+        } else {
+          setChatList(room.messages)
+        }
+      })
+  }, [chatroomId])
+
+  useEffect(() => {
+    if (chatList.length > 0) {
+      localStorage.setItem(storageKey, JSON.stringify(chatList))
     }
-
-    const parsed = JSON.parse(saved)
-    setChatList(parsed.length ? parsed : dummyData)
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('chatList', JSON.stringify(chatList))
   }, [chatList])
 
   const sendMessage = (text: string) => {
     if (!text.trim()) return
 
     const now = new Date()
-
     const newMessage: Message = {
       id: crypto.randomUUID(),
       text,
       sender: 'me',
+      senderName: '나',
       date: now.toISOString().split('T')[0],
       time: now.toLocaleTimeString([], {
         hour: '2-digit',
@@ -75,5 +55,5 @@ export function useChat() {
     setChatList((prev) => [...prev, newMessage])
   }
 
-  return { chatList, sendMessage }
+  return { chatList, chatroomName, memberCount, sendMessage }
 }

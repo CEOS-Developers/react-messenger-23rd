@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useParams } from 'react-router-dom'
 import { useChat } from '@/hooks/useChat'
 import ChatMessage from '@Chat/ChatMessage'
 import ChatInput from '@Chat/ChatInput'
@@ -6,7 +7,8 @@ import ChatHeader from '@Chat/ChatHeader'
 import CalendarIcon from '@assets/CalendarIcon.svg'
 
 export default function Chat() {
-  const { chatList, sendMessage } = useChat()
+  const { id } = useParams()
+  const { chatList, chatroomName, memberCount, sendMessage } = useChat(Number(id))
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const formatDate = (dateString: string) => {
@@ -27,7 +29,7 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col flex-1 overflow-hidden w-full bg-gray-20">
-      <ChatHeader title="Data Visulization" />
+      <ChatHeader title={chatroomName} memberCount={memberCount} />
 
       <div
         ref={scrollRef}

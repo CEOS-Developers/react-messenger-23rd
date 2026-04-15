@@ -27,7 +27,7 @@ function ChatMessage({ message, showTail, showTime }: Props) {
 
   return (
     <SendOther
-      name="정다샘"
+      name={message.senderName ?? ''}
       message={message.text}
       time={message.time}
       unreadCount={message.unreadCount}
