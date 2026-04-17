@@ -21,7 +21,9 @@ function SendOther({
   return (
     <div className="flex flex-row gap-1.5 ">
       <div className="flex flex-col justify-start pt-0.5">
-        <button className={`w-8 h-8 flex items-center justify-center shrink-0 ${!showTail ? 'invisible' : ''}`}>
+        <button
+          className={`w-8 h-8 flex items-center justify-center shrink-0 ${!showTail ? 'invisible' : ''}`}
+        >
           <img
             src={Profile}
             className="w-8 h-8"
@@ -47,18 +49,18 @@ function SendOther({
               />
             )}
 
-            <div className="max-w-56.75 wrap-break-word text-[16px] font-normal leading-5.5 antialiased">
+            <div className="max-w-56.75 wrap-break-word text-body1_r leading-5.5 antialiased">
               {message}
             </div>
           </div>
           <div className="flex flex-col">
             {unreadCount > 0 && (
-              <span className="text-gray-80 text-[11px] font-semibold antialiased">
+              <span className="text-gray-80 text-caption2_sb antialiased">
                 {unreadCount}
               </span>
             )}
             {showTime && (
-              <span className="text-gray-70 leading-none text-[10px] font-normal antialiased">
+              <span className="text-gray-70 leading-none text-caption3 antialiased">
                 {time}
               </span>
             )}
