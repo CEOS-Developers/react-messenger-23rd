@@ -1,5 +1,9 @@
+import { useRef, useEffect, useState } from 'react'
 import Profile from '@assets/Profile.svg'
 import TailWhite from '@assets/TailWhite.svg'
+import RightArrow from '@assets/RightArrow.svg'
+
+const MAX_HEIGHT = 440
 
 interface Props {
   name: string
@@ -18,6 +22,15 @@ function SendOther({
   showTail,
   showTime,
 }: Props) {
+  const textRef = useRef<HTMLDivElement>(null)
+  const [isOverflow, setIsOverflow] = useState(false)
+
+  useEffect(() => {
+    if (textRef.current) {
+      setIsOverflow(textRef.current.scrollHeight > textRef.current.clientHeight)
+    }
+  }, [message])
+
   return (
     <div className="flex flex-row gap-1.5 ">
       <div className="flex flex-col justify-start pt-0.5">
@@ -36,8 +49,7 @@ function SendOther({
         {showTail && <div className="text-gray-95 text-xs">{name}</div>}
 
         <div className="flex flex-row gap-1 items-end">
-          {/* 3번 div*/}
-          <div className="relative max-w-62.75 px-3 py-2 bg-gray-5 rounded-[14px] flex items-center justify-center">
+          <div className="relative max-w-62.75 px-3 py-2 bg-gray-5 rounded-[14px]">
             {showTail && (
               <img
                 src={TailWhite}
@@ -49,9 +61,26 @@ function SendOther({
               />
             )}
 
-            <div className="max-w-56.75 wrap-break-word whitespace-pre-wrap text-body1_r leading-5.5 antialiased">
+            <div
+              ref={textRef}
+              style={{ maxHeight: `${MAX_HEIGHT}px` }}
+              className="max-w-56.75 wrap-break-word whitespace-pre-wrap text-body1_r leading-5.5 antialiased overflow-hidden"
+            >
               {message}
             </div>
+
+            {isOverflow && (
+              <button className="flex justify-end items-center gap-0.5 mt-1 w-full cursor-pointer">
+                <span className="text-caption1 text-gray-60 antialiased">
+                  전체보기
+                </span>
+                <img
+                  src={RightArrow}
+                  alt=""
+                  className="w-3 h-3"
+                />
+              </button>
+            )}
           </div>
           <div className="flex flex-col">
             {unreadCount > 0 && (
