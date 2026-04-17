@@ -49,7 +49,7 @@ function SendOther({
               />
             )}
 
-            <div className="max-w-56.75 wrap-break-word text-body1_r leading-5.5 antialiased">
+            <div className="max-w-56.75 wrap-break-word whitespace-pre-wrap text-body1_r leading-5.5 antialiased">
               {message}
             </div>
           </div>
