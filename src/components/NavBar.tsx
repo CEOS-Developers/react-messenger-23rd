@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import NavProfile from '@assets/NavProfile.svg'
 import NavProfileClicked from '@assets/NavProfile_filled.svg'
-import NavChat from '@assets/NavChat.svg'
-import NavChatClicked from '@assets/NavChat_filled.svg'
+import NavChat from '@assets/icon-navchat.svg'
+import NavChatClicked from '@assets/icon-navchat-filled.svg'
 import NavFile from '@assets/NavFile.svg'
 import NavFileClicked from '@assets/NavFile_filled.svg'
 import NavEtc from '@assets/NavEtc.svg'
@@ -15,6 +15,7 @@ type NavItem = {
   icon: string
   iconFilled: string
   name?: string
+  iconSize?: string
 }
 
 export default function NavBar() {
@@ -22,11 +23,32 @@ export default function NavBar() {
   const navigate = useNavigate()
 
   const navItems: NavItem[] = [
-    { path: '/myprofile', icon: NavProfile, iconFilled: NavProfileClicked, name: 'Profile' },
-    { path: '/chatlist', icon: NavChat, iconFilled: NavChatClicked, name: 'ChatList' },
-    { path: '/file', icon: NavFile, iconFilled: NavFileClicked, name: 'FileIcon' },
+    {
+      path: '/myprofile',
+      icon: NavProfile,
+      iconFilled: NavProfileClicked,
+      name: 'Profile',
+    },
+    {
+      path: '/chatlist',
+      icon: NavChat,
+      iconFilled: NavChatClicked,
+      name: 'ChatList',
+      iconSize: 'w-5 h-5',
+    },
+    {
+      path: '/file',
+      icon: NavFile,
+      iconFilled: NavFileClicked,
+      name: 'FileIcon',
+    },
     { path: '/apps', icon: NavEtc, iconFilled: NavEtcClicked, name: 'EtcIcon' },
-    { path: '/setting', icon: NavSetting, iconFilled: NavSettingClicked, name: 'SettingIcon' },
+    {
+      path: '/setting',
+      icon: NavSetting,
+      iconFilled: NavSettingClicked,
+      name: 'SettingIcon',
+    },
   ]
 
   return (
@@ -46,11 +68,13 @@ export default function NavBar() {
             }}
             className="flex flex-col items-center gap-1 cursor-pointer"
           >
-            <img
-              src={isActive ? item.iconFilled : item.icon}
-              alt={item.name}
-              className={`w-10 h-10 ${isActive ? 'opacity-100' : 'opacity-40'}`}
-            />
+            <div className="w-10 h-10 flex items-center justify-center">
+              <img
+                src={isActive ? item.iconFilled : item.icon}
+                alt={item.name}
+                className={`${item.iconSize ?? 'w-10 h-10'} ${isActive ? 'opacity-100' : 'opacity-40'}`}
+              />
+            </div>
           </button>
         )
       })}
