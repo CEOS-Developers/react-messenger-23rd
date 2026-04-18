@@ -29,7 +29,7 @@ export default function ChatRoomPage() {
   const opponent = users.find((u) => u.id === opponentId);
 
   return (
-    <main className="bg-black flex flex-col h-screen">
+    <main className="flex flex-col h-screen">
       <ChatHeader name={opponent?.name || "알 수 없음"} />
       <NoticeBar />
       {/* 메세지 리스트 */}

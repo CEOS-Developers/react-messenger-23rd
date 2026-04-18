@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import ChatRoomPage from "./pages/ChatRoom";
 import ChatListPage from "./pages/ChatList";
+import NoticePage from "./components/ChatRoom/Noticepage";
 import "./App.css";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 
       <Route path="/chatroom" element={<ChatRoomPage />} />
       <Route path="/chatlist" element={<ChatListPage />} />
+      <Route path="/notice-page" element={<NoticePage />} />
 
       <Route
         path="*"

@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { IoIosArrowDown } from "react-icons/io";
 
 export default function NoticeBar() {
+  const navigate = useNavigate();
+
   return (
     <div className="px-3 py-2 w-full">
       <div className="flex items-center justify-between bg-gray70 px-4 py-3 rounded-lg">
@@ -14,7 +17,10 @@ export default function NoticeBar() {
           <span className="text-white font-body-01">공지</span>
         </div>
 
-        <button className="text-white text-2xl">
+        <button
+          className="text-white text-2xl"
+          onClick={() => navigate("/notice-page")}
+        >
           <IoIosArrowDown />
         </button>
       </div>
