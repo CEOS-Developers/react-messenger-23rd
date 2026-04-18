@@ -1,4 +1,4 @@
-import RightArrow from '@assets/RightArrow.svg'
+import RightArrow from '@assets/icon-rightarrow.svg'
 function Schedule() {
   return (
     <div className="flex flex-row justify-between items-center h-15.5 border-b border-gray-20 px-4 py-5">

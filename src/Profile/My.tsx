@@ -1,4 +1,4 @@
-import Profile2 from '@assets/Profile2.svg'
+import Profile2 from '@assets/icon-profile2.svg'
 import type { Profile } from '@/types/profile'
 
 function My({ profile }: { profile: Profile }) {

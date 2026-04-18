@@ -1,4 +1,4 @@
-import RightArrow from '@assets/RightArrow.svg'
+import RightArrow from '@assets/icon-rightarrow.svg'
 function Todo() {
   return (
     <div className="flex flex-row justify-between items-center h-[62px] border-b-[1px] border-gray-20 px-4 py-5">

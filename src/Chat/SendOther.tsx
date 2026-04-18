@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
-import Profile from '@assets/Profile.svg'
-import TailWhite from '@assets/TailWhite.svg'
-import RightArrow from '@assets/RightArrow.svg'
+import Profile from '@assets/icon-profile.svg'
+import TailWhite from '@assets/icon-tailwhite.svg'
+import RightArrow from '@assets/icon-rightarrow.svg'
 
 const MAX_HEIGHT = 440
 

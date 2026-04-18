@@ -4,7 +4,7 @@ import { useChat } from '@/hooks/useChat'
 import ChatMessage from '@Chat/ChatMessage'
 import ChatInput from '@Chat/ChatInput'
 import ChatHeader from '@Chat/ChatHeader'
-import CalendarIcon from '@assets/CalendarIcon.svg'
+import CalendarIcon from '@assets/icon-calendaricon.svg'
 
 export default function Chat() {
   const { id } = useParams()

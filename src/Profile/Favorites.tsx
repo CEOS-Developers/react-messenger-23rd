@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import RightArrow from '@assets/RightArrow.svg'
+import RightArrow from '@assets/icon-rightarrow.svg'
 import OtherProfile from '@/components/OtherProfile'
 import { useMembers } from '@/context/MembersContext'
 

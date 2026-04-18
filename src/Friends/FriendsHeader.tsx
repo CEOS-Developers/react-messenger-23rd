@@ -1,5 +1,5 @@
-import IconX from '@assets/IconX.svg'
-import search from '@assets/search.svg'
+import IconX from '@assets/icon-iconx.svg'
+import search from '@assets/icon-search.svg'
 import { useNavigate } from 'react-router-dom'
 
 function FriendsHeader() {

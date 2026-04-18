@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import type { Profile } from '@/types/profile'
-import Profile3 from '@assets/Profile3.svg'
-import EmptyStar from '@assets/Star.svg'
-import FilledStar from '@assets/Star_filled.svg'
+import Profile3 from '@assets/icon-profile3.svg'
+import EmptyStar from '@assets/icon-star.svg'
+import FilledStar from '@assets/icon-star-filled.svg'
 import { useMembers } from '@/context/MembersContext'
 
 function OtherProfile({ profile }: { profile: Profile }) {

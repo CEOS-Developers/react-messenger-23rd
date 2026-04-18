@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
-import TailBlue from '@assets/TailBlue.svg'
-import RightArrow from '@assets/RightArrow.svg'
+import TailBlue from '@assets/icon-tailblue.svg'
+import RightArrow from '@assets/icon-rightarrow.svg'
 
 const MAX_HEIGHT = 440
 

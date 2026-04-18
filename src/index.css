@@ -67,74 +67,74 @@ body {
   /*====typography====*/
   --text-title1: 18px;
   --text-title1--line-height: 24px;
-  --text-title1--letter-spacing: -0.01em;
+  --text-title1--letter-spacing: -0.005em;
   --text-title1--font-weight: 600;
 
   --text-title2: 17px;
   --text-title2--line-height: 22px;
-  --text-title2--letter-spacing: -0.01em;
+  --text-title2--letter-spacing: -0.005em;
   --text-title2--font-weight: 600;
 
   /* ================= BODY ================= */
   --text-body1_sb: 16px;
   --text-body1_sb--line-height: 22px;
-  --text-body1_sb--letter-spacing: 0em;
+  --text-body1_sb--letter-spacing: -0.005em;
   --text-body1_sb--font-weight: 600;
 
   --text-body1_r: 16px;
   --text-body1_r--line-height: 22px;
-  --text-body1_r--letter-spacing: 0em;
+  --text-body1_r--letter-spacing: -0.005em;
   --text-body1_r--font-weight: 400;
 
   --text-body2_sb: 15px;
   --text-body2_sb--line-height: 20px;
-  --text-body2_sb--letter-spacing: 0.01em;
+  --text-body2_sb--letter-spacing: -0.005em;
   --text-body2_sb--font-weight: 600;
 
   --text-body2_m: 15px;
   --text-body2_m--line-height: 20px;
-  --text-body2_m--letter-spacing: 0em;
+  --text-body2_m--letter-spacing: -0.005em;
   --text-body2_m--font-weight: 500;
 
   --text-body2_r: 15px;
   --text-body2_r--line-height: 20px;
-  --text-body2_r--letter-spacing: 0em;
+  --text-body2_r--letter-spacing: -0.005em;
   --text-body2_r--font-weight: 400;
 
   --text-body3_sb: 14px;
   --text-body3_sb--line-height: 20px;
-  --text-body3_sb--letter-spacing: 0em;
+  --text-body3_sb--letter-spacing: -0.005em;
   --text-body3_sb--font-weight: 600;
 
   --text-body3_r: 14px;
   --text-body3_r--line-height: 20px;
-  --text-body3_r--letter-spacing: 0em;
+  --text-body3_r--letter-spacing: -0.005em;
   --text-body3_r--font-weight: 400;
 
   --text-body4_r: 13px;
   --text-body4_r--line-height: 18px;
-  --text-body4_r--letter-spacing: 0.01em;
+  --text-body4_r--letter-spacing: -0.005em;
   --text-body4_r--font-weight: 400;
 
   /* ================= CAPTION ================= */
   --text-caption1: 12px;
   --text-caption1--line-height: 16px;
-  --text-caption1--letter-spacing: 0.02em;
+  --text-caption1--letter-spacing: -0.005em;
   --text-caption1--font-weight: 400;
 
   --text-caption2_sb: 11px;
   --text-caption2_sb--line-height: 14px;
-  --text-caption2_sb--letter-spacing: 0.02em;
+  --text-caption2_sb--letter-spacing: -0.005em;
   --text-caption2_sb--font-weight: 600;
 
   --text-caption2_r: 11px;
   --text-caption2_r--line-height: 14px;
-  --text-caption2_r--letter-spacing: 0.02em;
+  --text-caption2_r--letter-spacing: -0.005em;
   --text-caption2_r--font-weight: 400;
 
   --text-caption3: 10px;
   --text-caption3--line-height: 12px;
-  --text-caption3--letter-spacing: 0.02em;
+  --text-caption3--letter-spacing: -0.005em;
   --text-caption3--font-weight: 400;
 }
 

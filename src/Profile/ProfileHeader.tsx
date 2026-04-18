@@ -1,7 +1,7 @@
-import ProfileHeaderInst from '@assets/ProfileHeaderInst.svg'
-import ToggleDown from '@assets/ToggleDown.svg'
-import PlusFriend from '@assets/PlusFriend.svg'
-import search from '@assets/search.svg'
+import ProfileHeaderInst from '@assets/icon-profileheaderinst.svg'
+import ToggleDown from '@assets/icon-toggledown.svg'
+import PlusFriend from '@assets/icon-plusfriend.svg'
+import search from '@assets/icon-search.svg'
 
 function ProfileHeader() {
   const handleClick = () => {

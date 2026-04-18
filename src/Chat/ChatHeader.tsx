@@ -1,5 +1,5 @@
-import hamBurger from '@assets/Hamburger.svg'
-import searchIcon from '@assets/search.svg'
+import hamBurger from '@assets/icon-hamburger.svg'
+import searchIcon from '@assets/icon-search.svg'
 import BackIcon from '@assets/leftArrow'
 import { useNavigate } from 'react-router-dom'
 

@@ -1,8 +1,8 @@
-import ProfileHeaderInst from '@assets/ProfileHeaderInst.svg'
-import ToggleDown from '@assets/ToggleDown.svg'
-import Hamburger from '@assets/Hamburger.svg'
-import search from '@assets/search.svg'
-import ChatPlus from '@assets/ChatPlus.svg'
+import ProfileHeaderInst from '@assets/icon-profileheaderinst.svg'
+import ToggleDown from '@assets/icon-toggledown.svg'
+import Hamburger from '@assets/icon-hamburger.svg'
+import search from '@assets/icon-search.svg'
+import ChatPlus from '@assets/icon-chatplus.svg'
 
 function ChatListHeader() {
   return (

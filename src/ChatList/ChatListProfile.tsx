@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import ChatroomProfile from '@assets/ChatListProfile.svg'
-import Pin from '@assets/Pin.svg'
+import ChatroomProfile from '@assets/icon-chatlistprofile.svg'
+import Pin from '@assets/icon-pin.svg'
 import type { Chatroom } from '@/types/chatroom'
 
 interface Props {
@@ -10,7 +10,11 @@ interface Props {
 function ChatListProfile({ chatroom }: Props) {
   const navigate = useNavigate()
   const { id, name, memberCount, lastMessageTime, unreadCount, isPinned, messages } = chatroom
-  const lastMessage = messages.at(-1)?.text ?? ''
+
+  const stored = localStorage.getItem(`chatList_${id}`)
+  const storedMessages = stored ? JSON.parse(stored) : null
+  const activeMessages = storedMessages?.length ? storedMessages : messages
+  const lastMessage = activeMessages.at(-1)?.text ?? ''
 
   return (
     <div

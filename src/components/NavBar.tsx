@@ -1,14 +1,14 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import NavProfile from '@assets/NavProfile.svg'
-import NavProfileClicked from '@assets/NavProfile_filled.svg'
+import NavProfile from '@assets/icon-navprofile.svg'
+import NavProfileClicked from '@assets/icon-navprofile-filled.svg'
 import NavChat from '@assets/icon-navchat.svg'
 import NavChatClicked from '@assets/icon-navchat-filled.svg'
-import NavFile from '@assets/NavFile.svg'
-import NavFileClicked from '@assets/NavFile_filled.svg'
-import NavEtc from '@assets/NavEtc.svg'
-import NavEtcClicked from '@assets/NavEtc_filled.svg'
-import NavSetting from '@assets/NavSetting.svg'
-import NavSettingClicked from '@assets/NavSetting_filled.svg'
+import NavFile from '@assets/icon-navfile.svg'
+import NavFileClicked from '@assets/icon-navfile-filled.svg'
+import NavEtc from '@assets/icon-navetc.svg'
+import NavEtcClicked from '@assets/icon-navetc-filled.svg'
+import NavSetting from '@assets/icon-navsetting.svg'
+import NavSettingClicked from '@assets/icon-navsetting-filled.svg'
 
 type NavItem = {
   path?: string

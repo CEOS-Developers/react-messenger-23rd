@@ -1,4 +1,4 @@
-import RightArrow from '@assets/RightArrow.svg'
+import RightArrow from '@assets/icon-rightarrow.svg'
 import { useNavigate } from 'react-router-dom'
 import { useMembers } from '@/context/MembersContext'
 
