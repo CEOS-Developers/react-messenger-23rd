@@ -10,6 +10,7 @@ export interface MessageItem {
   type: MessageType;
   userId: number;
   message: string;
+  imageUrl?: string;
   date: string;
   time: string;
   isRead: boolean;

@@ -7,6 +7,7 @@ import Profile from "@/components/Common/Profile";
 interface MessageProps {
   type: "my" | "friend";
   message: string;
+  imageUrl?: string;
   time: string;
   isRead: boolean;
   name?: string;
@@ -19,6 +20,7 @@ interface MessageProps {
 const Message = ({
   type,
   message,
+  imageUrl,
   time,
   isRead,
   name = "",
@@ -34,7 +36,7 @@ const Message = ({
       <div className="flex w-full items-end justify-end px-4">
         <div className="flex items-end gap-2">
           {showReadStatus && <ChatRead type="my" isRead={isRead} time={time} />}
-          <ChatBox type="my" message={message} isFirst={isFirstInTimeGroup} />
+          <ChatBox type="my" message={message} imageUrl={imageUrl} isFirst={isFirstInTimeGroup} />
         </div>
       </div>
     );
@@ -50,7 +52,7 @@ const Message = ({
         ) : (
           <div className="size-7.5 shrink-0" />
         )}
-        <ChatBox type="friend" message={message} isFirst={isFirstInTimeGroup} />
+        <ChatBox type="friend" message={message} imageUrl={imageUrl} isFirst={isFirstInTimeGroup} />
         {showReadStatus && <ChatRead type="friend" isRead={isRead} time={time} />}
       </div>
     </div>

@@ -60,7 +60,7 @@ const ChatListPage = () => {
               <Link key={chatRoomId} to={`/chat/${chatRoomId}`}>
                 <ChatListItem
                   profiles={profiles}
-                  lastMessage={lastMessage.message}
+                  lastMessage={lastMessage.imageUrl ? "사진을 보냈습니다." : lastMessage.message}
                   time={lastMessage.time}
                   isRead={lastMessage.isRead}
                   isFixed={chatRoomId === PINNED_CHAT_ROOM_ID}

@@ -23,6 +23,7 @@ const ChatRoomPage = () => {
   const switchPerspective = useChatStore(state => state.switchPerspective);
   const markMessagesRead = useChatStore(state => state.markMessagesRead);
   const sendMessage = useChatStore(state => state.sendMessage);
+  const sendImage = useChatStore(state => state.sendImage);
 
   const perspective = chatRoom?.perspective ?? chatRoom?.myUserId ?? 0;
 
@@ -88,6 +89,21 @@ const ChatRoomPage = () => {
     [sendMessage, chatRoomId, scrollToBottom],
   );
 
+  const handleFile = useCallback(
+    (file: File) => {
+      if (!file.type.startsWith("image/")) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const imageUrl = e.target?.result as string;
+        const now = new Date();
+        sendImage(chatRoomId, imageUrl, formatISODate(now), formatDisplayTime(now));
+        setTimeout(scrollToBottom, 0);
+      };
+      reader.readAsDataURL(file);
+    },
+    [sendImage, chatRoomId, scrollToBottom],
+  );
+
   const handlePerspectiveToggle = useCallback(() => {
     switchPerspective(chatRoomId);
   }, [switchPerspective, chatRoomId]);
@@ -136,6 +152,7 @@ const ChatRoomPage = () => {
                             name={sender?.name ?? ""}
                             profileColor={sender?.profileColor ?? ""}
                             message={msg.message}
+                            imageUrl={msg.imageUrl}
                             time={msg.time}
                             isRead={msg.isRead}
                             isFirst={msgIdx === 0}
@@ -156,6 +173,7 @@ const ChatRoomPage = () => {
         <TextField
           key={perspective}
           onSend={handleSend}
+          onFile={handleFile}
           onHeightChange={handleTextareaHeightChange}
         />
       </div>

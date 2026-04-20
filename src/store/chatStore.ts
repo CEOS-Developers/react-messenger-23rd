@@ -61,6 +61,7 @@ interface ChatState {
   switchPerspective: (chatRoomId: number) => void;
   markMessagesRead: (chatRoomId: number, perspective: number) => void;
   sendMessage: (chatRoomId: number, text: string, date: string, time: string) => void;
+  sendImage: (chatRoomId: number, imageUrl: string, date: string, time: string) => void;
 }
 
 export const useChatStore = create<ChatState>()(
@@ -103,6 +104,23 @@ export const useChatStore = create<ChatState>()(
           type: room.perspective === room.myUserId ? "my" : "friend",
           userId: room.perspective,
           message: text,
+          date,
+          time,
+          isRead: false,
+        };
+        set(state =>
+          updateRoom(state.chatRooms, chatRoomId, { messages: [...room.messages, newMsg] }),
+        );
+      },
+
+      sendImage: (chatRoomId, imageUrl, date, time) => {
+        const room = get().chatRooms[chatRoomId];
+        if (!room) return;
+        const newMsg: MessageItem = {
+          type: room.perspective === room.myUserId ? "my" : "friend",
+          userId: room.perspective,
+          message: "",
+          imageUrl,
           date,
           time,
           isRead: false,
