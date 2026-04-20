@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AirplaneIcon from "@/assets/icons/icon_airplane_fill.svg?react";
@@ -8,6 +8,7 @@ import { planeTransition, planeVariants } from "@/constants/splash";
 const SplashPage = () => {
   const navigate = useNavigate();
   const [flying, setFlying] = useState(false);
+  const hasNavigated = useRef(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setFlying(true), 1500);
@@ -22,7 +23,10 @@ const SplashPage = () => {
           animate={flying ? "fly" : "idle"}
           transition={planeTransition}
           onUpdate={({ x }) => {
-            if (typeof x === "number" && x > 150) navigate("/chat");
+            if (typeof x === "number" && x > 150 && !hasNavigated.current) {
+              hasNavigated.current = true;
+              navigate("/chat");
+            }
           }}
         >
           <AirplaneIcon className="h-40 w-30" />

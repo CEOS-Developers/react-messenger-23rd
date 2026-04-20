@@ -50,16 +50,16 @@ function ProfileImage({ profiles }: ProfileImageProps) {
   return (
     <div className="relative size-11">
       <div className={pos.topLeft}>
-        <Profile {...p(0)} type="chatlist_4" />
+        <Profile {...p(0)} type="chatlist_3" />
       </div>
       <div className={pos.topRight}>
-        <Profile {...p(1)} type="chatlist_4" />
+        <Profile {...p(1)} type="chatlist_3" />
       </div>
       <div className={pos.bottomLeft}>
-        <Profile {...p(2)} type="chatlist_4" />
+        <Profile {...p(2)} type="chatlist_3" />
       </div>
       <div className={pos.bottomRight}>
-        <Profile {...p(3)} type="chatlist_4" />
+        <Profile {...p(3)} type="chatlist_3" />
       </div>
     </div>
   );

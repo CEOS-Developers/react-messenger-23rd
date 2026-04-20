@@ -1,4 +1,7 @@
+import { memo } from "react";
+
 import Profile from "@/components/Common/Profile";
+import { cn } from "@/utils/cn";
 import { getSurname } from "@/utils/getName";
 
 interface ContactListItemProps {
@@ -18,13 +21,13 @@ const ContactListItem = ({
 }: ContactListItemProps) => {
   return (
     <div className="flex cursor-pointer items-center gap-3 p-4" onClick={onClick}>
-      {surnameDisplay === "show" && (
-        <span className="font-body-5 rounded-4 bg-gray-100 px-1.5 py-0.5 text-gray-400">
-          {getSurname(name)}
-        </span>
-      )}
-      {surnameDisplay === "hidden" && (
-        <span className="font-body-5 rounded-4 invisible bg-gray-100 px-1.5 py-0.5 text-gray-400">
+      {surnameDisplay !== "none" && (
+        <span
+          className={cn(
+            "font-body-5 rounded-4 bg-gray-100 px-1.5 py-0.5 text-gray-400",
+            surnameDisplay === "hidden" && "invisible",
+          )}
+        >
           {getSurname(name)}
         </span>
       )}
@@ -37,4 +40,4 @@ const ContactListItem = ({
   );
 };
 
-export default ContactListItem;
+export default memo(ContactListItem);

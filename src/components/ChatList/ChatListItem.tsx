@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import ChatTime from "@/components/ChatList/ChatTime";
 import ProfileImage from "@/components/ChatList/ProfileImage";
 import Alert from "@/components/Common/Alert";
@@ -58,4 +60,4 @@ function ChatListItem({
   );
 }
 
-export default ChatListItem;
+export default memo(ChatListItem);
