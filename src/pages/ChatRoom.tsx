@@ -10,23 +10,46 @@ import SentBubble from "../components/ChatRoom/Sentbubble";
 import TimeDivider from "../components/ChatRoom/TimeDivider";
 
 export default function ChatRoomPage() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const saved = localStorage.getItem("messages");
+    return saved ? JSON.parse(saved) : []; //데이터 있으면 문자열을 객체로 변환
+  });
   const [users, setUsers] = useState<User[]>([]);
 
   const currentUserId = "user-1"; //나=이우림=user-1 로 가정
   const opponentId = "user-2"; //상대방=김지원=user-2 로 가정
+  const currentRoomId = "room1"; //이우림과 김지원의 방=room1 로 가정
 
   useEffect(() => {
-    fetch("/data/messages.json")
-      .then((res) => res.json())
-      .then((data) => setMessages(data));
+    const savedMessages = localStorage.getItem("messages");
+    const savedUsers = localStorage.getItem("users");
 
-    fetch("/data/users.json")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+    if (savedMessages) setMessages(JSON.parse(savedMessages));
+    if (savedUsers) setUsers(JSON.parse(savedUsers));
   }, []);
 
   const opponent = users.find((u) => u.id === opponentId);
+
+  const handleSendMessage = (text: string) => {
+    const newMessage = {
+      id: Date.now().toString(),
+      text,
+      roomId: currentRoomId,
+      senderId: currentUserId,
+      recieverId: opponentId,
+      createdAt: new Date().toISOString(),
+    };
+
+    //현재 화면 업데이트
+    const updatedMessages = [...messages, newMessage];
+    setMessages(updatedMessages);
+
+    //데이터 저장
+    const allMessages = JSON.parse(localStorage.getItem("messages") || "[]");
+    const updateAll = [...allMessages, newMessage];
+    localStorage.setItem("messages", JSON.stringify(updateAll));
+  };
+  //로컬스토리지에는 하나의 데이터만 넣을 수 있어서 최근 메세지를 추가한 새로운 하나의 데이터를 넣어줘야 함
 
   return (
     <main className="flex flex-col h-screen">
@@ -69,7 +92,7 @@ export default function ChatRoomPage() {
         })}
       </div>
 
-      <MessageInput />
+      <MessageInput onSend={handleSendMessage} />
     </main>
   );
 }
