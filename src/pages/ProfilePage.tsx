@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import QrIcon from "@/assets/icons/icon_qr_regular.svg?react";
 import PostedImage1 from "@/assets/images/PostedImage1.jpg";
@@ -19,6 +19,7 @@ import PhotoCard from "@/components/Profile/PhotoCard";
 import ToggleTap, { type ToggleTapType } from "@/components/Profile/ToggleTap";
 import UploadButton from "@/components/Profile/UploadButton";
 import usersData from "@/data/users.json";
+import { useProfileStore } from "@/store/profileStore";
 
 const me = usersData.users.find(u => u.userId === 1)!;
 
@@ -36,6 +37,27 @@ const savedImages = [SavedImage1, SavedImage2, SavedImage3, SavedImage4];
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState<ToggleTapType>("posts");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const { starredSrcs, uploadedImages, toggleStar, addUploadedImage } = useProfileStore();
+
+  const starredSet = useMemo(() => new Set(starredSrcs), [starredSrcs]);
+  const displayedPostedImages = useMemo(
+    () => [...uploadedImages, ...postedImages],
+    [uploadedImages],
+  );
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const dataUrl = ev.target?.result as string;
+      if (dataUrl) addUploadedImage(dataUrl);
+    };
+    reader.readAsDataURL(file);
+    e.target.value = "";
+  };
+
   return (
     <div className="relative flex h-full flex-col">
       <main className="flex-1 overflow-y-auto">
@@ -60,13 +82,26 @@ const ProfilePage = () => {
           </div>
           <div className="mb-28 grid grid-cols-3 gap-1.5 px-3">
             {activeTab === "posts"
-              ? postedImages.map((src, i) => <PhotoCard key={i} src={src} showStar={i === 0} />)
+              ? displayedPostedImages.map((src, i) => (
+                  <PhotoCard
+                    key={i}
+                    src={src}
+                    showStar={starredSet.has(src)}
+                    onClick={() => toggleStar(src)}
+                  />
+                ))
               : savedImages.map((src, i) => <PhotoCard key={i} src={src} />)}
           </div>
         </div>
       </main>
       <div className="absolute bottom-27.5 flex w-full justify-center">
-        <input ref={fileInputRef} type="file" accept="image/*" className="hidden" />
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleFileChange}
+        />
         <UploadButton onClick={() => fileInputRef.current?.click()} />
       </div>
     </div>
