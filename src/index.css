@@ -8,6 +8,12 @@
   --color-primary-300: #1c9ffa;
   --color-primary-400: #0062d3;
   --background-image-gradation: linear-gradient(97deg, #1c9ffa 4.75%, #1c6dfa 98.02%);
+  --background-image-splash: linear-gradient(
+    244deg,
+    #33acff -0.79%,
+    #216eff 47.78%,
+    #252fe9 95.22%
+  );
 
   /* Grayscale */
   --color-white: #ffffff;

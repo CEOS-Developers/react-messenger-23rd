@@ -1,4 +1,4 @@
-import { type RouteObject, Navigate } from "react-router-dom";
+import { type RouteObject } from "react-router-dom";
 
 import PublicLayout from "@/layout/PublicLayout";
 import ChatListPage from "@/pages/ChatListPage";
@@ -6,16 +6,17 @@ import ChatRoomPage from "@/pages/ChatRoomPage";
 import ContactPage from "@/pages/ContactPage";
 import ProfilePage from "@/pages/ProfilePage";
 import SettingPage from "@/pages/SettingPage";
+import SplashPage from "@/pages/SplashPage";
 
 const publicRoutes: RouteObject[] = [
+  {
+    index: true,
+    element: <SplashPage />,
+  },
   {
     path: "/",
     element: <PublicLayout />,
     children: [
-      {
-        index: true,
-        element: <Navigate to="/chat" replace />,
-      },
       {
         path: "profile",
         element: <ProfilePage />,
