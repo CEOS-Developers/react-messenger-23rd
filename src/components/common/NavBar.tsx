@@ -11,15 +11,19 @@ export default function NavBar() {
   ];
 
   return (
-    <nav>
+    <nav className="fixed bottom-0 w-full flex justify-center px-7 gap-11 pt-3 pb-9 bg-gray80">
       {menus.map((menu) => (
         <Link key={menu.path} to={menu.path}>
-          <span>{menu.icon}</span>
-          <span>{menu.name}</span>
+          <div
+            className={`flex flex-col items-center ${
+              location.pathname === menu.path ? "text-main2" : "text-gray10"
+            }`}
+          >
+            <span className="text-2xl">{menu.icon}</span>
+            <span className="text-xs">{menu.name}</span>
+          </div>
         </Link>
       ))}
     </nav>
   );
 }
-
-//스타일링, 정렬, 하단 sticky
