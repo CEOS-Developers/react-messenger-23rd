@@ -59,7 +59,7 @@ export default function ChatRoomPage() {
     const newMessage = {
       id: Date.now().toString(),
       text,
-      roomId: currentRoomId || "room1",
+      roomId: currentRoomId,
       senderId: currentUserId,
       recieverId: opponentId,
       createdAt: now,

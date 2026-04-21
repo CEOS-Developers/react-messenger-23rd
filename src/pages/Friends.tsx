@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 import FriendsHeader from "../components/Friends/FriendsHeader";
 import type { User } from "../types/chat";
+import type { Room } from "../types/room";
+
 import { HiStar, HiOutlineStar } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 export default function FriendsPage() {
-  //친구 목록 불러오기
+  const navigate = useNavigate();
+  const [rooms, setRooms] = useState<Room[]>([]);
+
+  //친구, 방 목록 불러오기
   const [friends, setFriends] = useState<User[]>([]);
   useEffect(() => {
     const savedFriends = localStorage.getItem("users");
+    const savedRooms = localStorage.getItem("rooms");
 
     if (savedFriends) {
       setFriends(JSON.parse(savedFriends));
+    }
+
+    if (savedRooms) {
+      setRooms(JSON.parse(savedRooms));
     }
   }, []);
 
@@ -35,6 +46,37 @@ export default function FriendsPage() {
     a.name.localeCompare(b.name, "ko")
   );
 
+  //클릭한 상대와의 채팅방으로 이동하는 함수
+  const handleFriendClick = (friendId: string) => {
+    // '이우림'인 경우에만 가능
+    const currentUserId = "user-1";
+
+    const existingRoom = rooms.find(
+      (room) =>
+        room.participants.includes(currentUserId) &&
+        room.participants.includes(friendId)
+    );
+    //채팅 기록이 있는 경우
+    if (existingRoom) {
+      navigate(`/chatroom/${existingRoom.id}`);
+    } else {
+      // 채팅 기록이 없는 경우
+      const newRoomId = `room-${Date.now()}`;
+      const newRoom = {
+        id: newRoomId,
+        participants: [currentUserId, friendId],
+        lastMessage: "",
+        updatedAt: new Date().toISOString(),
+      };
+
+      const updatedRooms = [...rooms, newRoom];
+      localStorage.setItem("rooms", JSON.stringify(updatedRooms));
+      setRooms(updatedRooms);
+
+      navigate(`/chatroom/${newRoomId}`);
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <FriendsHeader />
@@ -52,6 +94,7 @@ export default function FriendsPage() {
                   key={friend.id}
                   friend={friend}
                   onToggle={() => handleFavorite(friend.id)}
+                  onClick={() => handleFriendClick(friend.id)}
                 />
               ))}
             </ul>
@@ -68,6 +111,7 @@ export default function FriendsPage() {
                 key={friend.id}
                 friend={friend}
                 onToggle={() => handleFavorite(friend.id)}
+                onClick={() => handleFriendClick(friend.id)}
               />
             ))}
           </ul>
@@ -80,30 +124,40 @@ export default function FriendsPage() {
 function FriendsItem({
   friend,
   onToggle,
+  onClick,
 }: {
   friend: User;
   onToggle: () => void;
+  onClick: () => void;
 }) {
   return (
     <li className="flex gap-3 items-center">
       {/* 즐겨찾기 별 색 바꾸기 */}
-      <button onClick={onToggle} className="focus:outline-none w-4 h-4">
+      <button
+        onClick={(e) => {
+          e.stopPropagation(); //별 누를때는 채팅방 이동 안하게
+          onToggle();
+        }}
+        className="focus:outline-none w-4 h-4"
+      >
         {friend.isFavorite ? (
           <HiStar className="text-main2" />
         ) : (
           <HiOutlineStar />
         )}
       </button>
-      <img
-        src={friend.profileImage || "/default-profile.png"}
-        alt={friend.name}
-        className="w-13.25 h-13.25 rounded-lg"
-      />
-      <div className="flex flex-col gap-1">
-        <span className="text-gray10 text-body-02">{friend.name}</span>
-        <span className="text-gray30 text-caption-02">
-          {friend.statusMessage}
-        </span>
+      <div className="flex flex-1 gap-3 items-center" onClick={onClick}>
+        <img
+          src={friend.profileImage || "/default-profile.png"}
+          alt={friend.name}
+          className="w-13.25 h-13.25 rounded-lg"
+        />
+        <div className="flex flex-col gap-1">
+          <span className="text-gray10 text-body-02">{friend.name}</span>
+          <span className="text-gray30 text-caption-02">
+            {friend.statusMessage}
+          </span>
+        </div>
       </div>
     </li>
   );

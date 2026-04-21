@@ -1,7 +1,7 @@
 [
   {
     "id": "room1-msg1",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-2",
     "recieverId": "user-1",
     "text": "저녁은 먹었어?",
@@ -9,7 +9,7 @@
   },
   {
     "id": "room1-msg2",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-1",
     "recieverId": "user-2",
     "text": "아직이야 뭐 먹을지 고민 중이야",
@@ -17,7 +17,7 @@
   },
   {
     "id": "room1-msg3",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-2",
     "recieverId": "user-1",
     "text": "따뜻한 거 먹으면 좋겠다 오늘 좀 쌀쌀하더라",
@@ -25,7 +25,7 @@
   },
   {
     "id": "room1-msg4",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-2",
     "text": "5시에 로비에서 볼까?",
     "recieverId": "user-1",
@@ -33,7 +33,7 @@
   },
   {
     "id": "room1-msg5",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-1",
     "recieverId": "user-2",
     "text": "좋아",
@@ -41,7 +41,7 @@
   },
   {
     "id": "room1-msg6",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-2",
     "recieverId": "user-1",
     "text": "이따 끝나면 연락줘 엘베 잡아 놓을게 ㅎㅎ",
@@ -49,7 +49,7 @@
   },
   {
     "id": "room1-msg7",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-1",
     "recieverId": "user-2",
     "text": "ㅇㅋㅇㅋ",
@@ -57,7 +57,7 @@
   },
   {
     "id": "room1-msg8",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-1",
     "recieverId": "user-2",
     "text": "나 근데 교수님한테 여쭤볼 게 있어서 조금 더 늦게 끝날 수도 있어!! 끝나면 연락할게~",
@@ -65,7 +65,7 @@
   },
   {
     "id": "room1-msg9",
-    "roomId": "room1",
+    "roomId": "room-1776784571963",
     "senderId": "user-2",
     "recieverId": "user-1",
     "text": "넹",
