@@ -4,6 +4,7 @@ export interface User {
   profileImage: string;
   statusMessage?: string;
   isMe: boolean;
+  isFavorite: boolean;
 }
 
 export interface Message {

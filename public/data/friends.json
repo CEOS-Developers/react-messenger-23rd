@@ -3,54 +3,63 @@
     "id": "user-1",
     "name": "이우림",
     "profileImage": "/images/profiles/leewoorim.png",
-    "statusMessage": "CEOS 23기 디자인"
+    "statusMessage": "CEOS 23기 디자인",
+    "isFavorite": false
   },
   {
     "id": "user-2",
     "name": "김지원",
     "profileImage": "/images/profiles/kimjiwon.png",
-    "statusMessage": "고등학교 친구"
+    "statusMessage": "고등학교 친구",
+    "isFavorite": false
   },
   {
     "id": "user-3",
     "name": "박소현",
     "profileImage": "/images/profiles/parksohyun.png",
-    "statusMessage": "고등학교 친구"
+    "statusMessage": "고등학교 친구",
+    "isFavorite": false
   },
   {
     "id": "user-4",
     "name": "박선유",
     "profileImage": "/images/profiles/parksunyoo.png",
-    "statusMessage": "소노 농구 친구"
+    "statusMessage": "소노 농구 친구",
+    "isFavorite": false
   },
   {
     "id": "user-5",
     "name": "김서현",
     "profileImage": "/images/profiles/kimseohyun.png",
-    "statusMessage": "연세대 문정 21"
+    "statusMessage": "연세대 문정 21",
+    "isFavorite": false
   },
   {
     "id": "user-6",
     "name": "전혜영",
     "profileImage": "/images/profiles/jeonhyeyoung.png",
-    "statusMessage": "엄마"
+    "statusMessage": "엄마",
+    "isFavorite": false
   },
   {
     "id": "user-7",
     "name": "남기림",
     "profileImage": "/images/profiles/namkirim.png",
-    "statusMessage": "CEOS 23기 FE"
+    "statusMessage": "CEOS 23기 FE",
+    "isFavorite": false
   },
   {
     "id": "user-8",
     "name": "유원희",
     "profileImage": "/images/profiles/yoowonhee.png",
-    "statusMessage": "연세대 태부"
+    "statusMessage": "연세대 태부",
+    "isFavorite": false
   },
   {
     "id": "user-9",
     "name": "강보경",
     "profileImage": "/images/profiles/kangbokyeong.png",
-    "statusMessage": "연세대 문정 20"
+    "statusMessage": "연세대 문정 20",
+    "isFavorite": false
   }
 ]

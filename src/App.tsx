@@ -20,8 +20,8 @@ function App() {
     }
 
     //친구 데이터 가져오기
-    if (!localStorage.getItem("friends")) {
-      localStorage.setItem("friends", JSON.stringify(initialFriends));
+    if (!localStorage.getItem("users")) {
+      localStorage.setItem("users", JSON.stringify(initialFriends));
       console.log("친구 데이터 로딩 완료");
     }
   }, []);
