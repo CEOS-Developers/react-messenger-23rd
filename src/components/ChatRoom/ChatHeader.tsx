@@ -4,9 +4,10 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 interface Props {
   name: string;
+  onNameClick?: () => void;
 }
 
-export default function ChatHeader({ name }: Props) {
+export default function ChatHeader({ name, onNameClick }: Props) {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +18,9 @@ export default function ChatHeader({ name }: Props) {
         </button>
       </div>
       <div className="flex flex-1 justify-center">
-        <h1 className="text-body-01">{name}</h1>
+        <button onClick={onNameClick}>
+          <h1 className="text-body-01">{name}</h1>
+        </button>
       </div>
       <div className="flex flex-1 justify-end">
         <button>

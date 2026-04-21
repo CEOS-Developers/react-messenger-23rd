@@ -4,6 +4,7 @@ import ChatListPage from "./pages/ChatList";
 import NoticePage from "./components/ChatRoom/Noticepage";
 import initialMessages from "../public/data/messages.json";
 import initialFriends from "../public/data/friends.json";
+import initialRooms from "../public/data/rooms.json";
 import FriendsPage from "./pages/Friends";
 import "./App.css";
 import { useEffect } from "react";
@@ -24,6 +25,12 @@ function App() {
       localStorage.setItem("users", JSON.stringify(initialFriends));
       console.log("친구 데이터 로딩 완료");
     }
+
+    //채팅방 데이터 가져오기
+    if (!localStorage.getItem("rooms")) {
+      localStorage.setItem("rooms", JSON.stringify(initialRooms));
+      console.log("채팅방 데이터 로딩 완료");
+    }
   }, []);
 
   //네브바 표시 설정
@@ -33,7 +40,7 @@ function App() {
   return (
     <div className={`min-h-screen ${!shouldHide ? "pb-[95px]" : ""}`}>
       <Routes>
-        <Route path="/" element={<ChatRoomPage />} />
+        <Route path="/" element={<FriendsPage />} />
 
         <Route path="/chatroom/:id" element={<ChatRoomPage />} />
         <Route path="/chatlist" element={<ChatListPage />} />
