@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { User, Message } from "../types/chat";
 import type { Room } from "../types/room";
 
@@ -23,8 +23,6 @@ export default function ChatRoomPage() {
   const [rooms, setRooms] = useState<Room[]>([]);
 
   const [currentUserId, setCurrentUserId] = useState("user-1"); //화자 기본값 = 이우림
-  // const [opponentId, setOpponentId] = useState("user-2"); //상대방 기본값 = 김지원
-  // const [currentRoomId, setCurrentRoomId] = useState("room1"); //채팅방 기본값 = 이우림&김지원
 
   useEffect(() => {
     const savedMessages = localStorage.getItem("messages");
@@ -91,6 +89,16 @@ export default function ChatRoomPage() {
   };
   //로컬스토리지에는 하나의 데이터만 넣을 수 있어서 최근 메세지를 추가한 새로운 하나의 데이터를 넣어줘야 함
 
+  // 가장 하단 메세지 기준 레퍼런스
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // 가장 하단으로 이동
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "auto" });
+    }
+  }, [roomMessages]);
+
   return (
     <main className="flex flex-col h-screen">
       <ChatHeader
@@ -100,7 +108,7 @@ export default function ChatRoomPage() {
       <NoticeBar />
 
       {/* 메세지 리스트 */}
-      <div className="flex flex-col flex-1 overflow-y-auto px-3">
+      <div className="flex flex-col flex-1 overflow-y-auto px-3 pb-5">
         {roomMessages.map((msg, index) => {
           const prevMsg = roomMessages[index - 1];
           let showTimeDivider = false;
@@ -134,6 +142,8 @@ export default function ChatRoomPage() {
             </div>
           );
         })}
+        {/* "가장 하단" 기준 */}
+        <div ref={scrollRef} />
       </div>
 
       <MessageInput onSend={handleSendMessage} />
