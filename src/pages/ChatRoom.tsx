@@ -22,7 +22,7 @@ export default function ChatRoomPage() {
 
   useEffect(() => {
     const savedMessages = localStorage.getItem("messages");
-    const savedUsers = localStorage.getItem("users");
+    const savedUsers = localStorage.getItem("friends");
 
     if (savedMessages) setMessages(JSON.parse(savedMessages));
     if (savedUsers) setUsers(JSON.parse(savedUsers));
