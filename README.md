@@ -85,9 +85,9 @@
     <td align="center"><b>연락처</b></td>
   </tr>
   <tr>
-    <td><img width="270" alt="스플래시" src="https://github.com/user-attachments/assets/e676eda9-1deb-4296-99ac-6bded2e85d50" /></td>
-    <td><img width="270" alt="채팅 리스트" src="https://github.com/user-attachments/assets/03eeaa9a-b910-4bae-89e7-61be0d5d3021" /></td>
-    <td><img width="270" alt="연락처" src="https://github.com/user-attachments/assets/66a448ac-5a2e-45bf-a68a-b84a7d04baa2" /></td>
+    <td><img width="200" alt="스플래시" src="https://github.com/user-attachments/assets/e676eda9-1deb-4296-99ac-6bded2e85d50" /></td>
+    <td><img width="200" alt="채팅 리스트" src="https://github.com/user-attachments/assets/03eeaa9a-b910-4bae-89e7-61be0d5d3021" /></td>
+    <td><img width="200" alt="연락처" src="https://github.com/user-attachments/assets/66a448ac-5a2e-45bf-a68a-b84a7d04baa2" /></td>
   </tr>
   <tr>
     <td align="center"><b>채팅방</b></td>
@@ -95,9 +95,9 @@
     <td align="center"><b>설정</b></td>
   </tr>
   <tr>
-    <td><img width="270" alt="채팅방" src="https://github.com/user-attachments/assets/f7a83af6-ea24-4479-88ca-d69009335624" /></td>
-    <td><img width="270" alt="프로필" src="https://github.com/user-attachments/assets/7f3b28cc-32f7-4db7-bc5e-5d52a071b71a" /></td>
-    <td><img width="270" alt="설정" src="https://github.com/user-attachments/assets/f3df5776-474c-4d8b-84cc-0d110885c96b" /></td>
+    <td><img width="200" alt="채팅방" src="https://github.com/user-attachments/assets/f7a83af6-ea24-4479-88ca-d69009335624" /></td>
+    <td><img width="200" alt="프로필" src="https://github.com/user-attachments/assets/7f3b28cc-32f7-4db7-bc5e-5d52a071b71a" /></td>
+    <td><img width="200" alt="설정" src="https://github.com/user-attachments/assets/f3df5776-474c-4d8b-84cc-0d110885c96b" /></td>
   </tr>
 </table>
 
