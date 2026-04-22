@@ -11,11 +11,20 @@ function ChatList() {
   useEffect(() => {
     fetch('/data/chatroom.json')
       .then((res) => res.json())
-      .then((data) => setChatrooms(data.chatrooms))
+      .then((data) => {
+        const readRooms: number[] = JSON.parse(localStorage.getItem('readRooms') ?? '[]')
+        const rooms = data.chatrooms.map((room: Chatroom) => ({
+          ...room,
+          unreadCount: readRooms.includes(room.id) ? 0 : room.unreadCount,
+        }))
+        setChatrooms(rooms)
+      })
   }, [])
 
   const filtered = activeTab === '즐겨찾기'
     ? chatrooms.filter((c) => c.isPinned)
+    : activeTab === '읽지 않음'
+    ? chatrooms.filter((c) => c.unreadCount > 0)
     : chatrooms
 
   return (

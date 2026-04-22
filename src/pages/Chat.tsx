@@ -13,6 +13,14 @@ export default function Chat() {
   )
   const scrollRef = useRef<HTMLDivElement>(null)
 
+  useEffect(() => {
+    const readRooms: number[] = JSON.parse(localStorage.getItem('readRooms') ?? '[]')
+    if (!readRooms.includes(Number(id))) {
+      readRooms.push(Number(id))
+      localStorage.setItem('readRooms', JSON.stringify(readRooms))
+    }
+  }, [id])
+
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
