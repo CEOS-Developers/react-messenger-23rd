@@ -1,11 +1,13 @@
 import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 export default function NoticePage() {
+  const navigate = useNavigate();
   return (
     <>
       {/* 상단 바 */}
       <div className="flex h-11 w-full px-2.5 py-4 justify-between items-center text-white">
-        <button>
+        <button onClick={() => navigate(-1)}>
           <IoIosArrowBack className="w-6 h-6" />
         </button>
         <span className="text-body-01">그룹 알림</span>

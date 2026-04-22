@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import type { User, Message } from "../types/chat";
 import type { Room } from "../types/room";
 
-import { formatTime } from "../utils/formatTime";
+import { formatChatTime } from "../utils/formatTime";
 import { useParams } from "react-router-dom";
 
 import ChatHeader from "../components/ChatRoom/ChatHeader";
@@ -130,7 +130,7 @@ export default function ChatRoomPage() {
             <div key={msg.id} className="flex flex-col">
               {/* 5분 이상 차이 날 때만 시간 텍스트 출력 */}
               {showTimeDivider && (
-                <TimeDivider time={formatTime(msg.createdAt)} />
+                <TimeDivider time={formatChatTime(msg.createdAt)} />
               )}
 
               {/* 말풍선 출력 */}

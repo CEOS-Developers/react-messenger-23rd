@@ -4,7 +4,7 @@ export default function NavBar() {
   const location = useLocation(); // 현재 위치에 따라 아이콘 색상을 바꾸기 위해
 
   const menus = [
-    { name: "채팅", path: "/chat-list", icon: "💬" },
+    { name: "채팅", path: "/chatlist", icon: "💬" },
     { name: "대화 상대", path: "/friends", icon: "👥" },
     { name: "검색", path: "", icon: "🔍" },
     { name: "나", path: "/profile", icon: "👤" },
