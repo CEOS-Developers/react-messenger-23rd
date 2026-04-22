@@ -25,6 +25,8 @@ export default function ChatRoomPage() {
   const [currentUserId, setCurrentUserId] = useState("user-1"); //화자 기본값 = 이우림
 
   useEffect(() => {
+    if (!currentRoomId) return;
+
     const savedMessages = localStorage.getItem("messages");
     const savedUsers = localStorage.getItem("users");
     const savedRooms = localStorage.getItem("rooms");
@@ -59,15 +61,16 @@ export default function ChatRoomPage() {
     const newMessage = {
       id: Date.now().toString(),
       text,
-      roomId: currentRoomId,
+      roomId: currentRoomId || "",
       senderId: currentUserId,
       recieverId: opponentId,
       createdAt: now,
+      isRead: true,
     };
 
     // 메시지 업데이트
     const updatedMessages = [...messages, newMessage];
-    setMessages(updatedMessages);
+    setMessages(updatedMessages as Message[]);
     localStorage.setItem("messages", JSON.stringify(updatedMessages));
 
     // 방 업데이트

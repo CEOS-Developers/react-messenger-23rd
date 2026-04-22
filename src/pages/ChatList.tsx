@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import type { User, Message } from "../types/chat";
 import type { Room } from "../types/room";
-import { formatListTime } from "../utils/formatTime";
 import ChatItem from "../components/ChatList/ChatItem";
 
 export default function ChatListPage() {
-  const navigate = useNavigate();
   const [rooms, setRooms] = useState<Room[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [allMessages, setAllMessages] = useState<Message[]>([]);
@@ -25,7 +22,7 @@ export default function ChatListPage() {
       const parsedRooms: Room[] = JSON.parse(savedRooms);
 
       // updatedAt으로 내림차순 정렬
-      const sortedRooms = parsedRooms.sort((a, b) => {
+      const sortedRooms = parsedRooms.sort((a: Room, b: Room) => {
         return (
           new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
         );

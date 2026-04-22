@@ -1,6 +1,5 @@
-// components/ChatList/ChatItem.tsx
 import { useNavigate } from "react-router-dom";
-import type { User, Message } from "../../types/chat";
+import type { User } from "../../types/chat";
 import type { Room } from "../../types/room";
 import { formatListTime } from "../../utils/formatTime";
 import { BsPinAngleFill } from "react-icons/bs";

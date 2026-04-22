@@ -62,16 +62,17 @@ export default function FriendsPage() {
     } else {
       // 채팅 기록이 없는 경우
       const newRoomId = `room-${Date.now()}`;
-      const newRoom = {
+      const newRoom: Room = {
         id: newRoomId,
         participants: [currentUserId, friendId],
         lastMessage: "",
         updatedAt: new Date().toISOString(),
+        isPinned: false,
       };
 
       const updatedRooms = [...rooms, newRoom];
       localStorage.setItem("rooms", JSON.stringify(updatedRooms));
-      setRooms(updatedRooms);
+      setRooms(updatedRooms as Room[]);
 
       navigate(`/chatroom/${newRoomId}`);
     }

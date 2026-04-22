@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import ChatRoomPage from "./pages/ChatRoom";
 import ChatListPage from "./pages/ChatList";
-import NoticePage from "./components/ChatRoom/Noticepage";
+import NoticePage from "./components/ChatRoom/NoticePage";
 import initialMessages from "../public/data/messages.json";
 import initialFriends from "../public/data/friends.json";
 import initialRooms from "../public/data/rooms.json";
