@@ -1,16 +1,19 @@
-import { useState } from 'react'
-
 const TABS = ['모두', '읽지 않음', '즐겨찾기', '그룹'] as const
 
-function ChatListFilter() {
-  const [activeTab, setActiveTab] = useState<string>('모두')
+type Tab = (typeof TABS)[number]
 
+interface Props {
+  activeTab: Tab
+  onChangeTab: (tab: Tab) => void
+}
+
+function ChatListFilter({ activeTab, onChangeTab }: Props) {
   return (
     <div className="flex flex-row items-center gap-1.5 h-13.5 py-3 px-4">
       {TABS.map((tab) => (
         <button
           key={tab}
-          onClick={() => setActiveTab(tab)}
+          onClick={() => onChangeTab(tab)}
           className={`
             px-3.5 py-1.5 rounded-full whitespace-nowrap antialiased
             ${
@@ -32,3 +35,4 @@ function ChatListFilter() {
 }
 
 export default ChatListFilter
+export type { Tab }
