@@ -3,6 +3,7 @@
     "id": "room-1776784571963",
     "participants": ["user-1", "user-2"],
     "lastMessage": "끝 !!",
-    "updatedAt": "2026-04-21T13:48:55Z"
+    "updatedAt": "2026-04-21T13:48:55Z",
+    "isPinned": false
   }
 ]

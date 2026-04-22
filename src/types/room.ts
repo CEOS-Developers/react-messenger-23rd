@@ -3,4 +3,5 @@ export interface Room {
   participants: string[];
   lastMessage?: string;
   updatedAt?: string;
+  isPinned: boolean;
 }

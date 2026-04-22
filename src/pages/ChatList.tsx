@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { User } from "../types/chat";
+import type { User, Message } from "../types/chat";
 import type { Room } from "../types/room";
 import { formatListTime } from "../utils/formatTime";
+import ChatItem from "../components/ChatList/ChatItem";
 
 export default function ChatListPage() {
   const navigate = useNavigate();
   const [rooms, setRooms] = useState<Room[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [allMessages, setAllMessages] = useState<Message[]>([]);
+  const [contextMenu, setContextMenu] = useState<{
+    x: number;
+    y: number;
+    roomId: string;
+  } | null>(null);
 
   useEffect(() => {
     const savedRooms = localStorage.getItem("rooms");
@@ -32,6 +38,37 @@ export default function ChatListPage() {
     if (savedMessages) setAllMessages(JSON.parse(savedMessages));
   }, []);
 
+  //채팅방 상단 고정하기
+  // 1. 우클릭 시 메뉴 띄우기
+  const handleContextMenu = (e: React.MouseEvent, roomId: string) => {
+    e.preventDefault(); // 브라우저 기본 메뉴 방지
+    setContextMenu({ x: e.pageX, y: e.pageY, roomId });
+  };
+
+  // 2. 고정 토글 함수
+  const togglePin = (roomId: string) => {
+    const updatedRooms = rooms.map((room) =>
+      room.id === roomId ? { ...room, isPinned: !room.isPinned } : room
+    );
+    setRooms(updatedRooms);
+    localStorage.setItem("rooms", JSON.stringify(updatedRooms));
+    setContextMenu(null); // 메뉴 닫기
+  };
+
+  // 3. 목록 분리 (고정된 방 vs 일반 방)
+  const pinnedRooms = rooms
+    .filter((r) => r.isPinned)
+    .sort(
+      (a, b) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
+  const normalRooms = rooms
+    .filter((r) => !r.isPinned)
+    .sort(
+      (a, b) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
+
   return (
     <main className="flex flex-col">
       {/* chatListHeader */}
@@ -39,54 +76,67 @@ export default function ChatListPage() {
 
       {/* 검색창 등 상단 UI 생략 (나중에 추가) */}
 
-      <ul className="flex flex-col">
-        {rooms.map((room) => {
-          const opponentId = room.participants.find((id) => id !== "user-1"); //user-1 기준 화면으로 가정
-          const opponent = users.find((u) => u.id === opponentId);
+      {/* 상단고정 채팅방 */}
+      {pinnedRooms.length > 0 && (
+        <ul className="flex flex-col">
+          {pinnedRooms.map((room) => {
+            const opponentId = room.participants.find((id) => id !== "user-1");
+            const opponent = users.find((u) => u.id === opponentId);
+            const unreadCount = allMessages.filter(
+              (m) =>
+                m.roomId === room.id && m.senderId !== "user-1" && !m.isRead
+            ).length;
 
-          //안읽은 메세지 세기
+            return (
+              <ChatItem
+                key={room.id}
+                room={room}
+                opponent={opponent}
+                unreadCount={unreadCount}
+                onContextMenu={handleContextMenu}
+              />
+            );
+          })}
+        </ul>
+      )}
+
+      {/* 일반 채팅방 */}
+      <ul className="flex flex-col">
+        {normalRooms.map((room) => {
+          const opponentId = room.participants.find((id) => id !== "user-1");
+          const opponent = users.find((u) => u.id === opponentId);
           const unreadCount = allMessages.filter(
             (m) => m.roomId === room.id && m.senderId !== "user-1" && !m.isRead
           ).length;
 
           return (
-            <li
+            <ChatItem
               key={room.id}
-              onClick={() => navigate(`/chatroom/${room.id}`)}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-900 cursor-pointer"
-            >
-              {/* 상대방 프로필 이미지 */}
-              <div className="relative">
-                <img
-                  src={opponent?.profileImage || "/default-profile.png"}
-                  className="w-12 h-12 rounded-lg object-cover"
-                  alt={opponent?.name}
-                />
-                {unreadCount > 0 && (
-                  <div className="absolute -top-1 -right-1 bg-[#FF5F5F] text-white text-caption-02 w-4 h-4 flex items-center justify-center rounded-full px-1">
-                    {unreadCount > 99 ? "99+" : unreadCount}
-                  </div>
-                )}
-              </div>
-
-              {/* 채팅방 정보 */}
-              <div className="flex flex-col flex-1 min-w-0">
-                <div className="flex justify-between items-center">
-                  <span className="text-body-02 text-gray10 truncate">
-                    {opponent?.name || "알 수 없음"}
-                  </span>
-                  <span className="text-body-02 text-gray50">
-                    {formatListTime(room.updatedAt)}
-                  </span>
-                </div>
-                <p className="text-caption-02 text-gray40 truncate mt-1">
-                  {room.lastMessage || "대화 내용이 없습니다."}
-                </p>
-              </div>
-            </li>
+              room={room}
+              opponent={opponent}
+              unreadCount={unreadCount}
+              onContextMenu={handleContextMenu}
+            />
           );
         })}
       </ul>
+
+      {/* 우클릭(고정설정) 메뉴 */}
+      {contextMenu && (
+        <div
+          className="fixed z-50 bg-gray-800 border border-gray-700 rounded-lg shadow-xl py-1 w-40"
+          style={{ top: contextMenu.y, left: contextMenu.x }}
+        >
+          <button
+            className="w-full text-left px-4 py-2 hover:bg-gray-700 text-sm"
+            onClick={() => togglePin(contextMenu.roomId)}
+          >
+            {rooms.find((r) => r.id === contextMenu.roomId)?.isPinned
+              ? "상단 고정 해제하기"
+              : "상단에 고정하기"}
+          </button>
+        </div>
+      )}
     </main>
   );
 }
