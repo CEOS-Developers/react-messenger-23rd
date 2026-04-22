@@ -1,6 +1,6 @@
 import { type Transition, type Variants } from "framer-motion";
 
-export const planeVariants: Variants = {
+export const PLANE_VARIANTS: Variants = {
   idle: {},
   fly: {
     x: [0, -15, 400],
@@ -10,7 +10,7 @@ export const planeVariants: Variants = {
   },
 };
 
-export const planeTransition: Transition = {
+export const PLANE_TRANSITION: Transition = {
   duration: 0.55,
   times: [0, 0.15, 1],
   ease: "easeIn",
