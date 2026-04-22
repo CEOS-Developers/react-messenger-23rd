@@ -99,6 +99,32 @@ export default function ChatRoomPage() {
     }
   }, [roomMessages]);
 
+  //채팅방에 들어오면 안읽음->읽음으로 상태 변경
+  useEffect(() => {
+    if (!currentRoomId) return;
+
+    const hasUnread = messages.some(
+      (m) =>
+        m.roomId === currentRoomId && m.senderId !== currentUserId && !m.isRead
+    );
+
+    if (hasUnread) {
+      const updatedMessages = messages.map((m) => {
+        if (
+          m.roomId === currentRoomId &&
+          m.senderId !== currentUserId &&
+          !m.isRead
+        ) {
+          return { ...m, isRead: true };
+        }
+        return m;
+      });
+
+      setMessages(updatedMessages);
+      localStorage.setItem("messages", JSON.stringify(updatedMessages));
+    }
+  }, [currentRoomId, currentUserId, messages]);
+
   return (
     <main className="flex flex-col h-screen">
       <ChatHeader

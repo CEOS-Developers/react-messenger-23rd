@@ -8,10 +8,12 @@ export default function ChatListPage() {
   const navigate = useNavigate();
   const [rooms, setRooms] = useState<Room[]>([]);
   const [users, setUsers] = useState<User[]>([]);
+  const [allMessages, setAllMessages] = useState<Message[]>([]);
 
   useEffect(() => {
     const savedRooms = localStorage.getItem("rooms");
     const savedUsers = localStorage.getItem("users");
+    const savedMessages = localStorage.getItem("messages");
 
     if (savedRooms) {
       const parsedRooms: Room[] = JSON.parse(savedRooms);
@@ -27,6 +29,7 @@ export default function ChatListPage() {
     }
 
     if (savedUsers) setUsers(JSON.parse(savedUsers));
+    if (savedMessages) setAllMessages(JSON.parse(savedMessages));
   }, []);
 
   return (
@@ -41,6 +44,11 @@ export default function ChatListPage() {
           const opponentId = room.participants.find((id) => id !== "user-1"); //user-1 기준 화면으로 가정
           const opponent = users.find((u) => u.id === opponentId);
 
+          //안읽은 메세지 세기
+          const unreadCount = allMessages.filter(
+            (m) => m.roomId === room.id && m.senderId !== "user-1" && !m.isRead
+          ).length;
+
           return (
             <li
               key={room.id}
@@ -48,11 +56,18 @@ export default function ChatListPage() {
               className="flex items-center gap-3 px-4 py-3 hover:bg-gray-900 cursor-pointer"
             >
               {/* 상대방 프로필 이미지 */}
-              <img
-                src={opponent?.profileImage || "/default-profile.png"}
-                className="w-12 h-12 rounded-lg object-cover"
-                alt={opponent?.name}
-              />
+              <div className="relative">
+                <img
+                  src={opponent?.profileImage || "/default-profile.png"}
+                  className="w-12 h-12 rounded-lg object-cover"
+                  alt={opponent?.name}
+                />
+                {unreadCount > 0 && (
+                  <div className="absolute -top-1 -right-1 bg-[#FF5F5F] text-white text-caption-02 w-4 h-4 flex items-center justify-center rounded-full px-1">
+                    {unreadCount > 99 ? "99+" : unreadCount}
+                  </div>
+                )}
+              </div>
 
               {/* 채팅방 정보 */}
               <div className="flex flex-col flex-1 min-w-0">
