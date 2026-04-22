@@ -46,7 +46,7 @@
     "name": "남기림",
     "profileImage": "/images/profiles/namkirim.png",
     "statusMessage": "CEOS 23기 FE",
-    "isFavorite": false
+    "isFavorite": true
   },
   {
     "id": "user-8",

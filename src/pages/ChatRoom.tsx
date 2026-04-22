@@ -163,7 +163,7 @@ export default function ChatRoomPage() {
               {msg.senderId === currentUserId ? (
                 <SentBubble message={msg} />
               ) : (
-                <ReceivedBubble message={msg} />
+                <ReceivedBubble message={msg} opponent={opponent} />
               )}
             </div>
           );

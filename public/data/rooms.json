@@ -2,8 +2,57 @@
   {
     "id": "room-1776784571963",
     "participants": ["user-1", "user-2"],
-    "lastMessage": "끝 !!",
-    "updatedAt": "2026-04-21T13:48:55Z",
+    "lastMessage": "넹",
+    "updatedAt": "2026-03-27T14:04:00.000Z",
+    "isPinned": false
+  },
+  {
+    "id": "room-1776868225972",
+    "participants": ["user-1", "user-6"],
+    "lastMessage": "땡큐^^",
+    "updatedAt": "2026-04-20T03:05:00.000Z",
+    "isPinned": true
+  },
+  {
+    "id": "room-1776869036298",
+    "participants": ["user-1", "user-9"],
+    "lastMessage": "초록 러버의 뚝심,, 좋다",
+    "updatedAt": "2026-04-24T08:10:00.000Z",
+    "isPinned": false
+  },
+  {
+    "id": "room-1776869654755",
+    "participants": ["user-1", "user-8"],
+    "lastMessage": "너 무 조 아🥹🥹",
+    "updatedAt": "2026-04-26T04:20:00.000Z",
+    "isPinned": false
+  },
+  {
+    "id": "room-1776869893867",
+    "participants": ["user-1", "user-4"],
+    "lastMessage": "헐ㄷㅂㄷㅂ",
+    "updatedAt": "2026-04-26T13:40:00.000Z",
+    "isPinned": false
+  },
+  {
+    "id": "room-1776870121740",
+    "participants": ["user-1", "user-5"],
+    "lastMessage": "와 이정도로 밸런스 미친 선택지 처음 봄",
+    "updatedAt": "2026-04-27T02:30:00.000Z",
+    "isPinned": false
+  },
+  {
+    "id": "room-1776870329679",
+    "participants": ["user-1", "user-7"],
+    "lastMessage": "이 무조건 아 제발이라는 감정",
+    "updatedAt": "2026-04-27T07:15:00.000Z",
+    "isPinned": false
+  },
+  {
+    "id": "room-1776870504421",
+    "participants": ["user-1", "user-3"],
+    "lastMessage": "어쩌다..",
+    "updatedAt": "2026-04-27T09:10:00.000Z",
     "isPinned": false
   }
 ]

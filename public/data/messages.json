@@ -79,5 +79,77 @@
     "text": "넹",
     "createdAt": "2026-03-27T14:04:00.000Z",
     "isRead": false
+  },
+  {
+    "id": "room2-msg1",
+    "roomId": "room-1776868225972",
+    "senderId": "user-6",
+    "recieverId": "user-1",
+    "text": "땡큐^^",
+    "createdAt": "2026-04-20T03:05:00.000Z",
+    "isRead": false
+  },
+  {
+    "id": "room3-msg1",
+    "roomId": "room-1776869036298",
+    "senderId": "user-1",
+    "recieverId": "user-9",
+    "text": "초록 러버의 뚝심,, 좋다",
+    "createdAt": "2026-04-24T08:10:00.000Z",
+    "isRead": true
+  },
+  {
+    "id": "room4-msg1",
+    "roomId": "room-1776869654755",
+    "senderId": "user-1",
+    "recieverId": "user-8",
+    "text": "너 무 조 아🥹🥹",
+    "createdAt": "2026-04-26T04:20:00.000Z",
+    "isRead": true
+  },
+  {
+    "id": "room4-msg1",
+    "roomId": "room-1776869893867",
+    "senderId": "user-4",
+    "recieverId": "user-1",
+    "text": "헐ㄷㅂㄷㅂ",
+    "createdAt": "2026-04-26T13:40:00.000Z",
+    "isRead": false
+  },
+  {
+    "id": "room5-msg1",
+    "roomId": "room-1776870121740",
+    "senderId": "user-1",
+    "recieverId": "user-5",
+    "text": "와 이정도로 밸런스 미친 선택지 처음 봄",
+    "createdAt": "2026-04-27T02:30:00.000Z",
+    "isRead": false
+  },
+  {
+    "id": "room6-msg1",
+    "roomId": "room-1776870329679",
+    "senderId": "user-7",
+    "recieverId": "user-1",
+    "text": "이 무조건 아 제발이라는 감정",
+    "createdAt": "2026-04-27T07:15:00.000Z",
+    "isRead": true
+  },
+  {
+    "id": "room7-msg1",
+    "roomId": "room-1776870504421",
+    "senderId": "user-3",
+    "recieverId": "user-1",
+    "text": "엥?",
+    "createdAt": "2026-04-27T09:09:00.000Z",
+    "isRead": false
+  },
+  {
+    "id": "room7-msg2",
+    "roomId": "room-1776870504421",
+    "senderId": "user-3",
+    "recieverId": "user-1",
+    "text": "어쩌다..",
+    "createdAt": "2026-04-27T09:10:00.000Z",
+    "isRead": false
   }
 ]

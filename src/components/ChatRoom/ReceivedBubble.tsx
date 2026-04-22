@@ -1,16 +1,17 @@
-import type { Message } from "../../types/chat";
+import type { Message, User } from "../../types/chat";
 
 interface Props {
   message: Message;
+  opponent?: User;
 }
 
-export default function ReceivedBubble({ message }: Props) {
+export default function ReceivedBubble({ message, opponent }: Props) {
   return (
     <main className="flex gap-1 my-2">
       {/* 프로필 */}
       <div>
         <img
-          src="/images/profiles/kimjiwon.png"
+          src={opponent?.profileImage || "/default-profile.png"}
           className="w-11 h-11 shrink-0"
           alt="profileImage"
         />
