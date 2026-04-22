@@ -9,6 +9,7 @@ import FriendsPage from "./pages/Friends";
 import "./App.css";
 import { useEffect } from "react";
 import NavBar from "./components/common/NavBar";
+import ProfilePage from "./pages/Profile";
 
 function App() {
   //최초로 메세지 데이터 가져오기
@@ -46,6 +47,7 @@ function App() {
         <Route path="/chatlist" element={<ChatListPage />} />
         <Route path="/notice-page" element={<NoticePage />} />
         <Route path="/friends" element={<FriendsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
 
         <Route path="*" element={<div>404 - 페이지를 찾을 수 없어요</div>} />
       </Routes>

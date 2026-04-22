@@ -6,7 +6,7 @@ export default function NavBar() {
   const menus = [
     { name: "채팅", path: "/chatlist", icon: "💬" },
     { name: "대화 상대", path: "/friends", icon: "👥" },
-    { name: "검색", path: "", icon: "🔍" },
+    { name: "검색", path: "/search", icon: "🔍" },
     { name: "나", path: "/profile", icon: "👤" },
   ];
 
