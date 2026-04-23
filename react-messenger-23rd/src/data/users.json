@@ -1,14 +1,31 @@
 [
-  { "id": 0, "name": "나", "profileImage": "" },
-  { "id": 1, "name": "엄마", "profileImage": "" },
-  { "id": 2, "name": "최혜정", "profileImage": "" },
   {
-    "id": 3,
-    "name": "오카방바더기ㅏㅂ더ㅏㅣ거ㅣㅏㄷ버ㅣ가ㅓㅂ다",
-    "profileImage": ""
+    "id": 0,
+    "name": "홍엽",
+    "profileImage": "",
+    "statusMessage": "",
+    "location": "서울특별시, 마포구",
+    "school": "홍익대학교",
+    "birthday": "2005년 4월 15일",
+    "postCount": 2
   },
-  { "id": 4, "name": "쩝", "profileImage": "" },
-  { "id": 5, "name": "아빠", "profileImage": "" },
-  { "id": 6, "name": "영원이", "profileImage": "" },
-  { "id": 7, "name": "홍길동", "profileImage": "" }
+  { "id": 1, "name": "엄마", "profileImage": "", "statusMessage": "" },
+  {
+    "id": 2,
+    "name": "최혜정",
+    "profileImage": "",
+    "statusMessage": "오늘도 화이팅!"
+  },
+  { "id": 3, "name": "오카방", "profileImage": "", "statusMessage": "" },
+  { "id": 4, "name": "쩝", "profileImage": "", "statusMessage": "" },
+  {
+    "id": 5,
+    "name": "아빠",
+    "profileImage": "",
+    "statusMessage": "건강하게 지내자"
+  },
+  { "id": 6, "name": "영원이", "profileImage": "", "statusMessage": "" },
+  { "id": 7, "name": "홍길동", "profileImage": "", "statusMessage": "" },
+  { "id": 8, "name": "이지은", "profileImage": "", "statusMessage": "" },
+  { "id": 9, "name": "박서준", "profileImage": "", "statusMessage": "" }
 ]

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useChatStore } from "@/stores/useChatStore";
 import { useUserStore } from "@/stores/useUserStore";
 import StatusBar from "@/components/StatusBar";
@@ -9,8 +10,11 @@ import DateSeparator from "@/components/DateSeparator";
 import { formatDate } from "@/utils/formatDate";
 
 export default function ChatRoomPage() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const chatRoomId = id ? parseInt(id, 10) : null;
+
   const {
-    activeChatRoomId,
     chatRooms,
     setActiveChatRoom,
     getMessagesByChatRoomId,
@@ -21,10 +25,17 @@ export default function ChatRoomPage() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const room = chatRooms.find((r) => r.id === activeChatRoomId);
-  const messages = activeChatRoomId
-    ? getMessagesByChatRoomId(activeChatRoomId)
-    : [];
+  useEffect(() => {
+    if (chatRoomId !== null) {
+      setActiveChatRoom(chatRoomId);
+    }
+    return () => {
+      setActiveChatRoom(null);
+    };
+  }, [chatRoomId, setActiveChatRoom]);
+
+  const room = chatRooms.find((r) => r.id === chatRoomId);
+  const messages = chatRoomId ? getMessagesByChatRoomId(chatRoomId) : [];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -34,10 +45,10 @@ export default function ChatRoomPage() {
     scrollToBottom();
   }, [messages.length]);
 
-  if (!room || !activeChatRoomId) return null;
+  if (!room || chatRoomId === null) return null;
 
   const handleSend = (content: string) => {
-    sendMessage(activeChatRoomId, currentUserId, content);
+    sendMessage(chatRoomId, currentUserId, content);
   };
 
   const handleReaction = (messageId: number) => {
@@ -45,11 +56,11 @@ export default function ChatRoomPage() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-surface-chat">
+    <div className="flex flex-col h-full bg-surface-muted">
       <StatusBar />
       <ChatHeader
         name={room.name}
-        onBack={() => setActiveChatRoom(null)}
+        onBack={() => navigate("/chat")}
         onProfileClick={() => {
           const otherUserId = room.participantIds.find((id) => id !== currentUserId);
           if (otherUserId !== undefined) switchUser(otherUserId);

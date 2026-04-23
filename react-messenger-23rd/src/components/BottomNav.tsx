@@ -1,8 +1,7 @@
-import homeIcon from "@/assets/icons/home.svg";
-import homeSelectedIcon from "@/assets/icons/home-selected.svg";
-import chatIcon from "@/assets/icons/chat.svg";
-import chatSelectedIcon from "@/assets/icons/chat-selected.svg";
-import menuIcon from "@/assets/icons/menu.svg";
+import { useNavigate } from "react-router-dom";
+import IconHome from "@/assets/icons/icon_home.svg?react";
+import IconChat from "@/assets/icons/icon_chat.svg?react";
+import IconMenu from "@/assets/icons/icon_menu.svg?react";
 
 type TabKey = "home" | "chat" | "menu";
 
@@ -13,32 +12,34 @@ interface BottomNavProps {
 const tabs: {
   key: TabKey;
   label: string;
-  icon: string;
-  selectedIcon: string;
+  Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  path: string;
 }[] = [
   {
     key: "home",
     label: "홈",
-    icon: homeIcon,
-    selectedIcon: homeSelectedIcon,
+    Icon: IconHome,
+    path: "/",
   },
   {
     key: "chat",
     label: "채팅",
-    icon: chatIcon,
-    selectedIcon: chatSelectedIcon,
+    Icon: IconChat,
+    path: "/chat",
   },
   {
     key: "menu",
     label: "메뉴",
-    icon: menuIcon,
-    selectedIcon: menuIcon,
+    Icon: IconMenu,
+    path: "",
   },
 ];
 
 export default function BottomNav({ activeTab }: BottomNavProps) {
+  const navigate = useNavigate();
+
   return (
-    <nav className="border-t border-line-subtle bg-white px-4 pt-3 pb-[34px]">
+    <nav className="border-t border-line-subtle bg-white px-4 pt-3 pb-8.5">
       <div className="flex items-center justify-center">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.key;
@@ -46,14 +47,16 @@ export default function BottomNav({ activeTab }: BottomNavProps) {
             <button
               key={tab.key}
               className="flex flex-col items-center gap-0.5 w-28"
+              onClick={() => tab.path && navigate(tab.path)}
             >
-              <img
-                src={isActive ? tab.selectedIcon : tab.icon}
-                alt={tab.label}
-                className="w-8 h-8"
+              <tab.Icon
+                className={`w-8 h-8 ${
+                  isActive ? "text-primary" : "text-content-inactive"
+                }`}
+                aria-hidden="true"
               />
               <span
-                className={`text-[12px] font-normal leading-[140%] ${
+                className={`text-caption1 ${
                   isActive ? "text-primary" : "text-content-inactive"
                 }`}
               >
