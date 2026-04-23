@@ -77,6 +77,7 @@
 - 채팅방·채팅 리스트·프로필·네비바 등 여러 곳에서 공통으로 사용되는 원형 프로필 컴포넌트의 스타일을 `PROFILE_VARIANTS` 상수에 사용처별 variant(`chatroom`, `navibar`, `chatlist_1/2/3`, `profile_big`)로 정의해 재사용 — 이미지 파일 없이 색상과 이름 첫 글자 기반으로 직접 구현
 - `zustand persist` + 커스텀 localStorage 어댑터로 채팅방 ID별 스토리지 키 분리 저장 — 전체 상태를 단일 키에 직렬화하는 방식의 비효율 개선
 - iOS 네이티브 앱 수준의 UI/UX (상태바, 홈 인디케이터, 하단 내비게이션) 정밀 구현
+- 정의되지 않은 경로 접근 시 `PublicLayout`을 유지한 채로 404 페이지 렌더링 — react-router-dom의 `path: "*"` catch-all 라우트 활용
 
 <table>
   <tr>
@@ -144,6 +145,7 @@ src/
 │  ├─ ChatListPage.tsx    # 채팅 리스트 페이지
 │  ├─ ChatRoomPage.tsx    # 채팅방 페이지
 │  ├─ ContactPage.tsx     # 연락처 페이지
+│  ├─ NotFoundPage.tsx    # 404 페이지
 │  ├─ ProfilePage.tsx     # 프로필 페이지
 │  ├─ SettingPage.tsx     # 설정 페이지
 │  └─ SplashPage.tsx      # 스플래시 페이지
