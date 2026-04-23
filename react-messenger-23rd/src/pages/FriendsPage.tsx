@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "@/stores/useUserStore";
 import StatusBar from "@/components/StatusBar";
@@ -91,12 +91,32 @@ const RecommendedItem = ({ user }: { user: User }) => (
   </div>
 );
 
+interface SectionState {
+  friendsExpanded: boolean;
+  recommendedExpanded: boolean;
+}
+
+type SectionAction =
+  | { type: "TOGGLE_FRIENDS" }
+  | { type: "TOGGLE_RECOMMENDED" };
+
+function sectionReducer(state: SectionState, action: SectionAction): SectionState {
+  switch (action.type) {
+    case "TOGGLE_FRIENDS":
+      return { ...state, friendsExpanded: !state.friendsExpanded };
+    case "TOGGLE_RECOMMENDED":
+      return { ...state, recommendedExpanded: !state.recommendedExpanded };
+  }
+}
+
 export default function FriendsPage() {
   const navigate = useNavigate();
   const { getUserById } = useUserStore();
   const currentUser = getUserById(0);
-  const [friendsExpanded, setFriendsExpanded] = useState(true);
-  const [recommendedExpanded, setRecommendedExpanded] = useState(true);
+  const [{ friendsExpanded, recommendedExpanded }, dispatch] = useReducer(
+    sectionReducer,
+    { friendsExpanded: true, recommendedExpanded: true },
+  );
 
   const friends = friendsData.friendIds
     .map((id) => getUserById(id))
@@ -172,7 +192,7 @@ export default function FriendsPage() {
                 {friends.length}
               </span>
             </div>
-            <button onClick={() => setFriendsExpanded((prev) => !prev)}>
+            <button onClick={() => dispatch({ type: "TOGGLE_FRIENDS" })}>
               {friendsExpanded ? (
                 <IconUp className="w-5 h-5" aria-label="접기" />
               ) : (
@@ -198,7 +218,7 @@ export default function FriendsPage() {
             <span className="text-body2-m text-content-secondary">
               추천 친구
             </span>
-            <button onClick={() => setRecommendedExpanded((prev) => !prev)}>
+            <button onClick={() => dispatch({ type: "TOGGLE_RECOMMENDED" })}>
               {recommendedExpanded ? (
                 <IconUp className="w-5 h-5" aria-label="접기" />
               ) : (
