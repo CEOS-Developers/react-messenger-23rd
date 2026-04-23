@@ -1,11 +1,12 @@
 import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { useChatStore } from "@/stores/useChatStore";
 import { useUserStore } from "@/stores/useUserStore";
 import ChatListItem from "@/components/ChatListItem";
 import BottomNav from "@/components/BottomNav";
 import StatusBar from "@/components/StatusBar";
 import SearchBar from "@/components/SearchBar";
-import addChatIcon from "@/assets/icons/add-chat.svg";
+import IconAddChat from "@/assets/icons/icon_add_chat.svg?react";
 import { formatTime } from "@/utils/formatTime";
 
 export default function ChatListPage() {
@@ -13,6 +14,7 @@ export default function ChatListPage() {
     useChatStore();
   const { currentUserId, getUserById } = useUserStore();
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const filteredRooms = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -26,23 +28,28 @@ export default function ChatListPage() {
     });
   }, [chatRooms, searchQuery, getMessagesByChatRoomId]);
 
+  const handleRoomClick = (roomId: number) => {
+    setActiveChatRoom(roomId);
+    navigate(`/chat/${roomId}`);
+  };
+
   return (
     <div className="flex flex-col h-full bg-white">
       <StatusBar />
 
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 h-12">
-        <h1 className="text-[20px] font-medium leading-[100%] text-content-primary">
+        <h1 className="text-h2 text-content-primary">
           대화
         </h1>
         <button>
-          <img src={addChatIcon} alt="새 대화" className="w-6 h-6" />
+          <IconAddChat className="w-6 h-6" aria-label="새 대화" />
         </button>
       </div>
       <div className="flex flex-col py-4">
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
         {chatRooms.length === 0 && (
-          <span className="mt-25 self-center text-[14px] font-light leading-[140%] text-content-placeholder">
+          <span className="mt-25 self-center text-body2-r text-content-hint">
             현재 참여 중인 대화방이 없습니다.
           </span>
         )}
@@ -66,7 +73,7 @@ export default function ChatListPage() {
               lastMessage={lastMsg?.content || ""}
               lastMessageTime={lastMsg ? formatTime(lastMsg.timestamp) : ""}
               unreadCount={getUnreadCount(room.id, currentUserId)}
-              onClick={() => setActiveChatRoom(room.id)}
+              onClick={() => handleRoomClick(room.id)}
             />
           );
         })}

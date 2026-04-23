@@ -1,6 +1,6 @@
 import Avatar from "@/components/Avatar";
 import { formatTime } from "@/utils/formatTime";
-import heartIcon from "@/assets/icons/heart.svg";
+import IconHeart from "@/assets/icons/icon_heart.svg?react";
 
 interface MessageBubbleProps {
   content: string;
@@ -15,14 +15,22 @@ interface MessageBubbleProps {
   onReactionClick: () => void;
 }
 
-function ReactionBadge({ count, onClick }: { count: number; onClick: () => void }) {
+function ReactionBadge({
+  count,
+  onClick,
+}: {
+  count: number;
+  onClick: () => void;
+}) {
   return (
     <button
       onClick={onClick}
       className="flex flex-row items-center justify-center py-0.5 pl-1.5 pr-2 gap-1 bg-surface-reaction rounded-[50px]"
     >
-      <img src={heartIcon} alt="heart" className="w-3 h-3" />
-      <span className="text-[12px] font-normal leading-[140%] text-white">{count}</span>
+      <IconHeart className="w-3 h-3 text-white" aria-hidden="true" />
+      <span className="text-caption1 text-white">
+        {count}
+      </span>
     </button>
   );
 }
@@ -47,13 +55,13 @@ export default function MessageBubble({
       <div className="flex flex-col items-end gap-1">
         <div className="flex items-end gap-1">
           {showTime && (
-            <span className="text-[11px] font-normal leading-[100%] text-content-secondary shrink-0">
+            <span className="text-caption2 text-content-tertiary shrink-0">
               {time}
             </span>
           )}
           <div
             onDoubleClick={onDoubleClick}
-            className="bg-primary text-white px-3 py-2 rounded-[16px_0px_16px_16px] max-w-[236px] break-words text-[13px] font-normal leading-[140%] cursor-pointer"
+            className="bg-primary text-white px-3 py-2 rounded-[16px_0px_16px_16px] max-w-59 wrap-break-word text-body3-m cursor-pointer"
           >
             {content}
           </div>
@@ -74,7 +82,7 @@ export default function MessageBubble({
       )}
       <div className="flex flex-col gap-1">
         {showSender && (
-          <span className="text-[12px] font-normal leading-[140%] tracking-[-0.03em] text-content-primary">
+          <span className="text-caption1 tracking-[-0.03em] text-content-primary">
             {senderName}
           </span>
         )}
@@ -82,12 +90,12 @@ export default function MessageBubble({
           <div className="flex items-end gap-1">
             <div
               onDoubleClick={onDoubleClick}
-              className="bg-white text-content-primary px-3 py-2 rounded-[0px_16px_16px_16px] max-w-[193px] break-words text-[13px] font-normal leading-[140%] cursor-pointer"
+              className="bg-white text-content-primary px-3 py-2 rounded-[0px_16px_16px_16px] max-w-48.25 wrap-break-word text-body3-m cursor-pointer"
             >
               {content}
             </div>
             {showTime && (
-              <span className="text-[11px] font-normal leading-[100%] text-content-secondary shrink-0">
+              <span className="text-caption2 text-content-tertiary shrink-0">
                 {time}
               </span>
             )}

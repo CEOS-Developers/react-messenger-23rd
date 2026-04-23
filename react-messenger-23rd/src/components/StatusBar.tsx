@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import cellularIcon from "@/assets/icons/cellular.svg";
-import wifiIcon from "@/assets/icons/wifi.svg";
-import batteryIcon from "@/assets/icons/battery.svg";
+import IconCellular from "@/assets/icons/icon_cellular.svg?react";
+import IconWifi from "@/assets/icons/icon_wifi.svg?react";
+import IconBattery from "@/assets/icons/icon_battery.svg?react";
 
 export default function StatusBar() {
   const [now, setNow] = useState(new Date());
@@ -14,16 +14,16 @@ export default function StatusBar() {
   const time = `${now.getHours()}:${String(now.getMinutes()).padStart(2, "0")}`;
 
   return (
-    <div className="flex items-center justify-between px-6 pt-[21px] pb-[19px] h-[54px]">
-      <div className="flex items-center px-6 h-[22px]">
-        <span className="text-[17px] font-[590] leading-[22px] text-black">
+    <div className="flex items-center justify-between px-6 pt-5.25 pb-4.75 h-13.5">
+      <div className="flex items-center px-6 h-5.5">
+        <span className="text-[17px] font-[590] leading-5.5 text-black">
           {time}
         </span>
       </div>
-      <div className="flex items-center gap-[7px]">
-        <img src={cellularIcon} alt="" className="w-[19px] h-[12px]" />
-        <img src={wifiIcon} alt="" className="w-[17px] h-[12px]" />
-        <img src={batteryIcon} alt="" className="w-[27px] h-[13px]" />
+      <div className="flex items-center gap-1.75">
+        <IconCellular className="w-4.75 h-3" aria-hidden="true" />
+        <IconWifi className="w-4.25 h-3" aria-hidden="true" />
+        <IconBattery className="w-6.75 h-3.25" aria-hidden="true" />
       </div>
     </div>
   );
