@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import type { Message, ChatRoom } from "@/types";
 import messagesData from "@/data/messages.json";
 import chatRoomsData from "@/data/chatRooms.json";
@@ -19,7 +20,9 @@ interface ChatState {
   getUnreadCount: (chatRoomId: number, currentUserId: number) => number;
 }
 
-export const useChatStore = create<ChatState>((set, get) => ({
+export const useChatStore = create<ChatState>()(
+  persist(
+    (set, get) => ({
   messages: messagesData,
   chatRooms: chatRoomsData,
   activeChatRoomId: null,
@@ -92,4 +95,14 @@ export const useChatStore = create<ChatState>((set, get) => ({
         m.id > lastReadId
     ).length;
   },
-}));
+    }),
+    {
+      name: "chat-storage",
+      partialize: (state) => ({
+        messages: state.messages,
+        chatRooms: state.chatRooms,
+        lastReadMessageId: state.lastReadMessageId,
+      }),
+    },
+  ),
+);

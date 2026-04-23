@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, memo } from "react";
 import IconPlus from "@/assets/icons/icon_plus.svg?react";
 import IconEmoji from "@/assets/icons/icon_emoji.svg?react";
 import IconThumbsUp from "@/assets/icons/icon_thumbs_up.svg?react";
@@ -8,7 +8,7 @@ interface MessageInputProps {
   onSend: (content: string) => void;
 }
 
-export default function MessageInput({ onSend }: MessageInputProps) {
+export default memo(function MessageInput({ onSend }: MessageInputProps) {
   const [text, setText] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -70,4 +70,4 @@ export default function MessageInput({ onSend }: MessageInputProps) {
       </div>
     </div>
   );
-}
+});
