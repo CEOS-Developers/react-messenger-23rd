@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import IconCellular from "@/assets/icons/icon_cellular.svg?react";
 import IconWifi from "@/assets/icons/icon_wifi.svg?react";
 import IconBattery from "@/assets/icons/icon_battery.svg?react";
 
-export default function StatusBar() {
+export default memo(function StatusBar() {
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -27,4 +27,4 @@ export default function StatusBar() {
       </div>
     </div>
   );
-}
+});

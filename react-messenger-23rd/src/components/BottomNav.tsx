@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import IconHome from "@/assets/icons/icon_home.svg?react";
 import IconChat from "@/assets/icons/icon_chat.svg?react";
@@ -35,7 +36,7 @@ const tabs: {
   },
 ];
 
-export default function BottomNav({ activeTab }: BottomNavProps) {
+export default memo(function BottomNav({ activeTab }: BottomNavProps) {
   const navigate = useNavigate();
 
   return (
@@ -68,4 +69,4 @@ export default function BottomNav({ activeTab }: BottomNavProps) {
       </div>
     </nav>
   );
-}
+});

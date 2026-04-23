@@ -1,3 +1,4 @@
+import { memo } from "react";
 import IconBack from "@/assets/icons/icon_back.svg?react";
 import IconPhone from "@/assets/icons/icon_phone.svg?react";
 import IconVideo from "@/assets/icons/icon_video.svg?react";
@@ -9,7 +10,7 @@ interface ChatHeaderProps {
   onProfileClick: () => void;
 }
 
-export default function ChatHeader({
+export default memo(function ChatHeader({
   name,
   onBack,
   onProfileClick,
@@ -41,4 +42,4 @@ export default function ChatHeader({
       </div>
     </header>
   );
-}
+});

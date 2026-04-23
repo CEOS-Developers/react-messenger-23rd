@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useChatStore } from "@/stores/useChatStore";
 import { useUserStore } from "@/stores/useUserStore";
@@ -45,26 +45,37 @@ export default function ChatRoomPage() {
     scrollToBottom();
   }, [messages.length]);
 
+  const handleSend = useCallback(
+    (content: string) => {
+      if (chatRoomId !== null) sendMessage(chatRoomId, currentUserId, content);
+    },
+    [chatRoomId, currentUserId, sendMessage],
+  );
+
+  const handleReaction = useCallback(
+    (messageId: number) => {
+      addReaction(messageId, "❤️");
+    },
+    [addReaction],
+  );
+
+  const handleBack = useCallback(() => navigate("/chat"), [navigate]);
+
+  const handleProfileClick = useCallback(() => {
+    if (!room) return;
+    const otherUserId = room.participantIds.find((id) => id !== currentUserId);
+    if (otherUserId !== undefined) switchUser(otherUserId);
+  }, [room, currentUserId, switchUser]);
+
   if (!room || chatRoomId === null) return null;
-
-  const handleSend = (content: string) => {
-    sendMessage(chatRoomId, currentUserId, content);
-  };
-
-  const handleReaction = (messageId: number) => {
-    addReaction(messageId, "❤️");
-  };
 
   return (
     <div className="flex flex-col h-full bg-surface-muted">
       <StatusBar />
       <ChatHeader
         name={room.name}
-        onBack={() => navigate("/chat")}
-        onProfileClick={() => {
-          const otherUserId = room.participantIds.find((id) => id !== currentUserId);
-          if (otherUserId !== undefined) switchUser(otherUserId);
-        }}
+        onBack={handleBack}
+        onProfileClick={handleProfileClick}
       />
 
       {/* Messages */}
@@ -97,6 +108,7 @@ export default function ChatRoomPage() {
               >
                 {showDate && <div className="mb-3"><DateSeparator date={msgDate} /></div>}
                 <MessageBubble
+                  messageId={msg.id}
                   content={msg.content}
                   timestamp={msg.timestamp}
                   isMine={isMine}
@@ -105,8 +117,7 @@ export default function ChatRoomPage() {
                   showSender={showSender}
                   showTime={isLastInGroup}
                   reactions={msg.reactions}
-                  onDoubleClick={() => handleReaction(msg.id)}
-                  onReactionClick={() => handleReaction(msg.id)}
+                  onReaction={handleReaction}
                 />
               </div>
             );
