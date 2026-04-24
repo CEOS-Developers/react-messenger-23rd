@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "type": "direct",
+    "participantIds": ["me", "emma"]
+  },
+  {
+    "id": 2,
+    "type": "direct",
+    "participantIds": ["me", "bambi"]
+  },
+  {
+    "id": 3,
+    "type": "direct",
+    "participantIds": ["me", "rainzz.zip"]
+  },
+  {
+    "id": 4,
+    "type": "group",
+    "participantIds": ["me", "n0nameclub", "voidpeach", "lilac.exe", "jihun"],
+    "title": "노네임클럽"
+  },
+  {
+    "id": 5,
+    "type": "direct",
+    "participantIds": ["me", "jihun"]
+  },
+  {
+    "id": 6,
+    "type": "direct",
+    "participantIds": ["me", "voidpeach"]
+  },
+  {
+    "id": 7,
+    "type": "direct",
+    "participantIds": ["me", "lilac.exe"]
+  }
+]

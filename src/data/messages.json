@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "chatRoomId": 1,
+    "text": "안녕하세요",
+    "senderID": "emma",
+    "sentAt": 1710000000000
+  },
+  {
+    "id": 2,
+    "chatRoomId": 2,
+    "text": "예스예스~~",
+    "senderID": "bambi",
+    "sentAt": 1710003600000
+  },
+  {
+    "id": 3,
+    "chatRoomId": 3,
+    "text": "나는 지금 홍문관이야",
+    "senderID": "rainzz.zip",
+    "sentAt": 1710007200000
+  },
+  {
+    "id": 4,
+    "chatRoomId": 4,
+    "text": "안녕안녕",
+    "senderID": "n0nameclub",
+    "sentAt": 1710010800000
+  },
+  {
+    "id": 5,
+    "chatRoomId": 5,
+    "text": "수업 끝났어?",
+    "senderID": "jihun",
+    "sentAt": 1710014400000
+  },
+  {
+    "id": 6,
+    "chatRoomId": 6,
+    "text": "사진 보냈어요",
+    "senderID": "voidpeach",
+    "sentAt": 1710018000000
+  },
+  {
+    "id": 7,
+    "chatRoomId": 7,
+    "text": "내일 봐!",
+    "senderID": "lilac.exe",
+    "sentAt": 1710021600000
+  }
+]
