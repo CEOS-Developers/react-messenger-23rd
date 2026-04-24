@@ -5,6 +5,7 @@ import AppBarChatList from "../components/chat-list/AppBarChatList";
 import PlaceHolder from "../components/chat-list/PlaceHolder";
 import CurrentPlace from "../components/chat-list/CurrentPlace";
 import NavBarChatList from "../components/chat-list/NavBarChatList";
+import AlarmBox from "../components/chat-list/AlarmBox";
 
 import rawChatRooms from "../data/chatRooms.json";
 import rawMessages from "../data/messages.json";
@@ -106,8 +107,9 @@ function ChatListPage() {
   return (
     <div className="flex h-full w-full flex-col">
       <AppBarChatList />
-      <CurrentPlace />
       <PlaceHolder />
+      <CurrentPlace />
+      <AlarmBox />
 
       <main className="flex w-[var(--screen-width)] flex-col items-start gap-[12px] pt-[8px] overflow-y-auto">
         {chatList.map((room) => (
