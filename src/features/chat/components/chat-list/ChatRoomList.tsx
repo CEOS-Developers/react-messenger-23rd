@@ -96,7 +96,7 @@ export default function ChatRoomList({
 
         return (
           <ChatRoomListItem
-            key={room.id}
+            key={`${room.id}-${showUnreadOnly ? "unread" : "all"}`}
             name={room.name}
             participantCount={room.participantCount}
             profileImageNames={room.profileImages}
@@ -112,7 +112,6 @@ export default function ChatRoomList({
             showPinnedIcon={room.isPinned}
             showMutedIcon={room.isMuted}
             disabled={!canOpenRoom}
-            resetSwipeKey={showUnreadOnly ? "unread" : "all"}
             onClick={canOpenRoom ? () => onOpenChatRoom?.(room.id) : undefined}
           />
         );

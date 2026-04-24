@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useReducer } from "react";
 import MobileLayout from "@/layouts/MobileLayout";
 import StatusBar from "@/features/chat/components/chat-room/StatusBar";
 import ChatRoomHeader from "@/features/chat/components/chat-room/ChatRoomHeader";
@@ -81,6 +81,98 @@ function loadMessagesFromStorage(roomConfig: ChatRoomConfig) {
   }
 }
 
+function getCurrentTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
+
+function getCurrentDate() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const date = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${date}`;
+}
+
+type ChatRoomState = {
+  messages: Message[];
+  storageKey: string;
+};
+
+type ChatRoomAction =
+  | {
+      type: "sync-room";
+      payload: ChatRoomState;
+    }
+  | {
+      type: "send-text";
+      payload: {
+        senderId: number;
+        text: string;
+        createdAt: string;
+        createdDate: string;
+      };
+    }
+  | {
+      type: "send-images";
+      payload: {
+        senderId: number;
+        imageUrls: string[];
+        createdAt: string;
+        createdDate: string;
+      };
+    };
+
+function createChatRoomState(roomConfig: ChatRoomConfig): ChatRoomState {
+  return {
+    messages: loadMessagesFromStorage(roomConfig),
+    storageKey: roomConfig.localStorageKey,
+  };
+}
+
+function chatRoomReducer(
+  state: ChatRoomState,
+  action: ChatRoomAction
+): ChatRoomState {
+  if (action.type === "sync-room") {
+    return action.payload;
+  }
+
+  if (action.type === "send-text") {
+    const newMessage: Message = {
+      id: getNextMessageId(state.messages),
+      senderId: action.payload.senderId,
+      type: "text",
+      text: action.payload.text,
+      createdAt: action.payload.createdAt,
+      createdDate: action.payload.createdDate,
+      unreadCount: 1,
+    };
+
+    return {
+      ...state,
+      messages: [...state.messages, newMessage],
+    };
+  }
+
+  const newMessage: Message = {
+    id: getNextMessageId(state.messages),
+    senderId: action.payload.senderId,
+    type: "image",
+    imageUrls: action.payload.imageUrls,
+    createdAt: action.payload.createdAt,
+    createdDate: action.payload.createdDate,
+    unreadCount: 1,
+  };
+
+  return {
+    ...state,
+    messages: [...state.messages, newMessage],
+  };
+}
+
 type ChatRoomPageProps = {
   roomId?: number;
   onBack?: () => void;
@@ -91,88 +183,58 @@ export default function ChatRoomPage({
   onBack,
 }: ChatRoomPageProps) {
   const roomConfig = useMemo(() => getRoomConfig(roomId), [roomId]);
-  const [messages, setMessages] = useState<Message[]>(() =>
-    loadMessagesFromStorage(roomConfig)
+  const [state, dispatch] = useReducer(
+    chatRoomReducer,
+    roomConfig,
+    createChatRoomState
   );
-  const [loadedStorageKey, setLoadedStorageKey] = useState(
-    roomConfig.localStorageKey
-  );
-
+  const messages = state.messages;
   const users = roomConfig.users;
   const bottomRef = useAutoScroll(messages);
   const me = useMemo(() => users.find((user) => user.isMe), [users]);
 
   useLayoutEffect(() => {
-    setMessages(loadMessagesFromStorage(roomConfig));
-    setLoadedStorageKey(roomConfig.localStorageKey);
-  }, [roomConfig]);
+    if (state.storageKey === roomConfig.localStorageKey) return;
+
+    dispatch({
+      type: "sync-room",
+      payload: createChatRoomState(roomConfig),
+    });
+  }, [roomConfig, state.storageKey]);
 
   useEffect(() => {
-    if (loadedStorageKey !== roomConfig.localStorageKey) {
+    if (state.storageKey !== roomConfig.localStorageKey) {
       return;
     }
 
-    saveMessagesToStorage(roomConfig.localStorageKey, messages);
-  }, [loadedStorageKey, messages, roomConfig]);
-
-  const getCurrentTime = () => {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    return `${hours}:${minutes}`;
-  };
-
-  const getCurrentDate = () => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const date = String(now.getDate()).padStart(2, "0");
-    return `${year}-${month}-${date}`;
-  };
+    saveMessagesToStorage(state.storageKey, messages);
+  }, [messages, roomConfig.localStorageKey, state.storageKey]);
 
   const handleSendText = (text: string) => {
     if (!me) return;
 
-    const senderId = me.id;
-
-    setMessages((prev) => {
-      const newMessage: Message = {
-        id: getNextMessageId(prev),
-        senderId,
-        type: "text",
+    dispatch({
+      type: "send-text",
+      payload: {
+        senderId: me.id,
         text,
         createdAt: getCurrentTime(),
         createdDate: getCurrentDate(),
-        unreadCount: 1,
-      };
-
-      const nextMessages = [...prev, newMessage];
-      saveMessagesToStorage(roomConfig.localStorageKey, nextMessages);
-
-      return nextMessages;
+      },
     });
   };
 
   const handleSendImages = (imageUrls: string[]) => {
     if (!me || imageUrls.length === 0) return;
 
-    const senderId = me.id;
-
-    setMessages((prev) => {
-      const newMessage: Message = {
-        id: getNextMessageId(prev),
-        senderId,
-        type: "image",
+    dispatch({
+      type: "send-images",
+      payload: {
+        senderId: me.id,
         imageUrls,
         createdAt: getCurrentTime(),
         createdDate: getCurrentDate(),
-        unreadCount: 1,
-      };
-
-      const nextMessages = [...prev, newMessage];
-      saveMessagesToStorage(roomConfig.localStorageKey, nextMessages);
-
-      return nextMessages;
+      },
     });
   };
 

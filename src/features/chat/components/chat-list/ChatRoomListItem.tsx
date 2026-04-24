@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, type PointerEvent } from "react";
+import { useRef, useState, type PointerEvent } from "react";
 import CountBadge from "@/features/chat/components/chat-list/CountBadge";
 import ProfileImageSvg from "@/assets/icons/ProfileImage.svg";
 import ProfileImageOnePng from "@/assets/images/ProfileImage_1.png";
@@ -22,7 +22,6 @@ type ChatRoomListItemProps = {
   showPinnedIcon?: boolean;
   showMutedIcon?: boolean;
   disabled?: boolean;
-  resetSwipeKey?: string;
   onClick?: () => void;
 };
 
@@ -213,7 +212,6 @@ export default function ChatRoomListItem({
   showPinnedIcon = false,
   showMutedIcon = false,
   disabled = false,
-  resetSwipeKey,
   onClick,
 }: ChatRoomListItemProps) {
   const [translateX, setTranslateX] = useState(0);
@@ -231,13 +229,6 @@ export default function ChatRoomListItem({
     currentTranslateXRef.current = nextTranslateX;
     setTranslateX(nextTranslateX);
   };
-
-  useLayoutEffect(() => {
-    currentTranslateXRef.current = 0;
-    setTranslateX(0);
-    setIsDragging(false);
-    suppressClickRef.current = false;
-  }, [resetSwipeKey]);
 
   const handlePointerDown = (event: PointerEvent<HTMLButtonElement>) => {
     setIsDragging(true);

@@ -5,26 +5,14 @@ import type { BottomNavigationTab } from "@/features/chat/components/chat-list/B
 import ChatListHeader from "@/features/chat/components/chat-list/ChatListHeader";
 import ChatRoomList from "@/features/chat/components/chat-list/ChatRoomList";
 import StatusBar from "@/features/chat/components/chat-room/StatusBar";
-import chatRoomsData from "@/features/chat/data/chatRooms.json";
+import { chatNotificationLabel } from "@/features/chat/constants/chatNotification";
 
 type ChatListPageProps = {
   onOpenChatRoom?: (roomId: number) => void;
   onOpenFriends?: () => void;
 };
 
-type ChatRoomUnreadSummary = {
-  unreadLabel?: string;
-};
-
 type ChatListFilter = "all" | "unread";
-
-export const chatNotificationLabel = String(
-  (chatRoomsData as ChatRoomUnreadSummary[]).reduce((total, room) => {
-    const unreadCount = Number.parseInt(room.unreadLabel ?? "0", 10);
-
-    return Number.isNaN(unreadCount) ? total : total + unreadCount;
-  }, 0)
-);
 
 export default function ChatListPage({
   onOpenChatRoom,
