@@ -164,14 +164,22 @@ function renderThreeGrid(imageUrls: string[]) {
             return (
               <div
                 key={`count-tile-${index}`}
-                className="typo-label flex items-center justify-center rounded-[8px] bg-[#FFFFFFBF] text-chat-black shadow-[0_0_4.8px_0_rgba(255,255,255,0.80)]"
+                className="relative overflow-hidden rounded-[8px] shadow-[0_0_4.8px_0_rgba(255,255,255,0.80)]"
                 style={{
                   width: `${tileWidth}px`,
                   height: `${colWidth * 2 + gap}px`,
                   gridColumn: `span ${span}`,
                 }}
               >
-                {count}장
+                <img
+                  src={imageUrls[index]}
+                  alt={getChatImageAlt(index)}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-[#FFFFFFBF]" />
+                <div className="typo-label absolute inset-0 flex items-center justify-center text-chat-black">
+                  {count}장
+                </div>
               </div>
             );
           }

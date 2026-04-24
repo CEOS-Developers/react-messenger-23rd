@@ -190,7 +190,7 @@ export default function ChatRoomPage({
 
         <MessageList messages={messages} users={users} bottomRef={bottomRef} />
 
-        <div className="shrink-0 bg-chat-blue-100 pt-[32px]">
+        <div className="shrink-0 bg-chat-blue-100">
           <ChatInputBar
             onSendText={handleSendText}
             onSendImages={handleSendImages}

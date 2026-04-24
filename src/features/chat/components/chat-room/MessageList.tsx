@@ -29,7 +29,7 @@ export default function MessageList({
 
   return (
     <main className="scrollbar-hidden min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
-      <div className="flex w-full flex-col items-start justify-end pt-[73px] pb-0 md:pt-[120px]">
+      <div className="flex w-full flex-col items-start justify-end pt-[73px] md:pt-[120px]">
         {groups.map((group, groupIndex) => {
           const prevGroup = groups[groupIndex - 1];
           const shouldShowDateDivider =
@@ -107,7 +107,11 @@ export default function MessageList({
           );
         })}
 
-        <div ref={bottomRef} />
+        <div
+          ref={bottomRef}
+          aria-hidden="true"
+          className="h-[32px] w-full shrink-0"
+        />
       </div>
     </main>
   );
