@@ -5,7 +5,12 @@ import profile from "../../assets/chat-page/profile.svg";
 import changeProfile from "../../assets/chat-page/change-profile.svg";
 import { useNavigate } from "react-router-dom";
 
-function AppBarChatRoom() {
+type AppBarChatRoomProps = {
+  headerId: string;
+  headerName: string;
+};
+
+function AppBarChatRoom({ headerId, headerName }: AppBarChatRoomProps) {
   const navigate = useNavigate();
   return (
     <div className="box-border flex w-[var(--screen-width)] items-center justify-between border-b border-b-[var(--color-grey-300)] bg-[var(--color-grey-50)] pt-[var(--space-6)] pr-[var(--space-12)] pb-[var(--space-22)] pl-[var(--space-12)]">
@@ -26,7 +31,7 @@ function AppBarChatRoom() {
           <section className="flex h-[var(--size-34)] w-[var(--width-text-meta)] flex-col items-start">
             <div className="flex items-center">
               <p className="text-[var(--color-text-primary)] text-[var(--text-xs)] font-[var(--font-weight-semibold)] leading-[var(--line-height-tight)]">
-                idSpace
+                {headerId}
               </p>
               <img
                 src={changeProfile}
@@ -35,7 +40,7 @@ function AppBarChatRoom() {
               />
             </div>
             <p className="flex-1 self-stretch text-[var(--color-grey-600)] text-[var(--text-xs)] font-[var(--font-weight-regular)] leading-[var(--line-height-tight)]">
-              nameSpace
+              {headerName}
             </p>
           </section>
         </button>

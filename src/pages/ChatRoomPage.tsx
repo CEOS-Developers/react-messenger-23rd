@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AppBarChatRoom from "../components/chat-page/AppBarChatRoom";
 import MessageNavBar from "../components/chat-page/MessageNavBar";
 import MessageSend, {
@@ -7,28 +7,60 @@ import MessageSend, {
 import profile from "../assets/chat-page/profile.svg";
 import rawMessages from "../data/messages.json";
 import rawUsers from "../data/users.json";
+import rawChatRooms from "../data/chatRooms.json";
 import { useParams } from "react-router-dom";
 
-const STORAGE_KEY = "chat-messages";
+type RawMessage = {
+  id: number;
+  chatRoomId: number;
+  text: string;
+  senderID: string;
+  sentAt: number;
+};
 
-const initialMessages: ChatMessage[] = rawMessages.map((message) => {
-  const matchedUser = rawUsers.find((user) => user.id === message.senderID);
+type RawUser = {
+  id: string;
+  name: string;
+  profileImage: string;
+};
 
-  return {
-    id: message.id,
-    text: message.text,
-    sender: message.senderID === "me" ? "me" : "other",
-    profileImage: matchedUser?.profileImage === "profile" ? profile : "",
-    sentAt: message.sentAt,
-  };
-});
+type RawChatRoom = {
+  id: number;
+  type: "direct" | "group";
+  participantIds: string[];
+  title?: string;
+  subtitle?: string;
+};
 
 function ChatRoomPage() {
-  const { chatId } = useParams();
+  const { chatRoomId } = useParams();
+  const roomId = Number(chatRoomId);
 
-  if (!chatId) {
+  const users = rawUsers as RawUser[];
+  const chatRooms = rawChatRooms as RawChatRoom[];
+  const messagesData = rawMessages as RawMessage[];
+
+  const currentRoom = chatRooms.find((room) => room.id === roomId);
+
+  if (!chatRoomId || !currentRoom) {
     return <div>채팅방을 찾을 수 없습니다.</div>;
   }
+
+  const STORAGE_KEY = `chat-messages-${roomId}`;
+
+  const initialMessages: ChatMessage[] = messagesData
+    .filter((message) => message.chatRoomId === roomId)
+    .map((message) => {
+      const matchedUser = users.find((user) => user.id === message.senderID);
+
+      return {
+        id: message.id,
+        text: message.text,
+        sender: message.senderID === "me" ? "me" : "other",
+        profileImage: matchedUser?.profileImage === "profile" ? profile : "",
+        sentAt: message.sentAt,
+      };
+    });
 
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
     const savedMessages = localStorage.getItem(STORAGE_KEY);
@@ -44,12 +76,25 @@ function ChatRoomPage() {
   });
 
   useEffect(() => {
-    console.log("현재 채팅방 ID", chatId);
-  }, [chatId]);
-
-  useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-  }, [messages]);
+  }, [messages, STORAGE_KEY]);
+
+  const headerInfo = useMemo(() => {
+    if (currentRoom.type === "group") {
+      return {
+        headerId: currentRoom.title ?? "그룹 채팅방",
+        headerName: currentRoom.subtitle ?? "",
+      };
+    }
+
+    const otherUserId = currentRoom.participantIds.find((id) => id !== "me");
+    const otherUser = users.find((user) => user.id === otherUserId);
+
+    return {
+      headerId: otherUser?.id ?? "",
+      headerName: otherUser?.name ?? "",
+    };
+  }, [currentRoom, users]);
 
   const handleSendMessage = (text: string) => {
     const now = Date.now();
@@ -59,6 +104,7 @@ function ChatRoomPage() {
       text,
       sender: "me",
       sentAt: now,
+      profileImage: "",
     };
 
     setMessages((prev) => [...prev, newMessage]);
@@ -66,7 +112,10 @@ function ChatRoomPage() {
 
   return (
     <div className="flex h-full w-full flex-col">
-      <AppBarChatRoom />
+      <AppBarChatRoom
+        headerId={headerInfo.headerId}
+        headerName={headerInfo.headerName}
+      />
       <MessageSend messages={messages} />
       <MessageNavBar onSendMessage={handleSendMessage} />
     </div>
