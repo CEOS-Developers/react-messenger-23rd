@@ -8,7 +8,7 @@ function App() {
       <div className="relative flex h-[var(--screen-height)] w-[var(--screen-width)] flex-col">
         <Routes>
           <Route path="/" element={<ChatListPage />} />
-          <Route path="/chat/:chatId" element={<ChatRoomPage />} />
+          <Route path="/chat/:chatRoomId" element={<ChatRoomPage />} />
         </Routes>
       </div>
     </div>

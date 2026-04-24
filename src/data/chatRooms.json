@@ -18,8 +18,7 @@
     "id": 4,
     "type": "group",
     "participantIds": ["me", "n0nameclub", "voidpeach", "lilac.exe", "jihun"],
-    "title": "노네임클럽",
-    "subtitle": "서진님 외 3명이 읽음"
+    "title": "노네임클럽"
   },
   {
     "id": 5,
@@ -35,10 +34,5 @@
     "id": 7,
     "type": "direct",
     "participantIds": ["me", "lilac.exe"]
-  },
-  {
-    "id": 8,
-    "type": "direct",
-    "participantIds": ["me", "emma"]
   }
 ]
