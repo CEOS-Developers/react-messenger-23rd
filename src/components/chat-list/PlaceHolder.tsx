@@ -10,7 +10,7 @@ function PlaceHolder() {
         <input
           type="text"
           placeholder="검색"
-          className="text-[var(--text-sm)] font-medium leading-[var(--line-height-tight)] text-[var(--color-grey-600)]"
+          className="text-[var(--text-sm)] font-medium leading-[var(--line-height-tight)] text-[var(--color-grey-600)] outline-none"
         ></input>
       </div>
     </div>
