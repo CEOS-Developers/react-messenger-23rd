@@ -94,7 +94,11 @@ function MessageInput({ value, onChange, onSend }: MessageInputProps) {
                 style={{ opacity: 0.55 }}
               />
             </div>
-            <button type="button" onClick={onSend}>
+            <button
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={onSend}
+            >
               <img
                 src={sendFillIcon}
                 alt="전송"
