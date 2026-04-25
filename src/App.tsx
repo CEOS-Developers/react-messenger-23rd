@@ -5,6 +5,7 @@ import PageFrame from '@/components/layout/PageFrame'
 import ChatListPage from '@/pages/ChatListPage'
 import ChatRoomPage from '@/pages/ChatRoomPage'
 import HomePage from '@/pages/HomePage'
+import ProfilePage from '@/pages/ProfilePage'
 
 function PagePlaceholder() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/dms" element={<ChatListPage />} />
       <Route path="/dms/:roomId" element={<ChatRoomPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
       <Route path="/alarm" element={<PagePlaceholder />} />
       <Route path="/more" element={<PagePlaceholder />} />
       <Route path="*" element={<Navigate to="/" replace />} />

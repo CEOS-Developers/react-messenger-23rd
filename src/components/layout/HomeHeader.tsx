@@ -1,8 +1,12 @@
+import { useNavigate } from 'react-router-dom'
+
 import profileIcon from '@/assets/icons/Profile.svg'
 import searchIcon from '@/assets/icons/Search.svg'
 import { colors, typography } from '@/styles/tokens'
 
 function HomeHeader() {
+  const navigate = useNavigate()
+
   return (
     <header className="flex w-full items-center justify-between px-[20px] py-[16px]">
       <div className="flex min-w-0 max-w-[256px] flex-1 items-center gap-[10px]">
@@ -44,7 +48,11 @@ function HomeHeader() {
             className="block h-[24px] w-[24px] object-contain"
           />
         </button>
-        <button type="button" className="relative">
+        <button
+          type="button"
+          className="relative"
+          onClick={() => navigate('/profile')}
+        >
           <img
             src={profileIcon}
             alt="내 프로필"
