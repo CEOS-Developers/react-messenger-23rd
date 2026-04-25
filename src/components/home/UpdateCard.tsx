@@ -22,6 +22,7 @@ function UpdateCard({ icon, title, subtitle }: UpdateCardProps) {
       />
       <div className="flex flex-col">
         <span
+          className="whitespace-nowrap"
           style={{
             color: colors.grey700,
             fontSize: typography.b2_14_m.fontSize,
@@ -32,6 +33,7 @@ function UpdateCard({ icon, title, subtitle }: UpdateCardProps) {
           {title}
         </span>
         <span
+          className="whitespace-nowrap"
           style={{
             color: colors.grey500,
             fontSize: typography.b2_14_sb.fontSize,
