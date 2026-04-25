@@ -4,8 +4,9 @@ import NavigationBar from '@/components/layout/NavigationBar'
 import PageFrame from '@/components/layout/PageFrame'
 import ChatListPage from '@/pages/ChatListPage'
 import ChatRoomPage from '@/pages/ChatRoomPage'
+import HomePage from '@/pages/HomePage'
 
-function HomePlaceholder() {
+function PagePlaceholder() {
   return (
     <PageFrame>
       <div className="flex h-full flex-col bg-white">
@@ -19,11 +20,11 @@ function HomePlaceholder() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePlaceholder />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/dms" element={<ChatListPage />} />
       <Route path="/dms/:roomId" element={<ChatRoomPage />} />
-      <Route path="/alarm" element={<HomePlaceholder />} />
-      <Route path="/more" element={<HomePlaceholder />} />
+      <Route path="/alarm" element={<PagePlaceholder />} />
+      <Route path="/more" element={<PagePlaceholder />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
