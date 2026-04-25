@@ -128,7 +128,7 @@ export default function MyProfilePage() {
             {/* 개인정보 + 게시물 */}
             <div className="flex flex-col w-full -mx-5">
               {/* 개인정보 섹션 */}
-              <div className="flex flex-col gap-4 px-5 py-4 border-t border-line-subtle">
+              <div className="flex flex-col gap-4 py-4 border-t border-line-subtle">
                 <div className="flex items-center justify-between">
                   <span className="text-body3-m text-content-secondary">
                     개인정보
@@ -173,7 +173,7 @@ export default function MyProfilePage() {
               </div>
 
               {/* 게시물 섹션 */}
-              <div className="flex flex-col gap-4 px-5 py-4 border-t border-line-subtle">
+              <div className="flex flex-col gap-4 py-4 border-t border-line-subtle">
                 <div className="flex items-center justify-between">
                   <span className="text-body3-m text-content-secondary">
                     게시물
