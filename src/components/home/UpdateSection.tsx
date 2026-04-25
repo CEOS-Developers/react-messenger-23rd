@@ -9,7 +9,10 @@ function UpdateSection() {
   return (
     <section
       className="flex flex-col items-start gap-[12px]"
-      style={{ padding: '12px 20px 20px 20px' }}
+      style={{
+        padding: '12px 20px 20px 20px',
+        borderBottom: `0.6px solid ${colors.grey300}`,
+      }}
     >
       <h2
         style={{
