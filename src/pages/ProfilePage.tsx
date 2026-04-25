@@ -1,5 +1,8 @@
+import dmIcon from '@/assets/icons/DM/Default.svg'
+import editIcon from '@/assets/icons/Edit.svg'
 import PageFrame from '@/components/layout/PageFrame'
 import ProfileHeader from '@/components/layout/ProfileHeader'
+import ProfileActionCard from '@/components/profile/ProfileActionCard'
 import ProfileSummary from '@/components/profile/ProfileSummary'
 import StatusRow from '@/components/profile/StatusRow'
 import usersData from '@/data/users.json'
@@ -25,6 +28,13 @@ function ProfilePage() {
               >
                 <ProfileSummary name={me.name} jobTitle={me.jobTitle} />
                 <StatusRow status={me.status} />
+                <div
+                  className="flex items-center self-stretch"
+                  style={{ gap: '16px' }}
+                >
+                  <ProfileActionCard icon={dmIcon} label="나에게 메세지" />
+                  <ProfileActionCard icon={editIcon} label="프로필 편집하기" />
+                </div>
               </div>
             </div>
           )}
