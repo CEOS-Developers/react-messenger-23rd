@@ -1,6 +1,7 @@
 import PageFrame from '@/components/layout/PageFrame'
 import ProfileHeader from '@/components/layout/ProfileHeader'
 import ProfileSummary from '@/components/profile/ProfileSummary'
+import StatusRow from '@/components/profile/StatusRow'
 import usersData from '@/data/users.json'
 import type { User } from '@/types/user'
 
@@ -23,6 +24,7 @@ function ProfilePage() {
                 style={{ padding: '0 20px', gap: '14px' }}
               >
                 <ProfileSummary name={me.name} jobTitle={me.jobTitle} />
+                <StatusRow status={me.status} />
               </div>
             </div>
           )}
