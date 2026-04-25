@@ -15,6 +15,7 @@ function ChatListProfile({ chatroom }: Props) {
   const storedMessages = stored ? JSON.parse(stored) : null
   const activeMessages = storedMessages?.length ? storedMessages : messages
   const lastMessage = activeMessages.at(-1)?.text ?? ''
+  const lastTime = activeMessages.at(-1)?.time ?? lastMessageTime
 
   return (
     <div
@@ -48,7 +49,7 @@ function ChatListProfile({ chatroom }: Props) {
       </div>
       <div className="flex flex-col items-end justify-between shrink-0 self-stretch pl-2">
         <p className="text-caption1 text-gray-60 antialiased">
-          {lastMessageTime}
+          {lastTime}
         </p>
         {unreadCount > 0 && (
           <span className="bg-blue-50 text-white text-caption2_sb rounded-full min-w-5 h-5 flex items-center justify-center px-1.5">
