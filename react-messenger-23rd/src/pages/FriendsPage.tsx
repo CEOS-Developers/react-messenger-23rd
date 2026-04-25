@@ -60,7 +60,7 @@ const FriendListItem = ({ user }: { user: User }) => (
       </span>
     </div>
     {user.statusMessage && (
-      <div className="px-2.5 py-2.5 bg-surface-subtle rounded-[16px_16px_16px_0px]">
+      <div className="flex items-center h-7.75 px-2.5 py-2.5 bg-surface-subtle rounded-[16px_16px_16px_0px]">
         <span className="text-caption2 text-content-tertiary">
           {user.statusMessage}
         </span>
