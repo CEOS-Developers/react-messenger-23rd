@@ -33,9 +33,9 @@ function IconTextRow({ icon, text, description, trailingIcon }: IconTextRowProps
           <span
             style={{
               color: colors.grey700,
-              fontSize: typography.b2_14_sb.fontSize,
-              fontWeight: typography.b2_14_sb.fontWeight,
-              lineHeight: typography.b2_14_sb.lineHeight,
+              fontSize: typography.c2_11_r.fontSize,
+              fontWeight: typography.c2_11_r.fontWeight,
+              lineHeight: typography.c2_11_r.lineHeight,
             }}
           >
             {description}
