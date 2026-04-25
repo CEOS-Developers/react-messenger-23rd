@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
-import profileIcon from '@/assets/icons/Profile.svg'
 import searchIcon from '@/assets/icons/Search.svg'
+import Avatar from '@/components/common/Avatar'
 import { colors, typography } from '@/styles/tokens'
 
 function HomeHeader() {
@@ -50,21 +50,10 @@ function HomeHeader() {
         </button>
         <button
           type="button"
-          className="relative"
+          aria-label="내 프로필"
           onClick={() => navigate('/profile')}
         >
-          <img
-            src={profileIcon}
-            alt="내 프로필"
-            className="block h-[28px] w-[28px] object-contain"
-          />
-          <span
-            className="absolute right-0 bottom-0 block h-[8px] w-[8px] rounded-full border-[1.5px]"
-            style={{
-              background: colors.secondary200,
-              borderColor: colors.white,
-            }}
-          />
+          <Avatar size="xs" showStatus status="active" />
         </button>
       </div>
     </header>
