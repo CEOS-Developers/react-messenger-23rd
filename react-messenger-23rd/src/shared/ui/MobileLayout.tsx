@@ -10,7 +10,7 @@ const MobileLayout = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-section-bg">
-      <div className="flex h-[812px] w-[375px] flex-col overflow-hidden rounded-[40px] border border-border">
+      <div className="flex h-[812px] w-[375px] flex-col overflow-hidden rounded-[40px] border border-border relative">
         <StatusBar className={statusBarBgClass} />
         <div className="flex-1 min-h-0">
           <Outlet />
