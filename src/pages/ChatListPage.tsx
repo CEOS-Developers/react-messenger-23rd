@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import ChatListItem from '@/components/chatList/ChatListItem'
 import ChatListHeader from '@/components/layout/ChatListHeader'
 import NavigationBar from '@/components/layout/NavigationBar'
@@ -6,16 +8,10 @@ import chatRoomsData from '@/data/chatRooms.json'
 import messagesData from '@/data/messages.json'
 import usersData from '@/data/users.json'
 import type { Message } from '@/types/message'
-import type { NavigationKey } from '@/types/navigation'
 import { formatChatListTime } from '@/utils/formatChatTime'
 
-type ChatListPageProps = {
-  activeTab?: NavigationKey
-  onTabChange: (tab: NavigationKey) => void
-  onChatSelect: (chatId: string, name: string, memberCount?: number) => void
-}
-
-function ChatListPage({ activeTab, onTabChange, onChatSelect }: ChatListPageProps) {
+function ChatListPage() {
+  const navigate = useNavigate()
   const userMap = Object.fromEntries(usersData.map((u) => [u.id, u]))
 
   const getMessages = (roomId: string): Message[] => {
@@ -55,18 +51,12 @@ function ChatListPage({ activeTab, onTabChange, onChatSelect }: ChatListPageProp
               isGroup={item.isGroup}
               memberCount={item.isGroup ? item.memberIds.length : undefined}
               status={item.status as 'active' | 'away' | 'sleeping'}
-              onClick={() =>
-                onChatSelect(
-                  item.id,
-                  item.name,
-                  item.isGroup ? item.memberIds.length : undefined,
-                )
-              }
+              onClick={() => navigate(`/dms/${item.id}`)}
             />
           ))}
         </div>
 
-        <NavigationBar active={activeTab} onTabChange={onTabChange} />
+        <NavigationBar />
       </div>
     </PageFrame>
   )

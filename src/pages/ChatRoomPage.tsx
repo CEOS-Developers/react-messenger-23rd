@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import DateDivider from '@/components/chatRoom/DateDivider'
 import MessageInput from '@/components/chatRoom/MessageInput'
@@ -6,10 +7,10 @@ import MessageLine from '@/components/chatRoom/MessageLine'
 import HomeIndicator from '@/components/common/HomeIndicator'
 import ChatRoomHeader from '@/components/layout/ChatRoomHeader'
 import PageFrame from '@/components/layout/PageFrame'
-import { colors } from '@/styles/tokens'
 import chatRoomsData from '@/data/chatRooms.json'
 import messagesData from '@/data/messages.json'
 import usersData from '@/data/users.json'
+import { colors } from '@/styles/tokens'
 import type { Message } from '@/types/message'
 import {
   formatDateDivider,
@@ -18,24 +19,21 @@ import {
   isSameMinute,
 } from '@/utils/formatChatTime'
 
-type ChatRoomPageProps = {
-  chatRoomId: string
-  chatName: string
-  memberCount?: number
-  onBack: () => void
-}
+function ChatRoomPage() {
+  const { roomId } = useParams<{ roomId: string }>()
+  const navigate = useNavigate()
+  const chatRoom = chatRoomsData.find((r) => r.id === roomId)
 
-function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPageProps) {
   const [inputValue, setInputValue] = useState('')
   const [messages, setMessages] = useState<Message[]>(() => {
-    const stored = localStorage.getItem(`messages-${chatRoomId}`)
+    if (!roomId) return []
+    const stored = localStorage.getItem(`messages-${roomId}`)
     if (stored) return JSON.parse(stored)
-    return messagesData.filter((m) => m.chatRoomId === chatRoomId)
+    return messagesData.filter((m) => m.chatRoomId === roomId)
   })
   const [currentUserId, setCurrentUserId] = useState('me')
   const scrollRef = useRef<HTMLDivElement>(null)
   const userMap = Object.fromEntries(usersData.map((u) => [u.id, u]))
-  const chatRoom = chatRoomsData.find((r) => r.id === chatRoomId)
   const otherMemberIds = chatRoom?.memberIds.filter((id) => id !== 'me') ?? []
 
   const scrollToBottom = () => {
@@ -45,9 +43,14 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
   }
 
   useEffect(() => {
+    if (!roomId) return
     scrollToBottom()
-    localStorage.setItem(`messages-${chatRoomId}`, JSON.stringify(messages))
-  }, [messages, chatRoomId])
+    localStorage.setItem(`messages-${roomId}`, JSON.stringify(messages))
+  }, [messages, roomId])
+
+  if (!roomId || !chatRoom) {
+    return <Navigate to="/dms" replace />
+  }
 
   const handleSwitchUser = () => {
     const allIds = ['me', ...otherMemberIds]
@@ -61,7 +64,7 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
 
     const newMessage: Message = {
       id: `m-${Date.now()}`,
-      chatRoomId,
+      chatRoomId: roomId,
       senderId: currentUserId,
       text: inputValue.trim(),
       timestamp: new Date().toISOString(),
@@ -70,7 +73,6 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
     setMessages((prev) => [...prev, newMessage])
     setInputValue('')
   }
-
 
   const renderMessages = () => {
     const elements: React.ReactNode[] = []
@@ -126,6 +128,8 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
     return elements
   }
 
+  const memberCount = chatRoom.isGroup ? chatRoom.memberIds.length : undefined
+
   return (
     <PageFrame>
       <div className="flex h-full flex-col bg-white">
@@ -137,9 +141,9 @@ function ChatRoomPage({ chatRoomId, chatName, memberCount, onBack }: ChatRoomPag
           <div className="sticky top-0 z-10">
             <div className="h-[48px] shrink-0 bg-white" />
             <ChatRoomHeader
-              title={chatName}
+              title={chatRoom.name}
               memberCount={memberCount}
-              onBack={onBack}
+              onBack={() => navigate('/dms')}
               onSwitchUser={handleSwitchUser}
             />
           </div>

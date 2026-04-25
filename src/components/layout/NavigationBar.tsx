@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from 'react-router-dom'
+
 import bellIcon from '@/assets/icons/Bell/Default.svg'
 import dmDefaultIcon from '@/assets/icons/DM/Default.svg'
 import dmSelectedIcon from '@/assets/icons/DM/Selected.svg'
@@ -8,38 +10,55 @@ import HomeIndicator from '@/components/common/HomeIndicator'
 import { colors, typography } from '@/styles/tokens'
 import type { NavigationKey } from '@/types/navigation'
 
-type NavigationBarProps = {
-  active?: NavigationKey
-  onTabChange?: (tab: NavigationKey) => void
+const items = [
+  {
+    key: 'home',
+    label: '홈',
+    path: '/',
+    defaultIcon: homeDefaultIcon,
+    activeIcon: homeSelectedIcon,
+  },
+  {
+    key: 'dm',
+    label: 'DM',
+    path: '/dms',
+    defaultIcon: dmDefaultIcon,
+    activeIcon: dmSelectedIcon,
+  },
+  {
+    key: 'alarm',
+    label: '알림',
+    path: '/alarm',
+    defaultIcon: bellIcon,
+    activeIcon: bellIcon,
+  },
+  {
+    key: 'more',
+    label: '더보기',
+    path: '/more',
+    defaultIcon: moreIcon,
+    activeIcon: moreIcon,
+  },
+] as const satisfies ReadonlyArray<{
+  key: NavigationKey
+  label: string
+  path: string
+  defaultIcon: string
+  activeIcon: string
+}>
+
+function getActiveKey(pathname: string): NavigationKey | undefined {
+  if (pathname === '/') return 'home'
+  if (pathname.startsWith('/dms')) return 'dm'
+  if (pathname.startsWith('/alarm')) return 'alarm'
+  if (pathname.startsWith('/more')) return 'more'
+  return undefined
 }
 
-function NavigationBar({ active, onTabChange }: NavigationBarProps) {
-  const items = [
-    {
-      key: 'home',
-      label: '홈',
-      defaultIcon: homeDefaultIcon,
-      activeIcon: homeSelectedIcon,
-    },
-    {
-      key: 'dm',
-      label: 'DM',
-      defaultIcon: dmDefaultIcon,
-      activeIcon: dmSelectedIcon,
-    },
-    {
-      key: 'alarm',
-      label: '알림',
-      defaultIcon: bellIcon,
-      activeIcon: bellIcon,
-    },
-    {
-      key: 'more',
-      label: '더보기',
-      defaultIcon: moreIcon,
-      activeIcon: moreIcon,
-    },
-  ] as const
+function NavigationBar() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const active = getActiveKey(location.pathname)
 
   return (
     <div
@@ -58,7 +77,7 @@ function NavigationBar({ active, onTabChange }: NavigationBarProps) {
               <button
                 key={item.key}
                 type="button"
-                onClick={() => onTabChange?.(item.key)}
+                onClick={() => navigate(item.path)}
                 className="flex h-[44px] w-[80px] flex-col items-center gap-[4px]"
               >
                 <img
