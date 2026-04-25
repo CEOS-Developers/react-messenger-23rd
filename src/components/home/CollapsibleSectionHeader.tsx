@@ -1,5 +1,5 @@
 import chevronDownIcon from '@/assets/icons/ChevronDown.svg'
-import plusIcon from '@/assets/icons/Plus.svg'
+import plusIcon from '@/assets/icons/PlusLight.svg'
 import { colors, typography } from '@/styles/tokens'
 
 type CollapsibleSectionHeaderProps = {
