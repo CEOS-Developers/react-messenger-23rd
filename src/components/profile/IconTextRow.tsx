@@ -4,9 +4,10 @@ type IconTextRowProps = {
   icon: string
   text: string
   description?: string
+  trailingIcon?: string
 }
 
-function IconTextRow({ icon, text, description }: IconTextRowProps) {
+function IconTextRow({ icon, text, description, trailingIcon }: IconTextRowProps) {
   return (
     <div
       className="flex items-center self-stretch"
@@ -41,6 +42,13 @@ function IconTextRow({ icon, text, description }: IconTextRowProps) {
           </span>
         )}
       </div>
+      {trailingIcon && (
+        <img
+          src={trailingIcon}
+          alt=""
+          className="block h-[24px] w-[24px] shrink-0 object-contain"
+        />
+      )}
     </div>
   )
 }
