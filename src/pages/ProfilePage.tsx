@@ -5,6 +5,7 @@ import ProfileHeader from '@/components/layout/ProfileHeader'
 import ContactSection from '@/components/profile/ContactSection'
 import ProfileActionCard from '@/components/profile/ProfileActionCard'
 import ProfileSummary from '@/components/profile/ProfileSummary'
+import SlackInfoSection from '@/components/profile/SlackInfoSection'
 import StatusRow from '@/components/profile/StatusRow'
 import usersData from '@/data/users.json'
 import type { User } from '@/types/user'
@@ -41,6 +42,8 @@ function ProfilePage() {
               {me.email && me.phone && (
                 <ContactSection email={me.email} phone={me.phone} />
               )}
+
+              <SlackInfoSection />
             </div>
           )}
         </div>

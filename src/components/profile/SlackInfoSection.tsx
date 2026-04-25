@@ -11,7 +11,7 @@ function SlackInfoSection() {
       className="flex flex-col items-start self-stretch"
       style={{
         padding: '20px',
-        gap: '16px',
+        gap: '20px',
         borderTop: `0.6px solid ${colors.grey300}`,
       }}
     >
