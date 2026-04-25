@@ -11,7 +11,7 @@ import PageFrame from '@/components/layout/PageFrame'
 import { colors } from '@/styles/tokens'
 
 function HomePage() {
-  const [isMembersExpanded, setIsMembersExpanded] = useState(false)
+  const [isMembersExpanded, setIsMembersExpanded] = useState(true)
 
   return (
     <PageFrame>
@@ -31,38 +31,28 @@ function HomePage() {
             <CollapsibleSectionHeader icon={hashIcon} title="토픽" />
           </div>
 
-          {isMembersExpanded ? (
-            <div
-              className="flex flex-col items-start"
-              style={{
-                padding: '20px 12px',
-                gap: '28px',
-                borderBottom: `0.6px solid ${colors.grey300}`,
-              }}
-            >
+          <div
+            className="flex flex-col"
+            style={{
+              padding: '20px 0',
+              gap: '28px',
+              borderBottom: `0.6px solid ${colors.grey300}`,
+            }}
+          >
+            <div style={{ padding: '0 20px' }}>
               <CollapsibleSectionHeader
                 icon={chatBubbleIcon}
                 title="팀원 목록"
-                isExpanded
-                onToggle={() => setIsMembersExpanded((prev) => !prev)}
-              />
-              <MemberList />
-            </div>
-          ) : (
-            <div
-              style={{
-                padding: '20px',
-                borderBottom: `0.6px solid ${colors.grey300}`,
-              }}
-            >
-              <CollapsibleSectionHeader
-                icon={chatBubbleIcon}
-                title="팀원 목록"
-                isExpanded={false}
+                isExpanded={isMembersExpanded}
                 onToggle={() => setIsMembersExpanded((prev) => !prev)}
               />
             </div>
-          )}
+            {isMembersExpanded && (
+              <div style={{ padding: '0 12px' }}>
+                <MemberList />
+              </div>
+            )}
+          </div>
         </div>
 
         <NavigationBar />
