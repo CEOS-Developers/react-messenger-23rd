@@ -10,7 +10,7 @@ function IconTextRow({ icon, text, description }: IconTextRowProps) {
   return (
     <div
       className="flex items-center self-stretch"
-      style={{ gap: '16px' }}
+      style={{ gap: '12px' }}
     >
       <img
         src={icon}
