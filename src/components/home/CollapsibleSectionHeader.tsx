@@ -5,15 +5,22 @@ import { colors, typography } from '@/styles/tokens'
 type CollapsibleSectionHeaderProps = {
   icon: string
   title: string
+  isExpanded?: boolean
+  onToggle?: () => void
 }
 
-function CollapsibleSectionHeader({ icon, title }: CollapsibleSectionHeaderProps) {
+function CollapsibleSectionHeader({
+  icon,
+  title,
+  isExpanded = false,
+  onToggle,
+}: CollapsibleSectionHeaderProps) {
   return (
     <div
       className="flex w-full items-center justify-between"
       style={{
         padding: '20px',
-        borderBottom: `0.6px solid ${colors.grey300}`,
+        borderBottom: isExpanded ? 'none' : `0.6px solid ${colors.grey300}`,
       }}
     >
       <div className="flex items-center gap-[12px]">
@@ -42,11 +49,19 @@ function CollapsibleSectionHeader({ icon, title }: CollapsibleSectionHeaderProps
             className="block h-[24px] w-[24px] object-contain"
           />
         </button>
-        <button type="button">
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-expanded={isExpanded}
+          aria-label={isExpanded ? '접기' : '펼치기'}
+        >
           <img
             src={chevronDownIcon}
-            alt="펼치기"
-            className="block h-[24px] w-[24px] object-contain"
+            alt=""
+            className="block h-[24px] w-[24px] object-contain transition-transform"
+            style={{
+              transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}
           />
         </button>
       </div>
