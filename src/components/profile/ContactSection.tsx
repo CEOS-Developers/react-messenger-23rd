@@ -17,7 +17,6 @@ function ContactSection({ email, phone }: ContactSectionProps) {
         padding: '20px',
         gap: '16px',
         borderTop: `0.6px solid ${colors.grey300}`,
-        borderBottom: `0.6px solid ${colors.grey300}`,
       }}
     >
       <h2
