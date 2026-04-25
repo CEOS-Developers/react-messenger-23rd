@@ -16,13 +16,7 @@ function CollapsibleSectionHeader({
   onToggle,
 }: CollapsibleSectionHeaderProps) {
   return (
-    <div
-      className="flex w-full items-center justify-between"
-      style={{
-        padding: '20px',
-        borderBottom: isExpanded ? 'none' : `0.6px solid ${colors.grey300}`,
-      }}
-    >
+    <div className="flex w-full items-center justify-between">
       <div className="flex items-center gap-[12px]">
         <img
           src={icon}
