@@ -1,12 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import mockData from "@/data/mockData.json";
-
-export type User = {
-  id: number;
-  name: string;
-  profileImage: string;
-};
+import { MY_ID } from "@/constants/userId";
 
 export type ChatRoom = {
   id: number;
@@ -24,7 +19,6 @@ export type Message = {
 
 type ChatStore = {
   chatRooms: ChatRoom[];
-  users: User[];
   currentUserId: number;
   messages: Message[];
   favorites: number[];
@@ -39,7 +33,6 @@ export const useChatStore = create<ChatStore>()(
   persist(
     (set) => ({
       chatRooms: mockData.chatRooms,
-      users: mockData.users,
       currentUserId: mockData.currentUserId,
       messages: mockData.messages,
       favorites: [],
@@ -62,14 +55,14 @@ export const useChatStore = create<ChatStore>()(
       markAsRead: (chatRoomId) =>
         set((state) => ({
           messages: state.messages.map((m) =>
-            m.chatRoomId === chatRoomId && !m.readBy.includes(1)
-              ? { ...m, readBy: [...m.readBy, 1] }
+            m.chatRoomId === chatRoomId && !m.readBy.includes(MY_ID)
+              ? { ...m, readBy: [...m.readBy, MY_ID] }
               : m,
           ),
         })),
 
       resetPerspective: () => {
-        set({ currentUserId: 1 });
+        set({ currentUserId: MY_ID });
       },
 
       toggleFavorite: (chatRoomId) =>
@@ -106,6 +99,6 @@ export const useChatStore = create<ChatStore>()(
         });
       },
     }),
-    { name: "chat-store", version: 8 },
+    { name: "chat-store", version: 9 },
   ),
 );

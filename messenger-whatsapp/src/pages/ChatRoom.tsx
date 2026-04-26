@@ -10,6 +10,7 @@ import TopBar from "@/components/common/TopBar";
 import { useChatStore } from "@/store/useChatStore";
 import { useFriendsStore } from "@/store/useFriendsStore";
 import { groupMessages } from "@/hooks/useMessageGrouping";
+import { getRoomName } from "@/utils/chatUtils";
 
 export default function ChatRoom() {
   const { roomId } = useParams();
@@ -28,10 +29,7 @@ export default function ChatRoom() {
   const messages = allMessages.filter((m) => m.chatRoomId === roomIdNum);
   const room = chatRooms.find((r) => r.id === roomIdNum);
   const participantIds = room?.participantIds ?? [];
-  const roomName = friends
-    .filter((f) => f.id !== currentUserId && participantIds.includes(f.id))
-    .map((f) => f.name)
-    .join(", ");
+  const roomName = getRoomName(friends, participantIds, currentUserId);
   const groupedMessages = useMemo(
     () => groupMessages(messages, currentUserId, participantIds, friends),
     [messages, currentUserId, participantIds, friends],

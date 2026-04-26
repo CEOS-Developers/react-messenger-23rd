@@ -4,6 +4,8 @@ import { useChatStore } from "@/store/useChatStore";
 import { useFriendsStore } from "@/store/useFriendsStore";
 import { formatLastMessageTime } from "@/utils/formatTime";
 import { useSwipeGesture } from "@/hooks/useSwipeGesture";
+import { MY_ID } from "@/constants/userId";
+import { getRoomName } from "@/utils/chatUtils";
 import ChatThumbnail from "@/components/chat/ChatThumbnail";
 import FavoriteDefault from "@/assets/chat_fav.svg?react";
 import FavoriteActive from "@/assets/chat_fav_filled.svg?react";
@@ -24,8 +26,8 @@ const ChatRoomItem = ({ chatRoom, onSwipeOpen, openId }: ChatRoomItemProps) => {
   );
   const roomMessages = messages.filter((m) => m.chatRoomId === chatRoom.id);
   const lastMessage = roomMessages[roomMessages.length - 1];
-  const roomName = participants.map((f) => f.name).join(", ");
-  const unreadCount = roomMessages.filter((m) => !m.readBy.includes(1)).length;
+  const roomName = getRoomName(friends, chatRoom.participantIds, currentUserId);
+  const unreadCount = roomMessages.filter((m) => !m.readBy.includes(MY_ID)).length;
   const isFavorite = favorites.includes(chatRoom.id);
 
   const {

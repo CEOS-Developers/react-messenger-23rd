@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
-import MeProfile from "@/assets/profile_reverse.svg?react";
-import DefaultProfile from "@/assets/profile_default.svg?react";
+import Avatar from "@/components/common/Avatar";
 
 interface FriendProps {
   id: number;
@@ -13,19 +12,6 @@ interface FriendProps {
 export default function Friend({ id, name, isMe = false, profileImage }: FriendProps) {
   const navigate = useNavigate();
 
-  const renderAvatar = () => {
-    if (profileImage) {
-      return (
-        <img
-          src={profileImage}
-          alt="profile"
-          className={clsx("rounded-full object-cover", isMe ? "w-12 h-12" : "w-11 h-11")}
-        />
-      );
-    }
-    return isMe ? <MeProfile className="w-12 h-12" /> : <DefaultProfile className="w-11 h-11" />;
-  };
-
   return (
     <div
       className={clsx(
@@ -34,7 +20,11 @@ export default function Friend({ id, name, isMe = false, profileImage }: FriendP
       )}
       onClick={() => navigate(isMe ? "/profile" : `/profile/${id}`)}
     >
-      {renderAvatar()}
+      <Avatar
+        src={profileImage}
+        variant={isMe ? "me" : "default"}
+        className={isMe ? "w-12 h-12" : "w-11 h-11"}
+      />
       <div className="flex flex-col">
         <div className={clsx("text-gray-06", isMe ? "text-headline-2" : "text-body-01")}>
           {name}

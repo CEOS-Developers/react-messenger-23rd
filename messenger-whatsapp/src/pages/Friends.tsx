@@ -7,13 +7,14 @@ import AddUserIcon from "@/assets/pageheader_adduser.svg?react";
 import Friend from "@/components/friends/Friend";
 import FriendsList from "@/components/friends/FriendsList";
 import { useFriendsStore } from "@/store/useFriendsStore";
+import { MY_ID } from "@/constants/userId";
 
 export default function Friends() {
   const { setHeaderConfig } = useOutletContext<{
     setHeaderConfig: (c: HeaderConfig) => void;
   }>();
   const friends = useFriendsStore((s) => s.friends);
-  const me = friends.find((f) => f.id === 1);
+  const me = friends.find((f) => f.id === MY_ID);
   const friendCount = friends.length - 1;
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function Friends() {
   return (
     <div>
       <Friend
-        id={1}
+        id={MY_ID}
         name={me?.name ?? ""}
         isMe
         profileImage={me?.profileImage || undefined}

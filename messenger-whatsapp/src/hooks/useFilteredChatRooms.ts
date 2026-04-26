@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { useChatStore } from "@/store/useChatStore";
 import type { FilterType } from "@/components/chip/ChatFilter";
-
-const MY_ID = 1;
+import { MY_ID } from "@/constants/userId";
 
 export function useFilteredChatRooms() {
   const { chatRooms, messages, favorites } = useChatStore();

@@ -4,8 +4,7 @@ import type { HeaderConfig } from "@/components/Layouts/MainLayout";
 import ProfileCard from "@/components/profile/ProfileCard";
 import ProfileField from "@/components/profile/ProfileField";
 import { useFriendsStore } from "@/store/useFriendsStore";
-
-const MY_ID = 1;
+import { MY_ID } from "@/constants/userId";
 
 export default function EditProfile() {
   const { setHeaderConfig } = useOutletContext<{

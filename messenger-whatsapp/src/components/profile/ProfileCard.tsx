@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { useRef, useState } from "react";
-import EditingProfile from "@/assets/profile_reverse.svg?react";
-import DefaultProfile from "@/assets/profile_default.svg?react";
+import Avatar from "@/components/common/Avatar";
 import Tail from "@/assets/profile_statusmessage_tail.svg?react";
 import EditTail from "@/assets/profile_statusmessage_tail_edit.svg?react";
 
@@ -42,20 +41,6 @@ export default function ProfileCard({
     setShowDeleteMenu(true);
   };
 
-  const renderAvatar = () => {
-    if (profileImage) {
-      return (
-        <img
-          src={profileImage}
-          alt="profile"
-          className="w-33 h-33 mt-1 rounded-full object-cover"
-        />
-      );
-    }
-    if (isMe && !isEditing)
-      return <EditingProfile className="w-33 h-33 mt-1" />;
-    return <DefaultProfile className="w-33 h-33 mt-1" />;
-  };
 
   return (
     <div className="flex flex-col items-center mb-8 mt-1">
@@ -93,7 +78,11 @@ export default function ProfileCard({
           onContextMenu={handleContextMenu}
           className={clsx(isMe && isEditing && "cursor-pointer")}
         >
-          {renderAvatar()}
+          <Avatar
+            src={profileImage}
+            variant={isMe && !isEditing ? "me" : "default"}
+            className="w-33 h-33 mt-1"
+          />
         </div>
 
         {showDeleteMenu && (
