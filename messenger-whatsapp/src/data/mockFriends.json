@@ -1,0 +1,89 @@
+[
+  {
+    "id": 1,
+    "name": "문수인",
+    "profileImage": "",
+    "statusMessage": "수면중이에요!",
+    "phone": "010-1234-5678",
+    "links": [
+      { "type": "링크", "url": "https://behance.net/munsuIn" },
+      { "type": "링크", "url": "https://github.com/munsuIn" }
+    ]
+  },
+  { "id": 2, "name": "세오스", "profileImage": "" },
+  { "id": 3, "name": "이윤서", "profileImage": "" },
+  {
+    "id": 4,
+    "name": "신짱구",
+    "profileImage": "/profiles/profile_jjanggu.jpg",
+    "statusMessage": "오늘도 화이팅!"
+  },
+  {
+    "id": 5,
+    "name": "맹구",
+    "profileImage": "/profiles/profile_manggu.jpg",
+    "statusMessage": "주말에 뭐하지"
+  },
+  {
+    "id": 6,
+    "name": "최유리",
+    "profileImage": "",
+    "statusMessage": "커피 한 잔이 필요해"
+  },
+  { "id": 7, "name": "김철수", "profileImage": "" },
+  {
+    "id": 8,
+    "name": "이훈이",
+    "profileImage": "",
+    "statusMessage": "열심히 살자"
+  },
+  { "id": 9, "name": "한수지", "profileImage": "" },
+  { "id": 10, "name": "신짱아", "profileImage": "" },
+  {
+    "id": 11,
+    "name": "장한솔",
+    "profileImage": "",
+    "statusMessage": "코딩 중..."
+  },
+  {
+    "id": 12,
+    "name": "신태일",
+    "profileImage": "/profiles/profile_taeyeol.jpg",
+    "statusMessage": "😴"
+  },
+  { "id": 13, "name": "신나리", "profileImage": "" },
+  {
+    "id": 14,
+    "name": "정석",
+    "profileImage": "/profiles/profile_jeongsuk.jpg",
+    "statusMessage": "맛있는 거 먹고 싶다"
+  },
+  { "id": 15, "name": "매튜", "profileImage": "" },
+  {
+    "id": 16,
+    "name": "한소라",
+    "profileImage": "",
+    "statusMessage": "오늘 날씨 좋다"
+  },
+  { "id": 17, "name": "리키", "profileImage": "" },
+  {
+    "id": 18,
+    "name": "이미나",
+    "profileImage": "",
+    "statusMessage": "여행 가고 싶어"
+  },
+  { "id": 19, "name": "최산해", "profileImage": "" },
+  {
+    "id": 20,
+    "name": "이재하",
+    "profileImage": "",
+    "statusMessage": "공부하는 중"
+  },
+  { "id": 21, "name": "서정우", "profileImage": "" },
+  {
+    "id": 22,
+    "name": "홍예지",
+    "profileImage": "",
+    "statusMessage": "행복한 하루 되세요 🌸"
+  }
+]
