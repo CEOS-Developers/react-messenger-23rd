@@ -1,71 +1,181 @@
-# 4주차 과제: React Messenger v2
+# Week 3 & 4: React Messenger
 
-# 서론
+CEOS 23rd Frontend Study — Weeks 3 and 4, an ongoing project building a Messenger app in collaboration with a designer.
 
-안녕하세요 🤩 23기 프론트엔드 운영진 **원채영**입니다. 
-이번 과제에서는 지난 과제를 기반으로, 친구 목록 및 채팅방 목록 등 **메신저의 핵심 기능을 확장**하게 됩니다.
-점점 실제 서비스에 가까운 형태로 발전하는 단계인 만큼, 기능 구현뿐만 아니라 UI 일관성과 구조 설계까지 함께 고민해보시면 좋겠습니다.
+🔗 [Try it out](https://ceos-week3-react-messenger-23rd.vercel.app)
 
-이번 주 역시 디자이너와의 협업으로 진행됩니다.
-디자이너분이 리디자인한 화면을 바탕으로, 피그마 **Dev Mode**를 적극 활용하여 UI를 구현해 주세요.
+## Overview
 
-또한, 지난 주에 적용했던 TypeScript와 TailwindCSS를 기반으로 코드 구조를 **리팩토링**해보는 것도 추천드립니다.
+Starting Week 3, the mission shifted from solo assignments to a project built in collaboration with a designer, with TypeScript and Tailwind CSS required going forward. Over these two weeks, the messenger grew from a single chat screen into a small multi-page web app.
 
-특히 이번 과제의 핵심 목표는 **React Router**를 활용한 라우팅 구조 이해입니다.
-**SPA**(Single Page Application)에서의 페이지 전환 방식을 이해하고, 자연스러운 사용자 경험을 구현해보세요.
+## Preview
+<img width="230" height="" alt="image" src="https://github.com/user-attachments/assets/b047c8cc-cdc9-493a-b471-261d2f09a84c" />
+<img width="230" height="" alt="image" src="https://github.com/user-attachments/assets/b537c75e-d5ee-4cc2-a260-e73cbb3ad223" />
+<img width="230" height="" alt="image" src="https://github.com/user-attachments/assets/2e9ef1e5-78c1-4129-87dc-5f33e4c79976" />
+<img width="230" height="" alt="image" src="https://github.com/user-attachments/assets/5a621a2c-4624-4b10-9d17-aa2d09a7ca5a" />
 
-그럼 이번 과제도 파이팅입니다! 🎉
+### What the app does (as of Week 4)
 
-# 과제
+- Chat screen with message bubbles, showing each sender's profile photo and name
+- Friends list page
+- Chat room list page, with pin/unpin support to keep specific chats at the top
+- Routing between friends list, chat room list, and individual chat rooms (via React Router)
+- Chat room data persisted to `localStorage`, so it survives a page refresh
+- User and message data managed through JSON files
+- Styled with Tailwind CSS, based on Figma designs implemented via Dev Mode
 
-## 목표
+### Folder Structure — Feature-Sliced Design (FSD)
 
-- TypeScript를 적극적으로 활용하여 코드의 타입 안정성을 확보합니다.
-- React Router를 사용해 페이지 간 라우팅을 구현하고, 동적 경로와 URL 파라미터를 이해합니다.
-- useState와 useReducer를 사용하여 컴포넌트의 로컬 상태를 관리하고, 상태 관리 로직을 최적화합니다.
-- Tailwind CSS로 스타일링하여 일관된 디자인 시스템을 구축합니다.
+I structured the project using all of FSD's core layers (`app`, `pages`, `widgets`, `features`, `entities`, `shared`). The layer names were in place, but the separation wasn't as deep as it should've been — the `features` layer, for example, ended up mostly empty, with logic that should've lived there sitting inside `widgets` or `pages` instead. A good first attempt at understanding what each layer is supposed to own, and something to apply more rigorously next time.
 
-## 기한
+---
 
-- 2026년 4월 25일 토요일 23:59까지
+## Week 3
+
+### Deadline
+
+- Saturday, March 28, 2026, 23:59 KST
+
+### About / Mission Goals
+
+This week's mission was a new project — a **Messenger** app — built in collaboration with a designer. The goal was to implement a chat screen redesigned by the design team, using **TypeScript** and **Tailwind CSS** for the first time. The mission also focused on core React Hooks — `useState`, `useEffect`, and `useRef`.
+
+### Working with a Designer
+
+This was also my first time collaborating directly with a designer. To keep communication smooth, I organized QA using a shared table (priority, page, title, description, progress, questions), with frontend-authored items prefixed "FE" so it was clear at a glance who wrote what.
+
+Before each deployment, I'd share which styles and features I planned to implement, then deploy so the designer could review the result in near real-time — checking in, adjusting, and building the app up incrementally rather than all at once.
+
+---
+
+## Week 4
+
+### Deadline
+
+- Saturday, April 25, 2026, 23:59 KST
+
+### About / Mission Goals
+
+This week extended the messenger with a friends list and chat room list, and introduced **React Router** for page-level navigation. The focus was on understanding routing in a single-page application (SPA) — dynamic routes, URL parameters, and smooth transitions between pages.
+
+**Additional feature — pinning chat rooms:**
+- **Pin**: clicking next to a chat's name or member count (transparent by default) pins it to the top of the list.
+- **Unpin**: clicking the pin icon moves the chat just below the last pinned item, back into the regular list.
+
+---
 
 ## Review Questions
 
-- React Router의 동적 라우팅(Dynamic Routing)이란 무엇이며, 언제 사용하나요?
-- 네트워크 속도가 느린 환경에서 사용자 경험을 개선하기 위해 사용할 수 있는 UI/UX 디자인 전략과 기술적 최적화 방법은 무엇인가요?
-- React에서 useState와 useReducer를 활용한 지역 상태 관리와 Context API 및 전역 상태 관리 라이브러리의 차이점을 설명하세요.
+**1.What is dynamic routing in React Router, and when is it used?**
 
-## 필수 구현 기능
+Dynamic routing captures part of the URL as a variable, so a single component can handle multiple pages depending on that value. It's useful for pages that share the same layout but differ only in data — user profiles, post edit pages, blog details, product pages, and so on.
 
-- 피그마 **Dev Mode**를 통해, 매칭된 디자인 파트원의 UI를 구현합니다.
-    - [🔗 예시 1](https://react-messenger-21th-kwondu.vercel.app/)
-    - [🔗 예시 2](https://react-messenger-21th-nine.vercel.app/)
-- 친구 목록 기능을 구현합니다.
-- React Router를 활용하여 친구 목록, 채팅방 목록, 채팅방 등의 페이지를 각각 구성합니다.
-- 채팅방 데이터를 로컬스토리지에 저장하여, 새로고침 시에도 데이터가 유지되도록 구현합니다.
-- 메시지에 유저 정보(프로필 이미지, 이름)를 함께 표시합니다.
-- user 및 message 데이터를 JSON 파일로 구성하여 관리합니다.
-- UI는 반응형을 제외하고, 피그마 파일을 기준으로 구현합니다.
+**2.What UI/UX and technical strategies help improve the experience on slow networks?**
 
-### 추가 구현 기능(선택 사항)
+On the UX side, showing a loading state instead of a blank screen keeps the app from feeling stuck, and rendering content progressively — rather than waiting for everything to load — keeps things feeling responsive.
 
-- 메세지 읽음/안읽음 표시 기능을 추가합니다.
-- 채팅방 핀(Pin) 기능을 구현합니다.
-- 채팅방에서 파일 및 이미지 전송이 가능하도록 합니다.
-- 이외에도 추가하고 싶은 기능이 있다면 추가하셔도 좋습니다.🙂‍↕️
+On the technical side, reducing image size and using a library like React Query to cache and reuse server data both cut down on how often (and how much) data needs to be fetched.
 
-## 링크 및 참고자료
+**3.What's the difference between local state (`useState`/`useReducer`) and global state (Context API / a state library)?**
 
-- [React docs - Hook](https://ko.react.dev/learn)
-- [React의 Hooks 완벽 정복하기](https://velog.io/@velopert/react-hooks#1-usestate)
-- [useEffect 완벽 가이드](https://overreacted.io/a-complete-guide-to-useeffect/)
-- [코딩 컨벤션](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
-- [타입스크립트 핸드북](https://joshua1988.github.io/ts/intro.html)
-- [리액트 프로젝트에서 타입스크립트 사용하기 (시리즈)](https://velog.io/@velopert/series/react-with-typescript)
-- [디자인 시스템 구축기](https://yozm.wishket.com/magazine/detail/1830/)
-- [[영상] : 컴포넌트에 대한 이해](https://www.youtube.com/watch?v=21eiJc90ggo)
-- [Tailwind CSS 사용법](https://www.heropy.dev/p/E67ZHS)
-- [ts 절대경로 설정하기](https://tesseractjh.tistory.com/232)
+`useState` fits simple local state well — a modal's open/closed status, an input's value, a counter. `useReducer` is better suited for more complex state logic, like a shopping cart with several related actions.
+
+The Context API works well for passing a value down through several components without prop-drilling. A dedicated state library is better suited for larger apps with more complex global state.
+
+**4.JSX / JS / TSX / TS — what are they, and how do they differ?**
+
+- **JSX** is a JavaScript syntax extension for writing HTML-like markup inside JS, mainly for UI in React. Browsers can't read JSX directly, so a tool like Babel compiles it into plain JS first.
+
+```jsx
+  // Without JSX
+  function Hello() {
+    return React.createElement("h1", null, "Hello!");
+  }
+
+  // With JSX
+  function Hello() {
+    return <h1>Hello!</h1>;
+  }
+```
+
+- **JS** is the language that runs in the browser. It's dynamically typed — no type declarations up front, which is fast to write but means type errors only surface at runtime.
+
+```js
+  let name = "John";
+  let age = 25;
+
+  function greet(user) {
+    return "Hello, " + user;
+  }
+```
+
+- **TSX** is a file format for writing JSX with TypeScript — used for React components written in TS.
+
+```tsx
+  interface Props {
+    name: string;
+    age: number;
+  }
+
+  function UserCard({ name, age }: Props) {
+    return (
+      <div>
+        <h2>{name}</h2>
+        <p>Age: {age}</p>
+      </div>
+    );
+  }
+```
+
+- **TS** is a superset of JavaScript, created by Microsoft, that adds static typing. Existing JS code works in TS as-is; TS files compile down to JS before running.
+
+```ts
+  let name: string = "John";
+  let age: number = 25;
+
+  function add(a: number, b: number): number {
+    return a + b;
+  }
+
+  add(1, "2"); // caught at compile time
+```
+
+**5.Why use TypeScript?**
+
+1. JS errors only surface at runtime. TypeScript catches them at write-time, right in the editor.
+2. Declared types let editors like VS Code auto-suggest available properties and methods (IntelliSense), speeding up development.
+3. Explicit types make it immediately clear what a function expects and returns — easier for others to read, easier to maintain.
+
+**6.SSR vs. CSR — what's the difference?**
+
+**CSR (Client-Side Rendering)** renders the page in the browser: the server sends mostly empty HTML plus JS, and the browser runs the JS to build the page. This is React's default. Initial load can feel slower since the page isn't visible until JS finishes running, and an empty HTML shell hurts SEO — but once loaded, page transitions are fast and server load stays low.
+
+**SSR (Server-Side Rendering)** renders the HTML on the server first, so content is visible before the JS even finishes loading. Next.js is a well-known SSR framework. This means faster initial loads and better SEO, at the cost of higher server load since each navigation may trigger a new server request.
+
+## Stack
+
+- React + TypeScript
+- Tailwind CSS
+- React Router
+
+## What I learned
+
+- Working with a designer for the first time meant learning to stay in sync — sharing progress before and after each deployment made the process feel collaborative rather than sequential.
+- FSD looked straightforward to set up, but keeping logic in the right layer (especially `features`) took more discipline than expected.
+- Adding React Router turned a single-screen demo into something that actually feels like a navigable app.
+
+## Links & References
+
+- [React Docs](https://ko.react.dev/learn)
+- [A Complete Guide to React Hooks (Korean)](https://velog.io/@velopert/react-hooks#1-usestate)
+- [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/)
+- [Coding Conventions (Korean)](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
+- [TypeScript Handbook (Korean)](https://joshua1988.github.io/ts/intro.html)
+- [Using TypeScript in React Projects — Series (Korean)](https://velog.io/@velopert/series/react-with-typescript)
+- [Building a Design System (Korean)](https://yozm.wishket.com/magazine/detail/1830/)
+- [Video: Understanding Components (Korean)](https://www.youtube.com/watch?v=21eiJc90ggo)
+- [Tailwind CSS Guide (Korean)](https://www.heropy.dev/p/E67ZHS)
+- [Setting Up TS Absolute Paths (Korean)](https://tesseractjh.tistory.com/232)
 
 ## **Project Tree**
 
