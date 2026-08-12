@@ -1,0 +1,65 @@
+[
+  {
+    "id": "1",
+    "name": "세오스 디자인",
+    "memberCount": 17,
+    "lastMessage": "내일까지 과제 마감입니다!",
+    "time": "오후 3시 29분",
+    "unreadCount": 0,
+    "isPinned": true
+  },
+  {
+    "id": "2",
+    "name": "시디 E반",
+    "memberCount": 8,
+    "lastMessage": "우리 언제봄?",
+    "time": "어제",
+    "unreadCount": 554,
+    "isPinned": true
+  },
+  {
+    "id": "3",
+    "name": "2026 홍익시디 3학년..",
+    "memberCount": 324,
+    "lastMessage": "[과잠 공구 공지]...",
+    "time": "3월 10일",
+    "unreadCount": 10,
+    "isPinned": true
+  },
+  {
+    "id": "4",
+    "name": "엄마",
+    "memberCount": null,
+    "lastMessage": "엄망 나 오늘 집에 늦게가",
+    "time": "오후 5시 00분",
+    "unreadCount": 0,
+    "isPinned": false
+  },
+  {
+    "id": "5",
+    "name": "삼백억",
+    "memberCount": 3,
+    "lastMessage": "아니 그래서",
+    "time": "어제",
+    "unreadCount": 88,
+    "isPinned": false
+  },
+  {
+    "id": "6",
+    "name": "세상에서 제일 깜직한 우강고..",
+    "memberCount": 5,
+    "lastMessage": "아아아앙아아아아아아아아아",
+    "time": "3월 7일",
+    "unreadCount": 0,
+    "isPinned": false
+  },
+  {
+    "id": "7",
+    "name": "백하린",
+    "memberCount": null,
+    "lastMessage": "뭐해?",
+    "time": "3월 6일",
+    "unreadCount": 1,
+    "isPinned": false
+  }
+]
